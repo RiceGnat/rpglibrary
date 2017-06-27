@@ -6,6 +6,11 @@
 	public interface IUnit
 	{
 		/// <summary>
+		/// Gets the unit's unique ID.
+		/// </summary>
+		uint ID { get; }
+
+		/// <summary>
 		/// Gets the unit's name.
 		/// </summary>
 		string Name { get; }
@@ -28,6 +33,8 @@
         /// <summary>
         /// Gets a breakdown of the unit's stats.
         /// </summary>
-		IStatsPackage StatsBreakdown { get; }
+		IStatsPackage StatsDetails { get; }
+
+		IUnitModifierStack Modifiers { get; }
 	}
 }

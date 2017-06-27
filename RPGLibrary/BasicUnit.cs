@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using RPGLibrary.Stats;
 
 namespace RPGLibrary
@@ -14,15 +10,9 @@ namespace RPGLibrary
 	[Serializable]
 	public class BasicUnit : IUnit
 	{
-		private class UnitStatsRouter : IStatsPackage
+		private class BaseStatsRouter : IStatsPackage
 		{
 			private BasicUnit unit;
-
-			/* This is incomplete. The point is to be able to access both the base stats
-			 * with no modifiers as well as the calculated stats with all modifiers.
-			 * Once the framework for unit modifiers is in place, the Final property should
-			 * be updated to return the calculated stats.
-			 */
 
 			public IStats Base
 			{
@@ -31,47 +21,51 @@ namespace RPGLibrary
 
 			public IStats Additions
 			{
-				get { return null; }
+				get { return StatsConstant.Zero; }
 			}
 
 			public IStats Multiplications
 			{
-				get { return null; }
+				get { return StatsConstant.Zero; }
 			}
 
 			public IStats Final
 			{
-				get { return null; }
+				get { return Base; }
 			}
 
-			public UnitStatsRouter(BasicUnit unit)
+			public BaseStatsRouter(BasicUnit unit)
 			{
 				this.unit = unit;
 			}
 		}
 
 		[NonSerialized]
-		private UnitStatsRouter statsRouter;
+		private BaseStatsRouter statsRouter;
 
+		public uint ID { get; set; }
 		public virtual string Name { get; set; }
 		public virtual string Class { get; set; }
 		public virtual int Level { get; set; }
 
-		public virtual IStats Stats { get { return StatsBreakdown.Final; } }
-		public virtual IStatsPackage StatsBreakdown { get { return statsRouter; } }
-
 		public IStatsEditable BaseStats { get; set; }
+		public IUnitModifierStack Modifiers { get; set; }
+
+		public virtual IStats Stats { get { return StatsDetails.Final; } }
+		public virtual IStatsPackage StatsDetails { get { return statsRouter; } }
 
 		// Perform initial setup
 		protected virtual void Initialize()
 		{
 			BaseStats = new StatsMap();
+			Modifiers = new UnitModifierStack();
 		}
 
 		// Set internal object references
 		protected virtual void Link()
 		{
-			statsRouter = new UnitStatsRouter(this);
+			statsRouter = new BaseStatsRouter(this);
+			Modifiers.Bind(this);
 		}
 
 		[OnDeserialized]

@@ -13,12 +13,9 @@ namespace RPGLibrary.Stats
 
 		public override int Get(string stat)
 		{
-			// Still unsure whether this should simply return 0 or an exception
-			// On one hand, checking for existence would be better for the caller than having to catch an exception
-			// But there shouldn't be a reason to look up a stat that doesn't exist, except for maybe equipment?
 			if (!map.ContainsKey(stat))
 			{
-				throw new KeyNotFoundException(String.Format("Stat {0} has not been set.", stat));
+				return 0;
 			}
 
 			return map[stat];

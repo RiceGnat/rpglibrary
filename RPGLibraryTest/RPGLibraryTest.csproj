@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1FCB4578-21B8-4DB5-B560-C87BEEB7FD2E}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{4B59BFB2-9068-4C2C-A6EC-422C03E77C45}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RPGLibrary</RootNamespace>
-    <AssemblyName>RPGLibrary</AssemblyName>
+    <RootNamespace>RPGLibraryTest</RootNamespace>
+    <AssemblyName>RPGLibraryTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,22 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicUnit.cs" />
-    <Compile Include="DynamicUnit.cs" />
-    <Compile Include="IStatsEditable.cs" />
-    <Compile Include="IStats.cs" />
-    <Compile Include="IStatsPackage.cs" />
-    <Compile Include="IUnit.cs" />
-    <Compile Include="IUnitModifier.cs" />
-    <Compile Include="IUnitModifierStack.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stats\StatsMath.cs" />
-    <Compile Include="Stats\StatsConstant.cs" />
-    <Compile Include="Stats\StatsPrototype.cs" />
-    <Compile Include="Stats\StatsMap.cs" />
-    <Compile Include="UnitModifier.cs" />
-    <Compile Include="UnitModifierStack.cs" />
-    <Compile Include="UnitStatsModifier.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RPGLibrary\RPGLibrary.csproj">
+      <Project>{1fcb4578-21b8-4db5-b560-c87beeb7fd2e}</Project>
+      <Name>RPGLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
