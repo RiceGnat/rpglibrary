@@ -48,17 +48,19 @@ namespace RPGLibrary
 		public virtual string Class { get; set; }
 		public virtual int Level { get; set; }
 
-		public IStatsEditable BaseStats { get; set; }
-		public IUnitModifierStack Modifiers { get; set; }
-
 		public virtual IStats Stats { get { return StatsDetails.Final; } }
 		public virtual IStatsPackage StatsDetails { get { return statsRouter; } }
+
+		public IStatsEditable BaseStats { get; set; }
+		public IUnitModifierStack Modifiers { get; set; }
+		public IUnitProperties Properties { get; set; }
 
 		// Perform initial setup
 		protected virtual void Initialize()
 		{
 			BaseStats = new StatsMap();
 			Modifiers = new UnitModifierStack();
+			Properties = new UnitProperties();
 		}
 
 		// Set internal object references

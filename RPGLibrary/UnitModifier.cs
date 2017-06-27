@@ -30,6 +30,7 @@ namespace RPGLibrary
 		IStats IUnit.Stats { get { return InterfaceUnit.Stats; } }
 		IStatsPackage IUnit.StatsDetails { get { return InterfaceUnit.StatsDetails; } }
 		IUnitModifierStack IUnit.Modifiers { get { return InterfaceUnit.Modifiers; } }
+		IUnitProperties IUnit.Properties { get { return InterfaceUnit.Properties; } }
 		#endregion
 	}
 }

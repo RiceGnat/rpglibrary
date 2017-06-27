@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace RPGLibrary
 {
@@ -53,6 +51,23 @@ namespace RPGLibrary
 			}
 			stack.RemoveAt(index);
 			return true;
+		}
+
+		[OnDeserialized]
+		private void Rebind(StreamingContext context)
+		{
+			// Rebind modifiers after deserialization
+			for (int i = 0; i < stack.Count; i++)
+			{
+				if (i == 0)
+				{
+					stack[i].Bind(Base);
+				}
+				else
+				{
+					stack[i].Bind(stack[i - 1]);
+				}
+			}
 		}
 
 		#region IEnumerable
