@@ -10,8 +10,6 @@ namespace RPGLibrary
 
 		protected virtual IUnit InterfaceUnit { get { return Base; } }
 
-		public uint ID { get; set; }
-
 		public IUnit Base
 		{
 			get { return baseUnit; }
@@ -23,7 +21,6 @@ namespace RPGLibrary
 		}
 
 		#region IUnit
-		uint IUnit.ID { get { return InterfaceUnit.ID; } }
 		string IUnit.Name { get { return InterfaceUnit.Name; } }
 		string IUnit.Class { get { return InterfaceUnit.Class; } }
 		int IUnit.Level { get { return InterfaceUnit.Level; } }

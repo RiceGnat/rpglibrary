@@ -6,11 +6,6 @@
 	public interface IUnit
 	{
 		/// <summary>
-		/// Gets the unit's unique ID.
-		/// </summary>
-		uint ID { get; }
-
-		/// <summary>
 		/// Gets the unit's name.
 		/// </summary>
 		string Name { get; }

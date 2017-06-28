@@ -33,8 +33,8 @@ namespace RPGLibrary
 
 		public bool Remove(IUnitModifier item)
 		{
-			// Search for item by object ID
-			int index = stack.FindIndex(X => X.ID == item.ID);
+			// Search for referenced item
+			int index = stack.FindIndex(X => X.Equals(item));
 
 			// Not found
 			if (index == -1) return false;

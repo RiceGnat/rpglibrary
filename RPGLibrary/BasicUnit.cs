@@ -43,8 +43,6 @@ namespace RPGLibrary
 		[NonSerialized]
 		private BaseStatsRouter statsRouter;
 
-		public uint ID { get; set; }
-
 		public virtual string Name
 		{
 			get { return Properties.Name; }
