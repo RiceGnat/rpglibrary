@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicUnit.cs" />
+    <Compile Include="Collections\CircularLinkedList%28T%29.cs" />
+    <Compile Include="Collections\ICircularLinkedList%28T%29.cs" />
     <Compile Include="DynamicUnit.cs" />
     <Compile Include="IStatsEditable.cs" />
     <Compile Include="IStats.cs" />
@@ -49,6 +51,7 @@
     <Compile Include="IUnitModifierStack.cs" />
     <Compile Include="IUnitProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\Serializer.cs" />
     <Compile Include="Stats\StatsMath.cs" />
     <Compile Include="Stats\StatsConstant.cs" />
     <Compile Include="Stats\StatsPrototype.cs" />
