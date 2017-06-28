@@ -44,16 +44,30 @@ namespace RPGLibrary
 		private BaseStatsRouter statsRouter;
 
 		public uint ID { get; set; }
-		public virtual string Name { get; set; }
-		public virtual string Class { get; set; }
-		public virtual int Level { get; set; }
+
+		public virtual string Name
+		{
+			get { return Properties.Name; }
+			set { Properties.Name = value; }
+		}
+
+		public virtual string Class
+		{
+			get { return Properties.Class; }
+			set { Properties.Class = value; }
+		}
+		public virtual int Level
+		{
+			get { return Properties.Level; }
+			set { Properties.Level = value; }
+		}
 
 		public virtual IStats Stats { get { return StatsDetails.Final; } }
 		public virtual IStatsPackage StatsDetails { get { return statsRouter; } }
 
-		public IStatsEditable BaseStats { get; set; }
-		public IUnitModifierStack Modifiers { get; set; }
-		public IUnitProperties Properties { get; set; }
+		public IStatsEditable BaseStats { get; protected set; }
+		public IUnitModifierStack Modifiers { get; protected set; }
+		public IUnitProperties Properties { get; protected set; }
 
 		// Perform initial setup
 		protected virtual void Initialize()

@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RPGLibrary
+﻿namespace RPGLibrary
 {
+	/// <summary>
+	/// Exposes unit properties.
+	/// </summary>
 	public interface IUnitProperties
 	{
+		/// <summary>
+		/// Gets or sets the unit's name.
+		/// </summary>
+		string Name { get; set; }
+
+		/// <summary>
+		/// Gets or sets the unit's class.
+		/// </summary>
+		string Class { get; set; }
+
+		/// <summary>
+		/// Gets or sets the unit's level.
+		/// </summary>
+		int Level { get; set; }
 	}
 }
