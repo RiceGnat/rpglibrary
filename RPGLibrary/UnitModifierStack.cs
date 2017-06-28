@@ -42,7 +42,7 @@ namespace RPGLibrary
 			// Item is first and there is an item above it
 			if (index == 0 && stack.Count > 1)
 			{
-				stack[index + 1].Bind(Base);
+				stack[index + 1].Bind(Base); 
 			}
 			// Item is in the middle of the stack
 			else if (index < stack.Count - 1)
@@ -71,14 +71,19 @@ namespace RPGLibrary
 		}
 
 		#region IEnumerable
+		private IEnumerator<IUnitModifier> GetEnumerator()
+		{
+			return stack.GetEnumerator();
+		}
+
 		IEnumerator<IUnitModifier> IEnumerable<IUnitModifier>.GetEnumerator()
 		{
-			throw new NotImplementedException();
+			return GetEnumerator();
 		}
 
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
 		{
-			throw new NotImplementedException();
+			return GetEnumerator();
 		}
 		#endregion
 	}
