@@ -48,6 +48,7 @@
     <Compile Include="Dynamic\UnitEventHandler.cs" />
     <Compile Include="IStatsEditable.cs" />
     <Compile Include="IStats.cs" />
+    <Compile Include="IStatsMath.cs" />
     <Compile Include="IStatsPackage.cs" />
     <Compile Include="Items\Equipment.cs" />
     <Compile Include="Items\IEquipment.cs" />
