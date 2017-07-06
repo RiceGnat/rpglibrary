@@ -1,7 +1,7 @@
 ﻿namespace RPGLibrary
 {
 	/// <summary>
-	/// Exposes unit properties.
+	/// Exposes a unit's detailed properties.
 	/// </summary>
 	public interface IUnitProperties
 	{

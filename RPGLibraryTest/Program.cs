@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RPGLibrary;
+using RPGLibrary.Items;
 
 namespace RPGLibraryTest
 {
@@ -14,35 +15,33 @@ namespace RPGLibraryTest
 			BasicUnit baseUnit = new BasicUnit();
 			baseUnit.Name = "Test unit";
 			baseUnit.BaseStats["ATK"] = 10;
+			baseUnit.BaseStats["DEF"] = 10;
 
 			IUnit unit = new DynamicUnit(baseUnit);
 
-			Console.WriteLine("{0}'s ATK is {1}", unit.Name, unit.Stats["ATK"]);
+			PrintUnit(unit);
 
+			Equipment e = new Equipment();
+			e.Name = "Equipment A";
+			e.Additions["ATK"] = 10;
+			e.Additions["DEF"] = -2;
 
-			UnitStatsModifier mod1 = new UnitStatsModifier();
-			mod1.Additions["ATK"] = 5;
-			unit.Modifiers.Add(mod1);
+			unit.Modifiers.Add(e);
 
-			Console.WriteLine("{0}'s ATK is {1}", unit.Name, unit.Stats["ATK"]);
-
-
-			UnitStatsModifier mod2 = new UnitStatsModifier();
-			mod2.Additions["ATK"] = 7;
-			mod2.Multiplications["ATK"] = 100;
-			unit.Modifiers.Add(mod2);
-
-			Console.WriteLine("{0}'s ATK is {1}", unit.Name, unit.Stats["ATK"]);
-
-
-			UnitStatsModifier mod3 = new UnitStatsModifier();
-			mod3.Additions["ATK"] = 10;
-			mod3.Multiplications["ATK"] = -20;
-			unit.Modifiers.Add(mod3);
-
-			Console.WriteLine("{0}'s ATK is {1}", unit.Name, unit.Stats["ATK"]);
+			PrintEquipment(e);
+			PrintUnit(unit);
 
 			Console.ReadKey();
+		}
+
+		static void PrintUnit(IUnit unit)
+		{
+			Console.WriteLine("{0}'s stats are {1}/{2}", unit.Name, unit.Stats["ATK"], unit.Stats["DEF"]);
+		}
+
+		static void PrintEquipment(IEquipment equip)
+		{
+			Console.WriteLine("{0} grants {1:+#;-#;+0}/{2:+#;-#;+0}", equip.Name, equip.Additions["ATK"], equip.Additions["DEF"]);
 		}
 	}
 }

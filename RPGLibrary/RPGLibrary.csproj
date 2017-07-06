@@ -46,6 +46,10 @@
     <Compile Include="IStatsEditable.cs" />
     <Compile Include="IStats.cs" />
     <Compile Include="IStatsPackage.cs" />
+    <Compile Include="Items\Equipment.cs" />
+    <Compile Include="Items\IEquipment.cs" />
+    <Compile Include="Items\IItem.cs" />
+    <Compile Include="Items\Item.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="IUnitModifier.cs" />
     <Compile Include="IUnitModifierStack.cs" />
@@ -61,9 +65,7 @@
     <Compile Include="UnitProperties.cs" />
     <Compile Include="UnitStatsModifier.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Items\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
