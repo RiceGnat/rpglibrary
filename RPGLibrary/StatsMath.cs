@@ -1,4 +1,4 @@
-﻿namespace RPGLibrary.Stats
+﻿namespace RPGLibrary
 {
 	public class StatsMath : StatsPrototype
 	{

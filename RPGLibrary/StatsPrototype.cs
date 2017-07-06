@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RPGLibrary.Stats
+namespace RPGLibrary
 {
 	/// <summary>
 	/// Abstract base class for <see cref="IStats"/>.

@@ -1,4 +1,4 @@
-﻿namespace RPGLibrary.Stats
+﻿namespace RPGLibrary
 {
 	/// <summary>
 	/// Returns a constant value for every stat.

@@ -4,8 +4,6 @@ using System.Runtime.Serialization;
 
 namespace RPGLibrary
 {
-	// TODO: rebind stack on deserialization
-
 	[Serializable]
 	public class UnitModifierStack : UnitModifier, IUnitModifierStack
 	{

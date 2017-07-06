@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RPGLibrary.Stats
+namespace RPGLibrary
 {
 	/// <summary>
 	/// Implements data structure for stat lookup.
