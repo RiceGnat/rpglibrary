@@ -6,18 +6,18 @@ namespace RPGLibrary
 	public abstract class UnitModifier : IUnitModifier
 	{
 		[NonSerialized]
-		private IUnit baseUnit;
+		private IUnit target;
 
-		protected virtual IUnit InterfaceUnit { get { return Base; } }
+		protected virtual IUnit InterfaceUnit { get { return Target; } }
 
-		public IUnit Base
+		public IUnit Target
 		{
-			get { return baseUnit; }
+			get { return target; }
 		}
 
 		public virtual void Bind(IUnit target)
 		{
-			baseUnit = target;
+			this.target = target;
 		}
 
 		#region IUnit

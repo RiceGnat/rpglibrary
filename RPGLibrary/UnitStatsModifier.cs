@@ -50,7 +50,7 @@ namespace RPGLibrary
 		public override void Bind(IUnit target)
 		{
 			base.Bind(target);
-			statsModifier = new StatsModifier(Base, Additions, Multiplications);
+			statsModifier = new StatsModifier(Target, Additions, Multiplications);
 		}
 
 		IStats IUnit.Stats { get { return statsModifier.Final; } }

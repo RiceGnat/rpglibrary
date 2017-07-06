@@ -1,4 +1,4 @@
-﻿namespace RPGLibrary
+﻿namespace RPGLibrary.Dynamic
 {
 	public class DynamicUnit : UnitModifier
 	{
@@ -6,7 +6,7 @@
 		{
 			get
 			{
-				return Base.Modifiers;
+				return Target.Modifiers;
 			}
 		}
 

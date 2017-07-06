@@ -8,7 +8,7 @@
 		/// <summary>
 		/// Gets the name of the equipment.
 		/// </summary>
-		string Name { get; }
+		new string Name { get; }
 
 		/// <summary>
 		/// Gets the values that this equipment will add to the unit's stats.

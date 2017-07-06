@@ -6,9 +6,9 @@
 	public interface IUnitModifier : IUnit
 	{
 		/// <summary>
-		/// Gets the base unit the object is modifying.
+		/// Gets the unit the object is modifying.
 		/// </summary>
-		IUnit Base { get; }
+		IUnit Target { get; }
 
 		/// <summary>
 		/// Binds the modifier to a new target.

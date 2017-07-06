@@ -13,14 +13,14 @@ namespace RPGLibrary
 		{
 			get
 			{
-				return stack.Count > 0 ? stack[stack.Count - 1] : Base;
+				return stack.Count > 0 ? stack[stack.Count - 1] : Target;
 			}
 		}
 
 		public override void Bind(IUnit target)
 		{
 			base.Bind(target);
-			if (stack.Count > 0) stack[0].Bind(Base);
+			if (stack.Count > 0) stack[0].Bind(Target);
 		}
 
 		public void Add(IUnitModifier item)
@@ -40,7 +40,7 @@ namespace RPGLibrary
 			// Item is first and there is an item above it
 			if (index == 0 && stack.Count > 1)
 			{
-				stack[index + 1].Bind(Base); 
+				stack[index + 1].Bind(Target); 
 			}
 			// Item is in the middle of the stack
 			else if (index < stack.Count - 1)
@@ -59,7 +59,7 @@ namespace RPGLibrary
 			{
 				if (i == 0)
 				{
-					stack[i].Bind(Base);
+					stack[i].Bind(Target);
 				}
 				else
 				{

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RPGLibrary;
+using RPGLibrary.Dynamic;
 using RPGLibrary.Items;
 
 namespace RPGLibraryTest
@@ -21,17 +22,29 @@ namespace RPGLibraryTest
 
 			PrintUnit(unit);
 
+			DynamicModifier d = new DynamicModifier();
+			d.Name = "Dynamic A";
+			d.Multiplications["ATK"] = 50;
+			d.Duration = 4;
+			d.Remaining = 4;
+			d.Upkeep += PrintUnit;
+
+			unit.Modifiers.Add(d);
+
 			Equipment e = new Equipment();
 			e.Name = "Equipment A";
 			e.Additions["ATK"] = 10;
 			e.Additions["DEF"] = -2;
 
 			unit.Modifiers.Add(e);
-
 			PrintEquipment(e);
-			PrintUnit(unit);
 
-			Console.ReadKey();
+			while (d.Remaining > 0)
+			{
+				Console.Write("{0}: ", d.Remaining);
+				d.Tick();
+				Console.ReadKey();
+			}
 		}
 
 		static void PrintUnit(IUnit unit)
