@@ -1,5 +1,8 @@
-﻿namespace RPGLibrary.Items
+﻿using System;
+
+namespace RPGLibrary.Items
 {
+	[Serializable]
 	public class Equipment : UnitStatsModifier, IEquipment
 	{
 		public string Name { get; set; }

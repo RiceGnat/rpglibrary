@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicUnit.cs" />
+    <Compile Include="Collections\Catalog.cs" />
     <Compile Include="Collections\CircularLinkedList%28T%29.cs" />
     <Compile Include="Collections\ICircularLinkedList%28T%29.cs" />
     <Compile Include="Dynamic\DynamicModifier.cs" />

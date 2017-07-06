@@ -1,5 +1,8 @@
-﻿namespace RPGLibrary.Dynamic
+﻿using System;
+
+namespace RPGLibrary.Dynamic
 {
+	[Serializable]
 	public class DynamicModifier : UnitStatsModifier, IDynamicModifier
 	{
 		public string Name { get; set; }

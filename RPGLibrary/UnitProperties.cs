@@ -1,5 +1,8 @@
-﻿namespace RPGLibrary
+﻿using System;
+
+namespace RPGLibrary
 {
+	[Serializable]
 	public class UnitProperties : IUnitProperties
 	{
 		public string Name { get; set; }

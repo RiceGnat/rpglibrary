@@ -1,5 +1,8 @@
-﻿namespace RPGLibrary.Dynamic
+﻿using System;
+
+namespace RPGLibrary.Dynamic
 {
+	[Serializable]
 	public class DynamicUnit : UnitModifier
 	{
 		protected override IUnit InterfaceUnit
