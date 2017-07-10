@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1FCB4578-21B8-4DB5-B560-C87BEEB7FD2E}</ProjectGuid>
+    <ProjectGuid>{3F1FA461-A8B2-4B6D-8C39-050069CE2A66}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RPGLibrary</RootNamespace>
-    <AssemblyName>RPGLibrary</AssemblyName>
+    <RootNamespace>Davfalcon</RootNamespace>
+    <AssemblyName>Davfalcon</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,38 +38,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicUnit.cs" />
-    <Compile Include="Collections\Catalog.cs" />
-    <Compile Include="Collections\CircularLinkedList%28T%29.cs" />
-    <Compile Include="Collections\ICircularLinkedList%28T%29.cs" />
-    <Compile Include="Dynamic\DynamicModifier.cs" />
-    <Compile Include="Dynamic\DynamicUnit.cs" />
-    <Compile Include="Dynamic\IDynamicModifier.cs" />
-    <Compile Include="Dynamic\UnitEventHandler.cs" />
-    <Compile Include="IStatsEditable.cs" />
-    <Compile Include="IStats.cs" />
-    <Compile Include="IStatsMath.cs" />
-    <Compile Include="IStatsPackage.cs" />
-    <Compile Include="Items\Equipment.cs" />
-    <Compile Include="Items\IEquipment.cs" />
-    <Compile Include="Items\IItem.cs" />
-    <Compile Include="Items\Item.cs" />
-    <Compile Include="IUnit.cs" />
-    <Compile Include="IUnitModifier.cs" />
-    <Compile Include="IUnitModifierStack.cs" />
-    <Compile Include="IUnitProperties.cs" />
+    <Compile Include="LinkedStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization\Serializer.cs" />
-    <Compile Include="StatsMath.cs" />
-    <Compile Include="StatsConstant.cs" />
-    <Compile Include="StatsPrototype.cs" />
-    <Compile Include="StatsMap.cs" />
-    <Compile Include="UnitModifier.cs" />
-    <Compile Include="UnitModifierStack.cs" />
+    <Compile Include="Unit.cs" />
     <Compile Include="UnitProperties.cs" />
-    <Compile Include="UnitStatsModifier.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\RPGLibrary\RPGLibrary.csproj">
+      <Project>{1fcb4578-21b8-4db5-b560-c87beeb7fd2e}</Project>
+      <Name>RPGLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

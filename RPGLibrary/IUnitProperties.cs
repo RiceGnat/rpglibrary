@@ -19,5 +19,7 @@
 		/// Gets or sets the unit's level.
 		/// </summary>
 		int Level { get; set; }
+
+		T GetAs<T>() where T : class, IUnitProperties;
 	}
 }
