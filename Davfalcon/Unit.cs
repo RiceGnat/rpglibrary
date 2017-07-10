@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using RPGLibrary;
 
 namespace Davfalcon
 {
-	public class Unit : RPGLibrary.BasicUnit
+	public class Unit : BasicUnit
 	{
 		protected override void Initialize()
 		{
-			base.Initialize();
-			BaseStats = new LinkedStats();
-			Properties = new UnitProperties();
+			BaseStats = new UnitStats();
+			Properties = new UnitProperties(this);
+			Modifiers = new UnitModifierStack();
 		}
 	}
 }

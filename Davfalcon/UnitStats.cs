@@ -10,10 +10,10 @@ namespace Davfalcon
 
 	public enum BattleStats
 	{
-		HP, MP, ATK, DEF, MAG, RES
+		HP, MP, ATK, DEF, MAG, RES, HIT, AVD, CRT
 	}
 
-	public class LinkedStats : StatsMap
+	public class UnitStats : StatsMap
 	{
 		public override int Get(string stat)
 		{
