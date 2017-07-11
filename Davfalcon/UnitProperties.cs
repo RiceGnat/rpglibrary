@@ -14,37 +14,41 @@ namespace Davfalcon
 
 	public interface IUnitEquipProps : IUnitProperties
 	{
+		IUnitModifierStack Equipment { get; }
 		IWeapon EquippedWeapon { get; }
-		IWeapon EquipWeapon(IWeapon weapon);
 		IEquipment GetEquipment(EquipmentSlot slot);
 		IEquipment Equip(EquipmentSlot slot, IEquipment equipment);
 	}
 
+	[Serializable]
 	public class UnitProperties : RPGLibrary.UnitProperties, IUnitCombatProps, IUnitEquipProps
 	{
-		protected IUnit unit;
-
 		public int CurrentHP { get; set; }
 		public int CurrentMP { get; set; }
 
 		// other combat properties
 
-		// weapon assignment
-		public IWeapon EquippedWeapon { get; protected set; }
+		// equipment
+		public IUnitModifierStack Equipment { get; private set; }
 
-		public IWeapon EquipWeapon(IWeapon weapon)
+		[NonSerialized]
+		private Dictionary<EquipmentSlot, IEquipment> equipLookup;
+
+		public IWeapon EquippedWeapon
 		{
-			EquippedWeapon = weapon;
-			return Equip(EquipmentSlot.Weapon, weapon) as IWeapon;
+			get
+			{
+				return GetEquipment(EquipmentSlot.Weapon) as IWeapon ?? Weapon.Unarmed;
+			}
 		}
 
 		public IEquipment GetEquipment(EquipmentSlot slot)
 		{
-			foreach (IEquipment e in unit.Modifiers)
+			if (equipLookup.ContainsKey(slot))
 			{
-				if (e != null && e.Slot == slot) return e;
+				return equipLookup[slot];
 			}
-			return null;
+			else return null;
 		}
 
 		public IEquipment Equip(EquipmentSlot slot, IEquipment equipment)
@@ -54,11 +58,15 @@ namespace Davfalcon
 			IEquipment current = GetEquipment(slot);
 			
 			// Remove current equipment
-			unit.Modifiers.Remove(current);
+			Equipment.Remove(current);
+			equipLookup.Remove(slot);
 
 			// If not null, add new equipment
 			if (equipment != null)
-				unit.Modifiers.Add(equipment);
+			{
+				Equipment.Add(equipment);
+				equipLookup[slot] = equipment;
+			}
 
 			// Return previously equipped weapon
 			return current;
@@ -69,9 +77,20 @@ namespace Davfalcon
 
 		// spells known
 
-		public UnitProperties(IUnit unit)
+		public void Bind(IUnit unit)
 		{
-			this.unit = unit;
+			Equipment.Bind(unit);
+			unit.Modifiers.Bind(Equipment);
+			equipLookup = new Dictionary<EquipmentSlot, IEquipment>();
+			foreach (IEquipment equip in Equipment)
+			{
+				equipLookup[equip.Slot] = equip;
+			}
+		}
+		
+		public UnitProperties()
+		{
+			Equipment = new UnitModifierStack();
 			Inventory = new List<IItem>();
 		}
 	}

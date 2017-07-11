@@ -2,6 +2,7 @@
 
 namespace Davfalcon.Combat
 {
+	[Serializable]
 	public class HPLoss : ILogEntry
 	{
 		public readonly string Unit;

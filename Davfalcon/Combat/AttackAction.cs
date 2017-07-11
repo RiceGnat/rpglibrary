@@ -3,6 +3,7 @@ using RPGLibrary;
 
 namespace Davfalcon.Combat
 {
+	[Serializable]
 	public class AttackAction : ILogEntry
 	{
 		public readonly string Attacker;

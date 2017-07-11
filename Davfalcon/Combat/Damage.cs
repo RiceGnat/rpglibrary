@@ -7,6 +7,7 @@ namespace Davfalcon.Combat
 		Physical, Magical, True
 	}
 
+	[Serializable]
 	public class Damage : ILogEntry
 	{
 		public readonly DamageType Type;

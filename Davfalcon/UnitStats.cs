@@ -8,39 +8,57 @@ namespace Davfalcon
 		STR, VIT, AGI, INT, WIS
 	}
 
-	public enum BattleStats
+	public enum CombatStats
 	{
 		HP, MP, ATK, DEF, MAG, RES, HIT, AVD, CRT
 	}
 
+	[Serializable]
 	public class UnitStats : StatsMap
 	{
-		public override int Get(Enum stat)
+		[NonSerialized]
+		private IUnit unit;
+
+		public override int Get(string stat)
 		{
-			if (stat is BattleStats)
+			if (stat == CombatStats.HP.ToString())
 			{
-				switch ((BattleStats)stat)
-				{
-					case BattleStats.HP:
-						return 5 * base.Get(Attributes.VIT);
-					case BattleStats.MP:
-						return 2 * base.Get(Attributes.INT) + 2 * base.Get(Attributes.WIS);
-					case BattleStats.ATK:
-						return 2 * base.Get(Attributes.STR);
-					case BattleStats.DEF:
-						return base.Get(Attributes.VIT) + base.Get(Attributes.STR);
-					case BattleStats.MAG:
-						return 2 * base.Get(Attributes.INT);
-					case BattleStats.RES:
-						return base.Get(Attributes.INT) + base.Get(Attributes.WIS);
-					default:
-						return base.Get(stat);
-				}
+				return 25 * unit.Stats[Attributes.VIT];
+			}
+			else if (stat == CombatStats.MP.ToString())
+			{
+				return 5 * unit.Stats[Attributes.INT] + 5 * unit.Stats[Attributes.WIS];
+			}
+			else if (stat == CombatStats.ATK.ToString())
+			{
+				return 2 * unit.Stats[Attributes.STR];
+			}
+			else if (stat == CombatStats.DEF.ToString())
+			{
+				return unit.Stats[Attributes.VIT] + unit.Stats[Attributes.STR];
+			}
+			else if (stat == CombatStats.MAG.ToString())
+			{
+				return 2 * unit.Stats[Attributes.INT];
+			}
+			else if (stat == CombatStats.RES.ToString())
+			{
+				return unit.Stats[Attributes.INT] + unit.Stats[Attributes.WIS];
 			}
 			else
 			{
 				return base.Get(stat);
 			}
+		}
+
+		public void Bind(IUnit unit)
+		{
+			this.unit = unit;
+		}
+
+		public UnitStats(IUnit unit)
+		{
+			Bind(unit);
 		}
 	}
 }

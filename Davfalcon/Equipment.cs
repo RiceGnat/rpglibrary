@@ -1,10 +1,13 @@
-﻿namespace Davfalcon
+﻿using System;
+
+namespace Davfalcon
 {
 	public enum EquipmentSlot
 	{
 		Weapon, Armor, Accessory
 	}
 
+	[Serializable]
 	public class Equipment : RPGLibrary.Items.Equipment, IEquipment
 	{
 		public EquipmentSlot Slot { get; protected set; }

@@ -26,7 +26,7 @@ namespace Davfalcon.Combat
 			return new Damage(
 				DamageType.Physical,
 				weapon.AttackElement,
-				ScaleDamageValue(weapon.BaseDamage, unit.Stats[BattleStats.ATK]),
+				ScaleDamageValue(weapon.BaseDamage + unit.Stats[Attributes.STR], unit.Stats[CombatStats.ATK]),
 				unit.Name
 			);
 		}
@@ -40,10 +40,10 @@ namespace Davfalcon.Combat
 				finalDamage = damage.Value;
 			}
 			else {
-				BattleStats resistStat;
+				CombatStats resistStat;
 
-				if (damage.Type == DamageType.Magical) resistStat = BattleStats.RES;
-				else resistStat = BattleStats.DEF;
+				if (damage.Type == DamageType.Magical) resistStat = CombatStats.RES;
+				else resistStat = CombatStats.DEF;
 
 				finalDamage = MitigateDamageValue(damage.Value, unit.Stats[resistStat]);
 			}
