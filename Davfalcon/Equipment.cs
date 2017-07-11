@@ -5,7 +5,7 @@
 		Weapon, Armor, Accessory
 	}
 
-	public class Equipment : RPGLibrary.Items.Equipment
+	public class Equipment : RPGLibrary.Items.Equipment, IEquipment
 	{
 		public EquipmentSlot Slot { get; protected set; }
 

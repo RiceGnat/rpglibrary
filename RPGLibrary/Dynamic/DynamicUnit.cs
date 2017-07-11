@@ -2,6 +2,7 @@
 
 namespace RPGLibrary.Dynamic
 {
+	// Might not be needed!
 	[Serializable]
 	public class DynamicUnit : UnitModifier
 	{

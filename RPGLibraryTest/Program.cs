@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using RPGLibrary;
 using RPGLibrary.Collections;
-using RPGLibrary.Dynamic;
 using RPGLibrary.Items;
 using RPGLibrary.Serialization;
 
@@ -20,7 +19,7 @@ namespace RPGLibraryTest
 			baseUnit.BaseStats["ATK"] = 10;
 			baseUnit.BaseStats["DEF"] = 10;
 
-			IUnit unit = new DynamicUnit(baseUnit);
+			IUnit unit = baseUnit;
 			BasicUnit unit2 = Serializer.DeepClone<BasicUnit>(baseUnit);
 			BasicUnit unit3;
 			unit2.Name = "Test unit 2";
@@ -78,6 +77,8 @@ namespace RPGLibraryTest
 			unit3.Name = "Test unit 3";
 			unit3.Modifiers.Add(c.GetCopy(1));
 			PrintUnit(unit3.Modifiers);
+
+			Console.WriteLine("{0}'s base stats are {1}/{2}", unit.Name, unit.StatsDetails.Base["ATK"], unit.StatsDetails.Base["DEF"]);
 
 			Console.ReadKey();
 		}

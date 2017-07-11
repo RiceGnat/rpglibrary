@@ -17,6 +17,8 @@ namespace RPGLibrary
 			}
 		}
 
+		public int Count { get { return stack.Count; } }
+
 		public override void Bind(IUnit target)
 		{
 			base.Bind(target);

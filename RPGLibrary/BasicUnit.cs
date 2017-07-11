@@ -30,7 +30,7 @@ namespace RPGLibrary
 
 			public IStats Final
 			{
-				get { return Base; }
+				get { return unit.Modifiers.Stats; }
 			}
 
 			public BaseStatsRouter(BasicUnit unit)
@@ -59,7 +59,7 @@ namespace RPGLibrary
 			set { Properties.Level = value; }
 		}
 
-		public virtual IStats Stats { get { return StatsDetails.Final; } }
+		public virtual IStats Stats { get { return Modifiers.StatsDetails == StatsDetails ? StatsDetails.Base : StatsDetails.Final; } }
 		public virtual IStatsPackage StatsDetails { get { return statsRouter; } }
 
 		public IStatsEditable BaseStats { get; protected set; }

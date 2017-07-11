@@ -1,34 +1,74 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RPGLibrary;
-using RPGLibrary.Serialization;
+﻿using RPGLibrary;
 
 namespace Davfalcon.Combat
 {
 	public static class Combat
 	{
-		public IUnitCombatProps GetUnitCombatProps(IUnit unit)
+		public static IUnitCombatProps GetCombatProps(this IUnit unit)
 		{
 			return unit.Properties.GetAs<IUnitCombatProps>();
 		}
 
-		public int ScaleDamageValue(int baseValue, int scaling)
+		public static int ScaleDamageValue(int baseValue, int scaling)
 		{
-			return (int)(baseValue * (100f + scaling));
+			return (int)(baseValue * (1 + scaling / 100f));
 		}
 
-		public Damage CalculateAttackDamage(IUnit attacker)
+		public static int MitigateDamageValue(int incomingValue, int resistance)
 		{
-			IWeapon weapon = GetUnitCombatProps(attacker).EquippedWeapon;
+			return (int)(incomingValue * 100f / (100 + resistance));
+		}
 
-			Damage d = new Damage();
-			d.Source = attacker.Name;
-			d.Value = ScaleDamageValue(weapon.BaseDamage, attacker.Stats[BattleStats.ATK]);
-			d.Element = weapon.AttackElement;
+		public static Damage CalculateAttackDamage(this IUnit unit)
+		{
+			IWeapon weapon = unit.GetCombatProps().EquippedWeapon;
 
-			return d;
+			return new Damage(
+				DamageType.Physical,
+				weapon.AttackElement,
+				ScaleDamageValue(weapon.BaseDamage, unit.Stats[BattleStats.ATK]),
+				unit.Name
+			);
+		}
+
+		public static int CalculateReceivedDamage(this IUnit unit, Damage damage)
+		{
+			int finalDamage;
+
+			if (damage.Type == DamageType.True)
+			{
+				finalDamage = damage.Value;
+			}
+			else {
+				BattleStats resistStat;
+
+				if (damage.Type == DamageType.Magical) resistStat = BattleStats.RES;
+				else resistStat = BattleStats.DEF;
+
+				finalDamage = MitigateDamageValue(damage.Value, unit.Stats[resistStat]);
+			}
+
+			return finalDamage;
+		}
+
+		public static HPLoss ReceiveDamage(this IUnit unit, Damage damage)
+		{
+			return new HPLoss(
+				unit.Name,
+				unit.CalculateReceivedDamage(damage)
+			);
+		}
+
+		public static AttackAction Attack(this IUnit unit, IUnit target)
+		{
+			Damage damage = unit.CalculateAttackDamage();
+
+			return new AttackAction(
+				unit,
+				target,
+				damage,
+				target.ReceiveDamage(damage)
+			);
 		}
 	}
 }

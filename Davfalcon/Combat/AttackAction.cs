@@ -1,23 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using RPGLibrary;
 
 namespace Davfalcon.Combat
 {
-	public struct AttackAction : ILogEntry
+	public class AttackAction : ILogEntry
 	{
-		public IUnit Attacker;
-		public IUnit Defender;
-		public Damage DamageDealt;
-		public int HPLost;
+		public readonly string Attacker;
+		public readonly string Defender;
+		public readonly string Weapon;
+		public readonly Damage DamageDealt;
+		public readonly HPLoss HPLost;
+
+		public AttackAction(IUnit attacker, IUnit defender, Damage damageDealt, HPLoss hpLost)
+		{
+			Attacker = attacker.Name;
+			Weapon = attacker.GetCombatProps().EquippedWeapon.Name;
+			Defender = defender.Name;
+			DamageDealt = damageDealt;
+			HPLost = hpLost;
+		}
 
 		public override string ToString()
 		{
-			return String.Format("{0} attacks {1} with {2}.", Attacker.Name, Defender.Name, Attacker.Properties.GetAs<IUnitCombatProps>().EquippedWeapon.Name) + Environment.NewLine +
+			return String.Format("{0} attacks {1} with {2}.", Attacker, Defender, Weapon) + Environment.NewLine +
 				   DamageDealt + Environment.NewLine +
-				   String.Format("{0} loses {1} HP.", Defender.Name, HPLost);
+				   HPLost;
 		}
 	}
 }

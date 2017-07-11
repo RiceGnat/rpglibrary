@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using RPGLibrary;
 using RPGLibrary.Items;
 
@@ -73,6 +71,7 @@ namespace Davfalcon
 
 		public UnitProperties(IUnit unit)
 		{
+			this.unit = unit;
 			Inventory = new List<IItem>();
 		}
 	}
