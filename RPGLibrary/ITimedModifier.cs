@@ -1,9 +1,9 @@
-﻿namespace RPGLibrary.Dynamic
+﻿namespace RPGLibrary
 {
 	/// <summary>
 	/// Exposes properties, events, and functions for dynamic modifiers such as buffs and debuffs.
 	/// </summary>
-	public interface IDynamicModifier : IUnitModifier
+	public interface ITimedModifier : IUnitModifier
 	{
 		/// <summary>
 		/// Gets the name of the modifier.
@@ -24,11 +24,6 @@
 		/// Gets the remaining duration of the modifier.
 		/// </summary>
 		int Remaining { get; set; }
-
-		/// <summary>
-		/// Called each time the modifier is ticked.
-		/// </summary>
-		event UnitEventHandler Upkeep;
 
 		/// <summary>
 		/// Ticks the modifier. Call this on each time unit.

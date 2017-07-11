@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace RPGLibrary.Dynamic
+namespace RPGLibrary
 {
 	[Serializable]
-	public class DynamicModifier : UnitStatsModifier, IDynamicModifier
+	public class TimedModifier : UnitStatsModifier, ITimedModifier
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
@@ -11,16 +11,14 @@ namespace RPGLibrary.Dynamic
 		public int Duration { get; set; }
 		public int Remaining { get; set; }
 
-		public event UnitEventHandler Upkeep;
 
-		public void Tick()
+		public virtual void Tick()
 		{
-			if (Remaining > 0 || Duration == 0) Upkeep(Target.Modifiers);
 			if (Remaining > 0) Remaining--;
 		}
 
 		// Resolve Name property ambiguity
 		string IUnit.Name { get { return InterfaceUnit.Name; } }
-		string IDynamicModifier.Name { get { return Name; } }
+		string ITimedModifier.Name { get { return Name; } }
 	}
 }
