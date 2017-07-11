@@ -46,6 +46,7 @@
     <Compile Include="Equipment.cs" />
     <Compile Include="IEquipment.cs" />
     <Compile Include="ILogEntry.cs" />
+    <Compile Include="ISpell.cs" />
     <Compile Include="IWeapon.cs" />
     <Compile Include="Spell.cs" />
     <Compile Include="UnitStats.cs" />
