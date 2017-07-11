@@ -43,6 +43,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Davfalcon\Davfalcon.csproj">
+      <Project>{3f1fa461-a8b2-4b6d-8c39-050069ce2a66}</Project>
+      <Name>Davfalcon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RPGLibrary\RPGLibrary.csproj">
+      <Project>{1fcb4578-21b8-4db5-b560-c87beeb7fd2e}</Project>
+      <Name>RPGLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
