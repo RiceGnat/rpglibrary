@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Davfalcon
 {
@@ -12,9 +13,16 @@ namespace Davfalcon
 	{
 		public EquipmentSlot Slot { get; protected set; }
 
-		protected Equipment() : base() { }
+		public IList<IBuff> GrantedEffects { get; protected set; }
 
-		public Equipment(EquipmentSlot slot) : base()
+		protected Equipment()
+			: base()
+		{
+			GrantedEffects = new List<IBuff>();
+		}
+
+		public Equipment(EquipmentSlot slot)
+			: this()
 		{
 			Slot = slot;
 		}

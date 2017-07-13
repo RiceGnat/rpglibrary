@@ -12,6 +12,65 @@ namespace Davfalcon.Combat
 			return unit.Properties.GetAs<IUnitCombatProps>();
 		}
 
+		public static void ApplyBuff(IUnit unit, IBuff buff, string source)
+		{
+			IBuff b = (IBuff)Serializer.DeepClone(buff);
+			b.Source = source;
+			b.Remaining = b.Duration;
+			unit.Modifiers.Add(b);
+		}
+
+		public static void InitializeUnit(IUnit unit)
+		{
+			// Set HP/MP to max values
+			unit.GetCombatProps().CurrentHP = unit.Stats[CombatStats.HP];
+			unit.GetCombatProps().CurrentMP = unit.Stats[CombatStats.MP];
+
+			// Apply buffs granted by equipment
+			foreach (IEquipment equip in unit.Properties.GetAs<IUnitEquipProps>().Equipment)
+			{
+				foreach (IBuff buff in equip.GrantedEffects)
+				{
+					ApplyBuff(unit, buff, String.Format("{0} ({1})", unit.Name, equip.Name));
+				}
+			}
+		}
+
+		public static void CleanupUnit(IUnit unit)
+		{
+			// Reset HP/MP to 0
+			unit.GetCombatProps().CurrentHP = 0;
+			unit.GetCombatProps().CurrentMP = 0;
+
+			// Clear all buffs/debuffs
+			unit.Modifiers.Clear();
+		}
+
+		public static void Upkeep(IUnit unit)
+		{
+			List<IBuff> expired = new List<IBuff>();
+
+			foreach (IBuff buff in unit.Modifiers)
+			{
+				// Apply repeating effects
+				if (buff.Duration > 0 && buff.Remaining > 0)
+					buff.ApplyUpkeepEffects();
+
+				// Tick buff timers
+				buff.Tick();
+
+				// Record expired buffs (cannot remove during enumeration)
+				if (buff.Remaining == 0)
+					expired.Add(buff);
+			}
+
+			// Remove expired buffs
+			foreach (IBuff buff in expired)
+			{
+				unit.Modifiers.Remove(buff);
+			}
+		}
+
 		public static int ScaleDamageValue(int baseValue, int scaling)
 		{
 			return (int)(baseValue * (1 + scaling / 100f));
@@ -111,9 +170,7 @@ namespace Davfalcon.Combat
 				// Apply buffs/debuffs
 				foreach (IBuff buff in spell.GrantedBuffs)
 				{
-					IBuff b = (IBuff)Serializer.DeepClone(buff);
-					b.Source = String.Format("{0} ({1})", unit.Name, spell.Name);
-					targets[i].Modifiers.Add(b);
+					ApplyBuff(targets[i], buff, String.Format("{0} ({1})", unit.Name, spell.Name));
 					effects[i].Add(new LogEntry(string.Format("{0} was affected by {1}.", targets[i].Name, buff.Name)));
 				}
 			}

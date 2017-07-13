@@ -53,6 +53,11 @@ namespace RPGLibrary
 			return true;
 		}
 
+		public void Clear()
+		{
+			stack.Clear();
+		}
+
 		[OnDeserialized]
 		private void Rebind(StreamingContext context)
 		{

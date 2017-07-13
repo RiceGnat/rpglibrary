@@ -19,6 +19,15 @@ namespace Davfalcon
 		[NonSerialized]
 		private IUnit unit;
 
+		public const int BaseAttribute = 5;
+		public const int BaseHit = 100;
+		public const int BaseEvade = 0;
+
+		private int AdjustAttribute(Attributes stat)
+		{
+			return unit.Stats[stat] - BaseAttribute;
+		}
+
 		public override int Get(string stat)
 		{
 			if (stat == CombatStats.HP.ToString())
@@ -31,19 +40,27 @@ namespace Davfalcon
 			}
 			else if (stat == CombatStats.ATK.ToString())
 			{
-				return 2 * unit.Stats[Attributes.STR];
+				return 2 * AdjustAttribute(Attributes.STR);
 			}
 			else if (stat == CombatStats.DEF.ToString())
 			{
-				return unit.Stats[Attributes.VIT] + unit.Stats[Attributes.STR];
+				return AdjustAttribute(Attributes.VIT) + AdjustAttribute(Attributes.STR);
 			}
 			else if (stat == CombatStats.MAG.ToString())
 			{
-				return 2 * unit.Stats[Attributes.INT];
+				return 2 * AdjustAttribute(Attributes.INT);
 			}
 			else if (stat == CombatStats.RES.ToString())
 			{
-				return unit.Stats[Attributes.INT] + unit.Stats[Attributes.WIS];
+				return AdjustAttribute(Attributes.INT) + AdjustAttribute(Attributes.WIS);
+			}
+			else if (stat == CombatStats.HIT.ToString())
+			{
+				return BaseHit + AdjustAttribute(Attributes.AGI);
+			}
+			else if (stat == CombatStats.AVD.ToString())
+			{
+				return BaseEvade + AdjustAttribute(Attributes.AGI);
 			}
 			else
 			{

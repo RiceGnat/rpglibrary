@@ -7,5 +7,6 @@ namespace RPGLibrary
 		int Count { get; }
 		void Add(IUnitModifier item);
 		bool Remove(IUnitModifier item);
+		void Clear();
 	}
 }
