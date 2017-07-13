@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buff.cs" />
     <Compile Include="Combat\AttackAction.cs" />
     <Compile Include="Combat\Combat.cs" />
     <Compile Include="Combat\Damage.cs" />
@@ -45,11 +46,14 @@
     <Compile Include="Combat\SpellAction.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="Equipment.cs" />
+    <Compile Include="IBuff.cs" />
     <Compile Include="IEquipment.cs" />
     <Compile Include="ILogEntry.cs" />
     <Compile Include="ISpell.cs" />
     <Compile Include="IWeapon.cs" />
+    <Compile Include="LogEntry.cs" />
     <Compile Include="Spell.cs" />
+    <Compile Include="UnitEventHandler.cs" />
     <Compile Include="UnitStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit.cs" />

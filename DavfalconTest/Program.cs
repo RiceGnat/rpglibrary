@@ -47,17 +47,31 @@ namespace DavfalconTest
 			unit.BaseStats[Attributes.VIT]++;
 
 			PrintUnit(unit);
-
-			UnitStatsModifier buff = new UnitStatsModifier();
-			buff.Multiplications[CombatStats.HP] = 20;
-
-			unit.Modifiers.Add(buff);
-
-			PrintUnit(unit);
 			PrintUnit(enemy);
+
+			Spell spell = new Spell();
+			spell.Name = "Fireball";
+			spell.SpellElement = Element.Fire;
+			spell.DamageType = DamageType.Magical;
+			spell.BaseDamage = 60;
+
+			Buff burn = new Buff();
+			burn.Name = "Burn";
+
+			spell.GrantedBuffs.Add(burn);
 
 			Console.WriteLine(unit.Attack(enemy));
 			Console.WriteLine(enemy.Attack(unit));
+			Console.WriteLine(unit.Cast(spell, enemy));
+
+			foreach (IEquipment mod in unit.Properties.GetAs<IUnitEquipProps>().Equipment)
+			{
+				Console.WriteLine(mod.Name);
+			}
+			foreach (IBuff mod in enemy.Modifiers)
+			{
+				Console.WriteLine(String.Format("{0} - {1}", mod.Name, mod.Source));
+			}
 
 			Console.ReadKey();
 		}

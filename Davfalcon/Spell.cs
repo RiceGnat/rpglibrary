@@ -1,6 +1,6 @@
 ﻿using System;
-using  RPGLibrary;
-using Davfalcon.Combat;
+using System.Collections.Generic;
+using RPGLibrary;
 
 namespace Davfalcon
 {
@@ -9,7 +9,7 @@ namespace Davfalcon
 		Self, Target, Area, Line, Attack
 	}
 
-	public delegate void SpellEventHandler(IUnit caster, ISpell spell, params IUnit[] targets);
+	public delegate void SpellEventHandler(IUnit caster, ISpell spell, IUnit targets, IList<ILogEntry> effects);
 
 	[Serializable]
 	public class Spell : ISpell
@@ -26,7 +26,25 @@ namespace Davfalcon
 		public int Range { get; set; }
 		public int Size { get; set; }
 		public int MaxTargets { get; set; }
+		public IList<IBuff> GrantedBuffs { get; protected set; }
 
-		public event SpellEventHandler OnCast;
+		public event SpellEventHandler CastEffects;
+
+		public IList<ILogEntry> ApplyCastEffects(IUnit caster, IUnit targets)
+		{
+			IList<ILogEntry> effects = new List<ILogEntry>();
+
+			if (CastEffects != null)
+			{
+				CastEffects(caster, this, targets, effects);
+			}
+
+			return effects;
+		}
+
+		public Spell()
+		{
+			GrantedBuffs = new List<IBuff>();
+		}
 	}
 }

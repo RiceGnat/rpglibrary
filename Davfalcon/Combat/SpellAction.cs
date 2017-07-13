@@ -14,7 +14,7 @@ namespace Davfalcon.Combat
 		public readonly HPLoss[] HPLost;
 		public readonly IList<ILogEntry>[] OtherEffects;
 
-		public SpellAction(IUnit caster, ISpell spell, IUnit[] targets, Damage[] damage, HPLoss[] hpLost, IList<ILogEntry>[] effects = null)
+		public SpellAction(IUnit caster, ISpell spell, IUnit[] targets, Damage[] damage, HPLoss[] hpLost, IList<ILogEntry>[] effects)
 		{
 			Caster = caster.Name;
 			Spell = spell.Name;
@@ -23,16 +23,14 @@ namespace Davfalcon.Combat
 			Targets = new string[n];
 			DamageDealt = new Damage[n];
 			HPLost = new HPLoss[n];
-			OtherEffects = effects != null ? new List<ILogEntry>[n] : null;
+			OtherEffects = new List<ILogEntry>[n];
 
 			for (int i = 0; i < n; i++)
 			{
 				Targets[i] = targets[i].Name;
 				DamageDealt[i] = damage[i];
 				HPLost[i] = hpLost[i];
-
-				if (OtherEffects != null)
-					OtherEffects[i] = new List<ILogEntry>(effects[i]);
+				OtherEffects[i] = new List<ILogEntry>(effects[i]);
 			}
 		}
 
@@ -47,9 +45,9 @@ namespace Davfalcon.Combat
 						 DamageDealt[i] + Environment.NewLine +
 						 HPLost[i];
 
-				if (OtherEffects != null)
+				foreach (ILogEntry effect in OtherEffects[i])
 					s += Environment.NewLine +
-						 OtherEffects[i];
+						 effect;
 			}
 
 			return s;

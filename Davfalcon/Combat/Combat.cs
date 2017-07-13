@@ -1,4 +1,7 @@
-﻿using RPGLibrary;
+﻿using System;
+using System.Collections.Generic;
+using RPGLibrary;
+using RPGLibrary.Serialization;
 
 namespace Davfalcon.Combat
 {
@@ -49,7 +52,8 @@ namespace Davfalcon.Combat
 			{
 				finalDamage = damage.Value;
 			}
-			else {
+			else
+			{
 				CombatStats resistStat;
 
 				if (damage.Type == DamageType.Magical) resistStat = CombatStats.RES;
@@ -90,6 +94,7 @@ namespace Davfalcon.Combat
 			int n = targets.Length;
 			Damage[] damage = new Damage[n];
 			HPLoss[] hpLost = new HPLoss[n];
+			IList<ILogEntry>[] effects = new IList<ILogEntry>[n];
 
 			for (int i = 0; i < n; i++)
 			{
@@ -99,6 +104,18 @@ namespace Davfalcon.Combat
 					damage[i] = unit.CalculateSpellDamage(spell);
 					hpLost[i] = targets[i].ReceiveDamage(damage[i]);
 				}
+
+				// Apply other effects
+				effects[i] = spell.ApplyCastEffects(unit, targets[i]);
+
+				// Apply buffs/debuffs
+				foreach (IBuff buff in spell.GrantedBuffs)
+				{
+					IBuff b = (IBuff)Serializer.DeepClone(buff);
+					b.Source = String.Format("{0} ({1})", unit.Name, spell.Name);
+					targets[i].Modifiers.Add(b);
+					effects[i].Add(new LogEntry(string.Format("{0} was affected by {1}.", targets[i].Name, buff.Name)));
+				}
 			}
 
 			return new SpellAction(
@@ -106,7 +123,8 @@ namespace Davfalcon.Combat
 				spell,
 				targets,
 				damage,
-				hpLost
+				hpLost,
+				effects
 			);
 		}
 	}

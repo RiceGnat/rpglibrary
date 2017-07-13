@@ -1,4 +1,5 @@
-﻿using Davfalcon.Combat;
+﻿using System.Collections.Generic;
+using RPGLibrary;
 
 namespace Davfalcon
 {
@@ -16,7 +17,10 @@ namespace Davfalcon
 		int Range { get; }
 		int Size { get; }
 		int MaxTargets { get; }
+		IList<IBuff> GrantedBuffs { get; }
 
-		event SpellEventHandler OnCast;
+		event SpellEventHandler CastEffects;
+
+		IList<ILogEntry> ApplyCastEffects(IUnit caster, IUnit targets);
 	}
 }
