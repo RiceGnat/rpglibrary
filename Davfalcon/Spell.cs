@@ -1,5 +1,6 @@
 ﻿using System;
 using  RPGLibrary;
+using Davfalcon.Combat;
 
 namespace Davfalcon
 {
@@ -13,8 +14,12 @@ namespace Davfalcon
 	[Serializable]
 	public class Spell : ISpell
 	{
-		public Element SpellElement { get; set; }
+		public string Name { get; set; }
+		public string Description { get; set; }
+
 		public SpellTargetType TargetType { get; set; }
+		public Element SpellElement { get; set; }
+		public DamageType DamageType { get; set; }
 		public int Cost { get; set; }
 		public int BaseDamage { get; set; }
 		public int BaseHeal { get; set; }

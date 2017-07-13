@@ -7,8 +7,8 @@ namespace Davfalcon.Combat
 	public class AttackAction : ILogEntry
 	{
 		public readonly string Attacker;
-		public readonly string Defender;
 		public readonly string Weapon;
+		public readonly string Defender;
 		public readonly Damage DamageDealt;
 		public readonly HPLoss HPLost;
 

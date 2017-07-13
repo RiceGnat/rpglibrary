@@ -31,6 +31,16 @@ namespace Davfalcon.Combat
 			);
 		}
 
+		public static Damage CalculateSpellDamage(this IUnit unit, ISpell spell)
+		{
+			return new Damage(
+				spell.DamageType,
+				spell.SpellElement,
+				ScaleDamageValue(spell.BaseDamage, unit.Stats[CombatStats.MAG]),
+				unit.Name
+			);
+		}
+
 		public static int CalculateReceivedDamage(this IUnit unit, Damage damage)
 		{
 			int finalDamage;
@@ -53,9 +63,13 @@ namespace Davfalcon.Combat
 
 		public static HPLoss ReceiveDamage(this IUnit unit, Damage damage)
 		{
+			int hpLost = unit.CalculateReceivedDamage(damage);
+
+			unit.GetCombatProps().CurrentHP -= hpLost;
+
 			return new HPLoss(
 				unit.Name,
-				unit.CalculateReceivedDamage(damage)
+				hpLost
 			);
 		}
 
@@ -68,6 +82,31 @@ namespace Davfalcon.Combat
 				target,
 				damage,
 				target.ReceiveDamage(damage)
+			);
+		}
+
+		public static SpellAction Cast(this IUnit unit, ISpell spell, params IUnit[] targets)
+		{
+			int n = targets.Length;
+			Damage[] damage = new Damage[n];
+			HPLoss[] hpLost = new HPLoss[n];
+
+			for (int i = 0; i < n; i++)
+			{
+				// Damage dealing spells
+				if (spell.BaseDamage > 0)
+				{
+					damage[i] = unit.CalculateSpellDamage(spell);
+					hpLost[i] = targets[i].ReceiveDamage(damage[i]);
+				}
+			}
+
+			return new SpellAction(
+				unit,
+				spell,
+				targets,
+				damage,
+				hpLost
 			);
 		}
 	}

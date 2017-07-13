@@ -42,6 +42,7 @@
     <Compile Include="Combat\Combat.cs" />
     <Compile Include="Combat\Damage.cs" />
     <Compile Include="Combat\HPLoss.cs" />
+    <Compile Include="Combat\SpellAction.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="IEquipment.cs" />

@@ -1,12 +1,15 @@
 ﻿using System;
 
-namespace Davfalcon.Combat
+namespace Davfalcon
 {
 	public enum DamageType
 	{
 		Physical, Magical, True
 	}
+}
 
+namespace Davfalcon.Combat
+{
 	[Serializable]
 	public class Damage : ILogEntry
 	{

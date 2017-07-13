@@ -1,9 +1,15 @@
-﻿namespace Davfalcon
+﻿using Davfalcon.Combat;
+
+namespace Davfalcon
 {
 	public interface ISpell
 	{
-		Element SpellElement { get; }
+		string Name { get; }
+		string Description { get; }
+
 		SpellTargetType TargetType { get; }
+		Element SpellElement { get; }
+		DamageType DamageType { get; }
 		int Cost { get; }
 		int BaseDamage { get; }
 		int BaseHeal { get; }
