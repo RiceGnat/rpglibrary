@@ -14,10 +14,26 @@ namespace Davfalcon.Combat
 
 		public static void ApplyBuff(IUnit unit, IBuff buff, string source)
 		{
+			int maxHP = unit.Stats[CombatStats.HP];
+			int maxMP = unit.Stats[CombatStats.MP];
+
+			// Copy buff to unit modifiers
 			IBuff b = (IBuff)Serializer.DeepClone(buff);
 			b.Source = source;
 			b.Remaining = b.Duration;
 			unit.Modifiers.Add(b);
+
+			// If unit max HP/MP increased, gain the difference
+			unit.GetCombatProps().CurrentHP += Math.Max(unit.Stats[CombatStats.HP] - maxHP, 0);
+			unit.GetCombatProps().CurrentMP += Math.Max(unit.Stats[CombatStats.MP] - maxMP, 0);
+		}
+
+		public static void RemoveBuff(IUnit unit, IBuff buff)
+		{
+			unit.Modifiers.Remove(buff);
+
+			unit.GetCombatProps().CurrentHP = Math.Min(unit.GetCombatProps().CurrentHP, unit.Stats[CombatStats.HP]);
+			unit.GetCombatProps().CurrentMP = Math.Min(unit.GetCombatProps().CurrentMP, unit.Stats[CombatStats.MP]);
 		}
 
 		public static void InitializeUnit(IUnit unit)
@@ -46,29 +62,33 @@ namespace Davfalcon.Combat
 			unit.Modifiers.Clear();
 		}
 
-		public static void Upkeep(IUnit unit)
+		public static IList<ILogEntry> Upkeep(IUnit unit)
 		{
+			List<ILogEntry> effects = new List<ILogEntry>();
 			List<IBuff> expired = new List<IBuff>();
 
 			foreach (IBuff buff in unit.Modifiers)
 			{
 				// Apply repeating effects
-				if (buff.Duration > 0 && buff.Remaining > 0)
-					buff.ApplyUpkeepEffects();
+				if (buff.Duration > 0 && buff.Remaining > 0 ||
+					buff.Duration == 0)
+					effects.AddRange(buff.ApplyUpkeepEffects());
 
 				// Tick buff timers
 				buff.Tick();
 
 				// Record expired buffs (cannot remove during enumeration)
-				if (buff.Remaining == 0)
+				if (buff.Duration > 0 && buff.Remaining == 0)
 					expired.Add(buff);
 			}
 
 			// Remove expired buffs
 			foreach (IBuff buff in expired)
 			{
-				unit.Modifiers.Remove(buff);
+				RemoveBuff(unit, buff);
 			}
+
+			return effects;
 		}
 
 		public static int ScaleDamageValue(int baseValue, int scaling)

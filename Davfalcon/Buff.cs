@@ -20,7 +20,7 @@ namespace Davfalcon
 
 			if (UpkeepEffects != null)
 			{
-				UpkeepEffects(Target, this, effects);
+				UpkeepEffects(Target.Modifiers, this, effects);
 			}
 
 			return effects;

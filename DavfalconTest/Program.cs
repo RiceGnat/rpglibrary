@@ -31,7 +31,7 @@ namespace DavfalconTest
 			weapon.AttackElement = Element.Fire;
 			weapon.Type = WeaponType.Axe;
 			weapon.Additions[CombatStats.ATK] = 5;
-			
+
 			Equipment armor = new Equipment(EquipmentSlot.Armor);
 			armor.Name = "Some Armor";
 			armor.Additions[CombatStats.DEF] = 3;
@@ -44,7 +44,7 @@ namespace DavfalconTest
 			unit.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Weapon, weapon);
 			unit.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Armor, armor);
 			unit.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Accessory, ring);
-			
+
 			unit.BaseStats[Attributes.STR]++;
 			unit.BaseStats[Attributes.VIT]++;
 
@@ -55,13 +55,15 @@ namespace DavfalconTest
 
 			Buff hpbuff = new Buff();
 			hpbuff.Name = "HP Bag";
-			hpbuff.Multiplications[CombatStats.HP] = 999;
+			hpbuff.Multiplications[CombatStats.HP] = 99999;
+			hpbuff.UpkeepEffects += RestoreHP;
 
 			hpbag.GrantedEffects.Add(hpbuff);
 
 			enemy.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Armor, hpbag);
 
 			PrintUnit(enemy);
+			Console.WriteLine();
 
 			Spell spell = new Spell();
 			spell.Name = "Fireball";
@@ -73,21 +75,57 @@ namespace DavfalconTest
 			burn.Name = "Burn";
 			burn.Duration = 3;
 			burn.IsDebuff = true;
+			burn.UpkeepEffects += BurnDamage;
 
 			spell.GrantedBuffs.Add(burn);
 
 			Combat.InitializeUnit(unit);
 			Combat.InitializeUnit(enemy);
 
+			PrintUnitCombat(enemy);
+			Console.WriteLine();
+
 			Console.WriteLine(unit.Attack(enemy));
 			Console.WriteLine(enemy.Attack(unit));
 			Console.WriteLine(unit.Cast(spell, enemy));
-			foreach (IBuff mod in enemy.Modifiers)
-			{
-				Console.WriteLine(String.Format("{0} - {1}", mod.Name, mod.Source));
-			}
+			Console.WriteLine();
 
-			Console.ReadKey();
+			PrintUnitCombat(enemy);
+			Console.WriteLine();
+
+			while (true)
+			{
+				foreach (ILogEntry entry in Combat.Upkeep(enemy))
+				{
+					Console.WriteLine(entry);
+				}
+				Console.WriteLine();
+				PrintUnitCombat(enemy);
+				Console.WriteLine();
+
+				Console.ReadKey();
+			}
+		}
+
+		static void BurnDamage(IUnit unit, IBuff buff, IList<ILogEntry> effects)
+		{
+			Damage d = new Damage(
+				DamageType.True,
+				Element.Fire,
+				10,
+				buff.Name);
+
+			effects.Add(d);
+			effects.Add(unit.ReceiveDamage(d));
+		}
+
+		static void RestoreHP(IUnit unit, IBuff buff, IList<ILogEntry> effects)
+		{
+			int hp = unit.Stats[CombatStats.HP] - unit.GetCombatProps().CurrentHP;
+
+			unit.GetCombatProps().CurrentHP += hp;
+
+			effects.Add(new LogEntry(String.Format("{0} restored {1} HP.", unit.Name, hp)));
 		}
 
 		static void PrintSeparator()
@@ -110,10 +148,20 @@ namespace DavfalconTest
 			{
 				Console.WriteLine(mod.Name);
 			}
+		}
+
+		static void PrintUnitCombat(IUnit unit)
+		{
+			Console.WriteLine(unit.Name);
+			Console.WriteLine("HP {0}/{1}\tMP {2}/{3}",
+				unit.GetCombatProps().CurrentHP,
+				unit.Stats[CombatStats.HP],
+				unit.GetCombatProps().CurrentMP,
+				unit.Stats[CombatStats.MP]);
 			PrintSeparator();
 			foreach (IBuff mod in unit.Modifiers)
 			{
-				Console.WriteLine(String.Format("{0} - {1}", mod.Name, mod.Source));
+				Console.WriteLine("{0} [{1}]{2}", mod.Name, mod.Source, mod.Duration > 0 ? String.Format(" - {0}", mod.Remaining) : String.Empty);
 			}
 		}
 
