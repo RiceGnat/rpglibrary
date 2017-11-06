@@ -11,6 +11,8 @@ Thumbs.db
 # Visual Studio generated
 bin/
 obj/
+.vs/
+packages/
 *.suo
 *.user
 *.userprefs
