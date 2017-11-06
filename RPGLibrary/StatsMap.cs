@@ -21,15 +21,15 @@ namespace RPGLibrary
 			return map[stat];
 		}
 
-		public int Set(string stat, int value)
+		public IStatsEditable Set(string stat, int value)
 		{
 			int old = Get(stat);
 			map[stat] = value;
 
-			return old;
+			return this;
 		}
 
-		public int Set(Enum stat, int value)
+		public IStatsEditable Set(Enum stat, int value)
 		{
 			return Set(stat.ToString(), value);
 		}
