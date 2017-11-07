@@ -4,11 +4,6 @@ using RPGLibrary;
 
 namespace Davfalcon
 {
-	public enum SpellTargetType
-	{
-		Self, Target, Area, Line, Attack
-	}
-
 	[Serializable]
 	public class Spell : ISpell
 	{

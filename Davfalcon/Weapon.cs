@@ -3,11 +3,6 @@ using RPGLibrary.Items;
 
 namespace Davfalcon
 {
-	public enum WeaponType
-	{
-		Sword, Dagger, Axe, Spear, Bow, Staff
-	}
-
 	[Serializable]
 	public class Weapon : Equipment, IWeapon
 	{

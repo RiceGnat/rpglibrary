@@ -3,16 +3,6 @@ using RPGLibrary;
 
 namespace Davfalcon
 {
-	public enum Attributes
-	{
-		STR, VIT, AGI, INT, WIS
-	}
-
-	public enum CombatStats
-	{
-		HP, MP, ATK, DEF, MAG, RES, HIT, AVD, CRT
-	}
-
 	[Serializable]
 	public class UnitStats : StatsMap
 	{

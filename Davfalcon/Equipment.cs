@@ -3,11 +3,6 @@ using System.Collections.Generic;
 
 namespace Davfalcon
 {
-	public enum EquipmentSlot
-	{
-		Weapon, Armor, Accessory
-	}
-
 	[Serializable]
 	public class Equipment : RPGLibrary.Items.Equipment, IEquipment
 	{

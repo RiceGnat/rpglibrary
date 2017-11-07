@@ -46,8 +46,7 @@
     <Compile Include="Combat\HPLoss.cs" />
     <Compile Include="Combat\SpellAction.cs" />
     <Compile Include="Combat\SpellCastOptions.cs" />
-    <Compile Include="DamageType.cs" />
-    <Compile Include="Element.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="IBuff.cs" />
