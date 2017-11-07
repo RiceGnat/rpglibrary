@@ -13,7 +13,7 @@ namespace Davfalcon.Combat
 			return unit.Properties.GetAs<IUnitCombatProps>();
 		}
 
-		public static void ApplyBuff(IUnit unit, IBuff buff, string source)
+		public static void ApplyBuff(this IUnit unit, IBuff buff, string source)
 		{
 			int maxHP = unit.Stats[CombatStats.HP];
 			int maxMP = unit.Stats[CombatStats.MP];
@@ -29,7 +29,7 @@ namespace Davfalcon.Combat
 			unit.GetCombatProps().CurrentMP += Math.Max(unit.Stats[CombatStats.MP] - maxMP, 0);
 		}
 
-		public static void RemoveBuff(IUnit unit, IBuff buff)
+		public static void RemoveBuff(this IUnit unit, IBuff buff)
 		{
 			unit.Modifiers.Remove(buff);
 
@@ -37,7 +37,7 @@ namespace Davfalcon.Combat
 			unit.GetCombatProps().CurrentMP = Math.Min(unit.GetCombatProps().CurrentMP, unit.Stats[CombatStats.MP]);
 		}
 
-		public static void InitializeUnit(IUnit unit)
+		public static void Initialize(this IUnit unit)
 		{
 			// Set HP/MP to max values
 			unit.GetCombatProps().CurrentHP = unit.Stats[CombatStats.HP];
@@ -53,7 +53,7 @@ namespace Davfalcon.Combat
 			}
 		}
 
-		public static void CleanupUnit(IUnit unit)
+		public static void Cleanup(this IUnit unit)
 		{
 			// Reset HP/MP to 0
 			unit.GetCombatProps().CurrentHP = 0;
@@ -63,7 +63,7 @@ namespace Davfalcon.Combat
 			unit.Modifiers.Clear();
 		}
 
-		public static IList<ILogEntry> Upkeep(IUnit unit)
+		public static IList<ILogEntry> Upkeep(this IUnit unit)
 		{
 			List<ILogEntry> effects = new List<ILogEntry>();
 			List<IBuff> expired = new List<IBuff>();

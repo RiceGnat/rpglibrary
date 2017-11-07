@@ -42,6 +42,12 @@ namespace DavfalconTest
 			ring.Additions[Attributes.STR] = 1;
 			ring.Additions[Attributes.AGI] = 1;
 
+			Buff healbuff = new Buff();
+			healbuff.Name = "Restore HP";
+			healbuff.UpkeepEffects += RestoreHP;
+
+			ring.GrantedEffects.Add(healbuff);
+
 			unit.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Weapon, weapon);
 			unit.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Armor, armor);
 			unit.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Accessory, ring);
@@ -81,8 +87,8 @@ namespace DavfalconTest
 
 			spell.GrantedBuffs.Add(burn);
 
-			Combat.InitializeUnit(unit);
-			Combat.InitializeUnit(enemy);
+			Combat.Initialize(unit);
+			Combat.Initialize(enemy);
 
 			PrintUnitCombat(enemy);
 			Console.WriteLine();

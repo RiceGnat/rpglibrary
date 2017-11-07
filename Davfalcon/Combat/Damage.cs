@@ -1,13 +1,5 @@
 ﻿using System;
 
-namespace Davfalcon
-{
-	public enum DamageType
-	{
-		Physical, Magical, True
-	}
-}
-
 namespace Davfalcon.Combat
 {
 	[Serializable]

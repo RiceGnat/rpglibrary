@@ -13,7 +13,7 @@ namespace DavfalconUnitTests
 		{
 			IUnit unit = TestObjects.GenerateBaselineUnit();
 
-			Combat.InitializeUnit(unit);
+			Combat.Initialize(unit);
 
 			Assert.AreEqual(unit.Stats[CombatStats.HP], unit.GetCombatProps().CurrentHP);
 			Assert.AreEqual(unit.Stats[CombatStats.MP], unit.GetCombatProps().CurrentMP);
@@ -76,8 +76,8 @@ namespace DavfalconUnitTests
 		public void ReceiveDamage()
 		{
 			IUnit unit = TestObjects.GenerateBaselineUnit();
-			Combat.InitializeUnit(unit);
-			
+			Combat.Initialize(unit);
+
 			Damage d = new Damage(DamageType.Physical, Element.Neutral, 10, "");
 			HPLoss h = Combat.ReceiveDamage(unit, d);
 

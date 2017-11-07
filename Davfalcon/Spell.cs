@@ -9,8 +9,6 @@ namespace Davfalcon
 		Self, Target, Area, Line, Attack
 	}
 
-	public delegate void SpellEventHandler(IUnit caster, ISpell spell, IUnit targets, IList<ILogEntry> effects);
-
 	[Serializable]
 	public class Spell : ISpell
 	{
@@ -34,10 +32,7 @@ namespace Davfalcon
 		{
 			IList<ILogEntry> effects = new List<ILogEntry>();
 
-			if (CastEffects != null)
-			{
-				CastEffects(caster, this, targets, effects);
-			}
+			CastEffects?.Invoke(caster, this, targets, effects);
 
 			return effects;
 		}

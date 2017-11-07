@@ -4,8 +4,6 @@ using RPGLibrary;
 
 namespace Davfalcon
 {
-	public delegate void BuffEventHandler(IUnit unit, IBuff buff, IList<ILogEntry> effects);
-
 	[Serializable]
 	public class Buff : TimedModifier, IBuff
 	{
@@ -18,10 +16,7 @@ namespace Davfalcon
 		{
 			IList<ILogEntry> effects = new List<ILogEntry>();
 
-			if (UpkeepEffects != null)
-			{
-				UpkeepEffects(Target.Modifiers, this, effects);
-			}
+			UpkeepEffects?.Invoke(Target.Modifiers, this, effects);
 
 			return effects;
 		}
