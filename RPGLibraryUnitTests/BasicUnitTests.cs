@@ -18,7 +18,7 @@ namespace RPGLibraryUnitTests
 		}
 
 		[TestMethod]
-		public void BasicUnitInterfaceTest()
+		public void Interface()
 		{
 			IUnit unit = CreateTestUnit();
 
@@ -29,7 +29,7 @@ namespace RPGLibraryUnitTests
 		}
 
 		[TestMethod]
-		public void BasicUnitStatsTest()
+		public void Stats()
 		{
 			BasicUnit unit = CreateTestUnit();
 			unit.BaseStats.Set(STAT_NAME, STAT_VALUE);

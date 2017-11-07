@@ -11,6 +11,11 @@ namespace RPGLibrary
 		public int Duration { get; set; }
 		public int Remaining { get; set; }
 
+		public virtual void Reset()
+		{
+			Remaining = Duration;
+		}
+
 		public virtual void Tick()
 		{
 			if (Remaining > 0) Remaining--;

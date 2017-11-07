@@ -20,7 +20,7 @@ namespace Davfalcon.Combat
 			// Copy buff to unit modifiers
 			IBuff b = (IBuff)Serializer.DeepClone(buff);
 			b.Source = source;
-			b.Remaining = b.Duration;
+			b.Reset();
 			unit.Modifiers.Add(b);
 
 			// If unit max HP/MP increased, gain the difference

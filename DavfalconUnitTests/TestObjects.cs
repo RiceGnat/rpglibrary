@@ -1,6 +1,6 @@
 ﻿using System;
-using RPGLibrary;
 using Davfalcon;
+using RPGLibrary;
 
 namespace DavfalconUnitTests
 {

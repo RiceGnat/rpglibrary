@@ -8,7 +8,7 @@ namespace RPGLibraryUnitTests
 	public class StatsTests
 	{
 		[TestMethod]
-		public void StatsMapTest()
+		public void StatsMap()
 		{
 			IStats stats = new StatsMap()
 				.Set(STAT_NAME, STAT_VALUE);
@@ -18,7 +18,7 @@ namespace RPGLibraryUnitTests
 		}
 
 		[TestMethod]
-		public void StatsMathTest()
+		public void StatsMath()
 		{
 			IStats stats = new StatsMath(
 				new StatsMap().Set(STAT_NAME, STAT_VALUE),
@@ -29,13 +29,6 @@ namespace RPGLibraryUnitTests
 
 			Assert.AreEqual(expected, stats[STAT_NAME]);
 			Assert.AreEqual(expected, ((IStatsMath)stats).Calculate(STAT_VALUE, STAT_VALUE, STAT_MULT));
-		}
-
-		[TestMethod]
-		public void StatsConstantTest()
-		{
-			Assert.AreEqual(0, StatsConstant.Zero[STAT_NAME]);
-			Assert.AreEqual(1, StatsConstant.One[STAT_NAME]);
 		}
 	}
 }

@@ -26,6 +26,11 @@
 		int Remaining { get; set; }
 
 		/// <summary>
+		/// Resets the modifier's timer.
+		/// </summary>
+		void Reset();
+
+		/// <summary>
 		/// Ticks the modifier. Call this on each time unit.
 		/// </summary>
 		void Tick();
