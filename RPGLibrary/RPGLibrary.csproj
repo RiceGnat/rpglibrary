@@ -44,6 +44,11 @@
     <Compile Include="Collections\Catalog.cs" />
     <Compile Include="Collections\CircularLinkedList%28T%29.cs" />
     <Compile Include="Collections\ICircularLinkedList%28T%29.cs" />
+    <Compile Include="Randomization\CenterWeightedChecker.cs" />
+    <Compile Include="Randomization\ISuccessCheck.cs" />
+    <Compile Include="Randomization\RandomBase.cs" />
+    <Compile Include="Randomization\RandomInteger.cs" />
+    <Compile Include="Randomization\SuccessChecker.cs" />
     <Compile Include="TimedModifier.cs" />
     <Compile Include="Dynamic\DynamicUnit.cs" />
     <Compile Include="ITimedModifier.cs" />
