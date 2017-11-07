@@ -35,6 +35,7 @@ namespace DavfalconTest
 			Equipment armor = new Equipment(EquipmentSlot.Armor);
 			armor.Name = "Some Armor";
 			armor.Additions[CombatStats.DEF] = 3;
+			armor.Additions[CombatStats.AVD] = 50;
 
 			Equipment ring = new Equipment(EquipmentSlot.Accessory);
 			ring.Name = "Shiny Ring";
@@ -99,7 +100,12 @@ namespace DavfalconTest
 				{
 					Console.WriteLine(entry);
 				}
+
+				Console.WriteLine(unit.Attack(enemy));
+				Console.WriteLine(enemy.Attack(unit));
+
 				Console.WriteLine();
+				PrintUnitCombat(unit);
 				PrintUnitCombat(enemy);
 				Console.WriteLine();
 
@@ -138,8 +144,8 @@ namespace DavfalconTest
 			Console.WriteLine(unit.Name);
 			PrintSeparator();
 			Console.WriteLine("{0}\t{1}", StatString(unit, CombatStats.HP), StatString(unit, CombatStats.MP));
-			Console.WriteLine("{0}\t{1}", StatString(unit, Attributes.STR), StatString(unit, CombatStats.ATK));
-			Console.WriteLine("{0}\t{1}", StatString(unit, Attributes.VIT), StatString(unit, CombatStats.DEF));
+			Console.WriteLine("{0}\t{1}\t{2}", StatString(unit, Attributes.STR), StatString(unit, CombatStats.ATK), StatString(unit, CombatStats.HIT));
+			Console.WriteLine("{0}\t{1}\t{2}", StatString(unit, Attributes.VIT), StatString(unit, CombatStats.DEF), StatString(unit, CombatStats.AVD));
 			Console.WriteLine("{0}\t{1}", StatString(unit, Attributes.AGI), StatString(unit, CombatStats.MAG));
 			Console.WriteLine("{0}\t{1}", StatString(unit, Attributes.INT), StatString(unit, CombatStats.RES));
 			Console.WriteLine("{0}", StatString(unit, Attributes.WIS));

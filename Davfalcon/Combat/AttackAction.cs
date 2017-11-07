@@ -9,14 +9,16 @@ namespace Davfalcon.Combat
 		public readonly string Attacker;
 		public readonly string Weapon;
 		public readonly string Defender;
+		public readonly HitCheck Hit;
 		public readonly Damage DamageDealt;
 		public readonly HPLoss HPLost;
 
-		public AttackAction(IUnit attacker, IUnit defender, Damage damageDealt, HPLoss hpLost)
+		public AttackAction(IUnit attacker, IUnit defender, HitCheck hit, Damage damageDealt, HPLoss hpLost)
 		{
 			Attacker = attacker.Name;
 			Weapon = attacker.GetCombatProps().EquippedWeapon.Name;
 			Defender = defender.Name;
+			Hit = hit;
 			DamageDealt = damageDealt;
 			HPLost = hpLost;
 		}
@@ -24,8 +26,8 @@ namespace Davfalcon.Combat
 		public override string ToString()
 		{
 			return String.Format("{0} attacks {1} with {2}.", Attacker, Defender, Weapon) + Environment.NewLine +
-				   DamageDealt + Environment.NewLine +
-				   HPLost;
+				   (Hit.Success ? (DamageDealt + Environment.NewLine + HPLost)
+				   : String.Format("{0} misses.", Attacker));
 		}
 	}
 }

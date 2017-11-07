@@ -172,11 +172,14 @@ namespace Davfalcon.Combat
 		{
 			Damage damage = unit.CalculateAttackDamage();
 
+			HitCheck hit = unit.CheckForHit(target);
+
 			return new AttackAction(
 				unit,
 				target,
-				damage,
-				target.ReceiveDamage(damage)
+				hit,
+				hit.Success ? damage : null,
+				hit.Success ? target.ReceiveDamage(damage) : null
 			);
 		}
 
