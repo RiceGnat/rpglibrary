@@ -4,6 +4,9 @@ using System.Runtime.Serialization;
 
 namespace RPGLibrary
 {
+	/// <summary>
+	/// Manages a group of modifiers. Can function as a single modifier.
+	/// </summary>
 	[Serializable]
 	public class UnitModifierStack : UnitModifier, IUnitModifierStack
 	{

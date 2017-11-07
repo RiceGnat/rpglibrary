@@ -2,6 +2,9 @@
 
 namespace RPGLibrary.Items
 {
+	/// <summary>
+	/// Implements basic item properties.
+	/// </summary>
 	[Serializable]
 	public class Item : IItem
 	{

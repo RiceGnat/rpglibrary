@@ -2,6 +2,9 @@
 
 namespace RPGLibrary.Items
 {
+	/// <summary>
+	/// Implements basic equipment properties.
+	/// </summary>
 	[Serializable]
 	public class Equipment : UnitStatsModifier, IEquipment
 	{

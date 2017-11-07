@@ -20,6 +20,10 @@
 		/// </summary>
 		int Level { get; set; }
 
+		/// <summary>
+		/// Get the properties using a specified interface.
+		/// </summary>
+		/// <typeparam name="T">An interface inheriting from <see cref="IUnitProperties"/>.</typeparam>
 		T GetAs<T>() where T : class, IUnitProperties;
 	}
 }

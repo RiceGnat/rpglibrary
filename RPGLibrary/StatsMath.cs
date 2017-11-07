@@ -1,5 +1,8 @@
 ﻿namespace RPGLibrary
 {
+	/// <summary>
+	/// Performs math across a set of stats.
+	/// </summary>
 	public class StatsMath : StatsPrototype, IStatsMath
 	{
 		private static IStatsMath calculator = new StatsMath();

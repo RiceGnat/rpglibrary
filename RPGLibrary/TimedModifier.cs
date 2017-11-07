@@ -2,6 +2,9 @@
 
 namespace RPGLibrary
 {
+	/// <summary>
+	/// Implements a modifier with a timer.
+	/// </summary>
 	[Serializable]
 	public class TimedModifier : UnitStatsModifier, ITimedModifier
 	{

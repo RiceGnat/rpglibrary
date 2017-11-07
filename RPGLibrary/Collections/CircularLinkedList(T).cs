@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 namespace RPGLibrary.Collections.Generic
 {
 	/// <summary>
-	/// Represents a list that can be rotated in one direction.
+	/// Represents a list that can be circularly rotated in one direction.
 	/// </summary>
 	/// <typeparam name="T">The type of elements in the list.</typeparam>
 	[Serializable]

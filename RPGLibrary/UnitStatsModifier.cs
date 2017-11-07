@@ -2,6 +2,9 @@
 
 namespace RPGLibrary
 {
+	/// <summary>
+	/// Modify a unit's stats.
+	/// </summary>
 	[Serializable]
 	public class UnitStatsModifier : UnitModifier, IUnit
 	{

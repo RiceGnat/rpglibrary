@@ -2,6 +2,9 @@
 
 namespace RPGLibrary
 {
+	/// <summary>
+	/// Abstract base class for unit modifiers.
+	/// </summary>
 	[Serializable]
 	public abstract class UnitModifier : IUnitModifier
 	{

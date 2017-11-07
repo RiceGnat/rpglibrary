@@ -2,6 +2,9 @@
 
 namespace RPGLibrary
 {
+	/// <summary>
+	/// Implements storage for a unit's properties.
+	/// </summary>
 	[Serializable]
 	public class UnitProperties : IUnitProperties
 	{

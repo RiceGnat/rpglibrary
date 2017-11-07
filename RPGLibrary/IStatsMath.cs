@@ -11,7 +11,6 @@
 		/// <param name="a">Value to be added.</param>
 		/// <param name="b">Value to be added.</param>
 		/// <param name="m">Multiplication factor.</param>
-		/// <returns></returns>
 		int Calculate(int a, int b, int m);
 	}
 }
