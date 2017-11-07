@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RPGLibrary;
+using RPGLibrary.Randomization;
 using RPGLibrary.Serialization;
 
 namespace Davfalcon.Combat
@@ -142,6 +143,17 @@ namespace Davfalcon.Combat
 			}
 
 			return finalDamage;
+		}
+
+		public static HitCheck CheckForHit(this IUnit unit, IUnit target)
+		{
+			double threshold = MathExtensions.Clamp(unit.Stats[CombatStats.HIT] - target.Stats[CombatStats.AVD], 0, 100) / 100f;
+			ISuccessCheck rand = new CenterWeightedChecker(threshold);
+
+			return new HitCheck(
+				threshold,
+				rand.Check()
+			);
 		}
 
 		public static HPLoss ReceiveDamage(this IUnit unit, Damage damage)

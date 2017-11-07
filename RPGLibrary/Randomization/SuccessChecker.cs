@@ -21,8 +21,8 @@ namespace RPGLibrary.Randomization
 
 		public SuccessChecker(double threshold)
 		{
-			if (threshold < 0 || threshold >= 1.0)
-				throw new ArgumentOutOfRangeException("Success threshold must be greater than or equal to 0.0 and less than 1.0");
+			if (threshold < 0 || threshold > 1.0)
+				throw new ArgumentOutOfRangeException("Success threshold must be greater than or equal to 0.0 and less than or equal to 1.0");
 			this.threshold = threshold;
 		}
 	}
