@@ -45,6 +45,7 @@
     <Compile Include="Combat\HitCheck.cs" />
     <Compile Include="Combat\HPLoss.cs" />
     <Compile Include="Combat\SpellAction.cs" />
+    <Compile Include="Combat\SpellCastOptions.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="IBuff.cs" />
