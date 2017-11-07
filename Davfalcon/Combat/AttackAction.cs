@@ -26,7 +26,7 @@ namespace Davfalcon.Combat
 		public override string ToString()
 		{
 			return String.Format("{0} attacks {1} with {2}.", Attacker, Defender, Weapon) + Environment.NewLine +
-				   (Hit.Success ? (DamageDealt + Environment.NewLine + HPLost)
+				   (Hit.Success ? DamageDealt.LogWith(HPLost)
 				   : String.Format("{0} misses.", Attacker));
 		}
 	}

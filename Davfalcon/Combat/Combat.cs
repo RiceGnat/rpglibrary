@@ -186,12 +186,20 @@ namespace Davfalcon.Combat
 		public static SpellAction Cast(this IUnit unit, ISpell spell, params IUnit[] targets)
 		{
 			int n = targets.Length;
+			HitCheck[] hit = new HitCheck[n];
 			Damage[] damage = new Damage[n];
 			HPLoss[] hpLost = new HPLoss[n];
 			IList<ILogEntry>[] effects = new IList<ILogEntry>[n];
 
 			for (int i = 0; i < n; i++)
 			{
+				// Roll hit for attack type spells
+				if (spell.TargetType == SpellTargetType.Attack)
+				{
+					hit[i] = unit.CheckForHit(targets[i]);
+					if (!hit[i].Success) continue;
+				}
+
 				// Damage dealing spells
 				if (spell.BaseDamage > 0)
 				{
@@ -214,6 +222,7 @@ namespace Davfalcon.Combat
 				unit,
 				spell,
 				targets,
+				hit,
 				damage,
 				hpLost,
 				effects

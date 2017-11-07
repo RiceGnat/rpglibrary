@@ -53,6 +53,7 @@ namespace DavfalconTest
 
 			Equipment hpbag = new Equipment(EquipmentSlot.Armor);
 			hpbag.Name = "Potato Sack";
+			hpbag.Additions[CombatStats.RES] = 20;
 
 			Buff hpbuff = new Buff();
 			hpbuff.Name = "HP Bag";
