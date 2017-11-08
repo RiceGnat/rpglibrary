@@ -8,7 +8,7 @@ namespace Davfalcon.UnitTests
 	[TestClass]
 	public class CombatTests
 	{
-		private static BasicUnit MakeUnit()
+		private static Unit MakeUnit()
 		{
 			Unit unit = new Unit();
 

@@ -9,7 +9,7 @@ namespace Davfalcon.UnitTests
 		private IUnit unit;
 
 		[TestInitialize]
-		public void GenerateUnit()
+		public void MakeUnit()
 		{
 			Unit unit = new Unit();
 
