@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RPGLibrary;
-using static RPGLibraryUnitTests.TestConstants;
+using static RPGLibrary.UnitTests.TestConstants;
 
-namespace RPGLibraryUnitTests
+namespace RPGLibrary.UnitTests
 {
 	[TestClass]
 	public class StatsTests

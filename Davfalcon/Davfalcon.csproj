@@ -40,7 +40,7 @@
   <ItemGroup>
     <Compile Include="Buff.cs" />
     <Compile Include="Combat\AttackAction.cs" />
-    <Compile Include="Combat\Combat.cs" />
+    <Compile Include="Combat\CombatManager.cs" />
     <Compile Include="Combat\Damage.cs" />
     <Compile Include="Combat\HitCheck.cs" />
     <Compile Include="Combat\HPLoss.cs" />

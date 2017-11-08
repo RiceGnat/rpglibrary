@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davfalcon", "Davfalcon\Davf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DavfalconTest", "DavfalconTest\DavfalconTest.csproj", "{1AD0D210-549B-4454-8068-498DF977E5E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGLibraryUnitTests", "RPGLibraryUnitTests\RPGLibraryUnitTests.csproj", "{1019C09A-ACB3-4212-9372-4E28E628B46F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGLibrary.UnitTests", "RPGLibrary.UnitTests\RPGLibrary.UnitTests.csproj", "{1019C09A-ACB3-4212-9372-4E28E628B46F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DavfalconUnitTests", "DavfalconUnitTests\DavfalconUnitTests.csproj", "{B6F86762-E634-4425-9D8B-1C0873B7E12B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davfalcon.UnitTests", "Davfalcon.UnitTests\Davfalcon.UnitTests.csproj", "{B6F86762-E634-4425-9D8B-1C0873B7E12B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

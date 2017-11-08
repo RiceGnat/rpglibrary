@@ -6,7 +6,7 @@ using RPGLibrary.Serialization;
 
 namespace Davfalcon.Combat
 {
-	public static class Combat
+	public static class CombatManager
 	{
 		public static IUnitCombatProps GetCombatProps(this IUnit unit)
 		{

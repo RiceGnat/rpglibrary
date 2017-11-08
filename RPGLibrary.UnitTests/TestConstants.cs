@@ -1,4 +1,4 @@
-﻿namespace RPGLibraryUnitTests
+﻿namespace RPGLibrary.UnitTests
 {
 	static class TestConstants
 	{

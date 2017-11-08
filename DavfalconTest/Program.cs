@@ -87,8 +87,8 @@ namespace DavfalconTest
 
 			spell.GrantedBuffs.Add(burn);
 
-			Combat.Initialize(unit);
-			Combat.Initialize(enemy);
+			unit.Initialize();
+			enemy.Initialize();
 
 			PrintUnitCombat(enemy);
 			Console.WriteLine();
@@ -103,7 +103,7 @@ namespace DavfalconTest
 
 			while (true)
 			{
-				foreach (ILogEntry entry in Combat.Upkeep(enemy))
+				foreach (ILogEntry entry in enemy.Upkeep())
 				{
 					Console.WriteLine(entry);
 				}
