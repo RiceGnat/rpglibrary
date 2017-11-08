@@ -200,6 +200,8 @@ namespace Davfalcon.Combat
 					if (!hit[i].Success) continue;
 				}
 
+				List<ILogEntry> effectsList = new List<ILogEntry>();
+
 				// Damage dealing spells
 				if (spell.BaseDamage > 0)
 				{
@@ -207,15 +209,25 @@ namespace Davfalcon.Combat
 					hpLost[i] = targets[i].ReceiveDamage(damage[i]);
 				}
 
-				// Apply other effects
-				effects[i] = spell.ApplyCastEffects(unit, targets[i]);
+				// Healing spells
+				if (spell.BaseHeal > 0)
+				{
+					int healValue = spell.BaseHeal * unit.Stats[Attributes.WIS];
+					targets[i].GetCombatProps().CurrentHP += healValue;
+					effectsList.Add(new LogEntry(string.Format("{0} is healed for {1} HP.", targets[i].Name, healValue)));
+				}
 
 				// Apply buffs/debuffs
 				foreach (IBuff buff in spell.GrantedBuffs)
 				{
 					ApplyBuff(targets[i], buff, String.Format("{0} ({1})", unit.Name, spell.Name));
-					effects[i].Add(new LogEntry(string.Format("{0} was affected by {1}.", targets[i].Name, buff.Name)));
+					effectsList.Add(new LogEntry(string.Format("{0} is affected by {1}.", targets[i].Name, buff.Name)));
 				}
+
+				// Apply other effects
+				effectsList.AddRange(spell.ApplyCastEffects(unit, targets[i]));
+
+				effects[i] = effectsList;
 			}
 
 			return new SpellAction(

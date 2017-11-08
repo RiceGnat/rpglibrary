@@ -127,9 +127,8 @@ namespace DavfalconTest
 				Element.Fire,
 				10,
 				buff.Name);
-
-			effects.Add(d);
-			effects.Add(unit.ReceiveDamage(d));
+			
+			effects.Add(new LogEntry(String.Format("{0} is burned for {1} HP.", unit.Name, unit.ReceiveDamage(d).Value)));
 		}
 
 		static void RestoreHP(IUnit unit, IBuff buff, IList<ILogEntry> effects)
