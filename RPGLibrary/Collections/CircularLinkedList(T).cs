@@ -151,6 +151,24 @@ namespace RPGLibrary.Collections.Generic
 			return new ReadOnlyCollection<T>(this);
 		}
 
+		public void Sort()
+		{
+			list.Sort();
+			head = 0;
+		}
+
+		public void Sort(Comparison<T> comparison)
+		{
+			list.Sort(comparison);
+			head = 0;
+		}
+
+		public void Sort(IComparer<T> comparer)
+		{
+			list.Sort(comparer);
+			head = 0;
+		}
+
 		public CircularLinkedList() { }
 
 		public CircularLinkedList(T item)
