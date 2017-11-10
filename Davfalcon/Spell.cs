@@ -22,7 +22,7 @@ namespace Davfalcon
 		public int Size { get; set; }
 		public int MaxTargets { get; set; }
 
-		private readonly List<IBuff> grantedBuffs;
+		private readonly List<IBuff> grantedBuffs = new List<IBuff>();
 		public IList<IBuff> GrantedBuffs { get; private set; }
 
 		public event EventHandler CastEffects;
@@ -38,7 +38,6 @@ namespace Davfalcon
 
 		public Spell()
 		{
-			grantedBuffs = new List<IBuff>();
 			GrantedBuffs = grantedBuffs.AsReadOnly();
 		}
 	}
