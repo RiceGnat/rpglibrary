@@ -53,6 +53,7 @@
     <Compile Include="StatsTests.cs" />
     <Compile Include="TestConstants.cs" />
     <Compile Include="UnitModifierTests.cs" />
+    <Compile Include="CircularLinkedListTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
