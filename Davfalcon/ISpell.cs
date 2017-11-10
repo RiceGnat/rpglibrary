@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using RPGLibrary;
 
 namespace Davfalcon
@@ -18,8 +19,6 @@ namespace Davfalcon
 		int Size { get; }
 		int MaxTargets { get; }
 		IList<IBuff> GrantedBuffs { get; }
-
-		event SpellEventHandler CastEffects;
 
 		IList<ILogEntry> ApplyCastEffects(IUnit caster, IUnit targets);
 	}

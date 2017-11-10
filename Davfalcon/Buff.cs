@@ -7,10 +7,12 @@ namespace Davfalcon
 	[Serializable]
 	public class Buff : TimedModifier, IBuff
 	{
+		public delegate void EventHandler(IUnit unit, IBuff buff, IList<ILogEntry> effects);
+
 		public string Source { get; set; }
 		public bool IsDebuff { get; set; }
 
-		public event BuffEventHandler UpkeepEffects;
+		public event EventHandler UpkeepEffects;
 
 		public IList<ILogEntry> ApplyUpkeepEffects()
 		{

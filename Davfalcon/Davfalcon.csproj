@@ -48,7 +48,6 @@
     <Compile Include="Combat\SpellCastOptions.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Equipment.cs" />
-    <Compile Include="Delegates.cs" />
     <Compile Include="IBuff.cs" />
     <Compile Include="IEquipment.cs" />
     <Compile Include="ILogEntry.cs" />

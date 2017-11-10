@@ -6,8 +6,7 @@ namespace Davfalcon
 	public interface IBuff : ITimedModifier
 	{
 		string Source { get; set; }
-
-		event BuffEventHandler UpkeepEffects;
+		bool IsDebuff { get; }
 
 		IList<ILogEntry> ApplyUpkeepEffects();
 	}

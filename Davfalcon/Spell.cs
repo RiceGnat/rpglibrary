@@ -7,6 +7,8 @@ namespace Davfalcon
 	[Serializable]
 	public class Spell : ISpell
 	{
+		public delegate void EventHandler(IUnit caster, ISpell spell, IUnit targets, IList<ILogEntry> effects);
+
 		public string Name { get; set; }
 		public string Description { get; set; }
 
@@ -19,9 +21,11 @@ namespace Davfalcon
 		public int Range { get; set; }
 		public int Size { get; set; }
 		public int MaxTargets { get; set; }
-		public IList<IBuff> GrantedBuffs { get; protected set; }
 
-		public event SpellEventHandler CastEffects;
+		private readonly List<IBuff> grantedBuffs;
+		public IList<IBuff> GrantedBuffs { get; private set; }
+
+		public event EventHandler CastEffects;
 
 		public IList<ILogEntry> ApplyCastEffects(IUnit caster, IUnit targets)
 		{
@@ -34,7 +38,8 @@ namespace Davfalcon
 
 		public Spell()
 		{
-			GrantedBuffs = new List<IBuff>();
+			grantedBuffs = new List<IBuff>();
+			GrantedBuffs = grantedBuffs.AsReadOnly();
 		}
 	}
 }
