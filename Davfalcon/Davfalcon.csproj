@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buff.cs" />
+    <Compile Include="ClassProperties.cs" />
     <Compile Include="Combat\AttackAction.cs" />
     <Compile Include="Combat\CombatManager.cs" />
     <Compile Include="Combat\Damage.cs" />
