@@ -9,12 +9,14 @@ namespace Davfalcon
 		public EquipmentSlot Slot { get; protected set; }
 
 		private readonly List<IBuff> grantedEffects = new List<IBuff>();
-		public IList<IBuff> GrantedEffects { get; private set; }
+		public IList<IBuff> GrantedEffects { get { return grantedEffects; } }
+		private readonly IList<IBuff> grantedEffectsReadOnly;
+		IList<IBuff> IEquipment.GrantedEffects { get { return grantedEffectsReadOnly; } }
 
 		protected Equipment()
 			: base()
 		{
-			GrantedEffects = grantedEffects.AsReadOnly();
+			grantedEffectsReadOnly = grantedEffects.AsReadOnly();
 		}
 
 		public Equipment(EquipmentSlot slot)
