@@ -8,10 +8,13 @@ namespace Davfalcon.Combat
 {
 	public static class CombatManager
 	{
-		public static IUnitCombatProps GetCombatProps(this IUnit unit)
-		{
-			return unit.Properties.GetAs<IUnitCombatProps>();
-		}
+		public delegate void BuffEventHandler(IUnit unit, IBuff buff);
+		public delegate void DamageEventHandler(IUnit unit, Damage damaege, int hpLost);
+
+		public static event BuffEventHandler OnBuffApplied;
+		public static event DamageEventHandler OnDamageTaken;
+
+		public static IUnitCombatProps GetCombatProps(this IUnit unit) => unit.Properties.GetAs<IUnitCombatProps>();
 
 		public static void ApplyBuff(this IUnit unit, IBuff buff, string source)
 		{
@@ -27,6 +30,8 @@ namespace Davfalcon.Combat
 			// If unit max HP/MP increased, gain the difference
 			unit.GetCombatProps().CurrentHP += Math.Max(unit.Stats[CombatStats.HP] - maxHP, 0);
 			unit.GetCombatProps().CurrentMP += Math.Max(unit.Stats[CombatStats.MP] - maxMP, 0);
+
+			OnBuffApplied?.Invoke(unit, buff);
 		}
 
 		public static void RemoveBuff(this IUnit unit, IBuff buff)
@@ -162,12 +167,15 @@ namespace Davfalcon.Combat
 
 			unit.GetCombatProps().CurrentHP -= hpLost;
 
+			OnDamageTaken?.Invoke(unit, damage, hpLost);
+
 			return new HPLoss(
 				unit.Name,
 				hpLost
 			);
 		}
 
+		// This function may need to be moved to game layer
 		public static AttackAction Attack(this IUnit unit, IUnit target)
 		{
 			Damage damage = unit.CalculateAttackDamage();
@@ -183,6 +191,7 @@ namespace Davfalcon.Combat
 			);
 		}
 
+		// This function may need to be moved to game layer
 		public static SpellAction Cast(this IUnit unit, ISpell spell, params IUnit[] targets)
 		{
 			int n = targets.Length;

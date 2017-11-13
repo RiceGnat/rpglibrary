@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RPGLibrary;
 using RPGLibrary.Items;
 
@@ -10,6 +11,8 @@ namespace Davfalcon
 		int CurrentHP { get; set; }
 		int CurrentMP { get; set; }
 		IWeapon EquippedWeapon { get; }
+
+		IEnumerable<IBuff> GetBuffs();
 	}
 
 	public interface IUnitEquipProps : IUnitProperties
@@ -23,10 +26,14 @@ namespace Davfalcon
 	[Serializable]
 	public class UnitProperties : RPGLibrary.UnitProperties, IUnitCombatProps, IUnitEquipProps
 	{
+		[NonSerialized]
+		private IUnit unit;
+
 		public int CurrentHP { get; set; }
 		public int CurrentMP { get; set; }
 
 		// other combat properties
+		public IEnumerable<IBuff> GetBuffs() => unit.Modifiers.Where(m => m is IBuff).Select(x => (IBuff)x);
 
 		// equipment
 		public IUnitModifierStack Equipment { get; private set; }
@@ -56,7 +63,7 @@ namespace Davfalcon
 			if (equipment != null && equipment.Slot != slot) throw new ArgumentException("Equipment does not match specified slot.");
 
 			IEquipment current = GetEquipment(slot);
-			
+
 			// Remove current equipment
 			Equipment.Remove(current);
 			equipLookup.Remove(slot);
@@ -86,8 +93,10 @@ namespace Davfalcon
 			{
 				equipLookup[equip.Slot] = equip;
 			}
+
+			this.unit = unit;
 		}
-		
+
 		public UnitProperties()
 		{
 			Equipment = new UnitModifierStack();
