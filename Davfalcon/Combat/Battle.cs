@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using RPGLibrary;
 using RPGLibrary.Collections.Generic;
 
@@ -16,6 +13,8 @@ namespace Davfalcon.Combat
 
 		public IList<ILogEntry> Log { get; private set; }
 		public IList<IUnit> TurnOrder { get; private set; }
+		public int Turn { get; private set; }
+		public IUnit CurrentUnit { get { return turnOrder.Current; } }
 
 		private void AddTeam(int id)
 		{
@@ -47,6 +46,13 @@ namespace Davfalcon.Combat
 		{
 			teams[teamId].Remove(unit);
 			turnOrder.Remove(unit);
+		}
+
+		public void NextTurn()
+		{
+			Turn++;
+			turnOrder.Rotate();
+			log.AddRange(CurrentUnit.Upkeep());
 		}
 
 		public Battle()
