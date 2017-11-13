@@ -25,7 +25,7 @@ namespace Davfalcon.Combat
 			IBuff b = (IBuff)Serializer.DeepClone(buff);
 			b.Source = source;
 			b.Reset();
-			unit.Modifiers.Add(b);
+			unit.GetCombatProps().Buffs.Add(b);
 
 			// If unit max HP/MP increased, gain the difference
 			unit.GetCombatProps().CurrentHP += Math.Max(unit.Stats[CombatStats.HP] - maxHP, 0);
@@ -36,7 +36,7 @@ namespace Davfalcon.Combat
 
 		public static void RemoveBuff(this IUnit unit, IBuff buff)
 		{
-			unit.Modifiers.Remove(buff);
+			unit.GetCombatProps().Buffs.Remove(buff);
 
 			unit.GetCombatProps().CurrentHP = Math.Min(unit.GetCombatProps().CurrentHP, unit.Stats[CombatStats.HP]);
 			unit.GetCombatProps().CurrentMP = Math.Min(unit.GetCombatProps().CurrentMP, unit.Stats[CombatStats.MP]);
@@ -73,7 +73,7 @@ namespace Davfalcon.Combat
 			List<ILogEntry> effects = new List<ILogEntry>();
 			List<IBuff> expired = new List<IBuff>();
 
-			foreach (IBuff buff in unit.Modifiers)
+			foreach (IBuff buff in unit.GetCombatProps().Buffs)
 			{
 				// Apply repeating effects
 				if (buff.Duration > 0 && buff.Remaining > 0 ||

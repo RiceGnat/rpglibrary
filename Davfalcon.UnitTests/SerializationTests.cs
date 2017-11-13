@@ -27,6 +27,14 @@ namespace Davfalcon.UnitTests
 			return unit;
 		}
 
+		private Equipment MakeEquipment()
+		{
+			Equipment armor = new Equipment(EquipmentSlot.Armor);
+			armor.Name = "Test Armor";
+			armor.Additions[CombatStats.DEF] = 3;
+			return armor;
+		}
+
 		[TestMethod]
 		public void UnitSerialization()
 		{
@@ -40,13 +48,31 @@ namespace Davfalcon.UnitTests
 		}
 
 		[TestMethod]
-		public void UnitEquipmentSerialization()
+		public void EquipmentSerialization()
+		{
+			Equipment armor = MakeEquipment();
+
+			Equipment clone = (Equipment)Serializer.DeepClone(armor);
+			Assert.AreEqual(armor.Additions[CombatStats.DEF], clone.Additions[CombatStats.DEF]);
+		}
+
+		[TestMethod]
+		public void BuffSerialization()
+		{
+			Buff buff = new Buff();
+			buff.Multiplications[CombatStats.DEF] = 10;
+
+			Buff clone = (Buff)Serializer.DeepClone(buff);
+			Assert.AreEqual(buff.Multiplications[CombatStats.DEF], clone.Multiplications[CombatStats.DEF]);
+		}
+
+		[TestMethod]
+		public void EquippedUnitSerialization()
 		{
 			Unit unit = MakeUnit();
 
-			Equipment armor = new Equipment(EquipmentSlot.Armor);
-			armor.Name = "Test Armor";
-			armor.Additions[CombatStats.DEF] = 3;
+			Equipment armor = MakeEquipment();
+			unit.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Armor, armor);
 
 			Unit clone = (Unit)Serializer.DeepClone(unit);
 

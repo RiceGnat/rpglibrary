@@ -12,7 +12,7 @@ namespace Davfalcon
 		int CurrentMP { get; set; }
 		IWeapon EquippedWeapon { get; }
 
-		IEnumerable<IBuff> GetBuffs();
+		IUnitModifierStack Buffs { get; }
 	}
 
 	public interface IUnitEquipProps : IUnitProperties
@@ -24,19 +24,20 @@ namespace Davfalcon
 	}
 
 	[Serializable]
-	public class UnitProperties : RPGLibrary.UnitProperties, IUnitCombatProps, IUnitEquipProps
+	internal class UnitProperties : RPGLibrary.UnitProperties, IUnitCombatProps, IUnitEquipProps
 	{
-		[NonSerialized]
-		private IUnit unit;
-
 		public int CurrentHP { get; set; }
 		public int CurrentMP { get; set; }
 
 		// other combat properties
-		public IEnumerable<IBuff> GetBuffs() => unit.Modifiers.Where(m => m is IBuff).Select(x => (IBuff)x);
+		[NonSerialized]
+		private IUnitModifierStack buffs;
+		public IUnitModifierStack Buffs { get { return buffs; } }
 
 		// equipment
-		public IUnitModifierStack Equipment { get; private set; }
+		[NonSerialized]
+		private IUnitModifierStack equipment;
+		public IUnitModifierStack Equipment { get { return equipment; } }
 
 		[NonSerialized]
 		private Dictionary<EquipmentSlot, IEquipment> equipLookup;
@@ -84,22 +85,23 @@ namespace Davfalcon
 
 		// spells known
 
-		public void Bind(IUnit unit)
+		public void Bind(Unit unit)
 		{
-			Equipment.Bind(unit);
-			unit.Modifiers.Bind(Equipment);
+			//Equipment.Bind(unit);
+			//unit.Modifiers.Bind(Equipment);
+			equipment = unit.Equipment;
 			equipLookup = new Dictionary<EquipmentSlot, IEquipment>();
 			foreach (IEquipment equip in Equipment)
 			{
 				equipLookup[equip.Slot] = equip;
 			}
 
-			this.unit = unit;
+			buffs = unit.Buffs;
 		}
 
 		public UnitProperties()
 		{
-			Equipment = new UnitModifierStack();
+			//Equipment = new UnitModifierStack();
 			Inventory = new List<IItem>();
 		}
 	}

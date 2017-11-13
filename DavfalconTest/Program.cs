@@ -171,7 +171,7 @@ namespace DavfalconTest
 				unit.GetCombatProps().CurrentMP,
 				unit.Stats[CombatStats.MP]);
 			PrintSeparator();
-			foreach (IBuff mod in unit.Modifiers)
+			foreach (IBuff mod in unit.GetCombatProps().Buffs)
 			{
 				Console.WriteLine("{0} [{1}]{2}", mod.Name, mod.Source, mod.Duration > 0 ? String.Format(" - {0}", mod.Remaining) : String.Empty);
 			}
