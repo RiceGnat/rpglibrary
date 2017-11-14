@@ -37,13 +37,13 @@ namespace Davfalcon.UnitTests
 		[TestMethod]
 		public void ScaleDamageValue()
 		{
-			Assert.AreEqual(12, CombatManager.ScaleDamageValue(10, 20));
+			Assert.AreEqual(12, CombatOperations.ScaleDamageValue(10, 20));
 		}
 
 		[TestMethod]
 		public void MitigateDamageValue()
 		{
-			Assert.AreEqual(5, CombatManager.MitigateDamageValue(10, 100));
+			Assert.AreEqual(5, CombatOperations.MitigateDamageValue(10, 100));
 		}
 
 		[TestMethod]

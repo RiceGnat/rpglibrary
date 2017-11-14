@@ -6,7 +6,7 @@ using RPGLibrary.Serialization;
 
 namespace Davfalcon.Combat
 {
-	public static class CombatManager
+	public static class CombatOperations
 	{
 		public delegate void BuffEventHandler(IUnit unit, IBuff buff);
 		public delegate void DamageEventHandler(IUnit unit, Damage damaege, int hpLost);
