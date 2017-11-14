@@ -45,7 +45,7 @@ namespace RPGLibrary
 			// Item is first and there is an item above it
 			if (index == 0 && stack.Count > 1)
 			{
-				stack[index + 1].Bind(Target); 
+				stack[index + 1].Bind(Target);
 			}
 			// Item is in the middle of the stack
 			else if (index < stack.Count - 1)
@@ -65,16 +65,11 @@ namespace RPGLibrary
 		private void Rebind(StreamingContext context)
 		{
 			// Rebind modifiers after deserialization
-			for (int i = 0; i < stack.Count; i++)
+			// The first modifier must be bound to Target which may not be set yet at deserialization
+			// Set others and rely on Bind() method being called from owner
+			for (int i = 1; i < stack.Count; i++)
 			{
-				if (i == 0)
-				{
-					stack[i].Bind(Target);
-				}
-				else
-				{
-					stack[i].Bind(stack[i - 1]);
-				}
+				stack[i].Bind(stack[i - 1]);
 			}
 		}
 
