@@ -16,7 +16,7 @@ namespace Davfalcon.Combat
 		public AttackAction(IUnit attacker, IUnit defender, HitCheck hit, Damage damageDealt, HPLoss hpLost)
 		{
 			Attacker = attacker.Name;
-			Weapon = attacker.GetCombatProps().EquippedWeapon.Name;
+			Weapon = attacker.GetCombatProperties().EquippedWeapon.Name;
 			Defender = defender.Name;
 			Hit = hit;
 			DamageDealt = damageDealt;

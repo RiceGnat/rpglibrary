@@ -72,7 +72,7 @@ namespace Davfalcon.UnitTests
 			Unit unit = MakeUnit();
 
 			Equipment armor = MakeEquipment();
-			unit.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Armor, armor);
+			unit.Properties.GetAs<IUnitEquipmentProperties>().Equip(EquipmentSlot.Armor, armor);
 
 			Unit clone = (Unit)Serializer.DeepClone(unit);
 
@@ -81,7 +81,7 @@ namespace Davfalcon.UnitTests
 
 		private static void BurnDamage(IUnit unit, IBuff buff, IList<ILogEntry> effects)
 		{
-			unit.GetCombatProps().CurrentHP -= 10;
+			unit.GetCombatProperties().CurrentHP -= 10;
 		}
 
 		[TestMethod]
@@ -104,8 +104,8 @@ namespace Davfalcon.UnitTests
 			clone.Upkeep();
 
 			Assert.AreEqual(unit.Modifiers.Count, clone.Modifiers.Count);
-			Assert.AreEqual(unit.Stats[CombatStats.HP] - 10, unit.GetCombatProps().CurrentHP);
-			Assert.AreEqual(unit.GetCombatProps().CurrentHP, clone.GetCombatProps().CurrentHP);
+			Assert.AreEqual(unit.Stats[CombatStats.HP] - 10, unit.GetCombatProperties().CurrentHP);
+			Assert.AreEqual(unit.GetCombatProperties().CurrentHP, clone.GetCombatProperties().CurrentHP);
 		}
 	}
 }

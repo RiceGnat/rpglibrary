@@ -6,7 +6,7 @@ using RPGLibrary.Items;
 
 namespace Davfalcon
 {
-	public interface IUnitCombatProps : IUnitProperties
+	public interface IUnitCombatProperties : IUnitProperties
 	{
 		int CurrentHP { get; set; }
 		int CurrentMP { get; set; }
@@ -15,7 +15,7 @@ namespace Davfalcon
 		IUnitModifierStack Buffs { get; }
 	}
 
-	public interface IUnitEquipProps : IUnitProperties
+	public interface IUnitEquipmentProperties : IUnitProperties
 	{
 		IUnitModifierStack Equipment { get; }
 		IWeapon EquippedWeapon { get; }
@@ -24,7 +24,7 @@ namespace Davfalcon
 	}
 
 	[Serializable]
-	internal class UnitProperties : RPGLibrary.UnitProperties, IUnitCombatProps, IUnitEquipProps
+	internal class UnitProperties : RPGLibrary.UnitProperties, IUnitCombatProperties, IUnitEquipmentProperties
 	{
 		public int CurrentHP { get; set; }
 		public int CurrentMP { get; set; }
@@ -34,7 +34,7 @@ namespace Davfalcon
 		private IUnitModifierStack buffs;
 		public IUnitModifierStack Buffs { get { return buffs; } }
 
-		// equipment
+		#region Equipment
 		[NonSerialized]
 		private IUnitModifierStack equipment;
 		public IUnitModifierStack Equipment { get { return equipment; } }
@@ -79,6 +79,7 @@ namespace Davfalcon
 			// Return previously equipped weapon
 			return current;
 		}
+		#endregion
 
 		// inventory
 		public IList<IItem> Inventory { get; protected set; }

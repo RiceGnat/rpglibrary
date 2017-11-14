@@ -9,12 +9,12 @@ namespace Davfalcon.Combat
 	public static class CombatOperations
 	{
 		public delegate void BuffEventHandler(IUnit unit, IBuff buff);
-		public delegate void DamageEventHandler(IUnit unit, Damage damaege, int hpLost);
+		public delegate void DamageEventHandler(IUnit unit, Damage damage, int hpLost);
 
 		public static event BuffEventHandler OnBuffApplied;
 		public static event DamageEventHandler OnDamageTaken;
 
-		public static IUnitCombatProps GetCombatProps(this IUnit unit) => unit.Properties.GetAs<IUnitCombatProps>();
+		public static IUnitCombatProperties GetCombatProperties(this IUnit unit) => unit.Properties.GetAs<IUnitCombatProperties>();
 
 		public static void ApplyBuff(this IUnit unit, IBuff buff, string source)
 		{
@@ -25,31 +25,31 @@ namespace Davfalcon.Combat
 			IBuff b = (IBuff)Serializer.DeepClone(buff);
 			b.Source = source;
 			b.Reset();
-			unit.GetCombatProps().Buffs.Add(b);
+			unit.GetCombatProperties().Buffs.Add(b);
 
 			// If unit max HP/MP increased, gain the difference
-			unit.GetCombatProps().CurrentHP += Math.Max(unit.Stats[CombatStats.HP] - maxHP, 0);
-			unit.GetCombatProps().CurrentMP += Math.Max(unit.Stats[CombatStats.MP] - maxMP, 0);
+			unit.GetCombatProperties().CurrentHP += Math.Max(unit.Stats[CombatStats.HP] - maxHP, 0);
+			unit.GetCombatProperties().CurrentMP += Math.Max(unit.Stats[CombatStats.MP] - maxMP, 0);
 
 			OnBuffApplied?.Invoke(unit, buff);
 		}
 
 		public static void RemoveBuff(this IUnit unit, IBuff buff)
 		{
-			unit.GetCombatProps().Buffs.Remove(buff);
+			unit.GetCombatProperties().Buffs.Remove(buff);
 
-			unit.GetCombatProps().CurrentHP = Math.Min(unit.GetCombatProps().CurrentHP, unit.Stats[CombatStats.HP]);
-			unit.GetCombatProps().CurrentMP = Math.Min(unit.GetCombatProps().CurrentMP, unit.Stats[CombatStats.MP]);
+			unit.GetCombatProperties().CurrentHP = Math.Min(unit.GetCombatProperties().CurrentHP, unit.Stats[CombatStats.HP]);
+			unit.GetCombatProperties().CurrentMP = Math.Min(unit.GetCombatProperties().CurrentMP, unit.Stats[CombatStats.MP]);
 		}
 
 		public static void Initialize(this IUnit unit)
 		{
 			// Set HP/MP to max values
-			unit.GetCombatProps().CurrentHP = unit.Stats[CombatStats.HP];
-			unit.GetCombatProps().CurrentMP = unit.Stats[CombatStats.MP];
+			unit.GetCombatProperties().CurrentHP = unit.Stats[CombatStats.HP];
+			unit.GetCombatProperties().CurrentMP = unit.Stats[CombatStats.MP];
 
 			// Apply buffs granted by equipment
-			foreach (IEquipment equip in unit.Properties.GetAs<IUnitEquipProps>().Equipment)
+			foreach (IEquipment equip in unit.Properties.GetAs<IUnitEquipmentProperties>().Equipment)
 			{
 				foreach (IBuff buff in equip.GrantedEffects)
 				{
@@ -61,8 +61,8 @@ namespace Davfalcon.Combat
 		public static void Cleanup(this IUnit unit)
 		{
 			// Reset HP/MP to 0
-			unit.GetCombatProps().CurrentHP = 0;
-			unit.GetCombatProps().CurrentMP = 0;
+			unit.GetCombatProperties().CurrentHP = 0;
+			unit.GetCombatProperties().CurrentMP = 0;
 
 			// Clear all buffs/debuffs
 			unit.Modifiers.Clear();
@@ -73,7 +73,7 @@ namespace Davfalcon.Combat
 			List<ILogEntry> effects = new List<ILogEntry>();
 			List<IBuff> expired = new List<IBuff>();
 
-			foreach (IBuff buff in unit.GetCombatProps().Buffs)
+			foreach (IBuff buff in unit.GetCombatProperties().Buffs)
 			{
 				// Apply repeating effects
 				if (buff.Duration > 0 && buff.Remaining > 0 ||
@@ -109,7 +109,7 @@ namespace Davfalcon.Combat
 
 		public static Damage CalculateAttackDamage(this IUnit unit)
 		{
-			IWeapon weapon = unit.GetCombatProps().EquippedWeapon;
+			IWeapon weapon = unit.GetCombatProperties().EquippedWeapon;
 
 			return new Damage(
 				DamageType.Physical,
@@ -165,7 +165,7 @@ namespace Davfalcon.Combat
 		{
 			int hpLost = unit.CalculateReceivedDamage(damage);
 
-			unit.GetCombatProps().CurrentHP -= hpLost;
+			unit.GetCombatProperties().CurrentHP -= hpLost;
 
 			OnDamageTaken?.Invoke(unit, damage, hpLost);
 
@@ -222,7 +222,7 @@ namespace Davfalcon.Combat
 				if (spell.BaseHeal > 0)
 				{
 					int healValue = spell.BaseHeal * unit.Stats[Attributes.WIS];
-					targets[i].GetCombatProps().CurrentHP += healValue;
+					targets[i].GetCombatProperties().CurrentHP += healValue;
 					effectsList.Add(new LogEntry(string.Format("{0} is healed for {1} HP.", targets[i].Name, healValue)));
 				}
 

@@ -48,9 +48,9 @@ namespace DavfalconTest
 
 			ring.GrantedEffects.Add(healbuff);
 
-			unit.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Weapon, weapon);
-			unit.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Armor, armor);
-			unit.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Accessory, ring);
+			unit.Properties.GetAs<IUnitEquipmentProperties>().Equip(EquipmentSlot.Weapon, weapon);
+			unit.Properties.GetAs<IUnitEquipmentProperties>().Equip(EquipmentSlot.Armor, armor);
+			unit.Properties.GetAs<IUnitEquipmentProperties>().Equip(EquipmentSlot.Accessory, ring);
 
 			unit.BaseStats[Attributes.STR]++;
 			unit.BaseStats[Attributes.VIT]++;
@@ -68,7 +68,7 @@ namespace DavfalconTest
 
 			hpbag.GrantedEffects.Add(hpbuff);
 
-			enemy.Properties.GetAs<IUnitEquipProps>().Equip(EquipmentSlot.Armor, hpbag);
+			enemy.Properties.GetAs<IUnitEquipmentProperties>().Equip(EquipmentSlot.Armor, hpbag);
 
 			PrintUnit(enemy);
 			Console.WriteLine();
@@ -133,9 +133,9 @@ namespace DavfalconTest
 
 		static void RestoreHP(IUnit unit, IBuff buff, IList<ILogEntry> effects)
 		{
-			int hp = unit.Stats[CombatStats.HP] - unit.GetCombatProps().CurrentHP;
+			int hp = unit.Stats[CombatStats.HP] - unit.GetCombatProperties().CurrentHP;
 
-			unit.GetCombatProps().CurrentHP += hp;
+			unit.GetCombatProperties().CurrentHP += hp;
 
 			effects.Add(new LogEntry(String.Format("{0} restored {1} HP.", unit.Name, hp)));
 		}
@@ -156,7 +156,7 @@ namespace DavfalconTest
 			Console.WriteLine("{0}\t{1}", StatString(unit, Attributes.INT), StatString(unit, CombatStats.RES));
 			Console.WriteLine("{0}", StatString(unit, Attributes.WIS));
 			PrintSeparator();
-			foreach (IEquipment mod in unit.Properties.GetAs<IUnitEquipProps>().Equipment)
+			foreach (IEquipment mod in unit.Properties.GetAs<IUnitEquipmentProperties>().Equipment)
 			{
 				Console.WriteLine(mod.Name);
 			}
@@ -166,12 +166,12 @@ namespace DavfalconTest
 		{
 			Console.WriteLine(unit.Name);
 			Console.WriteLine("HP {0}/{1}\tMP {2}/{3}",
-				unit.GetCombatProps().CurrentHP,
+				unit.GetCombatProperties().CurrentHP,
 				unit.Stats[CombatStats.HP],
-				unit.GetCombatProps().CurrentMP,
+				unit.GetCombatProperties().CurrentMP,
 				unit.Stats[CombatStats.MP]);
 			PrintSeparator();
-			foreach (IBuff mod in unit.GetCombatProps().Buffs)
+			foreach (IBuff mod in unit.GetCombatProperties().Buffs)
 			{
 				Console.WriteLine("{0} [{1}]{2}", mod.Name, mod.Source, mod.Duration > 0 ? String.Format(" - {0}", mod.Remaining) : String.Empty);
 			}

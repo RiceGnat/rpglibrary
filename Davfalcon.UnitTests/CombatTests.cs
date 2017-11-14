@@ -30,8 +30,8 @@ namespace Davfalcon.UnitTests
 
 			unit.Initialize();
 
-			Assert.AreEqual(unit.Stats[CombatStats.HP], unit.GetCombatProps().CurrentHP);
-			Assert.AreEqual(unit.Stats[CombatStats.MP], unit.GetCombatProps().CurrentMP);
+			Assert.AreEqual(unit.Stats[CombatStats.HP], unit.GetCombatProperties().CurrentHP);
+			Assert.AreEqual(unit.Stats[CombatStats.MP], unit.GetCombatProperties().CurrentMP);
 		}
 
 		[TestMethod]
@@ -96,7 +96,7 @@ namespace Davfalcon.UnitTests
 			Damage d = new Damage(DamageType.Physical, Element.Neutral, 10, "");
 			HPLoss h = unit.ReceiveDamage(d);
 
-			Assert.AreEqual(unit.Stats[CombatStats.HP] - unit.GetCombatProps().CurrentHP, h.Value);
+			Assert.AreEqual(unit.Stats[CombatStats.HP] - unit.GetCombatProperties().CurrentHP, h.Value);
 			Assert.AreEqual(unit.Name, h.Unit);
 		}
 	}
