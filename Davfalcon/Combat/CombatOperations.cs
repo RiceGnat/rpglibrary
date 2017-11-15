@@ -225,7 +225,7 @@ namespace Davfalcon.Combat
 				// Healing spells
 				if (spell.BaseHeal > 0)
 				{
-					int healValue = spell.BaseHeal * unit.Stats[Attributes.WIS];
+					int healValue = spell.BaseHeal * (options.NoScaling ? 1 : unit.Stats[Attributes.WIS]);
 					targets[i].GetCombatProperties().CurrentHP += healValue;
 					effectsList.Add(new LogEntry(string.Format("{0} is healed for {1} HP.", targets[i].Name, healValue)));
 				}
