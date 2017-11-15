@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using RPGLibrary;
 using RPGLibrary.Serialization;
 using Davfalcon;
 using Davfalcon.Combat;
+using Davfalcon.Items;
 using Davfalcon.UnitManagement;
 
 namespace DavfalconTest
@@ -88,6 +90,9 @@ namespace DavfalconTest
 
 			spell.GrantedBuffs.Add(burn);
 
+			SpellItem wand = new SpellItem(spell);
+			wand.Name = "Wand of Fireball";
+
 			unit.Initialize();
 			enemy.Initialize();
 
@@ -97,6 +102,7 @@ namespace DavfalconTest
 			Console.WriteLine(unit.Attack(enemy));
 			Console.WriteLine(enemy.Attack(unit));
 			Console.WriteLine(unit.Cast(spell, enemy));
+			WriteList(unit.UseItem(wand, enemy));
 			Console.WriteLine();
 
 			PrintUnitCombat(enemy);
@@ -104,14 +110,8 @@ namespace DavfalconTest
 
 			while (true)
 			{
-				foreach (ILogEntry entry in unit.Upkeep())
-				{
-					Console.WriteLine(entry);
-				}
-				foreach (ILogEntry entry in enemy.Upkeep())
-				{
-					Console.WriteLine(entry);
-				}
+				WriteList(unit.Upkeep());
+				WriteList(enemy.Upkeep());
 
 				Console.WriteLine(unit.Attack(enemy));
 				Console.WriteLine(enemy.Attack(unit));
@@ -125,6 +125,14 @@ namespace DavfalconTest
 			}
 		}
 
+		static void WriteList(IEnumerable list)
+		{
+			foreach (object entry in list)
+			{
+				Console.WriteLine(entry);
+			}
+		}
+
 		static void BurnDamage(IUnit unit, IBuff buff, IList<ILogEntry> effects)
 		{
 			Damage d = new Damage(
@@ -132,7 +140,7 @@ namespace DavfalconTest
 				Element.Fire,
 				10,
 				buff.Name);
-			
+
 			effects.Add(new LogEntry(String.Format("{0} is burned for {1} HP.", unit.Name, unit.ReceiveDamage(d).Value)));
 		}
 
