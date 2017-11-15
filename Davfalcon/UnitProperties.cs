@@ -17,9 +17,15 @@ namespace Davfalcon
 
 	public interface IUnitEquipmentProperties : IUnitProperties
 	{
+		IEnumerable<IEquipment> Equipment { get; }
 		IDictionary<EquipmentSlot, IEquipment> EquipmentLookup { get; }
 		IWeapon EquippedWeapon { get; }
 		IEquipment GetEquipment(EquipmentSlot slot);
+	}
+
+	public interface IUnitInventoryProperties : IUnitProperties
+	{
+		IList<IItem> Inventory { get; }
 	}
 
 	[Serializable]

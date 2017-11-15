@@ -51,7 +51,6 @@
     <Compile Include="Randomization\RandomInteger.cs" />
     <Compile Include="Randomization\SuccessChecker.cs" />
     <Compile Include="TimedModifier.cs" />
-    <Compile Include="Dynamic\DynamicUnit.cs" />
     <Compile Include="ITimedModifier.cs" />
     <Compile Include="IStatsEditable.cs" />
     <Compile Include="IStats.cs" />

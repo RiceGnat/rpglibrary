@@ -13,10 +13,13 @@ namespace Davfalcon
 		{
 			BaseStats = new UnitStats(this);
 			Modifiers = new UnitModifierStack();
+
+			// References will be maintained after deserialization
 			Equipment = new UnitModifierStack();
 			Buffs = new UnitModifierStack();
 			Modifiers.Add(Equipment);
 			Modifiers.Add(Buffs);
+
 			Properties = new UnitProperties();
 		}
 

@@ -16,7 +16,7 @@ namespace Davfalcon.Combat
 
 		public static IUnitCombatProperties GetCombatProperties(this IUnit unit) => unit.Properties.GetAs<IUnitCombatProperties>();
 
-		public static void ApplyBuff(this IUnit unit, IBuff buff, string source)
+		public static void ApplyBuff(this IUnit unit, IBuff buff, string source = null)
 		{
 			int maxHP = unit.Stats[CombatStats.HP];
 			int maxMP = unit.Stats[CombatStats.MP];
@@ -119,12 +119,12 @@ namespace Davfalcon.Combat
 			);
 		}
 
-		public static Damage CalculateSpellDamage(this IUnit unit, ISpell spell)
+		public static Damage CalculateSpellDamage(this IUnit unit, ISpell spell, bool scale = true)
 		{
 			return new Damage(
 				spell.DamageType,
 				spell.SpellElement,
-				ScaleDamageValue(spell.BaseDamage, unit.Stats[CombatStats.MAG]),
+				ScaleDamageValue(spell.BaseDamage, scale ? unit.Stats[CombatStats.MAG] : 0),
 				unit.Name
 			);
 		}
@@ -192,7 +192,7 @@ namespace Davfalcon.Combat
 		}
 
 		// This function may need to be moved to game layer
-		public static SpellAction Cast(this IUnit unit, ISpell spell, params IUnit[] targets)
+		public static SpellAction Cast(this IUnit unit, ISpell spell, SpellCastOptions options, params IUnit[] targets)
 		{
 			int n = targets.Length;
 			HitCheck[] hit = new HitCheck[n];
@@ -249,5 +249,8 @@ namespace Davfalcon.Combat
 				effects
 			);
 		}
+
+		public static SpellAction Cast(this IUnit unit, ISpell spell, params IUnit[] targets)
+			=> unit.Cast(spell, new SpellCastOptions(), targets);
 	}
 }

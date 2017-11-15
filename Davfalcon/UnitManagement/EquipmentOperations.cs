@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using RPGLibrary;
 
 namespace Davfalcon.UnitManagement
@@ -11,7 +9,7 @@ namespace Davfalcon.UnitManagement
 		public static IUnitEquipmentProperties GetEquipmentProperties(this IUnit unit) => unit.Properties.GetAs<IUnitEquipmentProperties>();
 
 		public static IEnumerable<IEquipment> GetAllEquipment(this IUnit unit)
-			=> unit.GetEquipmentProperties().EquipmentLookup.Values;
+			=> unit.GetEquipmentProperties().Equipment;
 
 		public static IEquipment GetEquipped(this IUnit unit, EquipmentSlot slot)
 			=> unit.GetEquipmentProperties().GetEquipment(slot);
@@ -34,5 +32,8 @@ namespace Davfalcon.UnitManagement
 			return current;
 			// Consider directly transferring previous equipment to inventory once implemented
 		}
+
+		public static IEquipment EquipTo(this IEquipment equipment, IUnit unit, EquipmentSlot slot)
+			=> unit.Equip(slot, equipment);
 	}
 }

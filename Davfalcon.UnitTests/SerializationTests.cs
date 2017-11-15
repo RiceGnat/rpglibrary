@@ -95,7 +95,7 @@ namespace Davfalcon.UnitTests
 			burn.IsDebuff = true;
 			burn.UpkeepEffects += BurnDamage;
 
-			unit.ApplyBuff(burn, "none");
+			unit.ApplyBuff(burn);
 
 			Unit clone = (Unit)Serializer.DeepClone(unit);
 
@@ -107,6 +107,21 @@ namespace Davfalcon.UnitTests
 			Assert.AreEqual(unit.Modifiers.Count, clone.Modifiers.Count);
 			Assert.AreEqual(unit.Stats[CombatStats.HP] - 10, unit.GetCombatProperties().CurrentHP);
 			Assert.AreEqual(unit.GetCombatProperties().CurrentHP, clone.GetCombatProperties().CurrentHP);
+		}
+
+		[TestMethod]
+		public void DeserializedModifierStackReferences()
+		{
+			Unit unit = MakeUnit();
+			Unit clone = (Unit)Serializer.DeepClone(unit);
+
+			Assert.IsNotNull(clone.Buffs.Target);
+
+			Buff buff = new Buff();
+			buff.Additions[CombatStats.DEF] = 10;
+
+			clone.ApplyBuff(buff);
+			Assert.AreEqual(unit.Stats[CombatStats.DEF] + 10, clone.Stats[CombatStats.DEF]);
 		}
 	}
 }

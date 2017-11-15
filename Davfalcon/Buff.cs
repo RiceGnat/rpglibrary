@@ -16,10 +16,8 @@ namespace Davfalcon
 
 		public IList<ILogEntry> ApplyUpkeepEffects()
 		{
-			IList<ILogEntry> effects = new List<ILogEntry>();
-
+			List<ILogEntry> effects = new List<ILogEntry>();
 			UpkeepEffects?.Invoke(Target.Modifiers, this, effects);
-
 			return effects;
 		}
 	}

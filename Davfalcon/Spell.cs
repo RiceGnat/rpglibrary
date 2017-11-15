@@ -31,10 +31,8 @@ namespace Davfalcon
 
 		public IList<ILogEntry> ApplyCastEffects(IUnit caster, IUnit targets)
 		{
-			IList<ILogEntry> effects = new List<ILogEntry>();
-
+			List<ILogEntry> effects = new List<ILogEntry>();
 			CastEffects?.Invoke(caster, this, targets, effects);
-
 			return effects;
 		}
 
