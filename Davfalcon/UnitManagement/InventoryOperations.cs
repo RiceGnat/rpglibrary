@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Davfalcon.Items;
 using RPGLibrary;
 using RPGLibrary.Items;
 
@@ -26,5 +27,8 @@ namespace Davfalcon.UnitManagement
 
 		public static bool RemoveFrom(this IItem item, IUnit unit)
 			=> unit.RemoveItem(item);
+
+		public static void UseOn(this IUsableItem item, IUnit user, params object[] targets)
+			=> item.Use(user, targets);
 	}
 }

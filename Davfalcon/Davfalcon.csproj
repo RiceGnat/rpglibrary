@@ -50,6 +50,7 @@
     <Compile Include="Combat\SpellCastOptions.cs" />
     <Compile Include="Items\IUsableItem.cs" />
     <Compile Include="Items\SpellItem.cs" />
+    <Compile Include="Items\UsableDuringState.cs" />
     <Compile Include="Items\UsableItem.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Equipment.cs" />

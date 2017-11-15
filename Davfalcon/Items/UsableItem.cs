@@ -9,6 +9,7 @@ namespace Davfalcon.Items
 		public delegate void EffectHandler(IUnit user, IItem item, IList<ILogEntry> effects, params object[] targets);
 
 		public int Remaining { get; set; }
+		public UsableDuringState UsableDuring { get; set; }
 
 		public event EffectHandler Effects;
 

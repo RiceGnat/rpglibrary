@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Davfalcon.Items;
 using RPGLibrary;
 using RPGLibrary.Randomization;
 using RPGLibrary.Serialization;
@@ -200,6 +201,9 @@ namespace Davfalcon.Combat
 			HPLoss[] hpLost = new HPLoss[n];
 			IList<ILogEntry>[] effects = new IList<ILogEntry>[n];
 
+			// MP cost (calling layer is responsible for validation)
+			unit.GetCombatProperties().CurrentMP -= options.AdjustedCost > 0 ? options.AdjustedCost : spell.Cost;
+
 			for (int i = 0; i < n; i++)
 			{
 				// Roll hit for attack type spells
@@ -252,5 +256,13 @@ namespace Davfalcon.Combat
 
 		public static SpellAction Cast(this IUnit unit, ISpell spell, params IUnit[] targets)
 			=> unit.Cast(spell, new SpellCastOptions(), targets);
+
+		public static IList<ILogEntry> UseItem(this IUnit unit, IUsableItem item, params IUnit[] targets)
+		{
+			List<ILogEntry> effects = new List<ILogEntry>();
+			effects.Add(new LogEntry(string.Format("{0} uses {1}.", unit.Name, item.Name)));
+			effects.AddRange(item.Use(unit, targets));
+			return effects;
+		}
 	}
 }
