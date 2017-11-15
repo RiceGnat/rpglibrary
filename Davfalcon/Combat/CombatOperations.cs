@@ -214,7 +214,7 @@ namespace Davfalcon.Combat
 				// Damage dealing spells
 				if (spell.BaseDamage > 0)
 				{
-					damage[i] = unit.CalculateSpellDamage(spell);
+					damage[i] = unit.CalculateSpellDamage(spell, !options.NoScaling);
 					hpLost[i] = targets[i].ReceiveDamage(damage[i]);
 				}
 
