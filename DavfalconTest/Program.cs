@@ -6,6 +6,7 @@ using RPGLibrary;
 using RPGLibrary.Serialization;
 using Davfalcon;
 using Davfalcon.Combat;
+using Davfalcon.UnitManagement;
 
 namespace DavfalconTest
 {
@@ -48,9 +49,9 @@ namespace DavfalconTest
 
 			ring.GrantedEffects.Add(healbuff);
 
-			unit.Properties.GetAs<IUnitEquipmentProperties>().Equip(EquipmentSlot.Weapon, weapon);
-			unit.Properties.GetAs<IUnitEquipmentProperties>().Equip(EquipmentSlot.Armor, armor);
-			unit.Properties.GetAs<IUnitEquipmentProperties>().Equip(EquipmentSlot.Accessory, ring);
+			unit.Equip(EquipmentSlot.Weapon, weapon);
+			unit.Equip(EquipmentSlot.Armor, armor);
+			unit.Equip(EquipmentSlot.Accessory, ring);
 
 			unit.BaseStats[Attributes.STR]++;
 			unit.BaseStats[Attributes.VIT]++;
@@ -68,7 +69,7 @@ namespace DavfalconTest
 
 			hpbag.GrantedEffects.Add(hpbuff);
 
-			enemy.Properties.GetAs<IUnitEquipmentProperties>().Equip(EquipmentSlot.Armor, hpbag);
+			enemy.Equip(EquipmentSlot.Armor, hpbag);
 
 			PrintUnit(enemy);
 			Console.WriteLine();
@@ -103,6 +104,10 @@ namespace DavfalconTest
 
 			while (true)
 			{
+				foreach (ILogEntry entry in unit.Upkeep())
+				{
+					Console.WriteLine(entry);
+				}
 				foreach (ILogEntry entry in enemy.Upkeep())
 				{
 					Console.WriteLine(entry);
@@ -156,7 +161,7 @@ namespace DavfalconTest
 			Console.WriteLine("{0}\t{1}", StatString(unit, Attributes.INT), StatString(unit, CombatStats.RES));
 			Console.WriteLine("{0}", StatString(unit, Attributes.WIS));
 			PrintSeparator();
-			foreach (IEquipment mod in unit.Properties.GetAs<IUnitEquipmentProperties>().Equipment)
+			foreach (IEquipment mod in unit.GetAllEquipment())
 			{
 				Console.WriteLine(mod.Name);
 			}

@@ -49,7 +49,7 @@ namespace Davfalcon.Combat
 			unit.GetCombatProperties().CurrentMP = unit.Stats[CombatStats.MP];
 
 			// Apply buffs granted by equipment
-			foreach (IEquipment equip in unit.Properties.GetAs<IUnitEquipmentProperties>().Equipment)
+			foreach (IEquipment equip in unit.GetCombatProperties().Equipment)
 			{
 				foreach (IBuff buff in equip.GrantedEffects)
 				{

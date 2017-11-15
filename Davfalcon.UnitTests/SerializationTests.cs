@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Davfalcon.Combat;
+using Davfalcon.UnitManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPGLibrary;
 using RPGLibrary.Serialization;
@@ -72,7 +73,7 @@ namespace Davfalcon.UnitTests
 			Unit unit = MakeUnit();
 
 			Equipment armor = MakeEquipment();
-			unit.Properties.GetAs<IUnitEquipmentProperties>().Equip(EquipmentSlot.Armor, armor);
+			unit.Equip(EquipmentSlot.Armor, armor);
 
 			Unit clone = (Unit)Serializer.DeepClone(unit);
 

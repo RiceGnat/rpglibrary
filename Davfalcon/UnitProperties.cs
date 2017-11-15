@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using RPGLibrary;
 using RPGLibrary.Items;
 
@@ -11,16 +10,16 @@ namespace Davfalcon
 		int CurrentHP { get; set; }
 		int CurrentMP { get; set; }
 		IWeapon EquippedWeapon { get; }
+		IEnumerable<IEquipment> Equipment { get; }
 
 		IUnitModifierStack Buffs { get; }
 	}
 
 	public interface IUnitEquipmentProperties : IUnitProperties
 	{
-		IUnitModifierStack Equipment { get; }
+		IDictionary<EquipmentSlot, IEquipment> EquipmentLookup { get; }
 		IWeapon EquippedWeapon { get; }
 		IEquipment GetEquipment(EquipmentSlot slot);
-		IEquipment Equip(EquipmentSlot slot, IEquipment equipment);
 	}
 
 	[Serializable]
@@ -36,11 +35,9 @@ namespace Davfalcon
 
 		#region Equipment
 		[NonSerialized]
-		private IUnitModifierStack equipment;
-		public IUnitModifierStack Equipment { get { return equipment; } }
-
-		[NonSerialized]
-		private Dictionary<EquipmentSlot, IEquipment> equipLookup;
+		private EquipmentSlotMap equipLookup;
+		public IDictionary<EquipmentSlot, IEquipment> EquipmentLookup { get { return equipLookup; } }
+		public IEnumerable<IEquipment> Equipment { get { return EquipmentLookup.Values; } }
 
 		public IWeapon EquippedWeapon
 		{
@@ -52,32 +49,11 @@ namespace Davfalcon
 
 		public IEquipment GetEquipment(EquipmentSlot slot)
 		{
-			if (equipLookup.ContainsKey(slot))
+			if (EquipmentLookup.ContainsKey(slot))
 			{
 				return equipLookup[slot];
 			}
 			else return null;
-		}
-
-		public IEquipment Equip(EquipmentSlot slot, IEquipment equipment)
-		{
-			if (equipment != null && equipment.Slot != slot) throw new ArgumentException("Equipment does not match specified slot.");
-
-			IEquipment current = GetEquipment(slot);
-
-			// Remove current equipment
-			Equipment.Remove(current);
-			equipLookup.Remove(slot);
-
-			// If not null, add new equipment
-			if (equipment != null)
-			{
-				Equipment.Add(equipment);
-				equipLookup[slot] = equipment;
-			}
-
-			// Return previously equipped weapon
-			return current;
 		}
 		#endregion
 
@@ -88,21 +64,13 @@ namespace Davfalcon
 
 		public void Bind(Unit unit)
 		{
-			//Equipment.Bind(unit);
-			//unit.Modifiers.Bind(Equipment);
-			equipment = unit.Equipment;
-			equipLookup = new Dictionary<EquipmentSlot, IEquipment>();
-			foreach (IEquipment equip in Equipment)
-			{
-				equipLookup[equip.Slot] = equip;
-			}
+			equipLookup = new EquipmentSlotMap(unit.Equipment);
 
 			buffs = unit.Buffs;
 		}
 
 		public UnitProperties()
 		{
-			//Equipment = new UnitModifierStack();
 			Inventory = new List<IItem>();
 		}
 	}

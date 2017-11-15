@@ -23,7 +23,7 @@ namespace RPGLibrary
 			this.target = target;
 		}
 
-		#region IUnit
+		#region IUnit implementation
 		string IUnit.Name { get { return InterfaceUnit.Name; } }
 		string IUnit.Class { get { return InterfaceUnit.Class; } }
 		int IUnit.Level { get { return InterfaceUnit.Level; } }

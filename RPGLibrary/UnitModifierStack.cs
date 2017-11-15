@@ -73,21 +73,15 @@ namespace RPGLibrary
 			}
 		}
 
-		#region IEnumerable
+		#region IEnumerable implementation
 		private IEnumerator<IUnitModifier> GetEnumerator()
-		{
-			return stack.GetEnumerator();
-		}
+			=> stack.GetEnumerator();
 
 		IEnumerator<IUnitModifier> IEnumerable<IUnitModifier>.GetEnumerator()
-		{
-			return GetEnumerator();
-		}
+			=> GetEnumerator();
 
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-		{
-			return GetEnumerator();
-		}
+			=> GetEnumerator();
 		#endregion
 	}
 }
