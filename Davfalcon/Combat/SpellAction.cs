@@ -43,16 +43,17 @@ namespace Davfalcon.Combat
 
 			for (int i = 0; i < Targets.Length; i++)
 			{
-				if (Hit[i] != null && !Hit[i].Success)
+				if (Hit[i] != null && !Hit[i].Hit)
 					s += Environment.NewLine + String.Format("The spell misses {0}.", Targets[i]);
 
+				if (Hit[i]?.Crit ?? false)
+					s += Environment.NewLine + "The spell crits!";
+
 				if (DamageDealt[i] != null)
-					s += Environment.NewLine +
-						 DamageDealt[i].LogWith(HPLost[i]);
+					s += Environment.NewLine + DamageDealt[i].LogWith(HPLost[i]);
 
 				foreach (ILogEntry effect in OtherEffects[i])
-					s += Environment.NewLine +
-						 effect;
+					s += Environment.NewLine + effect;
 			}
 
 			return s;

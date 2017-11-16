@@ -31,9 +31,11 @@ namespace DavfalconTest
 			Weapon weapon = new Weapon();
 			weapon.Name = "Halberd";
 			weapon.BaseDamage = 50;
+			weapon.CritMultiplier = 2;
 			weapon.AttackElement = Element.Fire;
 			weapon.Type = WeaponType.Axe;
 			weapon.Additions[CombatStats.ATK] = 5;
+			weapon.Additions[CombatStats.CRT] = 30;
 
 			Equipment armor = new Equipment(EquipmentSlot.Armor);
 			armor.Name = "Some Armor";
@@ -81,6 +83,7 @@ namespace DavfalconTest
 			spell.SpellElement = Element.Fire;
 			spell.DamageType = DamageType.Magical;
 			spell.BaseDamage = 60;
+			spell.Cost = 30;
 
 			Buff burn = new Buff();
 			burn.Name = "Burn";

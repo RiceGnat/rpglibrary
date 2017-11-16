@@ -14,6 +14,7 @@ namespace Davfalcon.Items
 
 			SpellCastOptions options = new SpellCastOptions
 			{
+				AdjustedCost = 0,
 				NoScaling = true
 			};
 

@@ -27,7 +27,7 @@
 
 	public enum WeaponType
 	{
-		Sword, Dagger, Axe, Spear, Bow, Staff
+		Sword, Dagger, Axe, Spear, Bow, Staff, Fist
 	}
 
 	public enum SpellTargetType

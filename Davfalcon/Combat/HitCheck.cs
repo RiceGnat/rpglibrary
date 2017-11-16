@@ -2,13 +2,17 @@
 {
 	public class HitCheck
 	{
-		public readonly double SuccessChance;
-		public readonly bool Success;
+		public readonly double HitChance;
+		public readonly bool Hit;
+		public readonly double CritChance;
+		public readonly bool Crit;
 
-		public HitCheck(double chance, bool success)
+		public HitCheck(double hitChance, bool hit, double critChance = 0, bool crit = false)
 		{
-			SuccessChance = chance;
-			Success = success;
+			HitChance = hitChance;
+			Hit = hit;
+			CritChance = critChance;
+			Crit = crit;
 		}
 	}
 }

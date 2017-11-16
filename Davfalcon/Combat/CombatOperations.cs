@@ -108,24 +108,24 @@ namespace Davfalcon.Combat
 			return (int)(incomingValue * 100f / (100 + resistance));
 		}
 
-		public static Damage CalculateAttackDamage(this IUnit unit)
+		public static Damage CalculateAttackDamage(this IUnit unit, bool crit = false)
 		{
 			IWeapon weapon = unit.GetCombatProperties().EquippedWeapon;
 
 			return new Damage(
 				DamageType.Physical,
 				weapon.AttackElement,
-				ScaleDamageValue(weapon.BaseDamage + unit.Stats[Attributes.STR], unit.Stats[CombatStats.ATK]),
+				ScaleDamageValue(weapon.BaseDamage + unit.Stats[Attributes.STR], unit.Stats[CombatStats.ATK]) * (crit ? weapon.CritMultiplier : 1),
 				unit.Name
 			);
 		}
 
-		public static Damage CalculateSpellDamage(this IUnit unit, ISpell spell, bool scale = true)
+		public static Damage CalculateSpellDamage(this IUnit unit, ISpell spell, bool scale = true, bool crit = false)
 		{
 			return new Damage(
 				spell.DamageType,
 				spell.SpellElement,
-				ScaleDamageValue(spell.BaseDamage, scale ? unit.Stats[CombatStats.MAG] : 0),
+				ScaleDamageValue(spell.BaseDamage, scale ? unit.Stats[CombatStats.MAG] : 0) * (crit ? 2 : 1),
 				unit.Name
 			);
 		}
@@ -154,11 +154,15 @@ namespace Davfalcon.Combat
 		public static HitCheck CheckForHit(this IUnit unit, IUnit target)
 		{
 			double threshold = MathExtensions.Clamp(unit.Stats[CombatStats.HIT] - target.Stats[CombatStats.AVD], 0, 100) / 100f;
-			ISuccessCheck rand = new CenterWeightedChecker(threshold);
+			bool hit = new CenterWeightedChecker(threshold).Check();
+			double critThreshold = MathExtensions.Clamp(unit.Stats[CombatStats.CRT], 0, 100) / 100f;
+			bool crit = hit ? new SuccessChecker(critThreshold).Check() : false;
 
 			return new HitCheck(
 				threshold,
-				rand.Check()
+				hit,
+				critThreshold,
+				crit
 			);
 		}
 
@@ -179,16 +183,15 @@ namespace Davfalcon.Combat
 		// This function may need to be moved to game layer
 		public static AttackAction Attack(this IUnit unit, IUnit target)
 		{
-			Damage damage = unit.CalculateAttackDamage();
-
 			HitCheck hit = unit.CheckForHit(target);
+			Damage damage = unit.CalculateAttackDamage(hit.Crit);
 
 			return new AttackAction(
 				unit,
 				target,
 				hit,
-				hit.Success ? damage : null,
-				hit.Success ? target.ReceiveDamage(damage) : null
+				hit.Hit ? damage : null,
+				hit.Hit ? target.ReceiveDamage(damage) : null
 			);
 		}
 
@@ -202,7 +205,7 @@ namespace Davfalcon.Combat
 			IList<ILogEntry>[] effects = new IList<ILogEntry>[n];
 
 			// MP cost (calling layer is responsible for validation)
-			unit.GetCombatProperties().CurrentMP -= options.AdjustedCost > 0 ? options.AdjustedCost : spell.Cost;
+			unit.GetCombatProperties().CurrentMP -= options.AdjustedCost > -1 ? options.AdjustedCost : spell.Cost;
 
 			for (int i = 0; i < n; i++)
 			{
@@ -210,7 +213,7 @@ namespace Davfalcon.Combat
 				if (spell.TargetType == SpellTargetType.Attack)
 				{
 					hit[i] = unit.CheckForHit(targets[i]);
-					if (!hit[i].Success) continue;
+					if (!hit[i].Hit) continue;
 				}
 
 				List<ILogEntry> effectsList = new List<ILogEntry>();
@@ -218,7 +221,7 @@ namespace Davfalcon.Combat
 				// Damage dealing spells
 				if (spell.BaseDamage > 0)
 				{
-					damage[i] = unit.CalculateSpellDamage(spell, !options.NoScaling);
+					damage[i] = unit.CalculateSpellDamage(spell, !options.NoScaling, hit[i]?.Crit ?? false);
 					hpLost[i] = targets[i].ReceiveDamage(damage[i]);
 				}
 
