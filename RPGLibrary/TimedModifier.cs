@@ -8,9 +8,6 @@ namespace RPGLibrary
 	[Serializable]
 	public class TimedModifier : UnitStatsModifier, ITimedModifier
 	{
-		public string Name { get; set; }
-		public string Description { get; set; }
-
 		public int Duration { get; set; }
 		public int Remaining { get; set; }
 
@@ -23,9 +20,5 @@ namespace RPGLibrary
 		{
 			if (Remaining > 0) Remaining--;
 		}
-
-		// Resolve Name property ambiguity
-		string IUnit.Name { get { return InterfaceUnit.Name; } }
-		string ITimedModifier.Name { get { return Name; } }
 	}
 }

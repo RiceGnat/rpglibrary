@@ -6,6 +6,16 @@
 	public interface IUnitModifier : IUnit
 	{
 		/// <summary>
+		/// Gets the name of the modifier.
+		/// </summary>
+		new string Name { get; }
+
+		/// <summary>
+		/// Gets a description of the modifier.
+		/// </summary>
+		string Description { get; }
+
+		/// <summary>
 		/// Gets the unit the object is modifying.
 		/// </summary>
 		IUnit Target { get; }

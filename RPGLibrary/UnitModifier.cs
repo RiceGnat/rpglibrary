@@ -8,6 +8,9 @@ namespace RPGLibrary
 	[Serializable]
 	public abstract class UnitModifier : IUnitModifier
 	{
+		public string Name { get; set; }
+		public string Description { get; set; }
+
 		[NonSerialized]
 		private IUnit target;
 
@@ -22,6 +25,9 @@ namespace RPGLibrary
 		{
 			this.target = target;
 		}
+
+		// Resolve Name property ambiguity
+		string IUnitModifier.Name { get { return Name; } }
 
 		#region IUnit implementation
 		string IUnit.Name { get { return InterfaceUnit.Name; } }

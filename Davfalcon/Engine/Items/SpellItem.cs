@@ -7,6 +7,7 @@ namespace Davfalcon.Engine.Items
 {
 	public class SpellItem : Item, IUsableItem
 	{
+		public bool IsConsumable { get; set; }
 		public int Remaining { get; set; }
 		public UsableDuringState UsableDuring { get; set; }
 

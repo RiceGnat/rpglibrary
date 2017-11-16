@@ -14,10 +14,5 @@
 		/// Gets a description of the item.
 		/// </summary>
 		string Description { get; }
-
-		/// <summary>
-		/// Gets whether the item is consumable.
-		/// </summary>
-		bool IsConsumable { get; }
 	}
 }

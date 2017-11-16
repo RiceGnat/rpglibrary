@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using RPGLibrary.Items;
 
 namespace Davfalcon
 {
-	public interface IEquipment : RPGLibrary.Items.IEquipment
+	public interface IEquipment : IModifierItem
 	{
 		EquipmentSlot Slot { get; }
 		IList<IBuff> GrantedEffects { get; }

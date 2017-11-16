@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using RPGLibrary.Items;
 
 namespace Davfalcon
 {
 	[Serializable]
-	public class Equipment : RPGLibrary.Items.Equipment, IEquipment
+	public class Equipment : ModifierItem, IEquipment
 	{
 		public EquipmentSlot Slot { get; protected set; }
 
