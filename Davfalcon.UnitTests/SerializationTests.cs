@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using Davfalcon.Combat;
+using Davfalcon.Engine;
+using Davfalcon.Engine.Combat;
 using Davfalcon.UnitManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPGLibrary;
@@ -11,6 +11,29 @@ namespace Davfalcon.UnitTests
 	[TestClass]
 	public class SerializationTests
 	{
+		private static Data data;
+
+		[ClassInitialize]
+		public static void Load(TestContext context)
+		{
+			data = Data.Current;
+			Data.SetData(new Data());
+			Data.Current.Effects.LoadTemplate("Burn", (int burnDamage) =>
+			{
+				return (IUnit unit, string source, IUnit originator) =>
+				{
+					unit.GetCombatProperties().CurrentHP -= 10;
+					return null;
+				};
+			});
+		}
+
+		[ClassCleanup]
+		public static void Unload()
+		{
+			Data.SetData(data);
+		}
+
 		private Unit MakeUnit()
 		{
 			Unit unit = new Unit
@@ -79,12 +102,7 @@ namespace Davfalcon.UnitTests
 
 			Assert.AreEqual(unit.Stats[CombatStats.DEF], clone.Stats[CombatStats.DEF]);
 		}
-
-		private static void BurnDamage(IUnit unit, IBuff buff, IList<ILogEntry> effects)
-		{
-			unit.GetCombatProperties().CurrentHP -= 10;
-		}
-
+		
 		[TestMethod]
 		public void BuffEventSerialization()
 		{
@@ -93,7 +111,7 @@ namespace Davfalcon.UnitTests
 			Buff burn = new Buff();
 			burn.Name = "Burn";
 			burn.IsDebuff = true;
-			burn.UpkeepEffects += BurnDamage;
+			burn.UpkeepEffects.Add("Burn", 10);
 
 			unit.ApplyBuff(burn);
 

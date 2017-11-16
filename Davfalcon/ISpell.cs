@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using RPGLibrary;
 
 namespace Davfalcon
 {
-	public interface ISpell
+	public interface ISpell : IEffects
 	{
 		string Name { get; }
 		string Description { get; }
@@ -18,8 +16,6 @@ namespace Davfalcon
 		int Range { get; }
 		int Size { get; }
 		int MaxTargets { get; }
-		IList<IBuff> GrantedBuffs { get; }
-
-		IList<ILogEntry> ApplyCastEffects(IUnit caster, IUnit targets);
+		ICollection<IBuff> GrantedBuffs { get; }
 	}
 }

@@ -6,8 +6,9 @@ using System.Text;
 using RPGLibrary;
 using RPGLibrary.Serialization;
 using Davfalcon;
-using Davfalcon.Combat;
-using Davfalcon.Items;
+using Davfalcon.Engine;
+using Davfalcon.Engine.Combat;
+using Davfalcon.Engine.Items;
 using Davfalcon.UnitManagement;
 
 namespace DavfalconTest
@@ -16,6 +17,8 @@ namespace DavfalconTest
 	{
 		static void Main(string[] args)
 		{
+			LoadData();
+
 			Unit unit = new Unit();
 			unit.Name = "Davfalcon";
 
@@ -49,7 +52,7 @@ namespace DavfalconTest
 
 			Buff healbuff = new Buff();
 			healbuff.Name = "Restore HP";
-			healbuff.UpkeepEffects += RestoreHP;
+			healbuff.UpkeepEffects.Add("RestoreHP");
 
 			ring.GrantedEffects.Add(healbuff);
 
@@ -69,7 +72,7 @@ namespace DavfalconTest
 			Buff hpbuff = new Buff();
 			hpbuff.Name = "HP Bag";
 			hpbuff.Multiplications[CombatStats.HP] = 99999;
-			hpbuff.UpkeepEffects += RestoreHP;
+			hpbuff.UpkeepEffects.Add("RestoreHP");
 
 			hpbag.GrantedEffects.Add(hpbuff);
 
@@ -89,7 +92,7 @@ namespace DavfalconTest
 			burn.Name = "Burn";
 			burn.Duration = 3;
 			burn.IsDebuff = true;
-			burn.UpkeepEffects += BurnDamage;
+			burn.UpkeepEffects.Add("Burn", 10);
 
 			spell.GrantedBuffs.Add(burn);
 
@@ -128,32 +131,41 @@ namespace DavfalconTest
 			}
 		}
 
+		static void LoadData()
+		{
+			Data.Current.Effects.LoadTemplate("Burn", (int burnDamage) =>
+			{
+				return (IUnit unit, string source, IUnit originator) =>
+				{
+					Damage d = new Damage(
+						DamageType.True,
+						Element.Fire,
+						burnDamage,
+						source);
+
+					return new LogEntry(String.Format("{0} is burned for {1} HP.", unit.Name, unit.ReceiveDamage(d).Value));
+				};
+			});
+
+			Data.Current.Effects.LoadTemplate("RestoreHP", (int unused) =>
+			{
+				return (IUnit unit, string source, IUnit originator) =>
+				{
+					int hp = unit.Stats[CombatStats.HP] - unit.GetCombatProperties().CurrentHP;
+
+					unit.GetCombatProperties().CurrentHP += hp;
+
+					return new LogEntry(String.Format("{0} restored {1} HP.", unit.Name, hp));
+				};
+			});
+		}
+
 		static void WriteList(IEnumerable list)
 		{
 			foreach (object entry in list)
 			{
 				Console.WriteLine(entry);
 			}
-		}
-
-		static void BurnDamage(IUnit unit, IBuff buff, IList<ILogEntry> effects)
-		{
-			Damage d = new Damage(
-				DamageType.True,
-				Element.Fire,
-				10,
-				buff.Name);
-
-			effects.Add(new LogEntry(String.Format("{0} is burned for {1} HP.", unit.Name, unit.ReceiveDamage(d).Value)));
-		}
-
-		static void RestoreHP(IUnit unit, IBuff buff, IList<ILogEntry> effects)
-		{
-			int hp = unit.Stats[CombatStats.HP] - unit.GetCombatProperties().CurrentHP;
-
-			unit.GetCombatProperties().CurrentHP += hp;
-
-			effects.Add(new LogEntry(String.Format("{0} restored {1} HP.", unit.Name, hp)));
 		}
 
 		static void PrintSeparator()

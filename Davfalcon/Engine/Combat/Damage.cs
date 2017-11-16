@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Davfalcon.Combat
+namespace Davfalcon.Engine.Combat
 {
 	[Serializable]
 	public class Damage : ILogEntry

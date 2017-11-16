@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using RPGLibrary;
+using RPGLibrary.Collections.Generic;
 
 namespace Davfalcon
 {
 	[Serializable]
 	public class Spell : ISpell
 	{
-		public delegate void EffectHandler(IUnit caster, ISpell spell, IUnit targets, IList<ILogEntry> effects);
-
 		public string Name { get; set; }
 		public string Description { get; set; }
 
@@ -22,23 +20,13 @@ namespace Davfalcon
 		public int Size { get; set; }
 		public int MaxTargets { get; set; }
 
-		private readonly List<IBuff> grantedBuffs = new List<IBuff>();
+		private ManagedList<IBuff> grantedBuffs = new ManagedList<IBuff>();
 		public IList<IBuff> GrantedBuffs { get { return grantedBuffs; } }
-		private readonly IList<IBuff> grantedBuffsReadOnly;
-		IList<IBuff> ISpell.GrantedBuffs { get { return grantedBuffsReadOnly; } }
+		ICollection<IBuff> ISpell.GrantedBuffs { get { return grantedBuffs.ReadOnly; } }
 
-		public event EffectHandler CastEffects;
-
-		public IList<ILogEntry> ApplyCastEffects(IUnit caster, IUnit targets)
-		{
-			List<ILogEntry> effects = new List<ILogEntry>();
-			CastEffects?.Invoke(caster, this, targets, effects);
-			return effects;
-		}
-
-		public Spell()
-		{
-			grantedBuffsReadOnly = grantedBuffs.AsReadOnly();
-		}
+		private EffectList effects = new EffectList();
+		public IEffectList CastEffects { get { return effects; } }
+		ICollection<KeyValuePair<string, int>> IEffects.Effects { get { return effects.ReadOnly; } }
+		string IEffects.SourceName { get { return Name; } }
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace Davfalcon.Combat
+﻿namespace Davfalcon.Engine.Combat
 {
 	public class HitCheck
 	{

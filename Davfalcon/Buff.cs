@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using RPGLibrary;
+using RPGLibrary.Collections.Generic;
 
 namespace Davfalcon
 {
 	[Serializable]
 	public class Buff : TimedModifier, IBuff
 	{
-		public delegate void EffectHandler(IUnit unit, IBuff buff, IList<ILogEntry> effects);
-
 		public string Source { get; set; }
 		public bool IsDebuff { get; set; }
 
-		public event EffectHandler UpkeepEffects;
-
-		public IList<ILogEntry> ApplyUpkeepEffects()
-		{
-			List<ILogEntry> effects = new List<ILogEntry>();
-			UpkeepEffects?.Invoke(Target.Modifiers, this, effects);
-			return effects;
-		}
+		private EffectList effects = new EffectList();
+		public IEffectList UpkeepEffects { get { return effects; } }
+		ICollection<KeyValuePair<string, int>> IEffects.Effects { get { return effects.ReadOnly; } }
+		string IEffects.SourceName { get { return Name; } }
 	}
 }

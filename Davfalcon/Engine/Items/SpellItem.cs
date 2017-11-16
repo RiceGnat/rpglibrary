@@ -1,16 +1,20 @@
 ﻿using System.Collections.Generic;
-using Davfalcon.Combat;
+using Davfalcon.Engine.Combat;
 using RPGLibrary;
+using RPGLibrary.Items;
 
-namespace Davfalcon.Items
+namespace Davfalcon.Engine.Items
 {
-	public class SpellItem : UsableItem
+	public class SpellItem : Item, IUsableItem
 	{
+		public int Remaining { get; set; }
+		public UsableDuringState UsableDuring { get; set; }
+
 		private ISpell spell;
 
-		public override IList<ILogEntry> Use(IUnit user, params object[] targets)
+		public IList<ILogEntry> Use(IUnit user, params object[] targets)
 		{
-			IList<ILogEntry> effects = base.Use(user, targets);
+			List<ILogEntry> effects = new List<ILogEntry>();
 
 			SpellCastOptions options = new SpellCastOptions
 			{

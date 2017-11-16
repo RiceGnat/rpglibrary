@@ -3,11 +3,9 @@ using RPGLibrary;
 
 namespace Davfalcon
 {
-	public interface IBuff : ITimedModifier
+	public interface IBuff : ITimedModifier, IEffects
 	{
 		string Source { get; set; }
 		bool IsDebuff { get; }
-
-		IList<ILogEntry> ApplyUpkeepEffects();
 	}
 }

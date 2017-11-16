@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using RPGLibrary;
 
-namespace Davfalcon.Combat
+namespace Davfalcon.Engine.Combat
 {
 	[Serializable]
 	public class SpellAction : ILogEntry

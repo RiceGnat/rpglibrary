@@ -2,7 +2,7 @@
 using RPGLibrary;
 using RPGLibrary.Collections.Generic;
 
-namespace Davfalcon.Combat
+namespace Davfalcon.Engine.Combat
 {
 	public class Battle
 	{

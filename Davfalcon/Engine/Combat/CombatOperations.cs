@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Davfalcon.Items;
+using Davfalcon.Engine.Items;
 using RPGLibrary;
 using RPGLibrary.Randomization;
 using RPGLibrary.Serialization;
 
-namespace Davfalcon.Combat
+namespace Davfalcon.Engine.Combat
 {
 	public static class CombatOperations
 	{
@@ -16,6 +16,9 @@ namespace Davfalcon.Combat
 		public static event DamageEventHandler OnDamageTaken;
 
 		public static IUnitCombatProperties GetCombatProperties(this IUnit unit) => unit.Properties.GetAs<IUnitCombatProperties>();
+
+		private static IList<ILogEntry> ApplyEffects(this IEffects source, IUnit target, IUnit originator)
+			=> Data.Current.Effects.ApplyEffects(source, target, originator);
 
 		public static void ApplyBuff(this IUnit unit, IBuff buff, string source = null)
 		{
@@ -79,7 +82,7 @@ namespace Davfalcon.Combat
 				// Apply repeating effects
 				if (buff.Duration > 0 && buff.Remaining > 0 ||
 					buff.Duration == 0)
-					effects.AddRange(buff.ApplyUpkeepEffects());
+					effects.AddRange(buff.ApplyEffects(unit, unit));
 
 				// Tick buff timers
 				buff.Tick();
@@ -241,7 +244,7 @@ namespace Davfalcon.Combat
 				}
 
 				// Apply other effects
-				effectsList.AddRange(spell.ApplyCastEffects(unit, targets[i]));
+				effectsList.AddRange(spell.ApplyEffects(targets[i], unit));
 
 				effects[i] = effectsList;
 			}

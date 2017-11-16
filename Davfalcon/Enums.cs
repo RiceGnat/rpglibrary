@@ -1,4 +1,6 @@
-﻿namespace Davfalcon
+﻿using System;
+
+namespace Davfalcon
 {
 	public enum Attributes
 	{
@@ -33,5 +35,12 @@
 	public enum SpellTargetType
 	{
 		Self, Target, Area, Line, Attack
+	}
+
+	[Flags]
+	public enum UsableDuringState : short
+	{
+		OutOfCombat = 0,
+		InCombat = 1
 	}
 }

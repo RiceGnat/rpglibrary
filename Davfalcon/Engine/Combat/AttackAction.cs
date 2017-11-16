@@ -1,7 +1,7 @@
 ﻿using System;
 using RPGLibrary;
 
-namespace Davfalcon.Combat
+namespace Davfalcon.Engine.Combat
 {
 	[Serializable]
 	public class AttackAction : ILogEntry

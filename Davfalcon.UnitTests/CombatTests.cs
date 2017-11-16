@@ -1,5 +1,5 @@
 ﻿using System;
-using Davfalcon.Combat;
+using Davfalcon.Engine.Combat;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPGLibrary;
 
