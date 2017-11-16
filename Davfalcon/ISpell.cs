@@ -2,7 +2,7 @@
 
 namespace Davfalcon
 {
-	public interface ISpell : IEffects
+	public interface ISpell : IEffectSource
 	{
 		string Name { get; }
 		string Description { get; }

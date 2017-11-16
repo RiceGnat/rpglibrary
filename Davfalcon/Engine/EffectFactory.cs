@@ -13,7 +13,7 @@ namespace Davfalcon.Engine
 		public Effect GetEffect(string name, int value)
 			=> templates[name](value);
 
-		public IList<ILogEntry> ApplyEffects(IEffects source, IUnit target, IUnit originator)
+		public IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator)
 		{
 			List<ILogEntry> effects = new List<ILogEntry>();
 			foreach (KeyValuePair<string, int> effect in source.Effects)

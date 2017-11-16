@@ -10,6 +10,6 @@ namespace Davfalcon.Engine
 	{
 		void LoadTemplate(string name, EffectTemplate template);
 		Effect GetEffect(string name, int value);
-		IList<ILogEntry> ApplyEffects(IEffects source, IUnit target, IUnit originator);
+		IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator);
 	}
 }

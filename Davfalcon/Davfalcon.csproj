@@ -53,7 +53,7 @@
     <Compile Include="Engine\IEffectFactory.cs" />
     <Compile Include="Engine\Data.cs" />
     <Compile Include="IEffectList.cs" />
-    <Compile Include="IEffects.cs" />
+    <Compile Include="IEffectSource.cs" />
     <Compile Include="Engine\Items\IUsableItem.cs" />
     <Compile Include="Engine\Items\SpellItem.cs" />
     <Compile Include="Engine\Items\UsableItem.cs" />

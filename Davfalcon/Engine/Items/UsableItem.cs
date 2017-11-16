@@ -5,15 +5,15 @@ using Davfalcon.Engine.Combat;
 
 namespace Davfalcon.Engine.Items
 {
-	public class UsableItem : Item, IUsableItem, IEffects
+	public class UsableItem : Item, IUsableItem, IEffectSource
 	{
 		public int Remaining { get; set; }
 		public UsableDuringState UsableDuring { get; set; }
 
 		private EffectList effects = new EffectList();
 		public IEffectList Effects { get { return effects; } }
-		ICollection<KeyValuePair<string, int>> IEffects.Effects { get { return effects.ReadOnly; } }
-		string IEffects.SourceName { get { return Name; } }
+		ICollection<KeyValuePair<string, int>> IEffectSource.Effects { get { return effects.ReadOnly; } }
+		string IEffectSource.SourceName { get { return Name; } }
 
 		public virtual IList<ILogEntry> Use(IUnit user, params object[] targets)
 		{

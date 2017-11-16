@@ -17,7 +17,7 @@ namespace Davfalcon.Engine.Combat
 
 		public static IUnitCombatProperties GetCombatProperties(this IUnit unit) => unit.Properties.GetAs<IUnitCombatProperties>();
 
-		private static IList<ILogEntry> ApplyEffects(this IEffects source, IUnit target, IUnit originator)
+		private static IList<ILogEntry> ApplyEffects(this IEffectSource source, IUnit target, IUnit originator)
 			=> Data.Current.Effects.ApplyEffects(source, target, originator);
 
 		public static void ApplyBuff(this IUnit unit, IBuff buff, string source = null)
