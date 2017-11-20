@@ -45,6 +45,7 @@
     <Compile Include="Collections\ICatalog%28T%29.cs" />
     <Compile Include="Collections\ICircularLinkedList%28T%29.cs" />
     <Compile Include="Collections\ManagedList%28T%29.cs" />
+    <Compile Include="INameDescription.cs" />
     <Compile Include="MathExtensions.cs" />
     <Compile Include="Randomization\CenterWeightedChecker.cs" />
     <Compile Include="Randomization\ISuccessCheck.cs" />

@@ -133,7 +133,7 @@ namespace DavfalconTest
 
 		static void LoadData()
 		{
-			Data.Current.Effects.LoadTemplate("Burn", (int burnDamage) =>
+			Davfalcon.Engine.System.Current.Effects.LoadTemplate("Burn", (int burnDamage) =>
 			{
 				return (IUnit unit, string source, IUnit originator) =>
 				{
@@ -143,11 +143,11 @@ namespace DavfalconTest
 						burnDamage,
 						source);
 
-					return new LogEntry(String.Format("{0} is burned for {1} HP.", unit.Name, unit.ReceiveDamage(d).Value));
+					return new LogEntry(string.Format("{0} is burned for {1} HP.", unit.Name, unit.ReceiveDamage(d).Value));
 				};
 			});
 
-			Data.Current.Effects.LoadTemplate("RestoreHP", (int unused) =>
+			Davfalcon.Engine.System.Current.Effects.LoadTemplate("RestoreHP", (int unused) =>
 			{
 				return (IUnit unit, string source, IUnit originator) =>
 				{
@@ -155,7 +155,7 @@ namespace DavfalconTest
 
 					unit.GetCombatProperties().CurrentHP += hp;
 
-					return new LogEntry(String.Format("{0} restored {1} HP.", unit.Name, hp));
+					return new LogEntry(string.Format("{0} restored {1} HP.", unit.Name, hp));
 				};
 			});
 		}

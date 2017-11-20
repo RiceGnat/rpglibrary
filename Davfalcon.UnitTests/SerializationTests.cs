@@ -11,14 +11,14 @@ namespace Davfalcon.UnitTests
 	[TestClass]
 	public class SerializationTests
 	{
-		private static Data data;
+		private static Engine.System data;
 
 		[ClassInitialize]
 		public static void Load(TestContext context)
 		{
-			data = Data.Current;
-			Data.SetData(new Data());
-			Data.Current.Effects.LoadTemplate("Burn", (int burnDamage) =>
+			data = Engine.System.Current;
+			Engine.System.SetSystem(new Engine.System());
+			Engine.System.Current.Effects.LoadTemplate("Burn", (int burnDamage) =>
 			{
 				return (IUnit unit, string source, IUnit originator) =>
 				{
@@ -31,7 +31,7 @@ namespace Davfalcon.UnitTests
 		[ClassCleanup]
 		public static void Unload()
 		{
-			Data.SetData(data);
+			Engine.System.SetSystem(data);
 		}
 
 		private Unit MakeUnit()

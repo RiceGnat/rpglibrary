@@ -41,6 +41,7 @@
     <Compile Include="Buff.cs" />
     <Compile Include="ClassProperties.cs" />
     <Compile Include="EffectList.cs" />
+    <Compile Include="Engine\Catalog.cs" />
     <Compile Include="Engine\Combat\AttackAction.cs" />
     <Compile Include="Engine\Combat\Battle.cs" />
     <Compile Include="Engine\Combat\CombatOperations.cs" />
@@ -51,7 +52,7 @@
     <Compile Include="Engine\Combat\SpellCastOptions.cs" />
     <Compile Include="Engine\EffectFactory.cs" />
     <Compile Include="Engine\IEffectFactory.cs" />
-    <Compile Include="Engine\Data.cs" />
+    <Compile Include="Engine\System.cs" />
     <Compile Include="IEffectList.cs" />
     <Compile Include="IEffectSource.cs" />
     <Compile Include="Engine\Items\IUsableItem.cs" />

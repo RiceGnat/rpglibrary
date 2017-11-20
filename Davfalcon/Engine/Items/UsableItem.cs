@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using RPGLibrary;
 using RPGLibrary.Items;
-using Davfalcon.Engine.Combat;
 
 namespace Davfalcon.Engine.Items
 {
@@ -22,7 +21,7 @@ namespace Davfalcon.Engine.Items
 			List<ILogEntry> effects = new List<ILogEntry>();
 			foreach (IUnit target in targets)
 			{
-				effects.AddRange(Data.Current.Effects.ApplyEffects(this, target, user));
+				effects.AddRange(System.Current.Effects.ApplyEffects(this, target, user));
 			}
 			return effects;
 		}
