@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Davfalcon.Engine.Items;
 using RPGLibrary;
 using RPGLibrary.Randomization;
 using RPGLibrary.Serialization;
@@ -18,7 +17,7 @@ namespace Davfalcon.Engine.Combat
 		public static IUnitCombatProperties GetCombatProperties(this IUnit unit) => unit.Properties.GetAs<IUnitCombatProperties>();
 
 		private static IList<ILogEntry> ApplyEffects(this IEffectSource source, IUnit target, IUnit originator)
-			=> System.Current.Effects.ApplyEffects(source, target, originator);
+			=> SystemData.Current.Effects.ApplyEffects(source, target, originator);
 
 		public static void ApplyBuff(this IUnit unit, IBuff buff, string source = null)
 		{
@@ -55,7 +54,7 @@ namespace Davfalcon.Engine.Combat
 			// Apply buffs granted by equipment
 			foreach (IEquipment equip in unit.GetCombatProperties().Equipment)
 			{
-				foreach (IBuff buff in equip.GrantedEffects)
+				foreach (IBuff buff in equip.GrantedBuffs)
 				{
 					ApplyBuff(unit, buff, String.Format("{0} ({1})", unit.Name, equip.Name));
 				}
@@ -267,7 +266,18 @@ namespace Davfalcon.Engine.Combat
 		{
 			List<ILogEntry> effects = new List<ILogEntry>();
 			effects.Add(new LogEntry(string.Format("{0} uses {1}.", unit.Name, item.Name)));
-			effects.AddRange(item.Use(unit, targets));
+			foreach (IUnit target in targets)
+			{
+				effects.AddRange(SystemData.Current.Effects.ApplyEffects(item, target, unit));
+			}
+			return effects;
+		}
+
+		public static IList<ILogEntry> UseItem(this IUnit unit, ISpellItem item, params IUnit[] targets)
+		{
+			List<ILogEntry> effects = new List<ILogEntry>();
+			effects.AddRange(unit.UseItem((IUsableItem)item, targets));
+			effects.Add(unit.Cast(item.Spell, targets));
 			return effects;
 		}
 	}

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using RPGLibrary;
-using RPGLibrary.Items;
 
-namespace Davfalcon.Engine.Items
+namespace Davfalcon
 {
-	public class UsableItem : Item, IUsableItem, IEffectSource
+	public class UsableItem : Item, IUsableItem
 	{
 		public bool IsConsumable { get; set; }
 		public int Remaining { get; set; }
@@ -15,15 +14,11 @@ namespace Davfalcon.Engine.Items
 		ICollection<KeyValuePair<string, int>> IEffectSource.Effects { get { return effects.ReadOnly; } }
 		string IEffectSource.SourceName { get { return Name; } }
 
-		public virtual IList<ILogEntry> Use(IUnit user, params object[] targets)
+		string IAutoCatalogable.CatalogKey { get { return Name; } }
+
+		public void Use()
 		{
 			if (IsConsumable) Remaining--;
-			List<ILogEntry> effects = new List<ILogEntry>();
-			foreach (IUnit target in targets)
-			{
-				effects.AddRange(System.Current.Effects.ApplyEffects(this, target, user));
-			}
-			return effects;
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RPGLibrary.Items
+namespace RPGLibrary
 {
 	/// <summary>
 	/// Implements basic item properties.

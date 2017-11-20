@@ -45,7 +45,6 @@
     <Compile Include="Collections\ICatalog%28T%29.cs" />
     <Compile Include="Collections\ICircularLinkedList%28T%29.cs" />
     <Compile Include="Collections\ManagedList%28T%29.cs" />
-    <Compile Include="INameDescription.cs" />
     <Compile Include="MathExtensions.cs" />
     <Compile Include="Randomization\CenterWeightedChecker.cs" />
     <Compile Include="Randomization\ISuccessCheck.cs" />
@@ -58,10 +57,10 @@
     <Compile Include="IStats.cs" />
     <Compile Include="IStatsMath.cs" />
     <Compile Include="IStatsPackage.cs" />
-    <Compile Include="Items\ModifierItem.cs" />
-    <Compile Include="Items\IModifierItem.cs" />
-    <Compile Include="Items\IItem.cs" />
-    <Compile Include="Items\Item.cs" />
+    <Compile Include="ModifierItem.cs" />
+    <Compile Include="IModifierItem.cs" />
+    <Compile Include="IItem.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="IUnitModifier.cs" />
     <Compile Include="IUnitModifierStack.cs" />

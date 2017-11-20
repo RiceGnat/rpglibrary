@@ -2,7 +2,7 @@
 
 namespace Davfalcon
 {
-	public interface ISpell : IEffectSource
+	public interface ISpell : IEffectSource, IAutoCatalogable
 	{
 		string Name { get; }
 		string Description { get; }

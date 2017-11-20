@@ -1,4 +1,4 @@
-﻿namespace RPGLibrary.Items
+﻿namespace RPGLibrary
 {
 	/// <summary>
 	/// Exposes basic properties of an item.

@@ -28,5 +28,7 @@ namespace Davfalcon
 		public IEffectList CastEffects { get { return effects; } }
 		ICollection<KeyValuePair<string, int>> IEffectSource.Effects { get { return effects.ReadOnly; } }
 		string IEffectSource.SourceName { get { return Name; } }
+
+		string IAutoCatalogable.CatalogKey { get { return Name; } }
 	}
 }

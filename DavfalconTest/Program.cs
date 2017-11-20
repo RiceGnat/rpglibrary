@@ -8,7 +8,6 @@ using RPGLibrary.Serialization;
 using Davfalcon;
 using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
-using Davfalcon.Engine.Items;
 using Davfalcon.UnitManagement;
 
 namespace DavfalconTest
@@ -31,30 +30,6 @@ namespace DavfalconTest
 				enemy.BaseStats[stat] = 5;
 			}
 
-			Weapon weapon = new Weapon();
-			weapon.Name = "Halberd";
-			weapon.BaseDamage = 50;
-			weapon.CritMultiplier = 2;
-			weapon.AttackElement = Element.Fire;
-			weapon.Type = WeaponType.Axe;
-			weapon.Additions[CombatStats.ATK] = 5;
-			weapon.Additions[CombatStats.CRT] = 30;
-
-			Equipment armor = new Equipment(EquipmentSlot.Armor);
-			armor.Name = "Some Armor";
-			armor.Additions[CombatStats.DEF] = 3;
-			armor.Additions[CombatStats.AVD] = 50;
-
-			Equipment ring = new Equipment(EquipmentSlot.Accessory);
-			ring.Name = "Shiny Ring";
-			ring.Additions[Attributes.STR] = 1;
-			ring.Additions[Attributes.AGI] = 1;
-
-			Buff healbuff = new Buff();
-			healbuff.Name = "Restore HP";
-			healbuff.UpkeepEffects.Add("RestoreHP");
-
-			ring.GrantedEffects.Add(healbuff);
 
 			unit.Equip(EquipmentSlot.Weapon, weapon);
 			unit.Equip(EquipmentSlot.Armor, armor);
@@ -65,39 +40,12 @@ namespace DavfalconTest
 
 			PrintUnit(unit);
 
-			Equipment hpbag = new Equipment(EquipmentSlot.Armor);
-			hpbag.Name = "Potato Sack";
-			hpbag.Additions[CombatStats.RES] = 20;
-
-			Buff hpbuff = new Buff();
-			hpbuff.Name = "HP Bag";
-			hpbuff.Multiplications[CombatStats.HP] = 99999;
-			hpbuff.UpkeepEffects.Add("RestoreHP");
-
-			hpbag.GrantedEffects.Add(hpbuff);
-
 			enemy.Equip(EquipmentSlot.Armor, hpbag);
 
 			PrintUnit(enemy);
 			Console.WriteLine();
 
-			Spell spell = new Spell();
-			spell.Name = "Fireball";
-			spell.SpellElement = Element.Fire;
-			spell.DamageType = DamageType.Magical;
-			spell.BaseDamage = 60;
-			spell.Cost = 30;
 
-			Buff burn = new Buff();
-			burn.Name = "Burn";
-			burn.Duration = 3;
-			burn.IsDebuff = true;
-			burn.UpkeepEffects.Add("Burn", 10);
-
-			spell.GrantedBuffs.Add(burn);
-
-			SpellItem wand = new SpellItem(spell);
-			wand.Name = "Wand of Fireball";
 
 			unit.Initialize();
 			enemy.Initialize();
@@ -133,7 +81,7 @@ namespace DavfalconTest
 
 		static void LoadData()
 		{
-			Davfalcon.Engine.System.Current.Effects.LoadTemplate("Burn", (int burnDamage) =>
+			SystemData.Current.Effects.LoadTemplate("Burn", (int burnDamage) =>
 			{
 				return (IUnit unit, string source, IUnit originator) =>
 				{
@@ -147,7 +95,7 @@ namespace DavfalconTest
 				};
 			});
 
-			Davfalcon.Engine.System.Current.Effects.LoadTemplate("RestoreHP", (int unused) =>
+			SystemData.Current.Effects.LoadTemplate("RestoreHP", (int unused) =>
 			{
 				return (IUnit unit, string source, IUnit originator) =>
 				{
@@ -158,6 +106,67 @@ namespace DavfalconTest
 					return new LogEntry(string.Format("{0} restored {1} HP.", unit.Name, hp));
 				};
 			});
+
+			Buff heal = new Buff();
+			heal.Name = "Restore HP";
+			heal.UpkeepEffects.Add("RestoreHP");
+			SystemData.Current.Buffs.Load(heal);
+
+			Buff hpbuff = new Buff();
+			hpbuff.Name = "HP Bag";
+			hpbuff.Multiplications[CombatStats.HP] = 99999;
+			hpbuff.UpkeepEffects.Add("RestoreHP");
+			SystemData.Current.Buffs.Load(hpbuff);
+
+			Buff burn = new Buff();
+			burn.Name = "Burn";
+			burn.Duration = 3;
+			burn.IsDebuff = true;
+			burn.UpkeepEffects.Add("Burn", 10);
+			SystemData.Current.Buffs.Load(burn);
+
+			Equipment armor = new Equipment(EquipmentSlot.Armor);
+			armor.Name = "Some Armor";
+			armor.Additions[CombatStats.DEF] = 3;
+			armor.Additions[CombatStats.AVD] = 50;
+			SystemData.Current.Equipment.Load(armor);
+
+			Equipment ring = new Equipment(EquipmentSlot.Accessory);
+			ring.Name = "Shiny Ring";
+			ring.Additions[Attributes.STR] = 1;
+			ring.Additions[Attributes.AGI] = 1;
+			ring.AddBuff("Restore HP");
+			SystemData.Current.Equipment.Load(ring);
+
+			Equipment hpbag = new Equipment(EquipmentSlot.Armor);
+			hpbag.Name = "Potato Sack";
+			hpbag.Additions[CombatStats.RES] = 20;
+			hpbag.AddBuff("HP Bag");
+			SystemData.Current.Equipment.Load(hpbag);
+
+			Weapon weapon = new Weapon();
+			weapon.Name = "Halberd";
+			weapon.BaseDamage = 50;
+			weapon.CritMultiplier = 2;
+			weapon.AttackElement = Element.Fire;
+			weapon.Type = WeaponType.Axe;
+			weapon.Additions[CombatStats.ATK] = 5;
+			weapon.Additions[CombatStats.CRT] = 30;
+			SystemData.Current.Equipment.Load(weapon);
+
+			Spell spell = new Spell();
+			spell.Name = "Fireball";
+			spell.SpellElement = Element.Fire;
+			spell.DamageType = DamageType.Magical;
+			spell.BaseDamage = 60;
+			spell.Cost = 30;
+			spell.AddBuff("Burn");
+			SystemData.Current.Spells.Load(spell);
+
+			SpellItem wand = new SpellItem(SystemData.Current.Spells.Get("Fireball"));
+			wand.Name = "Wand of Fireball";
+			SystemData.Current.Items.Load(wand);
+
 		}
 
 		static void WriteList(IEnumerable list)

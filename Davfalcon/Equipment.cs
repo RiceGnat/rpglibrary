@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using RPGLibrary.Items;
+using RPGLibrary;
 
 namespace Davfalcon
 {
@@ -9,15 +9,15 @@ namespace Davfalcon
 	{
 		public EquipmentSlot Slot { get; protected set; }
 
-		private readonly List<IBuff> grantedEffects = new List<IBuff>();
-		public IList<IBuff> GrantedEffects { get { return grantedEffects; } }
-		private readonly IList<IBuff> grantedEffectsReadOnly;
-		IList<IBuff> IEquipment.GrantedEffects { get { return grantedEffectsReadOnly; } }
+		private readonly List<IBuff> grantedBuffs = new List<IBuff>();
+		public IList<IBuff> GrantedBuffs { get { return grantedBuffs; } }
+		private readonly IList<IBuff> grantedBuffsReadOnly;
+		IList<IBuff> IEquipment.GrantedBuffs { get { return grantedBuffsReadOnly; } }
 
 		protected Equipment()
 			: base()
 		{
-			grantedEffectsReadOnly = grantedEffects.AsReadOnly();
+			grantedBuffsReadOnly = grantedBuffs.AsReadOnly();
 		}
 
 		public Equipment(EquipmentSlot slot)
@@ -25,5 +25,7 @@ namespace Davfalcon
 		{
 			Slot = slot;
 		}
+
+		string IAutoCatalogable.CatalogKey { get { return Name; } }
 	}
 }

@@ -14,9 +14,9 @@ namespace Davfalcon.UnitManagement
 		public static IEquipment GetEquipped(this IUnit unit, EquipmentSlot slot)
 			=> unit.GetEquipmentProperties().GetEquipment(slot);
 
-		public static IEquipment Equip(this IUnit unit, EquipmentSlot slot, IEquipment equipment)
+		public static IEquipment Equip(this IUnit unit, IEquipment equipment)
 		{
-			if (equipment != null && equipment.Slot != slot) throw new ArgumentException("Equipment does not match specified slot.");
+			EquipmentSlot slot = equipment.Slot;
 
 			// Get current equipment
 			IEquipment current = unit.GetEquipped(slot);
@@ -33,7 +33,7 @@ namespace Davfalcon.UnitManagement
 			// Consider directly transferring previous equipment to inventory once implemented
 		}
 
-		public static IEquipment EquipTo(this IEquipment equipment, IUnit unit, EquipmentSlot slot)
-			=> unit.Equip(slot, equipment);
+		public static IEquipment EquipTo(this IEquipment equipment, IUnit unit)
+			=> unit.Equip(equipment);
 	}
 }

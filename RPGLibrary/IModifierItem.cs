@@ -1,4 +1,4 @@
-﻿namespace RPGLibrary.Items
+﻿namespace RPGLibrary
 {
 	/// <summary>
 	/// Represents an item that can be attached to a unit to modify its stats.
