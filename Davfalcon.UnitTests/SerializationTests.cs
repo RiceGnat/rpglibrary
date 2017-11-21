@@ -1,7 +1,7 @@
 ﻿using System;
 using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
-using Davfalcon.UnitManagement;
+using Davfalcon.Engine.UnitManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPGLibrary;
 using RPGLibrary.Serialization;

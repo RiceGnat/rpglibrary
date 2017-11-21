@@ -8,7 +8,7 @@ using RPGLibrary.Serialization;
 using Davfalcon;
 using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
-using Davfalcon.UnitManagement;
+using Davfalcon.Engine.UnitManagement;
 
 namespace DavfalconTest
 {
