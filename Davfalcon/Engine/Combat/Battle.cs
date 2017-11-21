@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RPGLibrary;
 using RPGLibrary.Collections.Generic;
 
 namespace Davfalcon.Engine.Combat
 {
+	[Serializable]
 	public class Battle
 	{
 		private readonly List<ILogEntry> log = new List<ILogEntry>();
@@ -23,7 +25,8 @@ namespace Davfalcon.Engine.Combat
 			teamsReadOnly.Add(id, team.AsReadOnly());
 		}
 
-		private void RemoveTeam(int id) {
+		private void RemoveTeam(int id)
+		{
 			teams.Remove(id);
 			teamsReadOnly.Remove(id);
 		}
@@ -38,14 +41,17 @@ namespace Davfalcon.Engine.Combat
 			if (!teams.ContainsKey(teamId)) AddTeam(teamId);
 
 			teams[teamId].Add(unit);
-			turnOrder.Add(unit);
 
+			if (teamId > 0)
+				turnOrder.Add(unit);
 		}
 
 		public void RemoveUnit(IUnit unit, int teamId)
 		{
 			teams[teamId].Remove(unit);
-			turnOrder.Remove(unit);
+
+			if (teamId > 0)
+				turnOrder.Remove(unit);
 		}
 
 		public void NextTurn()
@@ -53,6 +59,19 @@ namespace Davfalcon.Engine.Combat
 			Turn++;
 			turnOrder.Rotate();
 			log.AddRange(CurrentUnit.Upkeep());
+		}
+
+		public void Start()
+		{
+			turnOrder.Sort((a, b) => a.Stats[Attributes.AGI].CompareTo(b.Stats[Attributes.AGI]));
+			
+			foreach (List<IUnit> team in teams.Values)
+			{
+				foreach (IUnit unit in team)
+				{
+					unit.Initialize();
+				}
+			}
 		}
 
 		public Battle()

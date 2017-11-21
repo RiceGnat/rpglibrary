@@ -96,7 +96,7 @@ namespace Davfalcon.UnitTests
 			Unit unit = MakeUnit();
 
 			Equipment armor = MakeEquipment();
-			unit.Equip(EquipmentSlot.Armor, armor);
+			unit.Equip(armor);
 
 			Unit clone = (Unit)Serializer.DeepClone(unit);
 
