@@ -48,6 +48,7 @@
     <Compile Include="Engine\Combat\Damage.cs" />
     <Compile Include="Engine\Combat\HitCheck.cs" />
     <Compile Include="Engine\Combat\HPLoss.cs" />
+    <Compile Include="Engine\Combat\IUnitBattleState.cs" />
     <Compile Include="Engine\Combat\SpellAction.cs" />
     <Compile Include="Engine\Combat\SpellCastOptions.cs" />
     <Compile Include="Engine\EffectFactory.cs" />

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using RPGLibrary;
 
-
 namespace Davfalcon
 {
 	public interface IUnitCombatProperties : IUnitProperties
@@ -11,7 +10,6 @@ namespace Davfalcon
 		int CurrentMP { get; set; }
 		IWeapon EquippedWeapon { get; }
 		IEnumerable<IEquipment> Equipment { get; }
-
 		IUnitModifierStack Buffs { get; }
 	}
 
@@ -34,7 +32,6 @@ namespace Davfalcon
 		public int CurrentHP { get; set; }
 		public int CurrentMP { get; set; }
 
-		// other combat properties
 		[NonSerialized]
 		private IUnitModifierStack buffs;
 		public IUnitModifierStack Buffs { get { return buffs; } }
