@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RPGLibrary;
 
 namespace Davfalcon
 {
+	[Serializable]
 	public class UsableItem : Item, IUsableItem
 	{
 		public bool IsConsumable { get; set; }

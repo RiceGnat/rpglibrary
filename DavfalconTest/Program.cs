@@ -14,6 +14,17 @@ namespace DavfalconTest
 {
 	class Program
 	{
+		const string WEAPON_NAME = "Halberd";
+		const string ARMOR_NAME = "Some Armor";
+		const string ACCESSORY_NAME = "Shiny Ring";
+		const string HP_BAG = "Potato Sack";
+		const string SPELL_NAME = "Fireball";
+		const string ITEM_NAME = "Wand of Fireball";
+		const string BURN_BUFF = "Burn";
+		const string HP_BUFF = "Punching Bag";
+		const string RESTORE_HP_BUFF = "Restore HP";
+		const string RESTORE_HP_EFFECT = "RestoreHP";
+
 		static void Main(string[] args)
 		{
 			LoadData();
@@ -30,22 +41,19 @@ namespace DavfalconTest
 				enemy.BaseStats[stat] = 5;
 			}
 
-
-			unit.Equip(EquipmentSlot.Weapon, weapon);
-			unit.Equip(EquipmentSlot.Armor, armor);
-			unit.Equip(EquipmentSlot.Accessory, ring);
+			unit.Equip(WEAPON_NAME);
+			unit.Equip(ARMOR_NAME);
+			unit.Equip(ACCESSORY_NAME);
 
 			unit.BaseStats[Attributes.STR]++;
 			unit.BaseStats[Attributes.VIT]++;
 
 			PrintUnit(unit);
 
-			enemy.Equip(EquipmentSlot.Armor, hpbag);
+			enemy.Equip(HP_BAG);
 
 			PrintUnit(enemy);
 			Console.WriteLine();
-
-
 
 			unit.Initialize();
 			enemy.Initialize();
@@ -55,8 +63,8 @@ namespace DavfalconTest
 
 			Console.WriteLine(unit.Attack(enemy));
 			Console.WriteLine(enemy.Attack(unit));
-			Console.WriteLine(unit.Cast(spell, enemy));
-			WriteList(unit.UseItem(wand, enemy));
+			Console.WriteLine(unit.Cast(SystemData.Current.Spells.Get(SPELL_NAME), enemy));
+			WriteList(unit.UseItem(SystemData.Current.Items.Get(ITEM_NAME), enemy));
 			Console.WriteLine();
 
 			PrintUnitCombat(enemy);
@@ -108,44 +116,44 @@ namespace DavfalconTest
 			});
 
 			Buff heal = new Buff();
-			heal.Name = "Restore HP";
-			heal.UpkeepEffects.Add("RestoreHP");
+			heal.Name = RESTORE_HP_BUFF;
+			heal.UpkeepEffects.Add(RESTORE_HP_EFFECT);
 			SystemData.Current.Buffs.Load(heal);
 
 			Buff hpbuff = new Buff();
-			hpbuff.Name = "HP Bag";
+			hpbuff.Name = HP_BUFF;
 			hpbuff.Multiplications[CombatStats.HP] = 99999;
-			hpbuff.UpkeepEffects.Add("RestoreHP");
+			hpbuff.UpkeepEffects.Add(RESTORE_HP_EFFECT);
 			SystemData.Current.Buffs.Load(hpbuff);
 
 			Buff burn = new Buff();
-			burn.Name = "Burn";
+			burn.Name = BURN_BUFF;
 			burn.Duration = 3;
 			burn.IsDebuff = true;
-			burn.UpkeepEffects.Add("Burn", 10);
+			burn.UpkeepEffects.Add(BURN_BUFF, 10);
 			SystemData.Current.Buffs.Load(burn);
 
 			Equipment armor = new Equipment(EquipmentSlot.Armor);
-			armor.Name = "Some Armor";
+			armor.Name = ARMOR_NAME;
 			armor.Additions[CombatStats.DEF] = 3;
 			armor.Additions[CombatStats.AVD] = 50;
 			SystemData.Current.Equipment.Load(armor);
 
 			Equipment ring = new Equipment(EquipmentSlot.Accessory);
-			ring.Name = "Shiny Ring";
+			ring.Name = ACCESSORY_NAME;
 			ring.Additions[Attributes.STR] = 1;
 			ring.Additions[Attributes.AGI] = 1;
-			ring.AddBuff("Restore HP");
+			ring.AddBuff(RESTORE_HP_BUFF);
 			SystemData.Current.Equipment.Load(ring);
 
 			Equipment hpbag = new Equipment(EquipmentSlot.Armor);
-			hpbag.Name = "Potato Sack";
+			hpbag.Name = HP_BAG;
 			hpbag.Additions[CombatStats.RES] = 20;
-			hpbag.AddBuff("HP Bag");
+			hpbag.AddBuff(HP_BUFF);
 			SystemData.Current.Equipment.Load(hpbag);
 
 			Weapon weapon = new Weapon();
-			weapon.Name = "Halberd";
+			weapon.Name = WEAPON_NAME;
 			weapon.BaseDamage = 50;
 			weapon.CritMultiplier = 2;
 			weapon.AttackElement = Element.Fire;
@@ -155,16 +163,16 @@ namespace DavfalconTest
 			SystemData.Current.Equipment.Load(weapon);
 
 			Spell spell = new Spell();
-			spell.Name = "Fireball";
+			spell.Name = SPELL_NAME;
 			spell.SpellElement = Element.Fire;
 			spell.DamageType = DamageType.Magical;
 			spell.BaseDamage = 60;
 			spell.Cost = 30;
-			spell.AddBuff("Burn");
+			spell.AddBuff(BURN_BUFF);
 			SystemData.Current.Spells.Load(spell);
 
-			SpellItem wand = new SpellItem(SystemData.Current.Spells.Get("Fireball"));
-			wand.Name = "Wand of Fireball";
+			SpellItem wand = new SpellItem(SystemData.Current.Spells.Get(SPELL_NAME));
+			wand.Name = ITEM_NAME;
 			SystemData.Current.Items.Load(wand);
 
 		}

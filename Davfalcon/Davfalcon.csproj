@@ -53,9 +53,9 @@
     <Compile Include="Engine\EffectFactory.cs" />
     <Compile Include="Engine\IAutoCatalog%28T%29.cs" />
     <Compile Include="Engine\IEffectFactory.cs" />
+    <Compile Include="Engine\SystemData.cs" />
     <Compile Include="ISpellItem.cs" />
     <Compile Include="Engine\SetupOperations.cs" />
-    <Compile Include="Engine\SystemData.cs" />
     <Compile Include="IEffectList.cs" />
     <Compile Include="IEffectSource.cs" />
     <Compile Include="IUsableItem.cs" />

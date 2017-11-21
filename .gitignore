@@ -16,6 +16,7 @@ packages/
 *.suo
 *.user
 *.userprefs
+TestResults/
 
 # Unity generated
 Library/
@@ -25,5 +26,4 @@ tactics/*.sln
 tactics/*.csproj
 
 # Specifics
-TestResults/
 save.bin
