@@ -2,7 +2,6 @@
 
 namespace Davfalcon.Engine
 {
-	// This class needs a better name
 	public class SystemData
 	{
 		public static SystemData Current { get; private set; } = new SystemData();

@@ -5,25 +5,15 @@ using System.Linq;
 using System.Text;
 using RPGLibrary;
 using RPGLibrary.Serialization;
-using Davfalcon;
 using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
 using Davfalcon.Engine.UnitManagement;
+using static Davfalcon.Load;
 
-namespace DavfalconTest
+namespace Davfalcon
 {
 	class Program
 	{
-		const string WEAPON_NAME = "Halberd";
-		const string ARMOR_NAME = "Some Armor";
-		const string ACCESSORY_NAME = "Shiny Ring";
-		const string HP_BAG = "Potato Sack";
-		const string SPELL_NAME = "Fireball";
-		const string ITEM_NAME = "Wand of Fireball";
-		const string BURN_BUFF = "Burn";
-		const string HP_BUFF = "Punching Bag";
-		const string RESTORE_HP_BUFF = "Restore HP";
-		const string RESTORE_HP_EFFECT = "RestoreHP";
 
 		static void Main(string[] args)
 		{
@@ -32,13 +22,9 @@ namespace DavfalconTest
 			Unit unit = new Unit();
 			unit.Name = "Davfalcon";
 
-			Unit enemy = new Unit();
-			enemy.Name = "Goblin";
-
 			foreach (Attributes stat in Enum.GetValues(typeof(Attributes)))
 			{
 				unit.BaseStats[stat] = 10;
-				enemy.BaseStats[stat] = 5;
 			}
 
 			unit.Equip(WEAPON_NAME);
@@ -48,133 +34,101 @@ namespace DavfalconTest
 			unit.BaseStats[Attributes.STR]++;
 			unit.BaseStats[Attributes.VIT]++;
 
+			Battle battle = new Battle();
+			battle.AddUnit(unit, 0);
+			battle.AddUnit(GenerateEnemy(), 1);
+			battle.AddUnit(GenerateEnemy(), 1);
+			battle.AddUnit(GenerateEnemy(), 1);
+
+			Console.WriteLine("Player");
+			Console.WriteLine();
 			PrintUnit(unit);
-
-			enemy.Equip(HP_BAG);
-
-			PrintUnit(enemy);
+			Console.WriteLine("\n");
+			Console.WriteLine("Enemies");
 			Console.WriteLine();
-
-			unit.Initialize();
-			enemy.Initialize();
-
-			PrintUnitCombat(enemy);
+			foreach (IUnit enemy in battle.GetTeam(1))
+			{
+				PrintUnit(enemy);
+				Console.WriteLine();
+			}
 			Console.WriteLine();
+			Console.ReadKey();
 
-			Console.WriteLine(unit.Attack(enemy));
-			Console.WriteLine(enemy.Attack(unit));
-			Console.WriteLine(unit.Cast(SystemData.Current.Spells.Get(SPELL_NAME), enemy));
-			WriteList(unit.UseItem(SystemData.Current.Items.Get(ITEM_NAME), enemy));
-			Console.WriteLine();
+			battle.Start();
 
-			PrintUnitCombat(enemy);
-			Console.WriteLine();
+			foreach (IUnit enemy in battle.GetTeam(1))
+			{
+				Console.WriteLine(unit.Attack(enemy));
+			}
+
+			Console.WriteLine(unit.Cast(SystemData.Current.Spells.Get(SPELL_NAME), battle.GetTeam(1).ToArray()));
+			Console.ReadKey();
 
 			while (true)
 			{
-				WriteList(unit.Upkeep());
-				WriteList(enemy.Upkeep());
-
-				Console.WriteLine(unit.Attack(enemy));
-				Console.WriteLine(enemy.Attack(unit));
-
+				Console.Clear();
+				WriteList(battle.CurrentUnit.Upkeep());
 				Console.WriteLine();
-				PrintUnitCombat(unit);
-				PrintUnitCombat(enemy);
-				Console.WriteLine();
+
+				foreach (IUnit u in battle.TurnOrder)
+				{
+					PrintUnitCombat(u);
+					Console.WriteLine();
+				}
 
 				Console.ReadKey();
+
+				battle.NextTurn();
 			}
+
+			//unit.Initialize();
+			//enemy.Initialize();
+
+			//PrintUnitCombat(enemy);
+			//Console.WriteLine();
+
+			//Console.WriteLine(unit.Attack(enemy));
+			//Console.WriteLine(enemy.Attack(unit));
+			//Console.WriteLine(unit.Cast(SystemData.Current.Spells.Get(SPELL_NAME), enemy));
+			//WriteList(unit.UseItem(SystemData.Current.Items.Get(ITEM_NAME), enemy));
+			//Console.WriteLine();
+
+			//PrintUnitCombat(enemy);
+			//Console.WriteLine();
+
+			//while (true)
+			//{
+			//	WriteList(unit.Upkeep());
+			//	WriteList(enemy.Upkeep());
+
+			//	Console.WriteLine(unit.Attack(enemy));
+			//	Console.WriteLine(enemy.Attack(unit));
+
+			//	Console.WriteLine();
+			//	PrintUnitCombat(unit);
+			//	PrintUnitCombat(enemy);
+			//	Console.WriteLine();
+
+			//	Console.ReadKey();
+			//}
 		}
 
-		static void LoadData()
+		static int enemyCount = 0;
+		static IUnit GenerateEnemy()
 		{
-			SystemData.Current.Effects.LoadTemplate("Burn", (int burnDamage) =>
+			enemyCount++;
+
+			Unit enemy = new Unit();
+			enemy.Name = String.Format("Goblin {0}", enemyCount);
+
+			foreach (Attributes stat in Enum.GetValues(typeof(Attributes)))
 			{
-				return (IUnit unit, string source, IUnit originator) =>
-				{
-					Damage d = new Damage(
-						DamageType.True,
-						Element.Fire,
-						burnDamage,
-						source);
+				enemy.BaseStats[stat] = 5;
+			}
 
-					return new LogEntry(string.Format("{0} is burned for {1} HP.", unit.Name, unit.ReceiveDamage(d).Value));
-				};
-			});
+			enemy.Equip(HP_BAG);
 
-			SystemData.Current.Effects.LoadTemplate("RestoreHP", (int unused) =>
-			{
-				return (IUnit unit, string source, IUnit originator) =>
-				{
-					int hp = unit.Stats[CombatStats.HP] - unit.GetCombatProperties().CurrentHP;
-
-					unit.GetCombatProperties().CurrentHP += hp;
-
-					return new LogEntry(string.Format("{0} restored {1} HP.", unit.Name, hp));
-				};
-			});
-
-			Buff heal = new Buff();
-			heal.Name = RESTORE_HP_BUFF;
-			heal.UpkeepEffects.Add(RESTORE_HP_EFFECT);
-			SystemData.Current.Buffs.Load(heal);
-
-			Buff hpbuff = new Buff();
-			hpbuff.Name = HP_BUFF;
-			hpbuff.Multiplications[CombatStats.HP] = 99999;
-			hpbuff.UpkeepEffects.Add(RESTORE_HP_EFFECT);
-			SystemData.Current.Buffs.Load(hpbuff);
-
-			Buff burn = new Buff();
-			burn.Name = BURN_BUFF;
-			burn.Duration = 3;
-			burn.IsDebuff = true;
-			burn.UpkeepEffects.Add(BURN_BUFF, 10);
-			SystemData.Current.Buffs.Load(burn);
-
-			Equipment armor = new Equipment(EquipmentSlot.Armor);
-			armor.Name = ARMOR_NAME;
-			armor.Additions[CombatStats.DEF] = 3;
-			armor.Additions[CombatStats.AVD] = 50;
-			SystemData.Current.Equipment.Load(armor);
-
-			Equipment ring = new Equipment(EquipmentSlot.Accessory);
-			ring.Name = ACCESSORY_NAME;
-			ring.Additions[Attributes.STR] = 1;
-			ring.Additions[Attributes.AGI] = 1;
-			ring.AddBuff(RESTORE_HP_BUFF);
-			SystemData.Current.Equipment.Load(ring);
-
-			Equipment hpbag = new Equipment(EquipmentSlot.Armor);
-			hpbag.Name = HP_BAG;
-			hpbag.Additions[CombatStats.RES] = 20;
-			hpbag.AddBuff(HP_BUFF);
-			SystemData.Current.Equipment.Load(hpbag);
-
-			Weapon weapon = new Weapon();
-			weapon.Name = WEAPON_NAME;
-			weapon.BaseDamage = 50;
-			weapon.CritMultiplier = 2;
-			weapon.AttackElement = Element.Fire;
-			weapon.Type = WeaponType.Axe;
-			weapon.Additions[CombatStats.ATK] = 5;
-			weapon.Additions[CombatStats.CRT] = 30;
-			SystemData.Current.Equipment.Load(weapon);
-
-			Spell spell = new Spell();
-			spell.Name = SPELL_NAME;
-			spell.SpellElement = Element.Fire;
-			spell.DamageType = DamageType.Magical;
-			spell.BaseDamage = 60;
-			spell.Cost = 30;
-			spell.AddBuff(BURN_BUFF);
-			SystemData.Current.Spells.Load(spell);
-
-			SpellItem wand = new SpellItem(SystemData.Current.Spells.Get(SPELL_NAME));
-			wand.Name = ITEM_NAME;
-			SystemData.Current.Items.Load(wand);
-
+			return enemy;
 		}
 
 		static void WriteList(IEnumerable list)

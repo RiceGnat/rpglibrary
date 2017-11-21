@@ -217,7 +217,8 @@ namespace RPGLibrary.Collections.Generic
 
 			public bool MoveNext()
 			{
-				return curIndex++ < list.Count;
+				curIndex++;
+				return curIndex < list.Count;
 			}
 
 			public void Reset()

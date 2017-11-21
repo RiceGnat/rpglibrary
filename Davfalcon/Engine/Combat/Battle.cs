@@ -58,12 +58,11 @@ namespace Davfalcon.Engine.Combat
 		{
 			Turn++;
 			turnOrder.Rotate();
-			log.AddRange(CurrentUnit.Upkeep());
 		}
 
 		public void Start()
 		{
-			turnOrder.Sort((a, b) => a.Stats[Attributes.AGI].CompareTo(b.Stats[Attributes.AGI]));
+			turnOrder.Sort((a, b) => b.Stats[Attributes.AGI].CompareTo(a.Stats[Attributes.AGI]));
 			
 			foreach (List<IUnit> team in teams.Values)
 			{
