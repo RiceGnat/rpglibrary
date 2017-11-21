@@ -141,5 +141,23 @@ namespace Davfalcon.UnitTests
 			clone.ApplyBuff(buff);
 			Assert.AreEqual(unit.Stats[CombatStats.DEF] + 10, clone.Stats[CombatStats.DEF]);
 		}
+
+		[TestMethod]
+		public void BattleUnitSerialization()
+		{
+			Battle battle = new Battle();
+
+			IUnit unit = MakeUnit();
+
+			battle.AddUnit(unit, 0);
+			battle.Start();
+
+			battle = (Battle)Serializer.DeepClone(battle);
+			unit = battle.GetTeam(0)[0];
+
+			Assert.AreEqual(unit.GetCombatProperties().CurrentHP, battle.CurrentUnit.GetCombatProperties().CurrentHP);
+			battle.CurrentUnit.GetCombatProperties().CurrentHP -= 10;
+			Assert.AreEqual(unit.GetCombatProperties().CurrentHP, battle.CurrentUnit.GetCombatProperties().CurrentHP);
+		}
 	}
 }

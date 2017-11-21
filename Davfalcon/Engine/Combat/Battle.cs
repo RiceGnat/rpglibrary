@@ -10,7 +10,7 @@ namespace Davfalcon.Engine.Combat
 	{
 		private readonly List<ILogEntry> log = new List<ILogEntry>();
 		private readonly Dictionary<int, List<IUnit>> teams = new Dictionary<int, List<IUnit>>();
-		private readonly Dictionary<int, ICollection<IUnit>> teamsReadOnly = new Dictionary<int, ICollection<IUnit>>();
+		private readonly Dictionary<int, IList<IUnit>> teamsReadOnly = new Dictionary<int, IList<IUnit>>();
 		private readonly CircularLinkedList<IUnit> turnOrder = new CircularLinkedList<IUnit>();
 
 		public IList<ILogEntry> Log { get; private set; }
@@ -31,7 +31,7 @@ namespace Davfalcon.Engine.Combat
 			teamsReadOnly.Remove(id);
 		}
 
-		public ICollection<IUnit> GetTeam(int id)
+		public IList<IUnit> GetTeam(int id)
 		{
 			return teamsReadOnly[id];
 		}
@@ -42,7 +42,7 @@ namespace Davfalcon.Engine.Combat
 
 			teams[teamId].Add(unit);
 
-			if (teamId > 0)
+			if (teamId >= 0)
 				turnOrder.Add(unit);
 		}
 
@@ -50,7 +50,7 @@ namespace Davfalcon.Engine.Combat
 		{
 			teams[teamId].Remove(unit);
 
-			if (teamId > 0)
+			if (teamId >= 0)
 				turnOrder.Remove(unit);
 		}
 
