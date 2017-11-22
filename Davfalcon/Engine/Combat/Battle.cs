@@ -7,12 +7,18 @@ using RPGLibrary.Collections.Generic;
 namespace Davfalcon.Engine.Combat
 {
 	[Serializable]
-	public class Battle
+	public class Battle : IBattle
 	{
 		[Serializable]
 		private class UnitState : IUnitBattleState
 		{
 			public int Team { get; set; }
+			public IBattle Battle { get; private set; }
+
+			public UnitState(IBattle battle)
+			{
+				Battle = battle;
+			}
 		}
 
 		private readonly List<ILogEntry> log = new List<ILogEntry>();
@@ -44,7 +50,7 @@ namespace Davfalcon.Engine.Combat
 			if (!teams.ContainsKey(teamId)) AddTeam(teamId);
 
 			teams[teamId].Add(unit);
-			unit.GetCombatProperties().BattleState = new UnitState()
+			unit.GetCombatProperties().BattleState = new UnitState(this)
 			{
 				Team = teamId
 			};

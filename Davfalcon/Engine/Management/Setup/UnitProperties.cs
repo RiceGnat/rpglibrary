@@ -4,10 +4,10 @@ using RPGLibrary;
 
 namespace Davfalcon.Engine.Management.Setup
 {
-
 	[Serializable]
-	internal class UnitProperties : RPGLibrary.UnitProperties, IUnitCombatProperties, IUnitEquipmentProperties
+	internal class UnitProperties : RPGLibrary.UnitProperties, IUnitCombatProperties, IUnitItemManagementProperties, IUnitLevelingProperties
 	{
+		#region Combat
 		public int CurrentHP { get; set; }
 		public int CurrentMP { get; set; }
 
@@ -16,6 +16,7 @@ namespace Davfalcon.Engine.Management.Setup
 		public IUnitModifierStack Buffs { get { return buffs; } }
 
 		public IUnitBattleState BattleState { get; set; }
+		#endregion
 
 		#region Equipment
 		[NonSerialized]
@@ -25,29 +26,20 @@ namespace Davfalcon.Engine.Management.Setup
 
 		public IWeapon EquippedWeapon
 		{
-			get
-			{
-				return GetEquipment(EquipmentSlot.Weapon) as IWeapon ?? Weapon.Unarmed;
-			}
+			get { return GetEquipment(EquipmentSlot.Weapon) as IWeapon ?? Weapon.Unarmed; }
 		}
 
 		public IEquipment GetEquipment(EquipmentSlot slot)
-		{
-			if (EquipmentLookup.ContainsKey(slot))
-			{
-				return equipLookup[slot];
-			}
-			else return null;
-		}
+			=> EquipmentLookup.ContainsKey(slot) ? equipLookup[slot] : null;
 		#endregion
 
+		#region Inventory
 		public IList<IItem> Inventory { get; protected set; }
-
+		#endregion
 
 		public void Bind(Unit unit)
 		{
 			equipLookup = new EquipmentSlotMap(unit.Equipment);
-
 			buffs = unit.Buffs;
 		}
 

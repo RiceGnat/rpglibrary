@@ -38,6 +38,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\Management\Setup\UnitFactory.cs" />
+    <Compile Include="IBattle.cs" />
     <Compile Include="Engine\Management\Setup\Buff.cs" />
     <Compile Include="Engine\ClassProperties.cs" />
     <Compile Include="Engine\Management\Setup\EffectList.cs" />
@@ -54,16 +56,16 @@
     <Compile Include="Engine\EffectFactory.cs" />
     <Compile Include="Engine\IAutoCatalog%28T%29.cs" />
     <Compile Include="Engine\IEffectFactory.cs" />
-    <Compile Include="Engine\ILogEntry.cs" />
-    <Compile Include="Engine\LogEntry.cs" />
+    <Compile Include="ILogEntry.cs" />
+    <Compile Include="Engine\Combat\LogEntry.cs" />
     <Compile Include="Engine\SystemData.cs" />
     <Compile Include="ISpellItem.cs" />
     <Compile Include="Engine\Management\Setup\SetupOperations.cs" />
     <Compile Include="IEffectList.cs" />
     <Compile Include="IEffectSource.cs" />
     <Compile Include="IUnitCombatProperties.cs" />
-    <Compile Include="IUnitEquipmentProperties.cs" />
-    <Compile Include="IUnitInventoryProperties.cs" />
+    <Compile Include="IUnitItemManagementProperties.cs" />
+    <Compile Include="IUnitLevelingProperties.cs" />
     <Compile Include="IUsableItem.cs" />
     <Compile Include="Engine\Management\Setup\SpellItem.cs" />
     <Compile Include="Engine\Management\Setup\UsableItem.cs" />
@@ -76,8 +78,8 @@
     <Compile Include="ISpell.cs" />
     <Compile Include="IWeapon.cs" />
     <Compile Include="Engine\Management\Setup\Spell.cs" />
-    <Compile Include="Engine\Management\EquipmentOperations.cs" />
-    <Compile Include="Engine\Management\InventoryOperations.cs" />
+    <Compile Include="Engine\Management\EquipmentManagement.cs" />
+    <Compile Include="Engine\Management\InventoryManagement.cs" />
     <Compile Include="Engine\Management\Setup\UnitStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Engine\Management\Setup\Unit.cs" />

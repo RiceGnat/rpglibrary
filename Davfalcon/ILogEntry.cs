@@ -1,4 +1,4 @@
-﻿namespace Davfalcon.Engine
+﻿namespace Davfalcon
 {
 	public interface ILogEntry
 	{

@@ -4,9 +4,9 @@ using RPGLibrary;
 
 namespace Davfalcon.Engine.Management
 {
-	public static class InventoryOperations
+	public static class InventoryManagement
 	{
-		public static IUnitInventoryProperties GetInventoryProperties(this IUnit unit) => unit.Properties.GetAs<IUnitInventoryProperties>();
+		public static IUnitItemManagementProperties GetInventoryProperties(this IUnit unit) => unit.Properties.GetAs<IUnitItemManagementProperties>();
 
 		public static IEnumerable<IItem> GetAllItems(this IUnit unit)
 			=> unit.GetInventoryProperties().Inventory;

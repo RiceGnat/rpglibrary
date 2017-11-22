@@ -1,4 +1,4 @@
-﻿namespace Davfalcon.Engine
+﻿namespace Davfalcon.Engine.Combat
 {
 	public class LogEntry : ILogEntry
 	{

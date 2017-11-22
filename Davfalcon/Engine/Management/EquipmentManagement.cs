@@ -3,9 +3,9 @@ using RPGLibrary;
 
 namespace Davfalcon.Engine.Management
 {
-	public static class EquipmentOperations
+	public static class EquipmentManagement
 	{
-		public static IUnitEquipmentProperties GetEquipmentProperties(this IUnit unit) => unit.Properties.GetAs<IUnitEquipmentProperties>();
+		public static IUnitItemManagementProperties GetEquipmentProperties(this IUnit unit) => unit.Properties.GetAs<IUnitItemManagementProperties>();
 
 		public static IEnumerable<IEquipment> GetAllEquipment(this IUnit unit)
 			=> unit.GetEquipmentProperties().Equipment;
