@@ -8,6 +8,7 @@ using RPGLibrary.Serialization;
 using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
 using Davfalcon.Engine.Management;
+using Davfalcon.Engine.Management.Setup;
 using static Davfalcon.Load;
 
 namespace Davfalcon

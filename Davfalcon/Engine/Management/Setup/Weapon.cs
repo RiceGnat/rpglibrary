@@ -1,7 +1,6 @@
 ﻿using System;
 
-
-namespace Davfalcon
+namespace Davfalcon.Engine.Management.Setup
 {
 	[Serializable]
 	public class Weapon : Equipment, IWeapon

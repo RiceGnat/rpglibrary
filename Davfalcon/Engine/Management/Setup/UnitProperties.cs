@@ -2,29 +2,8 @@
 using System.Collections.Generic;
 using RPGLibrary;
 
-namespace Davfalcon
+namespace Davfalcon.Engine.Management.Setup
 {
-	public interface IUnitCombatProperties : IUnitProperties
-	{
-		int CurrentHP { get; set; }
-		int CurrentMP { get; set; }
-		IWeapon EquippedWeapon { get; }
-		IEnumerable<IEquipment> Equipment { get; }
-		IUnitModifierStack Buffs { get; }
-	}
-
-	public interface IUnitEquipmentProperties : IUnitProperties
-	{
-		IEnumerable<IEquipment> Equipment { get; }
-		IDictionary<EquipmentSlot, IEquipment> EquipmentLookup { get; }
-		IWeapon EquippedWeapon { get; }
-		IEquipment GetEquipment(EquipmentSlot slot);
-	}
-
-	public interface IUnitInventoryProperties : IUnitProperties
-	{
-		IList<IItem> Inventory { get; }
-	}
 
 	[Serializable]
 	internal class UnitProperties : RPGLibrary.UnitProperties, IUnitCombatProperties, IUnitEquipmentProperties
@@ -35,6 +14,8 @@ namespace Davfalcon
 		[NonSerialized]
 		private IUnitModifierStack buffs;
 		public IUnitModifierStack Buffs { get { return buffs; } }
+
+		public IUnitBattleState BattleState { get; set; }
 
 		#region Equipment
 		[NonSerialized]
@@ -60,10 +41,8 @@ namespace Davfalcon
 		}
 		#endregion
 
-		// inventory
 		public IList<IItem> Inventory { get; protected set; }
 
-		// spells known
 
 		public void Bind(Unit unit)
 		{

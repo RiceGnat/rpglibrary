@@ -1,6 +1,6 @@
 ﻿using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
-using Davfalcon.Engine.Management;
+using Davfalcon.Engine.Management.Setup;
 using RPGLibrary;
 
 namespace Davfalcon

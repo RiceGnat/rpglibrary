@@ -2,7 +2,7 @@
 using System.Linq;
 using RPGLibrary;
 
-namespace Davfalcon.Engine.UnitManagement
+namespace Davfalcon.Engine.Management
 {
 	public static class InventoryOperations
 	{

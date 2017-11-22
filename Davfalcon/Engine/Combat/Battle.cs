@@ -9,6 +9,7 @@ namespace Davfalcon.Engine.Combat
 	[Serializable]
 	public class Battle
 	{
+		[Serializable]
 		private class UnitState : IUnitBattleState
 		{
 			public int Team { get; set; }
@@ -18,7 +19,6 @@ namespace Davfalcon.Engine.Combat
 		private readonly Dictionary<int, List<IUnit>> teams = new Dictionary<int, List<IUnit>>();
 		private readonly Dictionary<int, IList<IUnit>> teamsReadOnly = new Dictionary<int, IList<IUnit>>();
 		private readonly CircularLinkedList<IUnit> turnOrder = new CircularLinkedList<IUnit>();
-		private readonly Dictionary<IUnit, UnitState> unitState = new Dictionary<IUnit, UnitState>();
 
 		public IList<ILogEntry> Log { get; private set; }
 		public IList<IUnit> TurnOrder { get; private set; }
@@ -44,10 +44,10 @@ namespace Davfalcon.Engine.Combat
 			if (!teams.ContainsKey(teamId)) AddTeam(teamId);
 
 			teams[teamId].Add(unit);
-			unitState.Add(unit, new UnitState()
+			unit.GetCombatProperties().BattleState = new UnitState()
 			{
 				Team = teamId
-			});
+			};
 
 			if (teamId >= 0)
 				turnOrder.Add(unit);
@@ -56,14 +56,14 @@ namespace Davfalcon.Engine.Combat
 		public void RemoveUnit(IUnit unit, int teamId)
 		{
 			teams[teamId].Remove(unit);
-			unitState.Remove(unit);
+			unit.GetCombatProperties().BattleState = null;
 
 			if (teamId >= 0)
 				turnOrder.Remove(unit);
 		}
 
 		public IUnitBattleState GetUnitState(IUnit unit)
-			=> unitState[unit];
+			=> unit.GetCombatProperties().BattleState;
 
 		public IList<IUnit> GetTeam(int id)
 			=> teamsReadOnly[id];

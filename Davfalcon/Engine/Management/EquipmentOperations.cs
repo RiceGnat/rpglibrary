@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using RPGLibrary;
 
-namespace Davfalcon.Engine.UnitManagement
+namespace Davfalcon.Engine.Management
 {
 	public static class EquipmentOperations
 	{

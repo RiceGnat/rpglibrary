@@ -1,6 +1,6 @@
 ﻿using RPGLibrary;
 
-namespace Davfalcon.Engine.UnitManagement
+namespace Davfalcon.Engine.Management.Setup
 {
 	public static class SetupOperations
 	{
