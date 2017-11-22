@@ -7,7 +7,7 @@ using RPGLibrary;
 using RPGLibrary.Serialization;
 using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
-using Davfalcon.Engine.UnitManagement;
+using Davfalcon.Engine.Management;
 using static Davfalcon.Load;
 
 namespace Davfalcon
@@ -62,12 +62,20 @@ namespace Davfalcon
 			}
 
 			Console.WriteLine(unit.Cast(SystemData.Current.Spells.Get(SPELL_NAME), battle.GetTeam(1).ToArray()));
+			Console.WriteLine(unit.Cast(SystemData.Current.Spells.Get("Scorching Ray"), battle.GetTeam(1).ToArray()));
 			Console.ReadKey();
 
 			while (true)
 			{
 				Console.Clear();
 				WriteList(battle.CurrentUnit.Upkeep());
+				Console.WriteLine();
+
+				foreach (IUnit u in battle.GetAllUnits())
+				{
+					if (battle.GetUnitState(u).Team != battle.CurrentUnitState.Team)
+					Console.WriteLine(battle.CurrentUnit.Attack(u));
+				}
 				Console.WriteLine();
 
 				foreach (IUnit u in battle.TurnOrder)

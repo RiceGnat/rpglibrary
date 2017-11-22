@@ -1,6 +1,6 @@
 ﻿using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
-using Davfalcon.Engine.UnitManagement;
+using Davfalcon.Engine.Management;
 using RPGLibrary;
 
 namespace Davfalcon
@@ -14,6 +14,7 @@ namespace Davfalcon
 		public const string SPELL_NAME = "Fireball";
 		public const string ITEM_NAME = "Wand of Fireball";
 		public const string BURN_BUFF = "Burn";
+		public const string BURN_EFFECT = "Burn";
 		public const string HP_BUFF = "Punching Bag";
 		public const string RESTORE_HP_BUFF = "Restore HP";
 		public const string RESTORE_HP_EFFECT = "RestoreHP";
@@ -30,7 +31,7 @@ namespace Davfalcon
 
 		private static void LoadEffects()
 		{
-			SystemData.Current.Effects.LoadTemplate("Burn", (int burnDamage) =>
+			SystemData.Current.Effects.LoadTemplate(BURN_EFFECT, (int burnDamage) =>
 			{
 				return (IUnit unit, string source, IUnit originator) =>
 				{
@@ -44,7 +45,7 @@ namespace Davfalcon
 				};
 			});
 
-			SystemData.Current.Effects.LoadTemplate("RestoreHP", (int unused) =>
+			SystemData.Current.Effects.LoadTemplate(RESTORE_HP_EFFECT, (int unused) =>
 			{
 				return (IUnit unit, string source, IUnit originator) =>
 				{
@@ -70,12 +71,23 @@ namespace Davfalcon
 			hpbuff.UpkeepEffects.Add(RESTORE_HP_EFFECT);
 			SystemData.Current.Buffs.Load(hpbuff);
 
-			Buff burn = new Buff();
-			burn.Name = BURN_BUFF;
-			burn.Duration = 3;
-			burn.IsDebuff = true;
-			burn.UpkeepEffects.Add(BURN_BUFF, 10);
+			Buff burn = new Buff
+			{
+				Name = BURN_BUFF,
+				Duration = 3,
+				IsDebuff = true
+			};
+			burn.UpkeepEffects.Add(BURN_EFFECT, 10);
 			SystemData.Current.Buffs.Load(burn);
+
+			Buff scorch = new Buff
+			{
+				Name = "Scorched",
+				Duration = 5,
+				IsDebuff = true
+			};
+			scorch.UpkeepEffects.Add(BURN_EFFECT, 20);
+			SystemData.Current.Buffs.Load(scorch);
 		}
 
 		private static void LoadSpells()
@@ -87,6 +99,16 @@ namespace Davfalcon
 			spell.BaseDamage = 60;
 			spell.Cost = 30;
 			spell.AddBuff(BURN_BUFF);
+			SystemData.Current.Spells.Load(spell);
+
+			spell = new Spell();
+			spell.Name = "Scorching Ray";
+			spell.SpellElement = Element.Fire;
+			spell.DamageType = DamageType.Magical;
+			spell.TargetType = SpellTargetType.Attack;
+			spell.BaseDamage = 80;
+			spell.Cost = 30;
+			spell.AddBuff("Scorched");
 			SystemData.Current.Spells.Load(spell);
 		}
 

@@ -47,7 +47,7 @@ namespace Davfalcon.Engine.Combat
 					s += Environment.NewLine + String.Format("The spell misses {0}.", Targets[i]);
 
 				if (Hit[i]?.Crit ?? false)
-					s += Environment.NewLine + "The spell crits!";
+					s += Environment.NewLine + String.Format("The spell crits {0}!", Targets[i]);
 
 				if (DamageDealt[i] != null)
 					s += Environment.NewLine + DamageDealt[i].LogWith(HPLost[i]);

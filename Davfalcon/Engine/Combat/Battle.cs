@@ -24,6 +24,7 @@ namespace Davfalcon.Engine.Combat
 		public IList<IUnit> TurnOrder { get; private set; }
 		public int Turn { get; private set; }
 		public IUnit CurrentUnit { get { return turnOrder.Current; } }
+		public IUnitBattleState CurrentUnitState { get { return GetUnitState(CurrentUnit); } }
 
 		private void AddTeam(int id)
 		{
@@ -68,9 +69,7 @@ namespace Davfalcon.Engine.Combat
 			=> teamsReadOnly[id];
 
 		public IEnumerable<IUnit> GetAllUnits()
-		{
-			return teams.SelectMany(team => team.Value);
-		}
+			=> teams.SelectMany(team => team.Value);
 
 		public void Start()
 		{
