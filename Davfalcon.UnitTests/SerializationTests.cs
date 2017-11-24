@@ -1,4 +1,5 @@
 ﻿using System;
+using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
 using Davfalcon.Engine.Management;
 using Davfalcon.Engine.Management.Setup;
@@ -11,20 +12,17 @@ namespace Davfalcon.UnitTests
 	[TestClass]
 	public class SerializationTests
 	{
-		private static Engine.SystemData data;
+		private static SystemData data;
 
 		[ClassInitialize]
 		public static void Load(TestContext context)
 		{
-			data = Engine.SystemData.Current;
-			Engine.SystemData.SetSystem(new Engine.SystemData());
-			Engine.SystemData.Current.Effects.LoadTemplate("Burn", (int burnDamage) =>
+			data = SystemData.Current;
+			SystemData.SetSystem(new Engine.SystemData());
+			SystemData.Current.Effects.LoadEffect("Burn", (IUnit unit, IEffectSource source, IUnit originator, int value) =>
 			{
-				return (IUnit unit, string source, IUnit originator) =>
-				{
-					unit.GetCombatProperties().CurrentHP -= 10;
-					return null;
-				};
+				unit.GetCombatProperties().CurrentHP -= 10;
+				return null;
 			});
 		}
 
@@ -102,7 +100,7 @@ namespace Davfalcon.UnitTests
 
 			Assert.AreEqual(unit.Stats[CombatStats.DEF], clone.Stats[CombatStats.DEF]);
 		}
-		
+
 		[TestMethod]
 		public void BuffEventSerialization()
 		{

@@ -38,6 +38,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\Management\Setup\EffectArgs.cs" />
+    <Compile Include="IEffectArgs.cs" />
     <Compile Include="Engine\Management\Setup\UnitFactory.cs" />
     <Compile Include="IBattle.cs" />
     <Compile Include="Engine\Management\Setup\Buff.cs" />
@@ -64,7 +66,7 @@
     <Compile Include="IEffectList.cs" />
     <Compile Include="IEffectSource.cs" />
     <Compile Include="IUnitCombatProperties.cs" />
-    <Compile Include="IUnitItemManagementProperties.cs" />
+    <Compile Include="IUnitItemProperties.cs" />
     <Compile Include="IUnitLevelingProperties.cs" />
     <Compile Include="IUsableItem.cs" />
     <Compile Include="Engine\Management\Setup\SpellItem.cs" />

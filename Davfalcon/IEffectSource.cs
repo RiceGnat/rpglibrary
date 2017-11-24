@@ -5,6 +5,6 @@ namespace Davfalcon
 	public interface IEffectSource
 	{
 		string SourceName { get; }
-		ICollection<KeyValuePair<string, int>> Effects { get; }
+		IEnumerable<IEffectArgs> Effects { get; }
 	}
 }

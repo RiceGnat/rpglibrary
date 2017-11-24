@@ -5,7 +5,7 @@ namespace Davfalcon.Engine.Management
 {
 	public static class EquipmentManagement
 	{
-		public static IUnitItemManagementProperties GetEquipmentProperties(this IUnit unit) => unit.Properties.GetAs<IUnitItemManagementProperties>();
+		public static IUnitItemProperties GetEquipmentProperties(this IUnit unit) => unit.Properties.GetAs<IUnitItemProperties>();
 
 		public static IEnumerable<IEquipment> GetAllEquipment(this IUnit unit)
 			=> unit.GetEquipmentProperties().Equipment;

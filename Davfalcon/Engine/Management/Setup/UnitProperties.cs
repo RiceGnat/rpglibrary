@@ -5,7 +5,7 @@ using RPGLibrary;
 namespace Davfalcon.Engine.Management.Setup
 {
 	[Serializable]
-	internal class UnitProperties : RPGLibrary.UnitProperties, IUnitCombatProperties, IUnitItemManagementProperties, IUnitLevelingProperties
+	internal class UnitProperties : RPGLibrary.UnitProperties, IUnitCombatProperties, IUnitItemProperties, IUnitLevelingProperties
 	{
 		#region Combat
 		public int CurrentHP { get; set; }

@@ -12,7 +12,7 @@ namespace Davfalcon.Engine.Management.Setup
 
 		private EffectList effects = new EffectList();
 		public IEffectList UpkeepEffects { get { return effects; } }
-		ICollection<KeyValuePair<string, int>> IEffectSource.Effects { get { return effects.ReadOnly; } }
+		IEnumerable<IEffectArgs> IEffectSource.Effects { get { return effects.ReadOnly; } }
 		string IEffectSource.SourceName { get { return Name; } }
 
 		string IAutoCatalogable.CatalogKey { get { return Name; } }

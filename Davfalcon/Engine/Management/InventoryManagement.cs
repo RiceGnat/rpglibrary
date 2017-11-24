@@ -6,7 +6,7 @@ namespace Davfalcon.Engine.Management
 {
 	public static class InventoryManagement
 	{
-		public static IUnitItemManagementProperties GetInventoryProperties(this IUnit unit) => unit.Properties.GetAs<IUnitItemManagementProperties>();
+		public static IUnitItemProperties GetInventoryProperties(this IUnit unit) => unit.Properties.GetAs<IUnitItemProperties>();
 
 		public static IEnumerable<IItem> GetAllItems(this IUnit unit)
 			=> unit.GetInventoryProperties().Inventory;

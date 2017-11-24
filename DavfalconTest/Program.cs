@@ -60,6 +60,8 @@ namespace Davfalcon
 			foreach (IUnit enemy in battle.GetTeam(1))
 			{
 				Console.WriteLine(unit.Attack(enemy));
+				Console.WriteLine(enemy.Attack(unit));
+				Console.WriteLine(enemy.Cast(SystemData.Current.Spells.Get(SPELL_NAME), unit));
 			}
 
 			Console.WriteLine(unit.Cast(SystemData.Current.Spells.Get(SPELL_NAME), battle.GetTeam(1).ToArray()));

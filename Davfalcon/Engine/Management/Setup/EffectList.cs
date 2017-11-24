@@ -1,13 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using RPGLibrary.Collections.Generic;
 
 namespace Davfalcon.Engine.Management.Setup
 {
 	[Serializable]
-	internal class EffectList : ManagedList<KeyValuePair<string, int>>, IEffectList
+	internal class EffectList : ManagedList<IEffectArgs>, IEffectList
 	{
+		public void Add(string name)
+			=> Add(name, 0);
+
 		public void Add(string name, int value)
-			=> Add(new KeyValuePair<string, int>(name, value));
+			=> Add(name, value, null);
+
+		public void Add(string name, int value, object[] args)
+			=> Add(new EffectArgs(name, value, args));
 	}
 }

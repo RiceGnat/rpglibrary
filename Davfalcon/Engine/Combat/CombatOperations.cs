@@ -19,30 +19,38 @@ namespace Davfalcon.Engine.Combat
 		private static IList<ILogEntry> ApplyEffects(this IEffectSource source, IUnit target, IUnit originator)
 			=> SystemData.Current.Effects.ApplyEffects(source, target, originator);
 
+		private static IList<ILogEntry> ApplyEffects(this IEffectSource source, IUnit target, IUnit originator, int value)
+			=> SystemData.Current.Effects.ApplyEffects(source, target, originator, value);
+
+		private static void AdjustHPMP(this IUnit unit, int prevMaxHP, int prevMaxMP)
+		{
+			unit.GetCombatProperties().CurrentHP += unit.Stats[CombatStats.HP] - prevMaxHP;
+			unit.GetCombatProperties().CurrentMP += unit.Stats[CombatStats.MP] - prevMaxMP;
+		}
+
 		public static void ApplyBuff(this IUnit unit, IBuff buff, string source = null)
 		{
 			int maxHP = unit.Stats[CombatStats.HP];
 			int maxMP = unit.Stats[CombatStats.MP];
 
-			// Copy buff to unit modifiers
 			IBuff b = (IBuff)Serializer.DeepClone(buff);
 			b.Source = source;
 			b.Reset();
 			unit.GetCombatProperties().Buffs.Add(b);
 
-			// If unit max HP/MP increased, gain the difference
-			unit.GetCombatProperties().CurrentHP += Math.Max(unit.Stats[CombatStats.HP] - maxHP, 0);
-			unit.GetCombatProperties().CurrentMP += Math.Max(unit.Stats[CombatStats.MP] - maxMP, 0);
+			unit.AdjustHPMP(maxHP, maxMP);
 
 			OnBuffApplied?.Invoke(unit, buff);
 		}
 
 		public static void RemoveBuff(this IUnit unit, IBuff buff)
 		{
+			int maxHP = unit.Stats[CombatStats.HP];
+			int maxMP = unit.Stats[CombatStats.MP];
+
 			unit.GetCombatProperties().Buffs.Remove(buff);
 
-			unit.GetCombatProperties().CurrentHP = Math.Min(unit.GetCombatProperties().CurrentHP, unit.Stats[CombatStats.HP]);
-			unit.GetCombatProperties().CurrentMP = Math.Min(unit.GetCombatProperties().CurrentMP, unit.Stats[CombatStats.MP]);
+			unit.AdjustHPMP(maxHP, maxMP);
 		}
 
 		public static void Initialize(this IUnit unit)
@@ -56,7 +64,7 @@ namespace Davfalcon.Engine.Combat
 			{
 				foreach (IBuff buff in equip.GrantedBuffs)
 				{
-					ApplyBuff(unit, buff, String.Format("{0} ({1})", unit.Name, equip.Name));
+					ApplyBuff(unit, buff, String.Format("{0}'s {1}", unit.Name, equip.Name));
 				}
 			}
 		}
@@ -68,7 +76,7 @@ namespace Davfalcon.Engine.Combat
 			unit.GetCombatProperties().CurrentMP = 0;
 
 			// Clear all buffs/debuffs
-			unit.Modifiers.Clear();
+			unit.GetCombatProperties().Buffs.Clear();
 		}
 
 		public static IList<ILogEntry> Upkeep(this IUnit unit)
@@ -108,6 +116,20 @@ namespace Davfalcon.Engine.Combat
 		public static int MitigateDamageValue(int incomingValue, int resistance)
 		{
 			return (int)(incomingValue * 100f / (100 + resistance));
+		}
+
+		public static int ChangeHP(this IUnit unit, int amount)
+		{
+			int initial = unit.GetCombatProperties().CurrentHP;
+			unit.GetCombatProperties().CurrentHP = (unit.GetCombatProperties().CurrentHP + amount).Clamp(0, unit.Stats[CombatStats.HP]);
+			return unit.GetCombatProperties().CurrentHP - initial;
+		}
+
+		public static int ChangeMP(this IUnit unit, int amount)
+		{
+			int initial = unit.GetCombatProperties().CurrentMP;
+			unit.GetCombatProperties().CurrentMP = (unit.GetCombatProperties().CurrentMP + amount).Clamp(0, unit.Stats[CombatStats.MP]);
+			return unit.GetCombatProperties().CurrentMP - initial;
 		}
 
 		public static Damage CalculateAttackDamage(this IUnit unit, bool crit = false)
@@ -170,9 +192,7 @@ namespace Davfalcon.Engine.Combat
 
 		public static HPLoss ReceiveDamage(this IUnit unit, Damage damage)
 		{
-			int hpLost = unit.CalculateReceivedDamage(damage);
-
-			unit.GetCombatProperties().CurrentHP -= hpLost;
+			int hpLost = -unit.ChangeHP(-unit.CalculateReceivedDamage(damage));
 
 			OnDamageTaken?.Invoke(unit, damage, hpLost);
 
@@ -182,7 +202,6 @@ namespace Davfalcon.Engine.Combat
 			);
 		}
 
-		// This function may need to be moved to game layer
 		public static AttackAction Attack(this IUnit unit, IUnit target)
 		{
 			HitCheck hit = unit.CheckForHit(target);
@@ -197,7 +216,6 @@ namespace Davfalcon.Engine.Combat
 			);
 		}
 
-		// This function may need to be moved to game layer
 		public static SpellAction Cast(this IUnit unit, ISpell spell, SpellCastOptions options, params IUnit[] targets)
 		{
 			int n = targets.Length;
@@ -227,23 +245,22 @@ namespace Davfalcon.Engine.Combat
 					hpLost[i] = targets[i].ReceiveDamage(damage[i]);
 				}
 
-				// Healing spells
-				if (spell.BaseHeal > 0)
-				{
-					int healValue = spell.BaseHeal * (options.NoScaling ? 1 : unit.Stats[Attributes.WIS]);
-					targets[i].GetCombatProperties().CurrentHP += healValue;
-					effectsList.Add(new LogEntry(string.Format("{0} is healed for {1} HP.", targets[i].Name, healValue)));
-				}
-
 				// Apply buffs/debuffs
 				foreach (IBuff buff in spell.GrantedBuffs)
 				{
-					ApplyBuff(targets[i], buff, String.Format("{0} ({1})", unit.Name, spell.Name));
+					ApplyBuff(targets[i], buff, String.Format("{0}'s {1}", unit.Name, spell.Name));
 					effectsList.Add(new LogEntry(string.Format("{0} is affected by {1}.", targets[i].Name, buff.Name)));
 				}
 
+				// Healing spells
+				if (spell.BaseHeal > 0)
+				{
+					int healValue = targets[i].ChangeHP(spell.BaseHeal * (options.NoScaling ? 1 : unit.Stats[Attributes.WIS]));
+					effectsList.Add(new LogEntry(string.Format("{0} is healed for {1} HP.", targets[i].Name, healValue)));
+				}
+
 				// Apply other effects
-				effectsList.AddRange(spell.ApplyEffects(targets[i], unit));
+				effectsList.AddRange(spell.ApplyEffects(targets[i], unit, hpLost[i] != null ? hpLost[i].Value : 0));
 
 				effects[i] = effectsList;
 			}
@@ -268,7 +285,7 @@ namespace Davfalcon.Engine.Combat
 			effects.Add(new LogEntry(string.Format("{0} uses {1}.", unit.Name, item.Name)));
 			foreach (IUnit target in targets)
 			{
-				effects.AddRange(SystemData.Current.Effects.ApplyEffects(item, target, unit));
+				effects.AddRange(item.ApplyEffects(target, unit));
 			}
 			return effects;
 		}

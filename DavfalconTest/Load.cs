@@ -2,6 +2,7 @@
 using Davfalcon.Engine.Combat;
 using Davfalcon.Engine.Management.Setup;
 using RPGLibrary;
+using RPGLibrary.Randomization;
 
 namespace Davfalcon
 {
@@ -31,29 +32,45 @@ namespace Davfalcon
 
 		private static void LoadEffects()
 		{
-			SystemData.Current.Effects.LoadTemplate(BURN_EFFECT, (int burnDamage) =>
+			SystemData.Current.Effects.LoadEffect(BURN_EFFECT, (IUnit unit, IEffectSource source, IUnit originator, int value) =>
 			{
-				return (IUnit unit, string source, IUnit originator) =>
-				{
-					Damage d = new Damage(
+				Damage d = new Damage(
 						DamageType.True,
 						Element.Fire,
-						burnDamage,
-						source);
+						value,
+						source.SourceName);
 
-					return new LogEntry(string.Format("{0} is burned for {1} HP.", unit.Name, unit.ReceiveDamage(d).Value));
-				};
+				return new LogEntry(string.Format("{0} is burned for {1} HP.", unit.Name, unit.ReceiveDamage(d).Value));
 			});
 
-			SystemData.Current.Effects.LoadTemplate(RESTORE_HP_EFFECT, (int unused) =>
+			SystemData.Current.Effects.LoadEffect(RESTORE_HP_EFFECT, (IUnit unit, IEffectSource source, IUnit originator, int value) =>
 			{
-				return (IUnit unit, string source, IUnit originator) =>
+				int hp = unit.Stats[CombatStats.HP] - unit.GetCombatProperties().CurrentHP;
+
+				unit.GetCombatProperties().CurrentHP += hp;
+
+				return new LogEntry(string.Format("{0} restores {1} HP.", unit.Name, hp));
+			});
+
+			SystemData.Current.Effects.LoadEffect("Lifelink", (IUnit unit, IEffectSource source, IUnit originator, int value) =>
+			{
+				int hp = originator.ChangeHP(value);
+				return new LogEntry(string.Format("{0} gains {1} HP.", originator.Name, hp));
+			});
+
+			SystemData.Current.Effects.LoadTemplate("DebuffChance", (object[] args) =>
+			{
+				return (IUnit unit, IEffectSource source, IUnit originator, int value) =>
 				{
-					int hp = unit.Stats[CombatStats.HP] - unit.GetCombatProperties().CurrentHP;
+					IBuff debuff = SystemData.Current.Buffs.Get((string)args[0]);
+					ISuccessCheck rand = new SuccessChecker(value / 100f);
 
-					unit.GetCombatProperties().CurrentHP += hp;
-
-					return new LogEntry(string.Format("{0} restored {1} HP.", unit.Name, hp));
+					if (rand.Check())
+					{
+						unit.ApplyBuff(debuff, string.Format("{0}'s {1}", originator.Name, source.SourceName));
+						return new LogEntry(string.Format("{0} is affected by {1}.", unit.Name, debuff.Name));
+					}
+					else return null;
 				};
 			});
 		}
@@ -98,7 +115,7 @@ namespace Davfalcon
 			spell.DamageType = DamageType.Magical;
 			spell.BaseDamage = 60;
 			spell.Cost = 30;
-			spell.AddBuff(BURN_BUFF);
+			spell.CastEffects.Add("DebuffChance", 75, BURN_BUFF);
 			SystemData.Current.Spells.Load(spell);
 
 			spell = new Spell();
@@ -109,6 +126,7 @@ namespace Davfalcon
 			spell.BaseDamage = 80;
 			spell.Cost = 30;
 			spell.AddBuff("Scorched");
+			spell.CastEffects.Add("Lifelink");
 			SystemData.Current.Spells.Load(spell);
 		}
 
