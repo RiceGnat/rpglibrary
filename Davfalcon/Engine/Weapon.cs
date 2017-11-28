@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace Davfalcon.Engine.Management.Setup
+namespace Davfalcon.Engine
 {
 	[Serializable]
 	public class Weapon : Equipment, IWeapon
@@ -11,6 +12,11 @@ namespace Davfalcon.Engine.Management.Setup
 		public int CritMultiplier { get; set; } = 1;
 		public WeaponType Type { get; set; }
 		public Element AttackElement { get; set; }
+
+		private EffectList effects = new EffectList();
+		public IEffectList OnHitEffects { get { return effects; } }
+		IEnumerable<IEffectArgs> IEffectSource.Effects { get { return effects.ReadOnly; } }
+		string IEffectSource.SourceName { get { return Name; } }
 
 		public Weapon() : base(EquipmentSlot.Weapon) { }
 

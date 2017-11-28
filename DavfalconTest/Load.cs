@@ -1,6 +1,6 @@
 ﻿using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
-using Davfalcon.Engine.Management.Setup;
+using Davfalcon.Engine.Setup;
 using RPGLibrary;
 using RPGLibrary.Randomization;
 
@@ -159,7 +159,7 @@ namespace Davfalcon
 			weapon.Type = WeaponType.Axe;
 			weapon.Additions[CombatStats.ATK] = 5;
 			weapon.Additions[CombatStats.CRT] = 30;
-			SystemData.Current.Equipment.Load(weapon);
+			SystemData.Current.Weapons.Load(weapon);
 
 			SpellItem wand = new SpellItem(SystemData.Current.Spells.Get(SPELL_NAME));
 			wand.Name = ITEM_NAME;

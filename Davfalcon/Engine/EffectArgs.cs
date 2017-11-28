@@ -15,5 +15,7 @@ namespace Davfalcon.Engine
 			Value = value;
 			TemplateArgs = args;
 		}
+
+		public EffectArgs(string name, int value) : this(name, value, null) { }
 	}
 }

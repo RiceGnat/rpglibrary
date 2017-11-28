@@ -22,6 +22,7 @@ namespace Davfalcon.Engine
 			List<ILogEntry> effects = new List<ILogEntry>();
 			foreach (IEffectArgs effect in source.Effects)
 			{
+				// If effect value is zero, use value supplied in parameters
 				ILogEntry log = GetEffect(effect.Name, effect.TemplateArgs).Invoke(target, source, originator, effect.Value == 0 ? value : effect.Value);
 				if (log != null) effects.Add(log);
 			}

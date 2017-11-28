@@ -205,14 +205,17 @@ namespace Davfalcon.Engine.Combat
 		public static AttackAction Attack(this IUnit unit, IUnit target)
 		{
 			HitCheck hit = unit.CheckForHit(target);
-			Damage damage = unit.CalculateAttackDamage(hit.Crit);
+			Damage damage = hit.Hit ? unit.CalculateAttackDamage(hit.Crit) : null;
+			HPLoss hp = hit.Hit ? target.ReceiveDamage(damage) : null;
+			IList<ILogEntry> effects = hit.Hit ? unit.GetCombatProperties().EquippedWeapon.ApplyEffects(target, unit, hp.Value) : null;
 
 			return new AttackAction(
 				unit,
 				target,
 				hit,
-				hit.Hit ? damage : null,
-				hit.Hit ? target.ReceiveDamage(damage) : null
+				damage,
+				hp,
+				effects
 			);
 		}
 

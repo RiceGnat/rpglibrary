@@ -1,6 +1,6 @@
 ﻿using System;
+using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
-using Davfalcon.Engine.Management.Setup;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPGLibrary;
 

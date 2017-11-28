@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using RPGLibrary;
 
-namespace Davfalcon.Engine.Management.Setup
+namespace Davfalcon.Engine
 {
 	[Serializable]
 	internal class UnitProperties : RPGLibrary.UnitProperties, IUnitCombatProperties, IUnitItemProperties, IUnitLevelingProperties

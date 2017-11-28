@@ -1,7 +1,7 @@
 ﻿using System;
 using RPGLibrary;
 
-namespace Davfalcon.Engine.Management.Setup
+namespace Davfalcon.Engine
 {
 	[Serializable]
 	public class UnitStats : StatsMap
