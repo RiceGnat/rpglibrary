@@ -6,24 +6,19 @@ namespace Davfalcon.Engine
 	internal class EffectFactory : IEffectFactory
 	{
 		private Dictionary<string, Effect> effects = new Dictionary<string, Effect>();
-		private Dictionary<string, EffectTemplate> templates = new Dictionary<string, EffectTemplate>();
 
 		public void LoadEffect(string name, Effect function)
 			=> effects.Add(name, function);
 
-		public void LoadTemplate(string name, EffectTemplate template)
-			=> templates.Add(name, template);
-
-		public Effect GetEffect(string name, object[] args)
-			=> args == null ? effects[name] : templates[name](args);
+		public Effect GetEffect(string name)
+			=> effects[name];
 
 		public IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator, int value)
 		{
 			List<ILogEntry> effects = new List<ILogEntry>();
-			foreach (IEffectArgs effect in source.Effects)
+			foreach (IEffectArgs definition in source.Effects)
 			{
-				// If effect value is zero, use value supplied in parameters
-				ILogEntry log = GetEffect(effect.Name, effect.TemplateArgs).Invoke(target, source, originator, effect.Value == 0 ? value : effect.Value);
+				ILogEntry log = GetEffect(definition.Name).Invoke(definition, target, source, originator, value);
 				if (log != null) effects.Add(log);
 			}
 			return effects;

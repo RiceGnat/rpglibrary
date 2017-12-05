@@ -3,7 +3,7 @@
 	public interface IEffectArgs
 	{
 		string Name { get; }
-		object[] TemplateArgs { get; }
+		object[] Args { get; }
 		int Value { get; }
 	}
 }

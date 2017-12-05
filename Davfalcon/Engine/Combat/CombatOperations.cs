@@ -110,12 +110,12 @@ namespace Davfalcon.Engine.Combat
 
 		public static int ScaleDamageValue(int baseValue, int scaling)
 		{
-			return (int)(baseValue * (1 + scaling / 100f));
+			return baseValue.Scale(scaling);
 		}
 
 		public static int MitigateDamageValue(int incomingValue, int resistance)
 		{
-			return (int)(incomingValue * 100f / (100 + resistance));
+			return incomingValue.Scale(-resistance);
 		}
 
 		public static int ChangeHP(this IUnit unit, int amount)

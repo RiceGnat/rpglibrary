@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1AD0D210-549B-4454-8068-498DF977E5E3}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{22F376C6-2DD3-45FA-A9D8-7680BBD79FCC}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DavfalconTest</RootNamespace>
-    <AssemblyName>DavfalconTest</AssemblyName>
+    <RootNamespace>Davfalcon.SampleLibrary</RootNamespace>
+    <AssemblyName>Davfalcon.SampleLibrary</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,15 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Load.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="SampleLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Davfalcon.SampleLibrary\Davfalcon.SampleLibrary.csproj">
-      <Project>{22f376c6-2dd3-45fa-a9d8-7680bbd79fcc}</Project>
-      <Name>Davfalcon.SampleLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Davfalcon\Davfalcon.csproj">
       <Project>{3f1fa461-a8b2-4b6d-8c39-050069ce2a66}</Project>
       <Name>Davfalcon</Name>

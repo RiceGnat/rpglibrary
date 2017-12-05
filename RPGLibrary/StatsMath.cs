@@ -28,22 +28,7 @@
 
 		int IStatsMath.Calculate(int a, int b, int m)
 		{
-			float f;
-
-			if (m == 0)
-			{
-				f = 1;
-			}
-			else if (m >= 0)
-			{
-				f = 1 + m / 100f;
-			}
-			else
-			{
-				f = 100f / (100 - m);
-			}
-
-			return (int)((a + b) * f);
+			return (a + b).Scale(m);
 		}
 	}
 }

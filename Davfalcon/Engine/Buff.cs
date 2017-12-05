@@ -16,5 +16,12 @@ namespace Davfalcon.Engine
 		string IEffectSource.SourceName { get { return Name; } }
 
 		string IAutoCatalogable.CatalogKey { get { return Name; } }
+
+		public Buff() : base() { }
+
+		public Buff(string name) : base()
+		{
+			Name = name;
+		}
 	}
 }
