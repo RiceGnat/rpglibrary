@@ -8,7 +8,7 @@ using RPGLibrary.Serialization;
 using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
 using Davfalcon.Engine.Management;
-using Davfalcon.Engine.Management.Setup;
+using Davfalcon.Engine.Setup;
 using static Davfalcon.Load;
 
 namespace Davfalcon
@@ -28,7 +28,7 @@ namespace Davfalcon
 				unit.BaseStats[stat] = 10;
 			}
 
-			unit.Equip(WEAPON_NAME);
+			unit.Equip(SystemData.Current.Weapons.Get(WEAPON_NAME));
 			unit.Equip(ARMOR_NAME);
 			unit.Equip(ACCESSORY_NAME);
 

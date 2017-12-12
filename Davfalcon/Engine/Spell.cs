@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using RPGLibrary.Collections.Generic;
 
-namespace Davfalcon.Engine.Management.Setup
+namespace Davfalcon.Engine
 {
 	[Serializable]
 	public class Spell : ISpell

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using RPGLibrary;
 
-namespace Davfalcon.Engine.Management.Setup
+namespace Davfalcon.Engine
 {
 	[Serializable]
 	public class Buff : TimedModifier, IBuff
@@ -16,5 +16,12 @@ namespace Davfalcon.Engine.Management.Setup
 		string IEffectSource.SourceName { get { return Name; } }
 
 		string IAutoCatalogable.CatalogKey { get { return Name; } }
+
+		public Buff() : base() { }
+
+		public Buff(string name) : base()
+		{
+			Name = name;
+		}
 	}
 }

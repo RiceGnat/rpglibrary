@@ -1,6 +1,6 @@
 ﻿using RPGLibrary;
 
-namespace Davfalcon.Engine.Management.Setup
+namespace Davfalcon.Engine.Setup
 {
 	public static class SetupOperations
 	{
@@ -11,6 +11,9 @@ namespace Davfalcon.Engine.Management.Setup
 			=> spell.GrantedBuffs.Add(SystemData.Current.Buffs.Get(buffName));
 
 		public static void Equip(this IUnit unit, string equipmentName)
-			=> unit.Equip(SystemData.Current.Equipment.Get(equipmentName));
+		{
+			IEquipment equipment = SystemData.Current.Equipment.Get(equipmentName);
+			unit.Properties.GetAs<IUnitItemProperties>().EquipmentLookup.Add(equipment.Slot, equipment);
+		}
 	}
 }

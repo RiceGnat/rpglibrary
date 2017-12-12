@@ -38,13 +38,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine\Management\Setup\EffectArgs.cs" />
+    <Compile Include="Engine\EffectArgs.cs" />
+    <Compile Include="Engine\IWeaponFactory.cs" />
+    <Compile Include="Engine\WeaponFactory.cs" />
     <Compile Include="IBattle.cs" />
     <Compile Include="IEffectArgs.cs" />
-    <Compile Include="Engine\Management\Setup\UnitFactory.cs" />
-    <Compile Include="Engine\Management\Setup\Buff.cs" />
+    <Compile Include="Engine\Setup\UnitFactory.cs" />
+    <Compile Include="Engine\Buff.cs" />
     <Compile Include="Engine\ClassProperties.cs" />
-    <Compile Include="Engine\Management\Setup\EffectList.cs" />
+    <Compile Include="Engine\EffectList.cs" />
     <Compile Include="Engine\Catalog%28T%29.cs" />
     <Compile Include="Engine\Combat\AttackAction.cs" />
     <Compile Include="Engine\Combat\Battle.cs" />
@@ -62,31 +64,31 @@
     <Compile Include="Engine\LogEntry.cs" />
     <Compile Include="Engine\SystemData.cs" />
     <Compile Include="ISpellItem.cs" />
-    <Compile Include="Engine\Management\Setup\SetupOperations.cs" />
+    <Compile Include="Engine\Setup\SetupOperations.cs" />
     <Compile Include="IEffectList.cs" />
     <Compile Include="IEffectSource.cs" />
     <Compile Include="IUnitCombatProperties.cs" />
     <Compile Include="IUnitItemProperties.cs" />
     <Compile Include="IUnitLevelingProperties.cs" />
     <Compile Include="IUsableItem.cs" />
-    <Compile Include="Engine\Management\Setup\SpellItem.cs" />
-    <Compile Include="Engine\Management\Setup\UsableItem.cs" />
+    <Compile Include="Engine\SpellItem.cs" />
+    <Compile Include="Engine\UsableItem.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="Engine\Management\Setup\Equipment.cs" />
-    <Compile Include="Engine\Management\Setup\EquipmentSlotMap.cs" />
+    <Compile Include="Engine\Equipment.cs" />
+    <Compile Include="Engine\EquipmentSlotMap.cs" />
     <Compile Include="IBuff.cs" />
     <Compile Include="IEquipment.cs" />
     <Compile Include="IAutoCatalogable.cs" />
     <Compile Include="ISpell.cs" />
     <Compile Include="IWeapon.cs" />
-    <Compile Include="Engine\Management\Setup\Spell.cs" />
+    <Compile Include="Engine\Spell.cs" />
     <Compile Include="Engine\Management\EquipmentManagement.cs" />
     <Compile Include="Engine\Management\InventoryManagement.cs" />
-    <Compile Include="Engine\Management\Setup\UnitStats.cs" />
+    <Compile Include="Engine\UnitStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Engine\Management\Setup\Unit.cs" />
-    <Compile Include="Engine\Management\Setup\UnitProperties.cs" />
-    <Compile Include="Engine\Management\Setup\Weapon.cs" />
+    <Compile Include="Engine\Unit.cs" />
+    <Compile Include="Engine\UnitProperties.cs" />
+    <Compile Include="Engine\Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RPGLibrary\RPGLibrary.csproj">

@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Davfalcon.Engine.Management.Setup;
+using Davfalcon.Engine;
 using RPGLibrary;
 
 namespace Davfalcon.UnitTests

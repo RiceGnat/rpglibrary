@@ -1,6 +1,6 @@
 ﻿using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
-using Davfalcon.Engine.Management.Setup;
+using Davfalcon.Engine.Setup;
 using RPGLibrary;
 using RPGLibrary.Randomization;
 
@@ -15,10 +15,8 @@ namespace Davfalcon
 		public const string SPELL_NAME = "Fireball";
 		public const string ITEM_NAME = "Wand of Fireball";
 		public const string BURN_BUFF = "Burn";
-		public const string BURN_EFFECT = "Burn";
 		public const string HP_BUFF = "Punching Bag";
 		public const string RESTORE_HP_BUFF = "Restore HP";
-		public const string RESTORE_HP_EFFECT = "RestoreHP";
 
 		public static void LoadData()
 		{
@@ -32,60 +30,20 @@ namespace Davfalcon
 
 		private static void LoadEffects()
 		{
-			SystemData.Current.Effects.LoadEffect(BURN_EFFECT, (IUnit unit, IEffectSource source, IUnit originator, int value) =>
-			{
-				Damage d = new Damage(
-						DamageType.True,
-						Element.Fire,
-						value,
-						source.SourceName);
-
-				return new LogEntry(string.Format("{0} is burned for {1} HP.", unit.Name, unit.ReceiveDamage(d).Value));
-			});
-
-			SystemData.Current.Effects.LoadEffect(RESTORE_HP_EFFECT, (IUnit unit, IEffectSource source, IUnit originator, int value) =>
-			{
-				int hp = unit.Stats[CombatStats.HP] - unit.GetCombatProperties().CurrentHP;
-
-				unit.GetCombatProperties().CurrentHP += hp;
-
-				return new LogEntry(string.Format("{0} restores {1} HP.", unit.Name, hp));
-			});
-
-			SystemData.Current.Effects.LoadEffect("Lifelink", (IUnit unit, IEffectSource source, IUnit originator, int value) =>
-			{
-				int hp = originator.ChangeHP(value);
-				return new LogEntry(string.Format("{0} gains {1} HP.", originator.Name, hp));
-			});
-
-			SystemData.Current.Effects.LoadTemplate("DebuffChance", (object[] args) =>
-			{
-				return (IUnit unit, IEffectSource source, IUnit originator, int value) =>
-				{
-					IBuff debuff = SystemData.Current.Buffs.Get((string)args[0]);
-					ISuccessCheck rand = new SuccessChecker(value / 100f);
-
-					if (rand.Check())
-					{
-						unit.ApplyBuff(debuff, string.Format("{0}'s {1}", originator.Name, source.SourceName));
-						return new LogEntry(string.Format("{0} is affected by {1}.", unit.Name, debuff.Name));
-					}
-					else return null;
-				};
-			});
+			SampleLibrary.LoadEffects();
 		}
 
 		private static void LoadBuffs()
 		{
 			Buff heal = new Buff();
 			heal.Name = RESTORE_HP_BUFF;
-			heal.UpkeepEffects.Add(RESTORE_HP_EFFECT);
+			heal.UpkeepEffects.Add("Heal", 100);
 			SystemData.Current.Buffs.Load(heal);
 
 			Buff hpbuff = new Buff();
 			hpbuff.Name = HP_BUFF;
 			hpbuff.Multiplications[CombatStats.HP] = 99999;
-			hpbuff.UpkeepEffects.Add(RESTORE_HP_EFFECT);
+			hpbuff.UpkeepEffects.Add("Heal", 100);
 			SystemData.Current.Buffs.Load(hpbuff);
 
 			Buff burn = new Buff
@@ -94,7 +52,7 @@ namespace Davfalcon
 				Duration = 3,
 				IsDebuff = true
 			};
-			burn.UpkeepEffects.Add(BURN_EFFECT, 10);
+			burn.UpkeepEffects.Add("Burn", 10);
 			SystemData.Current.Buffs.Load(burn);
 
 			Buff scorch = new Buff
@@ -103,7 +61,7 @@ namespace Davfalcon
 				Duration = 5,
 				IsDebuff = true
 			};
-			scorch.UpkeepEffects.Add(BURN_EFFECT, 20);
+			scorch.UpkeepEffects.Add("Burn", 20);
 			SystemData.Current.Buffs.Load(scorch);
 		}
 
@@ -126,7 +84,7 @@ namespace Davfalcon
 			spell.BaseDamage = 80;
 			spell.Cost = 30;
 			spell.AddBuff("Scorched");
-			spell.CastEffects.Add("Lifelink");
+			spell.CastEffects.Add("Lifelink", 100);
 			SystemData.Current.Spells.Load(spell);
 		}
 
@@ -159,7 +117,7 @@ namespace Davfalcon
 			weapon.Type = WeaponType.Axe;
 			weapon.Additions[CombatStats.ATK] = 5;
 			weapon.Additions[CombatStats.CRT] = 30;
-			SystemData.Current.Equipment.Load(weapon);
+			SystemData.Current.Weapons.Load(weapon);
 
 			SpellItem wand = new SpellItem(SystemData.Current.Spells.Get(SPELL_NAME));
 			wand.Name = ITEM_NAME;
