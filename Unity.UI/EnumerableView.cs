@@ -12,7 +12,7 @@ namespace UnityEngine.UI
 		}
 
 		[SerializeField]
-		private DataBoundElement template;
+		private DataBoundElement template = null;
 
 		public Direction direction { get; set; }
 		public DataBoundElement[] elements { get; private set; }

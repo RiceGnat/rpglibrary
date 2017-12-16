@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI Sandbox", "UI Sandbox.csproj", "{5935187B-9524-AFAC-8EA6-4A0DFC5EE1B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.UI", "..\..\Unity.UI\Unity.UI.csproj", "{37146187-BC62-44E6-BCE1-EBC64C6C9224}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5935187B-9524-AFAC-8EA6-4A0DFC5EE1B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5935187B-9524-AFAC-8EA6-4A0DFC5EE1B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5935187B-9524-AFAC-8EA6-4A0DFC5EE1B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5935187B-9524-AFAC-8EA6-4A0DFC5EE1B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37146187-BC62-44E6-BCE1-EBC64C6C9224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37146187-BC62-44E6-BCE1-EBC64C6C9224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37146187-BC62-44E6-BCE1-EBC64C6C9224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37146187-BC62-44E6-BCE1-EBC64C6C9224}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
