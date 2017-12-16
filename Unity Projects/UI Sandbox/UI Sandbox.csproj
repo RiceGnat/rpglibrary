@@ -211,17 +211,23 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.UI">
-      <HintPath>Assets/Unity.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/riceg/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>C:/Users/riceg/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
+    <Reference Include="RPGLibrary">
+      <HintPath>Assets/lib/RPGLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Davfalcon">
+      <HintPath>Assets/lib/Davfalcon.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.UI">
+      <HintPath>Assets/lib/Unity.UI.dll</HintPath>
+    </Reference>
     <Reference Include="Davfalcon.Unity.UI">
-      <HintPath>Assets/Davfalcon.Unity.UI.dll</HintPath>
+      <HintPath>Assets/lib/Davfalcon.Unity.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -229,12 +235,4 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
-  <Target Name="BeforeBuild">
-    <Copy SourceFiles="$(SolutionDir)..\..\Unity.UI\bin\$(Configuration)\Unity.UI.dll" DestinationFolder="$(SolutionDir)Assets" />
-    <Copy SourceFiles="$(SolutionDir)..\..\Unity.UI\bin\$(Configuration)\Unity.UI.dll.mdb" DestinationFolder="$(SolutionDir)Assets" />
-    <Copy SourceFiles="$(SolutionDir)..\..\Davfalcon.Unity.UI\bin\$(Configuration)\RPGLibrary.dll" DestinationFolder="$(SolutionDir)Assets\lib" />
-    <Copy SourceFiles="$(SolutionDir)..\..\Davfalcon.Unity.UI\bin\$(Configuration)\Davfalcon.dll" DestinationFolder="$(SolutionDir)Assets\lib" />
-    <Copy SourceFiles="$(SolutionDir)..\..\Davfalcon.Unity.UI\bin\$(Configuration)\Davfalcon.Unity.UI.dll" DestinationFolder="$(SolutionDir)Assets" />
-    <Copy SourceFiles="$(SolutionDir)..\..\Davfalcon.Unity.UI\bin\$(Configuration)\Davfalcon.Unity.UI.dll.mdb" DestinationFolder="$(SolutionDir)Assets" />
-  </Target>
 </Project>

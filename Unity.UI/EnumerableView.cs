@@ -11,8 +11,7 @@ namespace UnityEngine.UI
 			Horizontal
 		}
 
-		[SerializeField]
-		private DataBoundElement template = null;
+		public DataBoundElement template;
 
 		public Direction direction { get; set; }
 		public DataBoundElement[] elements { get; private set; }
@@ -57,11 +56,12 @@ namespace UnityEngine.UI
 
 					e.gameObject.SetActive(true);
 					e.Bind(o);
-					e.Draw();
 				}
 
 				this.elements = elements.ToArray();
 			}
+
+			base.Draw();
 		}
 	}
 }
