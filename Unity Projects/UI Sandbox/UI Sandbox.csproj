@@ -226,8 +226,8 @@
     <Reference Include="Unity.UI">
       <HintPath>Assets/lib/Unity.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Davfalcon.Unity.UI">
-      <HintPath>Assets/lib/Davfalcon.Unity.UI.dll</HintPath>
+    <Reference Include="Davfalcon.Unity">
+      <HintPath>Assets/lib/Davfalcon.Unity.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

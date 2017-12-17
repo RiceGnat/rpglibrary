@@ -7,8 +7,8 @@
     <ProjectGuid>{57BBA5B4-F276-4E49-9788-29AB5A2971E0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Davfalcon.Unity.UI</RootNamespace>
-    <AssemblyName>Davfalcon.Unity.UI</AssemblyName>
+    <RootNamespace>Davfalcon.Unity</RootNamespace>
+    <AssemblyName>Davfalcon.Unity</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <MonoMdbGenerator>"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\bin\mono" "C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\4.5\pdb2mdb.exe"</MonoMdbGenerator>
@@ -43,9 +43,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Editor\AttributeBindingDrawer.cs" />
-    <Compile Include="Editor\CombatStatsBindingDrawer.cs" />
-    <Compile Include="StatsView.cs" />
+    <Compile Include="Editor\EquipmentEditor.cs" />
+    <Compile Include="EquipmentDefinition.cs" />
+    <Compile Include="UI\Editor\AttributeBindingDrawer.cs" />
+    <Compile Include="UI\Editor\CombatStatsBindingDrawer.cs" />
+    <Compile Include="UI\StatsView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

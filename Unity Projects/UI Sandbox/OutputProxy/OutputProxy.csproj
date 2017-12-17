@@ -34,9 +34,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Davfalcon.Unity.UI\Davfalcon.Unity.UI.csproj">
+    <ProjectReference Include="..\..\..\Davfalcon.Unity\Davfalcon.Unity.csproj">
       <Project>{57bba5b4-f276-4e49-9788-29ab5a2971e0}</Project>
-      <Name>Davfalcon.Unity.UI</Name>
+      <Name>Davfalcon.Unity</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Davfalcon\Davfalcon.csproj">
       <Project>{3f1fa461-a8b2-4b6d-8c39-050069ce2a66}</Project>
@@ -57,8 +57,8 @@
 copy /Y "$(SolutionDir)..\..\Unity.UI\bin\$(Configuration)\Unity.UI.dll.mdb" "$(SolutionDir)Assets\lib\"
 copy /Y "$(TargetDir)RPGLibrary.dll" "$(SolutionDir)Assets\lib\"
 copy /Y "$(TargetDir)Davfalcon.dll" "$(SolutionDir)Assets\lib\"
-copy /Y "$(TargetDir)Davfalcon.Unity.UI.dll" "$(SolutionDir)Assets\lib\"
-copy /Y "$(SolutionDir)..\..\Davfalcon.Unity.UI\bin\$(Configuration)\Davfalcon.Unity.UI.dll.mdb" "$(SolutionDir)Assets\lib\"
+copy /Y "$(TargetDir)Davfalcon.Unity.dll" "$(SolutionDir)Assets\lib\"
+copy /Y "$(SolutionDir)..\..\Davfalcon.Unity\bin\$(Configuration)\Davfalcon.Unity.dll.mdb" "$(SolutionDir)Assets\lib\"
 del "$(TargetDir)$(TargetName).*"</PostBuildEvent>
   </PropertyGroup>
 </Project>
