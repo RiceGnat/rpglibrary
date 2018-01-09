@@ -1,7 +1,7 @@
 ﻿using System;
 using RPGLibrary;
 
-namespace Davfalcon.Engine
+namespace Davfalcon
 {
 	[Serializable]
 	public class Unit : BasicUnit

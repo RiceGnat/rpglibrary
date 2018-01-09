@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Davfalcon.Engine
+namespace Davfalcon
 {
 	[Serializable]
 	public class SpellItem : UsableItem, ISpellItem

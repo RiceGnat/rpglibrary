@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Davfalcon.Engine
+namespace Davfalcon
 {
 	[Serializable]
 	public class Weapon : Equipment, IWeapon

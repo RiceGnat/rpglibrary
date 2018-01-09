@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using RPGLibrary;
 
-namespace Davfalcon.Engine
+namespace Davfalcon
 {
 	[Serializable]
 	public class Buff : TimedModifier, IBuff

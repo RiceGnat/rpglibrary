@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using RPGLibrary;
 
-namespace Davfalcon.Engine
+namespace Davfalcon
 {
 	internal class EquipmentSlotMap : IDictionary<EquipmentSlot, IEquipment>
 	{

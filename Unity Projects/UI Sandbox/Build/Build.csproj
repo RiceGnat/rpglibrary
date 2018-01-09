@@ -7,8 +7,8 @@
     <ProjectGuid>{D9D22919-CB11-40F0-AB1A-33B00D2A1010}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OutputProxy</RootNamespace>
-    <AssemblyName>OutputProxy</AssemblyName>
+    <RootNamespace>Build</RootNamespace>
+    <AssemblyName>Build</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>

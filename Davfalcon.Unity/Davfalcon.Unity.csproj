@@ -43,6 +43,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuffDefinition.cs" />
+    <Compile Include="Editor\BuffEditor.cs" />
     <Compile Include="Editor\EquipmentEditor.cs" />
     <Compile Include="EquipmentDefinition.cs" />
     <Compile Include="UI\Editor\AttributeBindingDrawer.cs" />

@@ -1,128 +1,74 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
 
 namespace Davfalcon.Unity.Editor
 {
-	public class EquipmentEditor : EditorWindow
+	[CustomEditor(typeof(EquipmentDefinition))]
+	public class EquipmentEditor : UnityEditor.Editor
 	{
-
-		public EquipmentDefinition equipment;
-		private int viewIndex = 1;
-
-		[MenuItem("Window/Equipment Editor %#e")]
-		static void Init()
+		public override void OnInspectorGUI()
 		{
-			EditorWindow.GetWindow(typeof(EquipmentEditor));
-		}
+			Equipment equipment = ((EquipmentDefinition)target).equipment;
 
-		void OnEnable()
-		{
-			if (EditorPrefs.HasKey("ObjectPath"))
+			float labelWidth = EditorGUIUtility.labelWidth;
+
+			EditorGUIUtility.labelWidth = 75;
+			equipment.Name = EditorGUILayout.TextField("Name", equipment.Name);
+			equipment.Slot = (EquipmentSlot)EditorGUILayout.EnumPopup("Slot", equipment.Slot);
+
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.PrefixLabel("Description");
+			equipment.Description = EditorGUILayout.TextArea(equipment.Description);
+			EditorGUILayout.EndHorizontal();
+
+			EditorGUILayout.Space();
+
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.LabelField("", GUILayout.MaxWidth(EditorGUIUtility.labelWidth - 4));
+			EditorGUILayout.LabelField("Additions", GUILayout.MinWidth(0));
+			EditorGUILayout.LabelField("Multipliers", GUILayout.MinWidth(0));
+			EditorGUILayout.EndHorizontal();
+
+			List<string> stats = new List<string>();
+			stats.AddRange(Enum.GetNames(typeof(Attributes)));
+			stats.AddRange(Enum.GetNames(typeof(CombatStats)));
+			foreach (string stat in stats)
 			{
-				string objectPath = EditorPrefs.GetString("ObjectPath");
-				equipment = AssetDatabase.LoadAssetAtPath(objectPath, typeof(EquipmentDefinition)) as EquipmentDefinition;
+				EditorGUILayout.BeginHorizontal();
+				EditorGUILayout.LabelField(stat, GUILayout.MaxWidth(EditorGUIUtility.labelWidth - 4));
+				equipment.Additions[stat] = EditorGUILayout.IntField(equipment.Additions[stat]);
+				equipment.Multiplications[stat] = EditorGUILayout.IntField(equipment.Multiplications[stat]);
+				EditorGUILayout.EndHorizontal();
 			}
 
-		}
+			EditorGUILayout.Space();
 
-		void OnGUI()
-		{
-			GUILayout.BeginHorizontal();
-			GUILayout.Label("Equipment Editor", EditorStyles.boldLabel);
-			GUILayout.EndHorizontal();
-
-			if (inventoryItemList == null)
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.LabelField("Granted buffs");
+			EditorGUILayout.EndHorizontal();
+			for (int i = 0; i < equipment.GrantedBuffs.Count; i++)
 			{
-				GUILayout.BeginHorizontal();
-				GUILayout.Space(10);
-				if (GUILayout.Button("Create New Item List", GUILayout.ExpandWidth(false)))
+				BuffDefinition[] defs = Resources.FindObjectsOfTypeAll<BuffDefinition>();
+				//List<string> names = defs.Select(b => b.name).ToList();
+				BuffDefinition selected = defs.Where(b => b.buff.Name == equipment.GrantedBuffs[i]?.Name).FirstOrDefault();
+
+				EditorGUILayout.BeginHorizontal();
+				//equipment.GrantedBuffs[i] = defs[EditorGUILayout.Popup(selected, names.ToArray())].buff;
+				equipment.GrantedBuffs[i] = ((BuffDefinition)EditorGUILayout.ObjectField(selected, typeof(BuffDefinition), false))?.buff;
+
+				if (GUILayout.Button("Remove", EditorStyles.miniButton))
 				{
-					CreateNewItemList();
+					equipment.GrantedBuffs.RemoveAt(i);
+					i--;
 				}
-				if (GUILayout.Button("Open Existing Item List", GUILayout.ExpandWidth(false)))
-				{
-					OpenItemList();
-				}
-				GUILayout.EndHorizontal();
+				EditorGUILayout.EndHorizontal();
 			}
-
-			GUILayout.Space(20);
-
-			if (inventoryItemList != null)
+			if (GUILayout.Button("Add"))
 			{
-				GUILayout.BeginHorizontal();
-
-				GUILayout.Space(10);
-
-				if (GUILayout.Button("Prev", GUILayout.ExpandWidth(false)))
-				{
-					if (viewIndex > 1)
-						viewIndex--;
-				}
-				GUILayout.Space(5);
-				if (GUILayout.Button("Next", GUILayout.ExpandWidth(false)))
-				{
-					if (viewIndex < inventoryItemList.itemList.Count)
-					{
-						viewIndex++;
-					}
-				}
-
-				GUILayout.Space(60);
-
-				if (GUILayout.Button("Add Item", GUILayout.ExpandWidth(false)))
-				{
-					AddItem();
-				}
-				if (GUILayout.Button("Delete Item", GUILayout.ExpandWidth(false)))
-				{
-					DeleteItem(viewIndex - 1);
-				}
-
-				GUILayout.EndHorizontal();
-				if (inventoryItemList.itemList == null)
-					Debug.Log("wtf");
-				if (inventoryItemList.itemList.Count > 0)
-				{
-					GUILayout.BeginHorizontal();
-					viewIndex = Mathf.Clamp(EditorGUILayout.IntField("Current Item", viewIndex, GUILayout.ExpandWidth(false)), 1, inventoryItemList.itemList.Count);
-					//Mathf.Clamp (viewIndex, 1, inventoryItemList.itemList.Count);
-					EditorGUILayout.LabelField("of   " + inventoryItemList.itemList.Count.ToString() + "  items", "", GUILayout.ExpandWidth(false));
-					GUILayout.EndHorizontal();
-
-					inventoryItemList.itemList[viewIndex - 1].itemName = EditorGUILayout.TextField("Item Name", inventoryItemList.itemList[viewIndex - 1].itemName as string);
-					inventoryItemList.itemList[viewIndex - 1].itemIcon = EditorGUILayout.ObjectField("Item Icon", inventoryItemList.itemList[viewIndex - 1].itemIcon, typeof(Texture2D), false) as Texture2D;
-					inventoryItemList.itemList[viewIndex - 1].itemObject = EditorGUILayout.ObjectField("Item Object", inventoryItemList.itemList[viewIndex - 1].itemObject, typeof(Rigidbody), false) as Rigidbody;
-
-					GUILayout.Space(10);
-
-					GUILayout.BeginHorizontal();
-					inventoryItemList.itemList[viewIndex - 1].isUnique = (bool)EditorGUILayout.Toggle("Unique", inventoryItemList.itemList[viewIndex - 1].isUnique, GUILayout.ExpandWidth(false));
-					inventoryItemList.itemList[viewIndex - 1].isIndestructible = (bool)EditorGUILayout.Toggle("Indestructable", inventoryItemList.itemList[viewIndex - 1].isIndestructible, GUILayout.ExpandWidth(false));
-					inventoryItemList.itemList[viewIndex - 1].isQuestItem = (bool)EditorGUILayout.Toggle("QuestItem", inventoryItemList.itemList[viewIndex - 1].isQuestItem, GUILayout.ExpandWidth(false));
-					GUILayout.EndHorizontal();
-
-					GUILayout.Space(10);
-
-					GUILayout.BeginHorizontal();
-					inventoryItemList.itemList[viewIndex - 1].isStackable = (bool)EditorGUILayout.Toggle("Stackable ", inventoryItemList.itemList[viewIndex - 1].isStackable, GUILayout.ExpandWidth(false));
-					inventoryItemList.itemList[viewIndex - 1].destroyOnUse = (bool)EditorGUILayout.Toggle("Destroy On Use", inventoryItemList.itemList[viewIndex - 1].destroyOnUse, GUILayout.ExpandWidth(false));
-					inventoryItemList.itemList[viewIndex - 1].encumbranceValue = EditorGUILayout.FloatField("Encumberance", inventoryItemList.itemList[viewIndex - 1].encumbranceValue, GUILayout.ExpandWidth(false));
-					GUILayout.EndHorizontal();
-
-					GUILayout.Space(10);
-
-				}
-				else
-				{
-					GUILayout.Label("This Inventory List is Empty.");
-				}
-			}
-			if (GUI.changed)
-			{
-				EditorUtility.SetDirty(equipment);
+				equipment.GrantedBuffs.Add(null);
 			}
 		}
 	}

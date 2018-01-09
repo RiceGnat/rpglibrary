@@ -7,8 +7,7 @@ namespace Davfalcon.Engine
 		public static SystemData Current { get; private set; } = new SystemData();
 		public static void SetSystem(SystemData system)
 		{
-			if (system == null) throw new ArgumentNullException("System object cannot be set to null.");
-			Current = system;
+			Current = system ?? throw new ArgumentNullException("System object cannot be set to null.");
 		}
 
 		public IEffectFactory Effects { get; private set; } = new EffectFactory();

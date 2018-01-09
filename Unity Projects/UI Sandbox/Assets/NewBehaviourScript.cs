@@ -9,6 +9,11 @@ public class NewBehaviourScript : MonoBehaviour {
 
 		view.Bind(new int[] { 1, 2, 3 });
 		view.Draw();
+
+		foreach (string key in Davfalcon.Engine.SystemData.Current.Equipment.Keys)
+		{
+			Debug.Log(key);
+		}
 	}
 	
 	// Update is called once per frame

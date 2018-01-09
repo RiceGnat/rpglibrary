@@ -1,7 +1,7 @@
 ﻿using System;
 using RPGLibrary.Collections.Generic;
 
-namespace Davfalcon.Engine
+namespace Davfalcon
 {
 	[Serializable]
 	internal class EffectList : ManagedList<IEffectArgs>, IEffectList

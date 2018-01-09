@@ -7,6 +7,9 @@ namespace Davfalcon.Engine
 	{
 		private Dictionary<string, T> lookup = new Dictionary<string, T>();
 
+		public IEnumerable<string> Keys => lookup.Keys;
+		public IEnumerable<T> Entries => lookup.Values;
+
 		public T Get(string name)
 			=> (T)Serializer.DeepClone(lookup[name]);
 
