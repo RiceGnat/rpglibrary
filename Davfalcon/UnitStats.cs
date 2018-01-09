@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RPGLibrary;
 
 namespace Davfalcon
@@ -66,6 +67,14 @@ namespace Davfalcon
 		public UnitStats(IUnit unit)
 		{
 			Bind(unit);
+		}
+
+		public static IEnumerable<string> GetAllStatNames()
+		{
+			List<string> stats = new List<string>();
+			stats.AddRange(Enum.GetNames(typeof(Attributes)));
+			stats.AddRange(Enum.GetNames(typeof(CombatStats)));
+			return stats;
 		}
 	}
 }

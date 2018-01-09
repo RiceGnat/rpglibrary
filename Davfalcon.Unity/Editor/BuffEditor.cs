@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Davfalcon.Unity.Editor
@@ -15,7 +13,6 @@ namespace Davfalcon.Unity.Editor
 			float labelWidth = EditorGUIUtility.labelWidth;
 
 			EditorGUIUtility.labelWidth = 75;
-			buff.Name = EditorGUILayout.TextField("Name", buff.Name);
 
 			EditorGUILayout.Space();
 
@@ -25,10 +22,7 @@ namespace Davfalcon.Unity.Editor
 			EditorGUILayout.LabelField("Multipliers", GUILayout.MinWidth(0));
 			EditorGUILayout.EndHorizontal();
 
-			List<string> stats = new List<string>();
-			stats.AddRange(Enum.GetNames(typeof(Attributes)));
-			stats.AddRange(Enum.GetNames(typeof(CombatStats)));
-			foreach (string stat in stats)
+			foreach (string stat in UnitStats.GetAllStatNames())
 			{
 				EditorGUILayout.BeginHorizontal();
 				EditorGUILayout.LabelField(stat, GUILayout.MaxWidth(EditorGUIUtility.labelWidth - 4));
@@ -39,7 +33,8 @@ namespace Davfalcon.Unity.Editor
 
 			EditorGUILayout.Space();
 
-
+			if (GUI.changed)
+				EditorUtility.SetDirty(target);
 		}
 	}
 }

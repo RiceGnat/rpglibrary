@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,10 +11,7 @@ namespace Davfalcon.Unity.Editor
 		{
 			Equipment equipment = ((EquipmentDefinition)target).equipment;
 
-			float labelWidth = EditorGUIUtility.labelWidth;
-
 			EditorGUIUtility.labelWidth = 75;
-			equipment.Name = EditorGUILayout.TextField("Name", equipment.Name);
 			equipment.Slot = (EquipmentSlot)EditorGUILayout.EnumPopup("Slot", equipment.Slot);
 
 			EditorGUILayout.BeginHorizontal();
@@ -32,10 +27,7 @@ namespace Davfalcon.Unity.Editor
 			EditorGUILayout.LabelField("Multipliers", GUILayout.MinWidth(0));
 			EditorGUILayout.EndHorizontal();
 
-			List<string> stats = new List<string>();
-			stats.AddRange(Enum.GetNames(typeof(Attributes)));
-			stats.AddRange(Enum.GetNames(typeof(CombatStats)));
-			foreach (string stat in stats)
+			foreach (string stat in UnitStats.GetAllStatNames())
 			{
 				EditorGUILayout.BeginHorizontal();
 				EditorGUILayout.LabelField(stat, GUILayout.MaxWidth(EditorGUIUtility.labelWidth - 4));
@@ -51,13 +43,23 @@ namespace Davfalcon.Unity.Editor
 			EditorGUILayout.EndHorizontal();
 			for (int i = 0; i < equipment.GrantedBuffs.Count; i++)
 			{
-				BuffDefinition[] defs = Resources.FindObjectsOfTypeAll<BuffDefinition>();
-				//List<string> names = defs.Select(b => b.name).ToList();
-				BuffDefinition selected = defs.Where(b => b.buff.Name == equipment.GrantedBuffs[i]?.Name).FirstOrDefault();
+				BuffDefinition selected = null;
+				if (equipment.GrantedBuffs[i] != null)
+				{
+					string guid = AssetDatabase.FindAssets(equipment.GrantedBuffs[i].Name).FirstOrDefault();
+					if (guid != null)
+					{
+						selected = AssetDatabase.LoadAssetAtPath<BuffDefinition>(AssetDatabase.GUIDToAssetPath(guid));
+					}
+				}
 
 				EditorGUILayout.BeginHorizontal();
-				//equipment.GrantedBuffs[i] = defs[EditorGUILayout.Popup(selected, names.ToArray())].buff;
-				equipment.GrantedBuffs[i] = ((BuffDefinition)EditorGUILayout.ObjectField(selected, typeof(BuffDefinition), false))?.buff;
+				selected = (BuffDefinition)EditorGUILayout.ObjectField(selected, typeof(BuffDefinition), false);
+				if (selected != null)
+				{
+					selected.OnAfterDeserialize();
+					equipment.GrantedBuffs[i] = selected.buff;
+				}
 
 				if (GUILayout.Button("Remove", EditorStyles.miniButton))
 				{
@@ -70,6 +72,9 @@ namespace Davfalcon.Unity.Editor
 			{
 				equipment.GrantedBuffs.Add(null);
 			}
+
+			if (GUI.changed)
+				EditorUtility.SetDirty(target);
 		}
 	}
 }

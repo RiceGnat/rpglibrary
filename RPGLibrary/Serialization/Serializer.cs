@@ -113,5 +113,22 @@ namespace RPGLibrary.Serialization
 				return false;
 			}
 		}
+
+		public static byte[] ConvertToByteArray(object obj)
+		{
+			using (MemoryStream ms = new MemoryStream())
+			{
+				formatter.Serialize(ms, obj);
+				return ms.ToArray();
+			}
+		}
+
+		public static T ConvertFromByteArray<T>(byte[] buffer)
+		{
+			using (MemoryStream ms = new MemoryStream(buffer))
+			{
+				return (T)formatter.Deserialize(ms);
+			}
+		}
 	}
 }
