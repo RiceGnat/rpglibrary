@@ -7,6 +7,7 @@ namespace Davfalcon.Engine
 
 	public interface IEffectFactory
 	{
+		IEnumerable<string> Names { get; }
 		void LoadEffect(string name, Effect function);
 		Effect GetEffect(string name);
 		IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator);

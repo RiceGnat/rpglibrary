@@ -7,12 +7,9 @@ namespace Davfalcon
 	internal class EffectList : ManagedList<IEffectArgs>, IEffectList
 	{
 		public void Add(string name)
-			=> Add(name, 0);
+			=> Add(name, null);
 
-		public void Add(string name, int value)
-			=> Add(name, value, null);
-
-		public void Add(string name, int value, object[] args)
-			=> Add(new EffectArgs(name, value, args));
+		public void Add(string name, object[] args)
+			=> Add(new EffectArgs(name, args));
 	}
 }

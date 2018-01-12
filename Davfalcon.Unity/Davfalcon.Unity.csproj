@@ -46,6 +46,7 @@
     <Compile Include="BuffDefinition.cs" />
     <Compile Include="Editor\BuffEditor.cs" />
     <Compile Include="Editor\EquipmentEditor.cs" />
+    <Compile Include="EffectsLoader.cs" />
     <Compile Include="EquipmentDefinition.cs" />
     <Compile Include="UI\Editor\AttributeBindingDrawer.cs" />
     <Compile Include="UI\Editor\CombatStatsBindingDrawer.cs" />

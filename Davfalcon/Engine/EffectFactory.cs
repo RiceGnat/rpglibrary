@@ -7,6 +7,8 @@ namespace Davfalcon.Engine
 	{
 		private Dictionary<string, Effect> effects = new Dictionary<string, Effect>();
 
+		public IEnumerable<string> Names => effects.Keys;
+
 		public void LoadEffect(string name, Effect function)
 			=> effects.Add(name, function);
 

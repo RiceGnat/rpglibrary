@@ -6,16 +6,14 @@ namespace Davfalcon
 	public class EffectArgs : IEffectArgs
 	{
 		public string Name { get; private set; }
-		public int Value { get; private set; }
+		//public int Value { get; private set; }
 		public object[] Args { get; private set; }
 
-		public EffectArgs(string name, int value, object[] args)
+		public EffectArgs(string name, object[] args)
 		{
 			Name = name;
-			Value = value;
-			Args = args;
+			//Value = value;
+			Args = args ?? new object[] { };
 		}
-
-		public EffectArgs(string name, int value) : this(name, value, null) { }
 	}
 }

@@ -12,12 +12,15 @@ namespace Davfalcon.Unity.Editor
 			Equipment equipment = ((EquipmentDefinition)target).equipment;
 
 			EditorGUIUtility.labelWidth = 75;
-			equipment.Slot = (EquipmentSlot)EditorGUILayout.EnumPopup("Slot", equipment.Slot);
 
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.PrefixLabel("Description");
 			equipment.Description = EditorGUILayout.TextArea(equipment.Description);
 			EditorGUILayout.EndHorizontal();
+
+			EditorGUILayout.Space();
+
+			equipment.Slot = (EquipmentSlot)EditorGUILayout.EnumPopup("Slot", equipment.Slot);
 
 			EditorGUILayout.Space();
 
@@ -38,9 +41,7 @@ namespace Davfalcon.Unity.Editor
 
 			EditorGUILayout.Space();
 
-			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.LabelField("Granted buffs");
-			EditorGUILayout.EndHorizontal();
 			for (int i = 0; i < equipment.GrantedBuffs.Count; i++)
 			{
 				BuffDefinition selected = null;

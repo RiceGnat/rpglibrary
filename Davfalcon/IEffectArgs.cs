@@ -4,6 +4,6 @@
 	{
 		string Name { get; }
 		object[] Args { get; }
-		int Value { get; }
+		//int Value { get; }
 	}
 }
