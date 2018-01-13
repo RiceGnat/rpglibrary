@@ -24,7 +24,7 @@ namespace Davfalcon.Unity.Editor
 			spell.BaseHeal = IntField("Base heal", spell.BaseHeal);
 			spell.Range = IntField("Range", spell.Range);
 			spell.Size = IntField("Size", spell.Size);
-			spell.Size = IntField("Max targets", spell.MaxTargets);
+			spell.MaxTargets = IntField("Max targets", spell.MaxTargets);
 
 			Space();
 
