@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using RPGLibrary;
 using RPGLibrary.Collections.Generic;
 
 namespace Davfalcon
 {
 	[Serializable]
-	public class Spell : ISpell
+	public class Spell : ISpell, IEditableDescription
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
@@ -28,7 +29,5 @@ namespace Davfalcon
 		public IEffectList CastEffects { get { return effects; } }
 		IEnumerable<IEffectArgs> IEffectSource.Effects { get { return effects.ReadOnly; } }
 		string IEffectSource.SourceName { get { return Name; } }
-
-		string IAutoCatalogable.CatalogKey { get { return Name; } }
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace RPGLibrary
 {
-	public interface IStatsEditable : IStats
+	public interface IEditableStats : IStats
 	{
 		/// <summary>
 		/// Gets or sets a stat by string name.
@@ -20,12 +20,12 @@ namespace RPGLibrary
 		/// Sets a stat by string name.
 		/// </summary>
 		/// <param name="stat">The name of the stat.</param>
-		IStatsEditable Set(string stat, int value);
+		IEditableStats Set(string stat, int value);
 
 		/// <summary>
 		/// Sets a stat by enum name.
 		/// </summary>
 		/// <param name="stat">The name of the stat.</param>
-		IStatsEditable Set(Enum stat, int value);
+		IEditableStats Set(Enum stat, int value);
 	}
 }

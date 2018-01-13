@@ -3,17 +3,12 @@
 	/// <summary>
 	/// Exposes properties of unit modifiers.
 	/// </summary>
-	public interface IUnitModifier : IUnit
+	public interface IUnitModifier : IUnit, IDescribable
 	{
 		/// <summary>
 		/// Gets the name of the modifier.
 		/// </summary>
 		new string Name { get; }
-
-		/// <summary>
-		/// Gets a description of the modifier.
-		/// </summary>
-		string Description { get; }
 
 		/// <summary>
 		/// Gets the unit the object is modifying.

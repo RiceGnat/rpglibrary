@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using RPGLibrary;
 using RPGLibrary.Serialization;
 
 namespace Davfalcon.Engine
 {
-	internal class Catalog<T> : IAutoCatalog<T> where T : IAutoCatalogable
+	internal class Catalog<T> : IAutoCatalog<T> where T : INameable
 	{
 		private Dictionary<string, T> lookup = new Dictionary<string, T>();
 
@@ -14,7 +15,7 @@ namespace Davfalcon.Engine
 			=> (T)Serializer.DeepClone(lookup[name]);
 
 		public void Load(T entry)
-			=> Load(entry.CatalogKey, entry);
+			=> Load(entry.Name, entry);
 
 		public void Load(string name, T entry)
 			=> lookup.Add(name, entry);

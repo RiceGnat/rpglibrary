@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
+using RPGLibrary;
 
 namespace Davfalcon
 {
-	public interface ISpell : IEffectSource, IAutoCatalogable
+	public interface ISpell : IEffectSource, IDescribable
 	{
-		string Name { get; }
-		string Description { get; }
-
 		SpellTargetType TargetType { get; }
 		Element SpellElement { get; }
 		DamageType DamageType { get; }

@@ -6,7 +6,7 @@ namespace RPGLibrary
 	/// Modify a unit's stats.
 	/// </summary>
 	[Serializable]
-	public class UnitStatsModifier : UnitModifier, IStatsModifierEditable, IStatsModifier, IUnit
+	public class UnitStatsModifier : UnitModifier, IEditableStatsModifier, IStatsModifier, IUnit
 	{
 		private class StatsModifier : IStatsPackage
 		{
@@ -47,8 +47,8 @@ namespace RPGLibrary
 		[NonSerialized]
 		private StatsModifier statsModifier;
 
-		public IStatsEditable Additions { get; set; }
-		public IStatsEditable Multiplications { get; set; }
+		public IEditableStats Additions { get; set; }
+		public IEditableStats Multiplications { get; set; }
 
 		public override void Bind(IUnit target)
 		{

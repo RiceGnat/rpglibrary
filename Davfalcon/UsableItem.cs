@@ -5,7 +5,7 @@ using RPGLibrary;
 namespace Davfalcon
 {
 	[Serializable]
-	public class UsableItem : Item, IUsableItem
+	public class UsableItem : Item, IUsableItem, IDescribable
 	{
 		public bool IsConsumable { get; set; }
 		public int Remaining { get; set; }
@@ -15,8 +15,6 @@ namespace Davfalcon
 		public IEffectList Effects { get { return effects; } }
 		IEnumerable<IEffectArgs> IEffectSource.Effects { get { return effects.ReadOnly; } }
 		string IEffectSource.SourceName { get { return Name; } }
-
-		string IAutoCatalogable.CatalogKey { get { return Name; } }
 
 		public void Use()
 		{

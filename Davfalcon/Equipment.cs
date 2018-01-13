@@ -25,7 +25,5 @@ namespace Davfalcon
 		{
 			Slot = slot;
 		}
-
-		string IAutoCatalogable.CatalogKey { get { return Name; } }
 	}
 }

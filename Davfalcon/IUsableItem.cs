@@ -2,7 +2,7 @@
 
 namespace Davfalcon
 {
-	public interface IUsableItem : IItem, IEffectSource, IAutoCatalogable
+	public interface IUsableItem : IItem, IEffectSource
 	{
 		bool IsConsumable { get; }
 		int Remaining { get; set; }

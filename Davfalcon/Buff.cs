@@ -15,8 +15,6 @@ namespace Davfalcon
 		IEnumerable<IEffectArgs> IEffectSource.Effects { get { return effects.ReadOnly; } }
 		string IEffectSource.SourceName { get { return Name; } }
 
-		string IAutoCatalogable.CatalogKey { get { return Name; } }
-
 		public Buff() : base() { }
 
 		public Buff(string name) : base()

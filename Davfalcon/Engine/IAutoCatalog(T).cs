@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using RPGLibrary;
 using RPGLibrary.Collections.Generic;
 
 namespace Davfalcon.Engine
 {
-	public interface IAutoCatalog<T> : ICatalog<T> where T : IAutoCatalogable
+	public interface IAutoCatalog<T> : ICatalog<T> where T : INameable
 	{
 		void Load(T entry);
 	}

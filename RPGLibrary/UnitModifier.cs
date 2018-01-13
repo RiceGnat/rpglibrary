@@ -6,7 +6,7 @@ namespace RPGLibrary
 	/// Abstract base class for unit modifiers.
 	/// </summary>
 	[Serializable]
-	public abstract class UnitModifier : IUnitModifier
+	public abstract class UnitModifier : IUnitModifier, IEditableDescription
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
@@ -20,6 +20,7 @@ namespace RPGLibrary
 
 		// Resolve Name property ambiguity
 		string IUnitModifier.Name => Name;
+		string INameable.Name => Name;
 
 		#region IUnit implementation
 		string IUnit.Name => InterfaceUnit.Name;

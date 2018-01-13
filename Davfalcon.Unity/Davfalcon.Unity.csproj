@@ -47,9 +47,12 @@
     <Compile Include="Editor\BuffEditor.cs" />
     <Compile Include="Editor\EditorGUIHelper.cs" />
     <Compile Include="Editor\EquipmentEditor.cs" />
-    <Compile Include="EffectsLoader.cs" />
+    <Compile Include="Editor\SpellEditor.cs" />
+    <Compile Include="SystemDataLoader.cs" />
     <Compile Include="EquipmentDefinition.cs" />
+    <Compile Include="NameableSerializationContainer%28T%29.cs" />
     <Compile Include="SerializationContainer%28T%29.cs" />
+    <Compile Include="SpellDefinition.cs" />
     <Compile Include="UI\Editor\AttributeBindingDrawer.cs" />
     <Compile Include="UI\Editor\CombatStatsBindingDrawer.cs" />
     <Compile Include="UI\StatsView.cs" />

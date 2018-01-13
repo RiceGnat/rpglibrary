@@ -10,7 +10,22 @@ public class NewBehaviourScript : MonoBehaviour {
 		view.Bind(new int[] { 1, 2, 3 });
 		view.Draw();
 
+		foreach (string key in Davfalcon.Engine.SystemData.Current.Effects.Names)
+		{
+			Debug.Log(key);
+		}
+
+		foreach (string key in Davfalcon.Engine.SystemData.Current.Buffs.Keys)
+		{
+			Debug.Log(key);
+		}
+
 		foreach (string key in Davfalcon.Engine.SystemData.Current.Equipment.Keys)
+		{
+			Debug.Log(key);
+		}
+
+		foreach (string key in Davfalcon.Engine.SystemData.Current.Spells.Keys)
 		{
 			Debug.Log(key);
 		}

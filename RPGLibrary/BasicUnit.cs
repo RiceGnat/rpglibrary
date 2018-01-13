@@ -7,7 +7,7 @@ namespace RPGLibrary
 	/// Implements basic unit functionality.
 	/// </summary>
 	[Serializable]
-	public class BasicUnit : IUnit
+	public class BasicUnit : IUnit, IEditableName
 	{
 		private class BaseStatsRouter : IStatsPackage
 		{
@@ -62,7 +62,7 @@ namespace RPGLibrary
 		public virtual IStats Stats { get { return Modifiers.StatsDetails == StatsDetails ? StatsDetails.Base : StatsDetails.Final; } }
 		public virtual IStatsPackage StatsDetails { get { return statsRouter; } }
 
-		public IStatsEditable BaseStats { get; protected set; }
+		public IEditableStats BaseStats { get; protected set; }
 		public IUnitModifierStack Modifiers { get; protected set; }
 		public IUnitProperties Properties { get; protected set; }
 

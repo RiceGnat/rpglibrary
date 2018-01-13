@@ -3,16 +3,7 @@
 	/// <summary>
 	/// Exposes basic properties of an item.
 	/// </summary>
-	public interface IItem
+	public interface IItem : IDescribable
 	{
-		/// <summary>
-		/// Gets the item's name.
-		/// </summary>
-		string Name { get; }
-
-		/// <summary>
-		/// Gets a description of the item.
-		/// </summary>
-		string Description { get; }
 	}
 }

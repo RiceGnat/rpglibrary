@@ -3,13 +3,13 @@
 	/// <summary>
 	/// Exposes basic properties of a unit.
 	/// </summary>
-	public interface IUnit
+	public interface IUnit : INameable
 	{
 		/// <summary>
 		/// Gets the unit's name.
 		/// </summary>
-		string Name { get; }
-
+		new string Name { get; }
+		
 		/// <summary>
 		/// Gets the unit's class.
 		/// </summary>
