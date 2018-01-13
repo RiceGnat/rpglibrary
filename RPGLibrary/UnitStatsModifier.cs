@@ -6,7 +6,7 @@ namespace RPGLibrary
 	/// Modify a unit's stats.
 	/// </summary>
 	[Serializable]
-	public class UnitStatsModifier : UnitModifier, IUnit
+	public class UnitStatsModifier : UnitModifier, IStatsModifierEditable, IStatsModifier, IUnit
 	{
 		private class StatsModifier : IStatsPackage
 		{
@@ -56,8 +56,11 @@ namespace RPGLibrary
 			statsModifier = new StatsModifier(Target, Additions, Multiplications);
 		}
 
-		IStats IUnit.Stats { get { return statsModifier.Final; } }
-		IStatsPackage IUnit.StatsDetails { get { return statsModifier; } }
+		IStats IUnit.Stats => statsModifier.Final;
+		IStatsPackage IUnit.StatsDetails => statsModifier;
+
+		IStats IStatsModifier.Additions => Additions;
+		IStats IStatsModifier.Multiplications => Multiplications;
 
 		public UnitStatsModifier()
 		{

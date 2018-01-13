@@ -17,20 +17,7 @@ namespace RPGLibrary
 			return Get(stat.ToString());
 		}
 
-		public int this[string stat]
-		{
-			get
-			{
-				return Get(stat);
-			}
-		}
-
-		public int this[Enum stat]
-		{
-			get
-			{
-				return Get(stat);
-			}
-		}
+		public int this[string stat] => Get(stat);
+		public int this[Enum stat] => Get(stat);
 	}
 }

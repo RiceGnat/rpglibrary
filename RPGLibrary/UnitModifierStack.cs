@@ -12,15 +12,9 @@ namespace RPGLibrary
 	{
 		private List<IUnitModifier> stack = new List<IUnitModifier>();
 
-		protected override IUnit InterfaceUnit
-		{
-			get
-			{
-				return stack.Count > 0 ? stack[stack.Count - 1] : Target;
-			}
-		}
+		protected override IUnit InterfaceUnit => stack.Count > 0 ? stack[stack.Count - 1] : Target;
 
-		public int Count { get { return stack.Count; } }
+		public int Count => stack.Count;
 
 		public override void Bind(IUnit target)
 		{
@@ -56,10 +50,7 @@ namespace RPGLibrary
 			return true;
 		}
 
-		public void Clear()
-		{
-			stack.Clear();
-		}
+		public void Clear()	=> stack.Clear();
 
 		[OnDeserialized]
 		private void Rebind(StreamingContext context)

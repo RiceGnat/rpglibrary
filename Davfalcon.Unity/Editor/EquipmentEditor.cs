@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using static UnityEditor.EditorGUILayout;
 
 namespace Davfalcon.Unity.Editor
 {
@@ -9,73 +10,62 @@ namespace Davfalcon.Unity.Editor
 	{
 		public override void OnInspectorGUI()
 		{
-			Equipment equipment = ((EquipmentDefinition)target).equipment;
+			Equipment equipment = ((EquipmentDefinition)target).obj;
+			EditorGUIHelper.SetLabelWidth();
 
-			EditorGUIUtility.labelWidth = 75;
+			BeginHorizontal();
+			PrefixLabel("Description");
+			equipment.Description = TextArea(equipment.Description);
+			EndHorizontal();
 
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.PrefixLabel("Description");
-			equipment.Description = EditorGUILayout.TextArea(equipment.Description);
-			EditorGUILayout.EndHorizontal();
+			Space();
 
-			EditorGUILayout.Space();
+			equipment.Slot = (EquipmentSlot)EnumPopup("Slot", equipment.Slot);
 
-			equipment.Slot = (EquipmentSlot)EditorGUILayout.EnumPopup("Slot", equipment.Slot);
+			Space();
 
-			EditorGUILayout.Space();
+			EditorGUIHelper.RenderStatModifiers(equipment, ref ((EquipmentDefinition)target).statsExpanded);
 
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("", GUILayout.MaxWidth(EditorGUIUtility.labelWidth - 4));
-			EditorGUILayout.LabelField("Additions", GUILayout.MinWidth(0));
-			EditorGUILayout.LabelField("Multipliers", GUILayout.MinWidth(0));
-			EditorGUILayout.EndHorizontal();
+			Space();
 
-			foreach (string stat in UnitStats.GetAllStatNames())
+			ref bool expanded = ref ((EquipmentDefinition)target).buffsExpanded;
+			expanded = Foldout(expanded, "Granted buffs", true);
+			if (expanded)
 			{
-				EditorGUILayout.BeginHorizontal();
-				EditorGUILayout.LabelField(stat, GUILayout.MaxWidth(EditorGUIUtility.labelWidth - 4));
-				equipment.Additions[stat] = EditorGUILayout.IntField(equipment.Additions[stat]);
-				equipment.Multiplications[stat] = EditorGUILayout.IntField(equipment.Multiplications[stat]);
-				EditorGUILayout.EndHorizontal();
-			}
-
-			EditorGUILayout.Space();
-
-			EditorGUILayout.LabelField("Granted buffs");
-			for (int i = 0; i < equipment.GrantedBuffs.Count; i++)
-			{
-				BuffDefinition selected = null;
-				if (equipment.GrantedBuffs[i] != null)
+				for (int i = 0; i < equipment.GrantedBuffs.Count; i++)
 				{
-					string guid = AssetDatabase.FindAssets(equipment.GrantedBuffs[i].Name).FirstOrDefault();
-					if (guid != null)
+					BuffDefinition selected = null;
+					if (equipment.GrantedBuffs[i] != null)
 					{
-						selected = AssetDatabase.LoadAssetAtPath<BuffDefinition>(AssetDatabase.GUIDToAssetPath(guid));
+						string guid = AssetDatabase.FindAssets(equipment.GrantedBuffs[i].Name).FirstOrDefault();
+						if (guid != null)
+						{
+							selected = AssetDatabase.LoadAssetAtPath<BuffDefinition>(AssetDatabase.GUIDToAssetPath(guid));
+						}
 					}
-				}
 
-				EditorGUILayout.BeginHorizontal();
-				selected = (BuffDefinition)EditorGUILayout.ObjectField(selected, typeof(BuffDefinition), false);
-				if (selected != null)
+					BeginHorizontal();
+					selected = (BuffDefinition)ObjectField(selected, typeof(BuffDefinition), false);
+					if (selected != null)
+					{
+						selected.OnAfterDeserialize();
+						equipment.GrantedBuffs[i] = selected.obj;
+					}
+
+					if (GUILayout.Button("Remove", EditorStyles.miniButton))
+					{
+						equipment.GrantedBuffs.RemoveAt(i);
+						i--;
+					}
+					EndHorizontal();
+				}
+				if (GUILayout.Button("Add"))
 				{
-					selected.OnAfterDeserialize();
-					equipment.GrantedBuffs[i] = selected.buff;
+					equipment.GrantedBuffs.Add(null);
 				}
-
-				if (GUILayout.Button("Remove", EditorStyles.miniButton))
-				{
-					equipment.GrantedBuffs.RemoveAt(i);
-					i--;
-				}
-				EditorGUILayout.EndHorizontal();
-			}
-			if (GUILayout.Button("Add"))
-			{
-				equipment.GrantedBuffs.Add(null);
 			}
 
-			if (GUI.changed)
-				EditorUtility.SetDirty(target);
+			EditorGUIHelper.CheckChanged(target);
 		}
 	}
 }

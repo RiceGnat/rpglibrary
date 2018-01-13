@@ -1,28 +1,21 @@
-﻿using System;
-using RPGLibrary.Serialization;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Davfalcon.Unity
 {
 	[CreateAssetMenu(menuName = "Buff")]
-	public class BuffDefinition : ScriptableObject, ISerializationCallbackReceiver
+	public class BuffDefinition : SerializationContainer<Buff>
 	{
-		[NonSerialized]
-		public Buff buff = new Buff();
+		public bool statsExpanded = true;
+		public bool effectsExpanded = true;
 
-		[SerializeField]
-		private byte[] data;
-
-		public void OnBeforeSerialize()
+		private void Awake()
 		{
-			buff.Name = name;
-			data = Serializer.ConvertToByteArray(buff);
+			obj = new Buff();
 		}
 
-		public void OnAfterDeserialize()
+		public override void SerializationPrep()
 		{
-			if (data != null)
-				buff = Serializer.ConvertFromByteArray<Buff>(data);
+			obj.Name = name;
 		}
 	}
 }

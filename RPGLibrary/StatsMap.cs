@@ -11,51 +11,27 @@ namespace RPGLibrary
 	{
 		private Dictionary<string, int> map = new Dictionary<string, int>();
 
-		public override int Get(string stat)
-		{
-			if (!map.ContainsKey(stat))
-			{
-				return 0;
-			}
-
-			return map[stat];
-		}
+		public override int Get(string stat) => map.ContainsKey(stat) ? map[stat] : 0;
 
 		public IStatsEditable Set(string stat, int value)
 		{
 			int old = Get(stat);
 			map[stat] = value;
-
 			return this;
 		}
 
-		public IStatsEditable Set(Enum stat, int value)
-		{
-			return Set(stat.ToString(), value);
-		}
+		public IStatsEditable Set(Enum stat, int value) => Set(stat.ToString(), value);
 
 		new public int this[string stat]
 		{
-			get
-			{
-				return base[stat];
-			}
-			set
-			{
-				Set(stat, value);
-			}
+			get => base[stat];
+			set => Set(stat, value);
 		}
 
 		new public int this[Enum stat]
 		{
-			get
-			{
-				return base[stat];
-			}
-			set
-			{
-				Set(stat, value);
-			}
+			get => base[stat];
+			set => Set(stat, value);
 		}
 	}
 }

@@ -8,7 +8,7 @@ namespace RPGLibrary
 	[Serializable]
 	public class ModifierItem : UnitStatsModifier, IModifierItem
 	{
-		IStats IModifierItem.Additions { get { return Additions; } }
-		IStats IModifierItem.Multiplications { get { return Multiplications; } }
+		IStats IStatsModifier.Additions { get { return Additions; } }
+		IStats IStatsModifier.Multiplications { get { return Multiplications; } }
 	}
 }

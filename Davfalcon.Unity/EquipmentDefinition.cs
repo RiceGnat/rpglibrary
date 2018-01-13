@@ -1,28 +1,21 @@
-﻿using System;
-using RPGLibrary.Serialization;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Davfalcon.Unity
 {
 	[CreateAssetMenu(menuName = "Equipment")]
-	public class EquipmentDefinition : ScriptableObject, ISerializationCallbackReceiver
+	public class EquipmentDefinition : SerializationContainer<Equipment>
 	{
-		[NonSerialized]
-		public Equipment equipment = new Equipment(EquipmentSlot.Armor);
+		public bool statsExpanded = true;
+		public bool buffsExpanded = true;
 
-		[SerializeField]
-		private byte[] data;
-
-		public void OnBeforeSerialize()
+		private void Awake()
 		{
-			equipment.Name = name;
-			data = Serializer.ConvertToByteArray(equipment);
+			obj = new Equipment(EquipmentSlot.Armor);
 		}
 
-		public void OnAfterDeserialize()
+		public override void SerializationPrep()
 		{
-			if (data != null)
-				equipment = Serializer.ConvertFromByteArray<Equipment>(data);
+			obj.Name = name;
 		}
 	}
 }
