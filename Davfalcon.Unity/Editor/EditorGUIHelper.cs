@@ -40,10 +40,10 @@ namespace Davfalcon.Unity.Editor
 			EndHorizontal();
 		}
 
-		public static Tobj RenderMappedObjectField<Tobj, Tdef, U>(string label, Tobj obj)
-			where Tobj : class, INameable
-			where Tdef : NameableSerializationContainer<U>
-			where U : Tobj, IEditableName
+		public static Tin RenderMappedObjectField<Tin, Tdef, U>(string label, Tin obj)
+			where Tin : class, INameable
+			where Tdef : SerializationContainer<U>
+			where U : Tin, new()
 		{
 			Tdef selected = null;
 			if (obj != null)
@@ -51,7 +51,9 @@ namespace Davfalcon.Unity.Editor
 				selected = FindAssetWithName<Tdef>(obj.Name);
 			}
 
-			selected = (Tdef)ObjectField(label, selected, typeof(Tdef), false);
+			selected = String.IsNullOrEmpty(label)
+				? (Tdef)ObjectField(selected, typeof(Tdef), false)
+				: (Tdef)ObjectField(label, selected, typeof(Tdef), false);
 			if (selected != null)
 			{
 				selected.OnAfterDeserialize();
@@ -102,7 +104,7 @@ namespace Davfalcon.Unity.Editor
 				for (int i = 0; i < buffs.Count; i++)
 				{
 					BeginHorizontal();
-					IBuff selected = RenderMappedObjectField<IBuff, BuffDefinition>(null, buffs[i]);
+					IBuff selected = RenderMappedObjectField<IBuff, BuffDefinition, Buff>(null, buffs[i]);
 
 					if (GUILayout.Button("Remove", EditorStyles.miniButton))
 					{

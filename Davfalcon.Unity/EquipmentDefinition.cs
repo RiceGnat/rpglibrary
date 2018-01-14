@@ -8,10 +8,5 @@ namespace Davfalcon.Unity
 		public bool statsExpanded = true;
 		public bool buffsExpanded = true;
 		public bool effectsExpanded = true;
-
-		private void Awake()
-		{
-			if (obj == null) obj = new Equipment(EquipmentSlot.Armor);
-		}
 	}
 }

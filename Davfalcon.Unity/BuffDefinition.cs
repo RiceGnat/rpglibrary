@@ -7,10 +7,5 @@ namespace Davfalcon.Unity
 	{
 		public bool statsExpanded = true;
 		public bool effectsExpanded = true;
-
-		private void Awake()
-		{
-			if (obj == null) obj = new Buff();
-		}
 	}
 }

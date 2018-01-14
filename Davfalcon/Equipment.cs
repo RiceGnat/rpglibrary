@@ -14,14 +14,13 @@ namespace Davfalcon
 		private readonly IList<IBuff> grantedBuffsReadOnly;
 		IList<IBuff> IEquipment.GrantedBuffs { get { return grantedBuffsReadOnly; } }
 
-		protected Equipment()
+		public Equipment()
 			: base()
 		{
 			grantedBuffsReadOnly = grantedBuffs.AsReadOnly();
 		}
 
-		public Equipment(EquipmentSlot slot)
-			: this()
+		public Equipment(EquipmentSlot slot) : this()
 		{
 			Slot = slot;
 		}

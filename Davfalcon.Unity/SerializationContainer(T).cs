@@ -5,10 +5,10 @@ using UnityEngine;
 namespace Davfalcon.Unity
 {
 	[Serializable]
-	public abstract class SerializationContainer<T> : ScriptableObject, ISerializationCallbackReceiver
+	public abstract class SerializationContainer<T> : ScriptableObject, ISerializationCallbackReceiver where T : new()
 	{
 		[NonSerialized]
-		public T obj;
+		public T obj = new T();
 
 		[SerializeField]
 		private byte[] data;

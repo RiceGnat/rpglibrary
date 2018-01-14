@@ -24,7 +24,7 @@ namespace Davfalcon
 
 	public enum EquipmentSlot
 	{
-		Weapon, Armor, Accessory
+		Armor, Accessory, Weapon
 	}
 
 	public enum WeaponType

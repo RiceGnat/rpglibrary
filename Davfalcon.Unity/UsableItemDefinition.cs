@@ -6,10 +6,5 @@ namespace Davfalcon.Unity
 	public class UsableItemDefinition : NameableSerializationContainer<UsableItem>
 	{
 		public bool effectsExpanded = true;
-
-		private void Awake()
-		{
-			if (obj == null) obj = new UsableItem();
-		}
 	}
 }
