@@ -7,5 +7,6 @@ namespace Davfalcon
 	{
 		string Source { get; set; }
 		bool IsDebuff { get; }
+		int SuccessChance { get; set; }
 	}
 }

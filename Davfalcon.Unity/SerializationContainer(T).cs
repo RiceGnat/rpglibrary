@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Davfalcon.Unity
 {
+	[Serializable]
 	public abstract class SerializationContainer<T> : ScriptableObject, ISerializationCallbackReceiver
 	{
 		[NonSerialized]

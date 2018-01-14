@@ -10,7 +10,7 @@ namespace Davfalcon.Unity
 
 		private void Awake()
 		{
-			obj = new Buff();
+			if (obj == null) obj = new Buff();
 		}
 	}
 }

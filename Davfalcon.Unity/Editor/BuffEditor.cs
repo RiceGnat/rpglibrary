@@ -17,7 +17,8 @@ namespace Davfalcon.Unity.Editor
 			Space();
 
 			buff.IsDebuff = Toggle("Debuff", buff.IsDebuff);
-			buff.Duration = IntField("Duration", buff.Duration);
+			buff.Duration = IntField("Default duration", buff.Duration);
+			buff.SuccessChance = IntField("Default chance", buff.SuccessChance);
 
 			Space();
 

@@ -58,7 +58,7 @@ namespace Davfalcon.Unity.Editor
 			}
 		}
 
-		public static void RenderBuffsList(IList<IBuff> buffs, string label, ref bool expanded)
+		public static void RenderBuffsList(IList<IBuff> buffs, string label, bool showParams, ref bool expanded)
 		{
 			expanded = Foldout(expanded, label, true);
 			if (expanded)
@@ -80,7 +80,13 @@ namespace Davfalcon.Unity.Editor
 					if (selected != null)
 					{
 						selected.OnAfterDeserialize();
-						buffs[i] = selected.obj;
+
+						if (buffs[i] == null || buffs[i].Name != selected.name)
+							buffs[i] = selected.obj;
+					}
+					else
+					{
+						buffs[i] = null;
 					}
 
 					if (GUILayout.Button("Remove", EditorStyles.miniButton))
@@ -89,6 +95,18 @@ namespace Davfalcon.Unity.Editor
 						i--;
 					}
 					EndHorizontal();
+
+					if (showParams && selected != null)
+					{
+						float labelWidth = EditorGUIUtility.labelWidth;
+						EditorGUIUtility.labelWidth = 60;
+						BeginHorizontal();
+						buffs[i].Duration = IntField("Duration", buffs[i].Duration);
+						GUILayout.Space(10);
+						buffs[i].SuccessChance = IntField("Chance", buffs[i].SuccessChance);
+						EndHorizontal();
+						EditorGUIUtility.labelWidth = labelWidth;
+					}
 				}
 				if (GUILayout.Button("Add"))
 				{
@@ -131,7 +149,7 @@ namespace Davfalcon.Unity.Editor
 
 					for (int j = 0; j < args.Count; j++)
 					{
-						BeginHorizontal(GUILayout.Height(EditorGUIUtility.singleLineHeight));
+						BeginHorizontal();
 						LabelField(String.Format("[{0}]", j), GUILayout.MaxWidth(25));
 
 						int selectedType = args[j] is string ? 1 : 0;

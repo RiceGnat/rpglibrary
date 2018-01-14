@@ -9,6 +9,7 @@ namespace Davfalcon
 	{
 		public string Source { get; set; }
 		public bool IsDebuff { get; set; }
+		public int SuccessChance { get; set; }
 
 		private EffectList effects = new EffectList();
 		public IEffectList UpkeepEffects { get { return effects; } }

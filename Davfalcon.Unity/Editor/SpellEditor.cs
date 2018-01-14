@@ -28,7 +28,7 @@ namespace Davfalcon.Unity.Editor
 
 			Space();
 
-			RenderBuffsList(spell.GrantedBuffs, "Applied buffs", ref ((SpellDefinition)target).buffsExpanded);
+			RenderBuffsList(spell.GrantedBuffs, "Applied buffs", true, ref ((SpellDefinition)target).buffsExpanded);
 
 			Space();
 

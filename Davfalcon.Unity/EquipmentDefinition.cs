@@ -10,7 +10,7 @@ namespace Davfalcon.Unity
 
 		private void Awake()
 		{
-			obj = new Equipment(EquipmentSlot.Armor);
+			if (obj == null) obj = new Equipment(EquipmentSlot.Armor);
 		}
 	}
 }

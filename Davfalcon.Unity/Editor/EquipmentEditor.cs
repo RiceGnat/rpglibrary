@@ -16,7 +16,11 @@ namespace Davfalcon.Unity.Editor
 
 			Space();
 
+			// TODO: check if slot changed between weapon and non-weapon
 			equipment.Slot = (EquipmentSlot)EnumPopup("Slot", equipment.Slot);
+			// TODO: re-create object if changed
+
+			// TODO: weapon properties here
 
 			Space();
 
@@ -24,7 +28,7 @@ namespace Davfalcon.Unity.Editor
 
 			Space();
 
-			RenderBuffsList(equipment.GrantedBuffs, "Granted buffs", ref ((EquipmentDefinition)target).buffsExpanded);
+			RenderBuffsList(equipment.GrantedBuffs, "Granted buffs", false, ref ((EquipmentDefinition)target).buffsExpanded);
 
 			CheckChanged(target);
 		}
