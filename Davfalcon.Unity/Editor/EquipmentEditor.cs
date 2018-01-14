@@ -16,13 +16,33 @@ namespace Davfalcon.Unity.Editor
 
 			Space();
 
-			// TODO: check if slot changed between weapon and non-weapon
-			equipment.Slot = (EquipmentSlot)EnumPopup("Slot", equipment.Slot);
-			// TODO: re-create object if changed
+			bool wasWeapon = equipment.Slot == EquipmentSlot.Weapon;
+			equipment.Slot = (EquipmentSlot)EnumPopup("Equipment slot", equipment.Slot);
+			bool isWeapon = equipment.Slot == EquipmentSlot.Weapon;
 
-			// TODO: weapon properties here
+			if (wasWeapon != isWeapon)
+			{
+				equipment = isWeapon ? new Weapon() : new Equipment(equipment.Slot);
+				((EquipmentDefinition)target).obj = equipment;
+			}
 
 			Space();
+
+			if (isWeapon)
+			{
+				Weapon weapon = equipment as Weapon;
+
+				weapon.BaseDamage = IntField("Base damage", weapon.BaseDamage);
+				weapon.CritMultiplier = IntSlider("Crit multiplier", weapon.CritMultiplier, 1, 10);
+				weapon.Type = (WeaponType)EnumPopup("Weapon type", weapon.Type);
+				weapon.AttackElement = (Element)EnumPopup("Attack element", weapon.AttackElement);
+
+				Space();
+
+				RenderEffectsList(weapon.OnHitEffects, "On-hit effects", ref ((EquipmentDefinition)target).effectsExpanded);
+
+				Space();
+			}
 
 			RenderStatModifiers(equipment, ref ((EquipmentDefinition)target).statsExpanded);
 

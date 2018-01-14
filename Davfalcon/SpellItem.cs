@@ -5,11 +5,6 @@ namespace Davfalcon
 	[Serializable]
 	public class SpellItem : UsableItem, ISpellItem
 	{
-		public ISpell Spell { get; private set; }
-
-		public SpellItem(ISpell spell)
-		{
-			Spell = spell;
-		}
+		public ISpell Spell { get; set; }
 	}
 }

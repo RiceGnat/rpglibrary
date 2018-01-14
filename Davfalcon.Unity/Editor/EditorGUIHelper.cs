@@ -12,6 +12,16 @@ namespace Davfalcon.Unity.Editor
 {
 	public static class EditorGUIHelper
 	{
+		public static T FindAssetWithName<T>(string name) where T : UnityEngine.Object
+		{
+			string guid = AssetDatabase.FindAssets(name).FirstOrDefault();
+			if (guid != null)
+			{
+				return AssetDatabase.LoadAssetAtPath<T>(AssetDatabase.GUIDToAssetPath(guid));
+			}
+			else return null;
+		}
+
 		public static void SetLabelWidth()
 		{
 			EditorGUIUtility.labelWidth = 100;
@@ -28,6 +38,32 @@ namespace Davfalcon.Unity.Editor
 			PrefixLabel("Description");
 			item.Description = TextArea(item.Description);
 			EndHorizontal();
+		}
+
+		public static Tobj RenderMappedObjectField<Tobj, Tdef, U>(string label, Tobj obj)
+			where Tobj : class, INameable
+			where Tdef : NameableSerializationContainer<U>
+			where U : Tobj, IEditableName
+		{
+			Tdef selected = null;
+			if (obj != null)
+			{
+				selected = FindAssetWithName<Tdef>(obj.Name);
+			}
+
+			selected = (Tdef)ObjectField(label, selected, typeof(Tdef), false);
+			if (selected != null)
+			{
+				selected.OnAfterDeserialize();
+
+				if (obj == null || obj.Name != selected.name)
+					return selected.obj;
+				else return obj;
+			}
+			else
+			{
+				return null;
+			}
 		}
 
 		public static void RenderStatModifiers(IEditableStatsModifier modifier, ref bool expanded)
@@ -65,29 +101,8 @@ namespace Davfalcon.Unity.Editor
 			{
 				for (int i = 0; i < buffs.Count; i++)
 				{
-					BuffDefinition selected = null;
-					if (buffs[i] != null)
-					{
-						string guid = AssetDatabase.FindAssets(buffs[i].Name).FirstOrDefault();
-						if (guid != null)
-						{
-							selected = AssetDatabase.LoadAssetAtPath<BuffDefinition>(AssetDatabase.GUIDToAssetPath(guid));
-						}
-					}
-
 					BeginHorizontal();
-					selected = (BuffDefinition)ObjectField(selected, typeof(BuffDefinition), false);
-					if (selected != null)
-					{
-						selected.OnAfterDeserialize();
-
-						if (buffs[i] == null || buffs[i].Name != selected.name)
-							buffs[i] = selected.obj;
-					}
-					else
-					{
-						buffs[i] = null;
-					}
+					IBuff selected = RenderMappedObjectField<IBuff, BuffDefinition>(null, buffs[i]);
 
 					if (GUILayout.Button("Remove", EditorStyles.miniButton))
 					{
