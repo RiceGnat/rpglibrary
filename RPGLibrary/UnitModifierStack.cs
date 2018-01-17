@@ -18,8 +18,25 @@ namespace RPGLibrary
 
 		public override void Bind(IUnit target)
 		{
+			// Set target
 			base.Bind(target);
-			if (stack.Count > 0) stack[0].Bind(Target);
+
+			BindStack();
+		}
+
+		private void BindStack()
+		{
+			if (stack.Count > 0)
+			{
+				// Bind first modifier in the stack to the target
+				stack[0].Bind(Target);
+
+				// Rebind rest of stack
+				for (int i = 1; i < stack.Count; i++)
+				{
+					stack[i].Bind(stack[i - 1]);
+				}
+			}
 		}
 
 		public void Add(IUnitModifier item)
@@ -36,33 +53,27 @@ namespace RPGLibrary
 			// Not found
 			if (index == -1) return false;
 
-			// Item is first and there is an item above it
-			if (index == 0 && stack.Count > 1)
-			{
-				stack[index + 1].Bind(Target);
-			}
-			// Item is in the middle of the stack
-			else if (index < stack.Count - 1)
-			{
-				stack[index + 1].Bind(stack[index - 1]);
-			}
-			stack.RemoveAt(index);
+			RemoveAt(index);
 			return true;
 		}
 
-		public void Clear()	=> stack.Clear();
-
-		[OnDeserialized]
-		private void Rebind(StreamingContext context)
+		public void RemoveAt(int index)
 		{
-			// Rebind modifiers after deserialization
-			// The first modifier must be bound to Target which may not be set yet at deserialization
-			// Set others and rely on Bind() method being called from owner
-			for (int i = 1; i < stack.Count; i++)
-			{
-				stack[i].Bind(stack[i - 1]);
-			}
+			//// Item is first and there is an item above it
+			//if (index == 0 && stack.Count > 1)
+			//{
+			//	stack[index + 1].Bind(Target);
+			//}
+			//// Item is in the middle of the stack
+			//else if (index < stack.Count - 1)
+			//{
+			//	stack[index + 1].Bind(stack[index - 1]);
+			//}
+			stack.RemoveAt(index);
+			BindStack();
 		}
+
+		public void Clear()	=> stack.Clear();
 
 		#region IEnumerable implementation
 		private IEnumerator<IUnitModifier> GetEnumerator()

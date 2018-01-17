@@ -96,6 +96,10 @@ namespace Davfalcon.UnitTests
 			Equipment armor = MakeEquipment();
 			unit.Equip(armor);
 
+			Equipment acc = MakeEquipment();
+			acc.Slot = EquipmentSlot.Accessory;
+			unit.Equip(acc);
+
 			Unit clone = (Unit)Serializer.DeepClone(unit);
 
 			Assert.AreEqual(unit.Stats[CombatStats.DEF], clone.Stats[CombatStats.DEF]);

@@ -45,7 +45,7 @@
     <Compile Include="IEffectArgs.cs" />
     <Compile Include="Engine\Setup\UnitFactory.cs" />
     <Compile Include="Buff.cs" />
-    <Compile Include="Engine\ClassProperties.cs" />
+    <Compile Include="ClassProperties.cs" />
     <Compile Include="EffectList.cs" />
     <Compile Include="Engine\Catalog%28T%29.cs" />
     <Compile Include="Engine\Combat\AttackAction.cs" />

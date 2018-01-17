@@ -29,6 +29,11 @@ public class NewBehaviourScript : MonoBehaviour {
 		{
 			Debug.Log(key);
 		}
+
+		foreach (string key in Davfalcon.Engine.SystemData.Current.Items.Keys)
+		{
+			Debug.Log(key);
+		}
 	}
 	
 	// Update is called once per frame

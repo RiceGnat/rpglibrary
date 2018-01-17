@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using RPGLibrary;
 
@@ -25,6 +26,7 @@ namespace Davfalcon
 
 		public void Add(EquipmentSlot slot, IEquipment equipment)
 		{
+			if (equipment == null) throw new ArgumentNullException("Equipment cannot be null");
 			lookup.Add(slot, equipment);
 			modifiers.Add(equipment);
 		}

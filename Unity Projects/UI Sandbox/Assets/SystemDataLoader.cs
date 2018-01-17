@@ -1,4 +1,5 @@
-﻿using Davfalcon.Engine;
+﻿using System;
+using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
 using RPGLibrary;
 using RPGLibrary.Randomization;
@@ -18,6 +19,7 @@ namespace Davfalcon.Unity
 			LoadBuffs();
 			LoadEquipment();
 			LoadSpells();
+			LoadItems();
 		}
 
 		[InitializeOnLoadMethod]
@@ -56,7 +58,7 @@ namespace Davfalcon.Unity
 
 				effects.LoadEffect("ElementDmg", (definition, unit, source, originator, value) =>
 				{
-					Element dmgElement = (Element)definition.Args[0];
+					Element dmgElement = (Element)(definition.Args[0] is Element ? definition.Args[0] : Enum.Parse(typeof(Element), (string)definition.Args[0]));
 					int dmgValue = (int)definition.Args[1];
 
 					Damage d = new Damage(
@@ -128,6 +130,14 @@ namespace Davfalcon.Unity
 			foreach (string guid in AssetDatabase.FindAssets("t:SpellDefinition"))
 			{
 				SystemData.Current.Spells.Load(AssetDatabase.LoadAssetAtPath<SpellDefinition>(AssetDatabase.GUIDToAssetPath(guid)).obj);
+			}
+		}
+
+		public static void LoadItems()
+		{
+			foreach (string guid in AssetDatabase.FindAssets("t:UsableItemDefinition"))
+			{
+				SystemData.Current.Items.Load(AssetDatabase.LoadAssetAtPath<UsableItemDefinition>(AssetDatabase.GUIDToAssetPath(guid)).obj);
 			}
 		}
 	}

@@ -26,6 +26,12 @@ namespace RPGLibrary
 		bool Remove(IUnitModifier item);
 
 		/// <summary>
+		/// Removes the modifier at a given index.
+		/// </summary>
+		/// <param name="index">The index of the modifier to be removed.</param>
+		void RemoveAt(int index);
+
+		/// <summary>
 		/// Removes all modifiers from this stack.
 		/// </summary>
 		void Clear();

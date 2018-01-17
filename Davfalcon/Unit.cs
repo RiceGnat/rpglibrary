@@ -21,6 +21,14 @@ namespace Davfalcon
 			Modifiers.Add(Buffs);
 
 			Properties = new UnitProperties();
+
+			Level = 1;
+
+			// Set base attributes
+			foreach (Attributes stat in Enum.GetValues(typeof(Attributes)))
+			{
+				BaseStats[stat] = UnitStats.BASE_ATTRIBUTE;
+			}
 		}
 
 		protected override void Link()

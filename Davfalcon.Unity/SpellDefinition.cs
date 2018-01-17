@@ -2,7 +2,7 @@
 
 namespace Davfalcon.Unity
 {
-	[CreateAssetMenu(menuName = "Spell")]
+	[CreateAssetMenu(menuName = "Spell", fileName = "Spell")]
 	public class SpellDefinition : NameableSerializationContainer<Spell>
 	{
 		public bool buffsExpanded = true;

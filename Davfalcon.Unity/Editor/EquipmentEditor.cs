@@ -39,7 +39,7 @@ namespace Davfalcon.Unity.Editor
 
 				Space();
 
-				RenderEffectsList(weapon.OnHitEffects, "On-hit effects", ref ((EquipmentDefinition)target).effectsExpanded);
+				RenderEffectsList("On-hit effects", weapon.OnHitEffects, ref ((EquipmentDefinition)target).effectsExpanded);
 
 				Space();
 			}
@@ -48,7 +48,7 @@ namespace Davfalcon.Unity.Editor
 
 			Space();
 
-			RenderBuffsList(equipment.GrantedBuffs, "Granted buffs", false, ref ((EquipmentDefinition)target).buffsExpanded);
+			RenderBuffsList("Granted buffs", equipment.GrantedBuffs, false, ref ((EquipmentDefinition)target).buffsExpanded);
 
 			CheckChanged(target);
 		}

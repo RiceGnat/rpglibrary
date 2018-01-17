@@ -2,7 +2,7 @@
 
 namespace Davfalcon.Unity
 {
-	[CreateAssetMenu(menuName = "Usable Item")]
+	[CreateAssetMenu(menuName = "Usable item", fileName = "Item")]
 	public class UsableItemDefinition : NameableSerializationContainer<UsableItem>
 	{
 		public bool effectsExpanded = true;

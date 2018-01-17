@@ -24,7 +24,10 @@ namespace Davfalcon.Unity
 		public void OnAfterDeserialize()
 		{
 			if (data != null)
+			{
 				obj = Serializer.ConvertFromByteArray<T>(data);
+				data = null;
+			}
 		}
 	}
 }

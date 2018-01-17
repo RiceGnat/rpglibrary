@@ -26,7 +26,7 @@ namespace Davfalcon.Unity.Editor
 
 			Space();
 
-			RenderEffectsList(buff.UpkeepEffects, "Upkeep effects", ref ((BuffDefinition)target).effectsExpanded);
+			RenderEffectsList("Upkeep effects", buff.UpkeepEffects, ref ((BuffDefinition)target).effectsExpanded);
 
 			CheckChanged(target);
 		}

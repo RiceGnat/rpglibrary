@@ -28,11 +28,11 @@ namespace Davfalcon.Unity.Editor
 
 			Space();
 
-			RenderBuffsList(spell.GrantedBuffs, "Applied buffs", true, ref ((SpellDefinition)target).buffsExpanded);
+			RenderBuffsList("Applied buffs", spell.GrantedBuffs, true, ref ((SpellDefinition)target).buffsExpanded);
 
 			Space();
 
-			RenderEffectsList(spell.CastEffects, "Cast effects", ref ((SpellDefinition)target).effectsExpanded);
+			RenderEffectsList("Cast effects", spell.CastEffects, ref ((SpellDefinition)target).effectsExpanded);
 
 			CheckChanged(target);
 		}

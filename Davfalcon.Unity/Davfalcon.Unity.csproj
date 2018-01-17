@@ -44,12 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuffDefinition.cs" />
+    <Compile Include="ClassDefinition.cs" />
     <Compile Include="Editor\BuffEditor.cs" />
+    <Compile Include="Editor\ClassEditor.cs" />
     <Compile Include="Editor\EditorGUIHelper.cs" />
     <Compile Include="Editor\EquipmentEditor.cs" />
     <Compile Include="Editor\SpellEditor.cs" />
+    <Compile Include="Editor\UnitEditor.cs" />
     <Compile Include="Editor\UsableItemEditor.cs" />
     <Compile Include="EquipmentDefinition.cs" />
+    <Compile Include="UnitTemplate.cs" />
     <Compile Include="UsableItemDefinition.cs" />
     <Compile Include="NameableSerializationContainer%28T%29.cs" />
     <Compile Include="SerializationContainer%28T%29.cs" />
@@ -81,5 +85,7 @@
   <Target Name="GenerateMonoSymbols">
     <Message Text="$(ProjectName) -&gt; $(TargetPath).mdb" Importance="High" />
     <Exec Command="$(MonoMdbGenerator) $(AssemblyName).dll" WorkingDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" />
+    <Exec Command="$(MonoMdbGenerator) RPGLibrary.dll" WorkingDirectory="..\RPGLibrary\bin\$(Configuration)" />
+    <Exec Command="$(MonoMdbGenerator) Davfalcon.dll" WorkingDirectory="..\Davfalcon\bin\$(Configuration)" />
   </Target>
 </Project>

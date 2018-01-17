@@ -40,7 +40,13 @@ namespace Davfalcon.Unity.Editor
 			EndHorizontal();
 		}
 
-		public static Tin RenderMappedObjectField<Tin, Tdef, U>(string label, Tin obj)
+		public static Tin RenderMappedObjectField<Tin, Tdef, U>(Tin obj, bool alwaysRefresh)
+			where Tin : class, INameable
+			where Tdef : SerializationContainer<U>
+			where U : Tin, new()
+			=> RenderMappedObjectField<Tin, Tdef, U>(null, obj, alwaysRefresh);
+
+		public static Tin RenderMappedObjectField<Tin, Tdef, U>(string label, Tin obj, bool alwaysRefresh)
 			where Tin : class, INameable
 			where Tdef : SerializationContainer<U>
 			where U : Tin, new()
@@ -56,19 +62,20 @@ namespace Davfalcon.Unity.Editor
 				: (Tdef)ObjectField(label, selected, typeof(Tdef), false);
 			if (selected != null)
 			{
-				selected.OnAfterDeserialize();
-
 				if (obj == null || obj.Name != selected.name)
+				{
+					selected.OnAfterDeserialize();
 					return selected.obj;
-				else return obj;
+				}
+				else return alwaysRefresh ? selected.obj : obj;
 			}
-			else
-			{
-				return null;
-			}
+			else return null;
 		}
 
-		public static void RenderStatModifiers(IEditableStatsModifier modifier, ref bool expanded)
+		public static void RenderStatColumn(string label, IEditableStats stats, ref bool expanded)
+			=> RenderStatColumns(label, stats, null, null, ref expanded);
+
+		public static void RenderStatColumns(string col1Label, IEditableStats col1Stats, string col2Label, IEditableStats col2Stats, ref bool expanded)
 		{
 			BeginHorizontal();
 			expanded = Foldout(expanded, "Stats", true, new GUIStyle(EditorStyles.foldout)
@@ -78,8 +85,8 @@ namespace Davfalcon.Unity.Editor
 			if (expanded)
 			{
 				LabelField("", GUILayout.Width(40), GUILayout.ExpandWidth(false));
-				LabelField("Additions", GUILayout.MinWidth(0));
-				LabelField("Multipliers", GUILayout.MinWidth(0));
+				LabelField(col1Label, GUILayout.MinWidth(0));
+				if (col2Label != null) LabelField(col2Label, GUILayout.MinWidth(0));
 			}
 			EndHorizontal();
 
@@ -88,15 +95,38 @@ namespace Davfalcon.Unity.Editor
 				foreach (string stat in UnitStats.GetAllStatNames())
 				{
 					BeginHorizontal();
+
 					LabelField(stat, GUILayout.MaxWidth(EditorGUIUtility.labelWidth - 4));
-					modifier.Additions[stat] = IntField(modifier.Additions[stat]);
-					modifier.Multiplications[stat] = IntField(modifier.Multiplications[stat]);
+					col1Stats[stat] = IntField(col1Stats[stat]);
+					if (col2Stats != null) col2Stats[stat] = IntField(col2Stats[stat]);
+
 					EndHorizontal();
 				}
 			}
 		}
 
-		public static void RenderBuffsList(IList<IBuff> buffs, string label, bool showParams, ref bool expanded)
+		public static void RenderStatModifiers(IEditableStatsModifier modifier, ref bool expanded)
+			=> RenderStatColumns("Additions", modifier.Additions, "Multiplications", modifier.Multiplications, ref expanded);
+
+		public static void RenderEquipmentSlots(string label, IUnitItemProperties equipProps, ref bool expanded)
+		{
+			expanded = Foldout(expanded, label, true);
+			if (expanded)
+			{
+				foreach (EquipmentSlot slot in Enum.GetValues(typeof(EquipmentSlot)))
+				{
+					IEquipment selected = RenderMappedObjectField<IEquipment, EquipmentDefinition, Equipment>(slot.ToString(), equipProps.GetEquipment(slot), true);
+					if (selected != null)
+					{
+						if (selected.Slot == slot)
+							equipProps.EquipmentLookup[slot] = selected;
+					}
+					else equipProps.EquipmentLookup.Remove(slot);
+				}
+			}
+		}
+
+		public static void RenderBuffsList(string label, IList<IBuff> buffs, bool showParams, ref bool expanded)
 		{
 			expanded = Foldout(expanded, label, true);
 			if (expanded)
@@ -104,16 +134,17 @@ namespace Davfalcon.Unity.Editor
 				for (int i = 0; i < buffs.Count; i++)
 				{
 					BeginHorizontal();
-					IBuff selected = RenderMappedObjectField<IBuff, BuffDefinition, Buff>(null, buffs[i]);
+					buffs[i] = RenderMappedObjectField<IBuff, BuffDefinition, Buff>(null, buffs[i], false); ;
 
 					if (GUILayout.Button("Remove", EditorStyles.miniButton))
 					{
 						buffs.RemoveAt(i);
 						i--;
+						continue;
 					}
 					EndHorizontal();
 
-					if (showParams && selected != null)
+					if (showParams && buffs[i] != null)
 					{
 						float labelWidth = EditorGUIUtility.labelWidth;
 						EditorGUIUtility.labelWidth = 60;
@@ -132,7 +163,7 @@ namespace Davfalcon.Unity.Editor
 			}
 		}
 
-		public static void RenderEffectsList(IEffectList effects, string label, ref bool expanded)
+		public static void RenderEffectsList(string label, IEffectList effects, ref bool expanded)
 		{
 			expanded = Foldout(expanded, label, true);
 			if (expanded)

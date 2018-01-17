@@ -78,6 +78,8 @@ namespace RPGLibrary
 		protected virtual void Link()
 		{
 			statsRouter = new BaseStatsRouter(this);
+
+			// This will initiate the modifier rebinding calls
 			Modifiers.Bind(this);
 		}
 

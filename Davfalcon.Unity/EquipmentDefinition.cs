@@ -2,7 +2,7 @@
 
 namespace Davfalcon.Unity
 {
-	[CreateAssetMenu(menuName = "Equipment")]
+	[CreateAssetMenu(menuName = "Equipment", fileName = "Equipment")]
 	public class EquipmentDefinition : NameableSerializationContainer<Equipment>
 	{
 		public bool statsExpanded = true;
