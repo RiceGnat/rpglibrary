@@ -5,13 +5,21 @@ using UnityEngine;
 namespace Davfalcon.Unity
 {
 	[Serializable]
-	public abstract class SerializationContainer<T> : ScriptableObject, ISerializationCallbackReceiver where T : new()
+	public abstract class SerializationContainer<T> : ObjectContainer, ISerializationCallbackReceiver where T : new()
 	{
 		[NonSerialized]
 		public T obj = new T();
+		[NonSerialized]
+		private bool deserialized = false;
 
 		[SerializeField]
 		private byte[] data;
+
+		public override U GetObjectAs<U>()
+		{
+			if (!deserialized) OnAfterDeserialize();
+			return obj as U;
+		}
 
 		public abstract void SerializationPrep();
 
@@ -28,6 +36,8 @@ namespace Davfalcon.Unity
 				obj = Serializer.ConvertFromByteArray<T>(data);
 				data = null;
 			}
+
+			deserialized = true;
 		}
 	}
 }

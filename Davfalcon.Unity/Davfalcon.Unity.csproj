@@ -41,6 +41,9 @@
       <HintPath>C:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:\Program Files\Unity\Editor\Data\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuffDefinition.cs" />
@@ -53,6 +56,9 @@
     <Compile Include="Editor\UnitEditor.cs" />
     <Compile Include="Editor\UsableItemEditor.cs" />
     <Compile Include="EquipmentDefinition.cs" />
+    <Compile Include="ObjectContainer.cs" />
+    <Compile Include="UI\UnitEquipmentView.cs" />
+    <Compile Include="UI\UnitView.cs" />
     <Compile Include="UnitTemplate.cs" />
     <Compile Include="UsableItemDefinition.cs" />
     <Compile Include="NameableSerializationContainer%28T%29.cs" />

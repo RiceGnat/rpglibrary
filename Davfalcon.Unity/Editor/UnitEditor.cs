@@ -55,6 +55,10 @@ namespace Davfalcon.Unity.Editor
 				}
 			}
 
+			Space();
+
+			RenderInventory("Inventory", unit.Properties.GetAs<IUnitItemProperties>().Inventory, ref ((UnitTemplate)target).inventoryExpanded);
+
 			CheckChanged(target);
 		}
 	}

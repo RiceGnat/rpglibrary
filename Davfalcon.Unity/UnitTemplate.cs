@@ -8,5 +8,6 @@ namespace Davfalcon.Unity
 		public bool attributesExpanded = true;
 		public bool equipmentExpanded = true;
 		public bool statsExpanded = true;
+		public bool inventoryExpanded = true;
 	}
 }

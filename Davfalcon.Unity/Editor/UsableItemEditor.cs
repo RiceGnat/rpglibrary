@@ -32,7 +32,7 @@ namespace Davfalcon.Unity.Editor
 			{
 				SpellItem spellItem = item as SpellItem;
 
-				spellItem.Spell = RenderMappedObjectField<ISpell, SpellDefinition, Spell>("Spell", spellItem.Spell, true);
+				spellItem.Spell = RenderMappedObjectField<ISpell, SpellDefinition>("Spell", spellItem.Spell, true);
 
 				Space();
 			}

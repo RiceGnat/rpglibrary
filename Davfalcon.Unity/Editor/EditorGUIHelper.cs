@@ -40,16 +40,14 @@ namespace Davfalcon.Unity.Editor
 			EndHorizontal();
 		}
 
-		public static Tin RenderMappedObjectField<Tin, Tdef, U>(Tin obj, bool alwaysRefresh)
-			where Tin : class, INameable
-			where Tdef : SerializationContainer<U>
-			where U : Tin, new()
-			=> RenderMappedObjectField<Tin, Tdef, U>(null, obj, alwaysRefresh);
+		public static Tobj RenderMappedObjectField<Tobj, Tdef>(Tobj obj, bool alwaysRefresh)
+			where Tobj : class, INameable
+			where Tdef : ObjectContainer
+			=> RenderMappedObjectField<Tobj, Tdef>(null, obj, alwaysRefresh);
 
-		public static Tin RenderMappedObjectField<Tin, Tdef, U>(string label, Tin obj, bool alwaysRefresh)
-			where Tin : class, INameable
-			where Tdef : SerializationContainer<U>
-			where U : Tin, new()
+		public static Tobj RenderMappedObjectField<Tobj, Tdef>(string label, Tobj obj, bool alwaysRefresh)
+			where Tobj : class, INameable
+			where Tdef : ObjectContainer
 		{
 			Tdef selected = null;
 			if (obj != null)
@@ -64,10 +62,9 @@ namespace Davfalcon.Unity.Editor
 			{
 				if (obj == null || obj.Name != selected.name)
 				{
-					selected.OnAfterDeserialize();
-					return selected.obj;
+					return selected.GetObjectAs<Tobj>();
 				}
-				else return alwaysRefresh ? selected.obj : obj;
+				else return alwaysRefresh ? selected.GetObjectAs<Tobj>() : obj;
 			}
 			else return null;
 		}
@@ -115,13 +112,38 @@ namespace Davfalcon.Unity.Editor
 			{
 				foreach (EquipmentSlot slot in Enum.GetValues(typeof(EquipmentSlot)))
 				{
-					IEquipment selected = RenderMappedObjectField<IEquipment, EquipmentDefinition, Equipment>(slot.ToString(), equipProps.GetEquipment(slot), true);
+					IEquipment selected = RenderMappedObjectField<IEquipment, EquipmentDefinition>(slot.ToString(), equipProps.GetEquipment(slot), true);
 					if (selected != null)
 					{
 						if (selected.Slot == slot)
 							equipProps.EquipmentLookup[slot] = selected;
 					}
 					else equipProps.EquipmentLookup.Remove(slot);
+				}
+			}
+		}
+
+		public static void RenderInventory(string label, IList<IItem> inventory, ref bool expanded)
+		{
+			expanded = Foldout(expanded, label, true);
+			if (expanded)
+			{
+				for (int i = 0; i < inventory.Count; i++)
+				{
+					BeginHorizontal();
+					inventory[i] = RenderMappedObjectField<IItem, ObjectContainer>(null, inventory[i], false); ;
+
+					if (GUILayout.Button("Remove", EditorStyles.miniButton))
+					{
+						inventory.RemoveAt(i);
+						i--;
+						continue;
+					}
+					EndHorizontal();
+				}
+				if (GUILayout.Button("Add"))
+				{
+					inventory.Add(null);
 				}
 			}
 		}
@@ -134,7 +156,7 @@ namespace Davfalcon.Unity.Editor
 				for (int i = 0; i < buffs.Count; i++)
 				{
 					BeginHorizontal();
-					buffs[i] = RenderMappedObjectField<IBuff, BuffDefinition, Buff>(null, buffs[i], false); ;
+					buffs[i] = RenderMappedObjectField<IBuff, BuffDefinition>(null, buffs[i], false); ;
 
 					if (GUILayout.Button("Remove", EditorStyles.miniButton))
 					{

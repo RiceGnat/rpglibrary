@@ -25,16 +25,16 @@ namespace Davfalcon.Unity.UI
 
 		public override void Draw()
 		{
-			IUnit unit = GetDataAs<IUnit>();
+			IStats stats = GetDataAs<IStats>();
 
 			foreach (AttributeBinding pair in attributes)
 			{
-				pair.textElement?.Bind(unit.Stats[pair.attribute]);
+				pair.textElement?.Bind(stats[pair.attribute]);
 			}
 
 			foreach (CombatStatsBinding pair in combatStats)
 			{
-				pair.textElement?.Bind(unit.Stats[pair.stat]);
+				pair.textElement?.Bind(stats[pair.stat]);
 			}
 
 			base.Draw();
