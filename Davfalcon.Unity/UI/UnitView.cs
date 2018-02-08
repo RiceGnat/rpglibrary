@@ -1,4 +1,5 @@
 ﻿using RPGLibrary;
+using UnityEditor;
 using UnityEngine.UI;
 
 namespace Davfalcon.Unity.UI
@@ -26,5 +27,12 @@ namespace Davfalcon.Unity.UI
 
 			base.Draw();
 		}
+
+		[MenuItem("GameObject/UI/Davfalcon/Unit view", false, 10)]
+		private static void Create(MenuCommand menuCommand)
+		{
+			EditorHelper.CreateGameObjectWithComponent<UnitView>("Unit view", menuCommand);
+		}
+
 	}
 }

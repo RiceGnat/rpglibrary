@@ -1,4 +1,6 @@
-﻿namespace UnityEngine.UI
+﻿using UnityEditor;
+
+namespace UnityEngine.UI
 {
 	[RequireComponent(typeof(Text))]
 	public class DataBoundText : DataBoundElement
@@ -10,6 +12,12 @@
 		{
 			text.text = GetDataAs<object>().ToString();
 			base.Draw();
+		}
+
+		[MenuItem("GameObject/UI/Data bound text", false, 10)]
+		private static void Create(MenuCommand menuCommand)
+		{
+			EditorHelper.CreateGameObjectWithComponent<DataBoundText>("Data bound text", menuCommand);
 		}
 	}
 }
