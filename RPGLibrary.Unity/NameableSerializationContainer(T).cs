@@ -1,7 +1,7 @@
 ﻿using System;
 using RPGLibrary;
 
-namespace Davfalcon.Unity
+namespace UnityEngine
 {
 	[Serializable]
 	public class NameableSerializationContainer<T> : SerializationContainer<T> where T : IEditableName, new()

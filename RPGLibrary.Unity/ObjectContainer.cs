@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Davfalcon.Unity
+﻿namespace UnityEngine
 {
 	public abstract class ObjectContainer : ScriptableObject
 	{

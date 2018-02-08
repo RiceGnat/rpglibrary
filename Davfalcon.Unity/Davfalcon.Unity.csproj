@@ -56,14 +56,11 @@
     <Compile Include="Editor\UnitEditor.cs" />
     <Compile Include="Editor\UsableItemEditor.cs" />
     <Compile Include="EquipmentDefinition.cs" />
-    <Compile Include="ObjectContainer.cs" />
     <Compile Include="UI\Editor\StatsViewEditor.cs" />
     <Compile Include="UI\UnitEquipmentView.cs" />
     <Compile Include="UI\UnitView.cs" />
     <Compile Include="UnitTemplate.cs" />
     <Compile Include="UsableItemDefinition.cs" />
-    <Compile Include="NameableSerializationContainer%28T%29.cs" />
-    <Compile Include="SerializationContainer%28T%29.cs" />
     <Compile Include="SpellDefinition.cs" />
     <Compile Include="UI\Editor\AttributeBindingDrawer.cs" />
     <Compile Include="UI\Editor\CombatStatsBindingDrawer.cs" />
@@ -79,9 +76,9 @@
       <Project>{1fcb4578-21b8-4db5-b560-c87beeb7fd2e}</Project>
       <Name>RPGLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Unity.UI\Unity.UI.csproj">
+    <ProjectReference Include="..\RPGLibrary.Unity\RPGLibrary.Unity.csproj">
       <Project>{37146187-bc62-44e6-bce1-ebc64c6c9224}</Project>
-      <Name>Unity.UI</Name>
+      <Name>RPGLibrary.Unity</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

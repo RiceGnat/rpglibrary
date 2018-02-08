@@ -16,9 +16,10 @@
 
 		public virtual void Draw()
 		{
-			foreach (Element e in GetComponentsInChildren<Element>())
+			foreach (Transform child in transform)
 			{
-				if (!e.Equals(this)) e.Draw();
+				Element e = child.GetComponent<Element>();
+				if (e != null && !e.Equals(this)) e.Draw();
 			}
 		}
 	}
