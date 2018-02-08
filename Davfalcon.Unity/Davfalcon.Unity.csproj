@@ -57,6 +57,7 @@
     <Compile Include="Editor\UsableItemEditor.cs" />
     <Compile Include="EquipmentDefinition.cs" />
     <Compile Include="ObjectContainer.cs" />
+    <Compile Include="UI\Editor\StatsViewEditor.cs" />
     <Compile Include="UI\UnitEquipmentView.cs" />
     <Compile Include="UI\UnitView.cs" />
     <Compile Include="UnitTemplate.cs" />
