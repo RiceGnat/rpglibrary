@@ -1,4 +1,6 @@
-﻿namespace UnityEngine.UI
+﻿using UnityEditor;
+
+namespace UnityEngine.UI
 {
 	[RequireComponent(typeof(RectTransform))]
 	[DisallowMultipleComponent]
@@ -21,6 +23,12 @@
 				Element e = child.GetComponent<Element>();
 				if (e != null) e.Draw();
 			}
+		}
+
+		[MenuItem("GameObject/UI/Generic element", false, 10)]
+		private static void Create(MenuCommand menuCommand)
+		{
+			EditorHelper.CreateGameObjectWithComponent<Element>("UI element", menuCommand);
 		}
 	}
 }

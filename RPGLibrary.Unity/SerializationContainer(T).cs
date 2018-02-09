@@ -1,8 +1,7 @@
 ﻿using System;
 using RPGLibrary.Serialization;
-using UnityEngine;
 
-namespace Davfalcon.Unity
+namespace UnityEngine
 {
 	[Serializable]
 	public abstract class SerializationContainer<T> : ObjectContainer, ISerializationCallbackReceiver where T : new()
