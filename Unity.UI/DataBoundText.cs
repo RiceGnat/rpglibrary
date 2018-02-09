@@ -8,7 +8,7 @@
 
 		public override void Draw()
 		{
-			text.text = GetDataAs<object>().ToString();
+			text.text = GetDataAs<object>()?.ToString();
 			base.Draw();
 		}
 	}

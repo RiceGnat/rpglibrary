@@ -5,10 +5,7 @@ public class NewBehaviourScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		EnumerableView view = GetComponent<EnumerableView>();
-
-		view.Bind(new int[] { 1, 2, 3 });
-		view.Draw();
+		GetComponent<Element>().Draw();
 
 		foreach (string key in Davfalcon.Engine.SystemData.Current.Effects.Names)
 		{

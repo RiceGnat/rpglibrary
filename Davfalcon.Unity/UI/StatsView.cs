@@ -27,14 +27,17 @@ namespace Davfalcon.Unity.UI
 		{
 			IStats stats = GetDataAs<IStats>();
 
-			foreach (AttributeBinding pair in attributes)
+			if (stats != null)
 			{
-				pair.textElement?.Bind(stats[pair.attribute]);
-			}
+				foreach (AttributeBinding pair in attributes)
+				{
+					pair.textElement?.Bind(stats[pair.attribute]);
+				}
 
-			foreach (CombatStatsBinding pair in combatStats)
-			{
-				pair.textElement?.Bind(stats[pair.stat]);
+				foreach (CombatStatsBinding pair in combatStats)
+				{
+					pair.textElement?.Bind(stats[pair.stat]);
+				}
 			}
 
 			base.Draw();
