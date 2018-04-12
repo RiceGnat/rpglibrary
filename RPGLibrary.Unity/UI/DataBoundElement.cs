@@ -1,5 +1,8 @@
 ﻿namespace UnityEngine.UI
 {
+	/// <summary>
+	/// Binds data to a UI element.
+	/// </summary>
 	public class DataBoundElement : Element
 	{
 		private object data;

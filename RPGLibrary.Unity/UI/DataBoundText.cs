@@ -2,6 +2,9 @@
 
 namespace UnityEngine.UI
 {
+	/// <summary>
+	/// Binds a UI element with text to data.
+	/// </summary>
 	[RequireComponent(typeof(Text))]
 	public class DataBoundText : DataBoundElement
 	{

@@ -2,6 +2,9 @@
 
 namespace UnityEngine.UI
 {
+	/// <summary>
+	/// Base class for UI elements.
+	/// </summary>
 	[RequireComponent(typeof(RectTransform))]
 	[DisallowMultipleComponent]
 	public class Element : MonoBehaviour

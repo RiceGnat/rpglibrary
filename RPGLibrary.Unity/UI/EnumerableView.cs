@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace UnityEngine.UI
 {
+	/// <summary>
+	/// Creates child object based on an IEnumerable.
+	/// </summary>
 	public class EnumerableView : DataBoundElement
 	{
 		public enum Direction

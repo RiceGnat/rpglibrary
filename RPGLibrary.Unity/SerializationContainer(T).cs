@@ -3,6 +3,10 @@ using RPGLibrary.Serialization;
 
 namespace UnityEngine
 {
+	/// <summary>
+	/// Stores a C# object in a format serializable by the Unity Engine.
+	/// </summary>
+	/// <typeparam name="T">The serialized type.</typeparam>
 	[Serializable]
 	public abstract class SerializationContainer<T> : ObjectContainer, ISerializationCallbackReceiver where T : new()
 	{
