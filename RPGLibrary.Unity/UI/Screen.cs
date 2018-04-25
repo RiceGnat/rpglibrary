@@ -14,11 +14,28 @@ namespace UnityEngine.UI
 
 		public bool IsVisible => Displayed.Equals(this);
 
+		public Menu initialFocus;
+
+		private void Hide()
+		{
+			gameObject.SetActive(false);
+		}
+
 		public void Show()
 		{
-			Displayed = this;
+			if (!Equals(Displayed))
+			{
+				if (Displayed != null) {
+					Displayed.Hide();
+				}
 
-			Draw();
+				Displayed = this;
+				gameObject.SetActive(true);
+				Draw();
+
+				if (initialFocus != null)
+					initialFocus.Focus();
+			}
 		}
 	}
 }

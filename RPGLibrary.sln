@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGLibrary", "RPGLibrary\RPGLibrary.csproj", "{1FCB4578-21B8-4DB5-B560-C87BEEB7FD2E}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGLibrary.UnitTests", "RPG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davfalcon.UnitTests", "Davfalcon.UnitTests\Davfalcon.UnitTests.csproj", "{B6F86762-E634-4425-9D8B-1C0873B7E12B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.UI", "Unity.UI\Unity.UI.csproj", "{37146187-BC62-44E6-BCE1-EBC64C6C9224}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGLibrary.Unity", "RPGLibrary.Unity\RPGLibrary.Unity.csproj", "{37146187-BC62-44E6-BCE1-EBC64C6C9224}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
