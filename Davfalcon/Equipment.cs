@@ -7,7 +7,7 @@ namespace Davfalcon
 	[Serializable]
 	public class Equipment : ModifierItem, IEquipment
 	{
-		public EquipmentSlot Slot { get; set; }
+		public EquipmentType SlotType { get; set; }
 
 		private readonly List<IBuff> grantedBuffs = new List<IBuff>();
 		public IList<IBuff> GrantedBuffs { get { return grantedBuffs; } }
@@ -20,9 +20,9 @@ namespace Davfalcon
 			grantedBuffsReadOnly = grantedBuffs.AsReadOnly();
 		}
 
-		public Equipment(EquipmentSlot slot) : this()
+		public Equipment(EquipmentType slot) : this()
 		{
-			Slot = slot;
+			SlotType = slot;
 		}
 	}
 }

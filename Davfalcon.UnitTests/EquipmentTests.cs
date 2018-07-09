@@ -19,11 +19,14 @@ namespace Davfalcon.UnitTests
 			}
 
 			unit.BaseStats[STAT] = 15;
+			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Armor);
+			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Accessory);
+			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Accessory);
 
 			return unit;
 		}
 
-		private static Equipment MakeEquip(EquipmentSlot slot, int add, int mult)
+		private static Equipment MakeEquip(EquipmentType slot, int add, int mult)
 		{
 			Equipment equipment = new Equipment(slot);
 
@@ -37,24 +40,37 @@ namespace Davfalcon.UnitTests
 		public void SingleEquipment()
 		{
 			IUnit unit = MakeUnit();
-			IEquipment equip = MakeEquip(EquipmentSlot.Armor, 5, 0);
+			IEquipment equip = MakeEquip(EquipmentType.Armor, 5, 0);
 
-			unit.Equip(equip);
+			unit.ItemProperties.Equip(equip);
 
 			Assert.AreEqual(20, unit.Stats[STAT]);
+			Assert.AreEqual(equip, unit.ItemProperties.GetEquipment(EquipmentType.Armor));
 		}
 
 		[TestMethod]
 		public void MultipleEquipment()
 		{
 			IUnit unit = MakeUnit();
-			IEquipment equip1 = MakeEquip(EquipmentSlot.Armor, 5, 0);
-			IEquipment equip2 = MakeEquip(EquipmentSlot.Accessory, 0, 100);
+			IEquipment equip1 = MakeEquip(EquipmentType.Armor, 5, 0);
+			IEquipment equip2 = MakeEquip(EquipmentType.Accessory, 10, 0);
+			IEquipment equip3 = MakeEquip(EquipmentType.Accessory, 0, 100);
 
-			unit.Equip(equip1);
-			unit.Equip(equip2);
+			unit.ItemProperties.Equip(equip1);
+			unit.ItemProperties.Equip(equip2, 0);
+			unit.ItemProperties.Equip(equip3, 1);
 
-			Assert.AreEqual(40, unit.Stats[STAT]);
+			Assert.AreEqual(60, unit.Stats[STAT]);
+			Assert.AreEqual(equip1, unit.ItemProperties.GetEquipment(EquipmentType.Armor));
+			Assert.AreEqual(equip2, unit.ItemProperties.GetEquipment(EquipmentType.Accessory, 0));
+			Assert.AreEqual(equip3, unit.ItemProperties.GetEquipment(EquipmentType.Accessory, 1));
+		}
+
+		[TestMethod]
+		public void GetEquipmentNull()
+		{
+			IUnit unit = MakeUnit();
+			Assert.IsNull(unit.ItemProperties.GetEquipment(EquipmentType.Armor));
 		}
 	}
 }

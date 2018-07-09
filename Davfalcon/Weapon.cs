@@ -18,7 +18,7 @@ namespace Davfalcon
 		IEnumerable<IEffectArgs> IEffectSource.Effects { get { return effects.ReadOnly; } }
 		string IEffectSource.SourceName { get { return Name; } }
 
-		public Weapon() : base(EquipmentSlot.Weapon) { }
+		public Weapon() : base(EquipmentType.Weapon) { }
 
 		static Weapon()
 		{

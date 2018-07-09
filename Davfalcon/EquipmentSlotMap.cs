@@ -5,12 +5,12 @@ using RPGLibrary;
 
 namespace Davfalcon
 {
-	internal class EquipmentSlotMap : IDictionary<EquipmentSlot, IEquipment>
+	internal class EquipmentSlotMap : IDictionary<EquipmentType, IEquipment>
 	{
-		private Dictionary<EquipmentSlot, IEquipment> lookup = new Dictionary<EquipmentSlot, IEquipment>();
+		private Dictionary<EquipmentType, IEquipment> lookup = new Dictionary<EquipmentType, IEquipment>();
 		private IUnitModifierStack modifiers;
 
-		public IEquipment this[EquipmentSlot slot]
+		public IEquipment this[EquipmentType slot]
 		{
 			get
 			{
@@ -24,14 +24,14 @@ namespace Davfalcon
 			}
 		}
 
-		public void Add(EquipmentSlot slot, IEquipment equipment)
+		public void Add(EquipmentType slot, IEquipment equipment)
 		{
 			if (equipment == null) throw new ArgumentNullException("Equipment cannot be null");
 			lookup.Add(slot, equipment);
 			modifiers.Add(equipment);
 		}
 
-		public bool Remove(EquipmentSlot slot)
+		public bool Remove(EquipmentType slot)
 		{
 			if (!lookup.ContainsKey(slot)) return false;
 			modifiers.Remove(lookup[slot]);
@@ -39,57 +39,57 @@ namespace Davfalcon
 		}
 
 		#region IDictionary implementation
-		ICollection<EquipmentSlot> IDictionary<EquipmentSlot, IEquipment>.Keys
+		ICollection<EquipmentType> IDictionary<EquipmentType, IEquipment>.Keys
 		{
 			get { return lookup.Keys; }
 		}
 
-		ICollection<IEquipment> IDictionary<EquipmentSlot, IEquipment>.Values
+		ICollection<IEquipment> IDictionary<EquipmentType, IEquipment>.Values
 		{
 			get { return lookup.Values; }
 		}
 
-		int ICollection<KeyValuePair<EquipmentSlot, IEquipment>>.Count
+		int ICollection<KeyValuePair<EquipmentType, IEquipment>>.Count
 		{
 			get { return lookup.Count; }
 		}
 
-		bool ICollection<KeyValuePair<EquipmentSlot, IEquipment>>.IsReadOnly
+		bool ICollection<KeyValuePair<EquipmentType, IEquipment>>.IsReadOnly
 		{
-			get { return ((IDictionary<EquipmentSlot, IEquipment>)lookup).IsReadOnly; }
+			get { return ((IDictionary<EquipmentType, IEquipment>)lookup).IsReadOnly; }
 		}
 
-		bool IDictionary<EquipmentSlot, IEquipment>.ContainsKey(EquipmentSlot key)
+		bool IDictionary<EquipmentType, IEquipment>.ContainsKey(EquipmentType key)
 			=> lookup.ContainsKey(key);
 
-		bool IDictionary<EquipmentSlot, IEquipment>.TryGetValue(EquipmentSlot key, out IEquipment value)
+		bool IDictionary<EquipmentType, IEquipment>.TryGetValue(EquipmentType key, out IEquipment value)
 			=> lookup.TryGetValue(key, out value);
 
-		bool ICollection<KeyValuePair<EquipmentSlot, IEquipment>>.Contains(KeyValuePair<EquipmentSlot, IEquipment> item)
-			=> ((IDictionary<EquipmentSlot, IEquipment>)lookup).Contains(item);
+		bool ICollection<KeyValuePair<EquipmentType, IEquipment>>.Contains(KeyValuePair<EquipmentType, IEquipment> item)
+			=> ((IDictionary<EquipmentType, IEquipment>)lookup).Contains(item);
 
-		void ICollection<KeyValuePair<EquipmentSlot, IEquipment>>.CopyTo(KeyValuePair<EquipmentSlot, IEquipment>[] array, int arrayIndex)
-			=> ((IDictionary<EquipmentSlot, IEquipment>)lookup).CopyTo(array, arrayIndex);
+		void ICollection<KeyValuePair<EquipmentType, IEquipment>>.CopyTo(KeyValuePair<EquipmentType, IEquipment>[] array, int arrayIndex)
+			=> ((IDictionary<EquipmentType, IEquipment>)lookup).CopyTo(array, arrayIndex);
 
-		IEnumerator<KeyValuePair<EquipmentSlot, IEquipment>> IEnumerable<KeyValuePair<EquipmentSlot, IEquipment>>.GetEnumerator()
+		IEnumerator<KeyValuePair<EquipmentType, IEquipment>> IEnumerable<KeyValuePair<EquipmentType, IEquipment>>.GetEnumerator()
 			=> lookup.GetEnumerator();
 
 		IEnumerator IEnumerable.GetEnumerator()
 			=> lookup.GetEnumerator();
 
-		void ICollection<KeyValuePair<EquipmentSlot, IEquipment>>.Add(KeyValuePair<EquipmentSlot, IEquipment> item)
+		void ICollection<KeyValuePair<EquipmentType, IEquipment>>.Add(KeyValuePair<EquipmentType, IEquipment> item)
 			=> Add(item.Key, item.Value);
 
-		bool ICollection<KeyValuePair<EquipmentSlot, IEquipment>>.Remove(KeyValuePair<EquipmentSlot, IEquipment> item)
+		bool ICollection<KeyValuePair<EquipmentType, IEquipment>>.Remove(KeyValuePair<EquipmentType, IEquipment> item)
 		{
 			if (!lookup.ContainsKey(item.Key)) return false;
-			bool removed = ((IDictionary<EquipmentSlot, IEquipment>)lookup).Remove(item);
+			bool removed = ((IDictionary<EquipmentType, IEquipment>)lookup).Remove(item);
 			if (removed)
 				modifiers.Remove(lookup[item.Key]);
 			return removed;
 		}
 
-		void ICollection<KeyValuePair<EquipmentSlot, IEquipment>>.Clear()
+		void ICollection<KeyValuePair<EquipmentType, IEquipment>>.Clear()
 		{
 			lookup.Clear();
 			modifiers.Clear();

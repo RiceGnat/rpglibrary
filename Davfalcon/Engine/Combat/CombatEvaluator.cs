@@ -57,7 +57,7 @@ namespace Davfalcon.Engine.Combat
 			unit.CombatProperties.CurrentMP = unit.Stats[CombatStats.MP];
 
 			// Apply buffs granted by equipment
-			foreach (IEquipment equip in unit.CombatProperties.Equipment)
+			foreach (IEquipment equip in unit.ItemProperties.Equipment)
 			{
 				foreach (IBuff buff in equip.GrantedBuffs)
 				{
@@ -131,7 +131,7 @@ namespace Davfalcon.Engine.Combat
 
 		public Damage CalculateAttackDamage(IUnit unit, bool crit = false)
 		{
-			IWeapon weapon = unit.CombatProperties.EquippedWeapon;
+			IWeapon weapon = unit.CombatProperties.GetEquippedWeapon();
 
 			return new Damage(
 				DamageType.Physical,
@@ -204,7 +204,7 @@ namespace Davfalcon.Engine.Combat
 			HitCheck hit = CheckForHit(unit, target);
 			Damage damage = hit.Hit ? CalculateAttackDamage(unit, hit.Crit) : null;
 			HPLoss hp = hit.Hit ? ReceiveDamage(target, damage) : null;
-			IList<ILogEntry> effects = hit.Hit ? ApplyEffects(unit.CombatProperties.EquippedWeapon, target, unit, hp.Value) : null;
+			IList<ILogEntry> effects = hit.Hit ? ApplyEffects(unit.CombatProperties.GetEquippedWeapon(), target, unit, hp.Value) : null;
 
 			return new AttackAction(
 				unit,

@@ -5,7 +5,7 @@ namespace Davfalcon
 {
 	public interface IEquipment : IModifierItem
 	{
-		EquipmentSlot Slot { get; }
+		EquipmentType SlotType { get; }
 		IList<IBuff> GrantedBuffs { get; }
 	}
 }

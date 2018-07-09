@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using RPGLibrary;
 
 namespace Davfalcon
@@ -19,7 +20,7 @@ namespace Davfalcon
 			BaseStats = new UnitStats(this);
 			Modifiers = new UnitModifierStack();
 
-			// References will be maintained after deserialization
+			// Internal references will be maintained after deserialization
 			Equipment = new UnitModifierStack();
 			Buffs = new UnitModifierStack();
 			Modifiers.Add(Equipment);
@@ -41,6 +42,13 @@ namespace Davfalcon
 			base.Link();
 			(BaseStats as UnitStats).Bind(this);
 			props.Bind(this);
+		}
+
+		[OnSerializing]
+		private void SerializationPrep(StreamingContext context)
+		{
+			// Equipment will be serialized in properties object
+			Equipment.Clear();
 		}
 	}
 }

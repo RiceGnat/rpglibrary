@@ -42,7 +42,6 @@
     <Compile Include="Engine\Combat\CombatEvaluator.cs" />
     <Compile Include="Engine\Combat\ICombatEvaluator.cs" />
     <Compile Include="Engine\IWeaponFactory.cs" />
-    <Compile Include="Engine\Management\EquipmentManagement.cs" />
     <Compile Include="Engine\Management\InventoryManagement.cs" />
     <Compile Include="Engine\WeaponFactory.cs" />
     <Compile Include="IBattle.cs" />
@@ -75,7 +74,6 @@
     <Compile Include="UsableItem.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Equipment.cs" />
-    <Compile Include="EquipmentSlotMap.cs" />
     <Compile Include="IBuff.cs" />
     <Compile Include="IEquipment.cs" />
     <Compile Include="ISpell.cs" />

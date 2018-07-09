@@ -8,12 +8,12 @@ namespace Davfalcon.Engine.Management
 		public static IEnumerable<IEquipment> GetAllEquipment(this IUnit unit)
 			=> unit.ItemProperties.Equipment;
 
-		public static IEquipment GetEquipped(this IUnit unit, EquipmentSlot slot)
+		public static IEquipment GetEquipped(this IUnit unit, EquipmentType slot)
 			=> unit.ItemProperties.GetEquipment(slot);
 
 		public static IEquipment Equip(this IUnit unit, IEquipment equipment)
 		{
-			EquipmentSlot slot = equipment.Slot;
+			EquipmentType slot = equipment.Slot;
 
 			// Get current equipment
 			IEquipment current = unit.GetEquipped(slot);

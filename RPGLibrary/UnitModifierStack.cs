@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 namespace RPGLibrary
 {
@@ -59,16 +58,6 @@ namespace RPGLibrary
 
 		public void RemoveAt(int index)
 		{
-			//// Item is first and there is an item above it
-			//if (index == 0 && stack.Count > 1)
-			//{
-			//	stack[index + 1].Bind(Target);
-			//}
-			//// Item is in the middle of the stack
-			//else if (index < stack.Count - 1)
-			//{
-			//	stack[index + 1].Bind(stack[index - 1]);
-			//}
 			stack.RemoveAt(index);
 			BindStack();
 		}

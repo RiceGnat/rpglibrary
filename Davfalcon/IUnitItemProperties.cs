@@ -5,10 +5,19 @@ namespace Davfalcon
 {
 	public interface IUnitItemProperties
 	{
-		IEnumerable<IEquipment> Equipment { get; }
-		IDictionary<EquipmentSlot, IEquipment> EquipmentLookup { get; }
-		IWeapon EquippedWeapon { get; }
-		IEquipment GetEquipment(EquipmentSlot slot);
 		IList<IItem> Inventory { get; }
+
+		IEnumerable<EquipmentType> EquipmentSlots { get; }
+		IEnumerable<IEquipment> Equipment { get; }
+
+		void AddEquipmentSlot(EquipmentType slotType);
+		void RemoveEquipmentSlotIndex(int index);
+		IEquipment GetEquipment(EquipmentType slot);
+		IEquipment GetEquipment(EquipmentType slotType, int offset);
+		bool Equip(IEquipment equipment);
+		bool Equip(IEquipment equipment, int offset);
+		bool UnequipSlot(EquipmentType slot);
+		bool UnequipSlot(EquipmentType slotType, int offset);
+		bool UnequipSlotIndex(int index);
 	}
 }

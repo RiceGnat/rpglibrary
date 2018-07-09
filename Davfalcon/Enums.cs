@@ -22,7 +22,7 @@ namespace Davfalcon
 		Neutral, Fire, Lightning, Ice, Earth, Wind, Divine, Dark
 	}
 
-	public enum EquipmentSlot
+	public enum EquipmentType
 	{
 		Armor, Accessory, Weapon
 	}
