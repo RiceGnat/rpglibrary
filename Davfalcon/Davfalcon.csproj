@@ -41,8 +41,8 @@
     <Compile Include="EffectArgs.cs" />
     <Compile Include="Engine\Combat\CombatEvaluator.cs" />
     <Compile Include="Engine\Combat\ICombatEvaluator.cs" />
-    <Compile Include="Engine\IWeaponFactory.cs" />
-    <Compile Include="Engine\WeaponFactory.cs" />
+    <Compile Include="Engine\IWeaponRegistry.cs" />
+    <Compile Include="Engine\WeaponRegistry.cs" />
     <Compile Include="IBattle.cs" />
     <Compile Include="IEffectArgs.cs" />
     <Compile Include="Buff.cs" />
