@@ -2,6 +2,7 @@
 
 namespace RPGLibrary.Collections.Generic
 {
+	// REDUNDANT? with IDictionary<T>
 	public interface ICatalog<T>
 	{
 		IEnumerable<string> Keys { get; }

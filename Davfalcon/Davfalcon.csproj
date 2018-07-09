@@ -39,6 +39,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EffectArgs.cs" />
+    <Compile Include="Engine\Combat\CombatEvaluator.cs" />
+    <Compile Include="Engine\Combat\ICombatEvaluator.cs" />
     <Compile Include="Engine\IWeaponFactory.cs" />
     <Compile Include="Engine\WeaponFactory.cs" />
     <Compile Include="IBattle.cs" />
@@ -47,10 +49,8 @@
     <Compile Include="Buff.cs" />
     <Compile Include="ClassProperties.cs" />
     <Compile Include="EffectList.cs" />
-    <Compile Include="Engine\Catalog%28T%29.cs" />
     <Compile Include="Engine\Combat\AttackAction.cs" />
     <Compile Include="Engine\Combat\Battle.cs" />
-    <Compile Include="Engine\Combat\CombatOperations.cs" />
     <Compile Include="Engine\Combat\Damage.cs" />
     <Compile Include="Engine\Combat\HitCheck.cs" />
     <Compile Include="Engine\Combat\HPLoss.cs" />
@@ -58,7 +58,6 @@
     <Compile Include="Engine\Combat\SpellAction.cs" />
     <Compile Include="Engine\Combat\SpellCastOptions.cs" />
     <Compile Include="Engine\EffectFactory.cs" />
-    <Compile Include="Engine\IAutoCatalog%28T%29.cs" />
     <Compile Include="Engine\IEffectFactory.cs" />
     <Compile Include="ILogEntry.cs" />
     <Compile Include="LogEntry.cs" />

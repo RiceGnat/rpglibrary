@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicUnit.cs" />
+    <Compile Include="Collections\Catalog%28T%29.cs" />
     <Compile Include="Collections\CircularLinkedList%28T%29.cs" />
+    <Compile Include="Collections\IAutoCatalog%28T%29.cs" />
     <Compile Include="Collections\ICatalog%28T%29.cs" />
     <Compile Include="Collections\ICircularLinkedList%28T%29.cs" />
     <Compile Include="Collections\ManagedList%28T%29.cs" />

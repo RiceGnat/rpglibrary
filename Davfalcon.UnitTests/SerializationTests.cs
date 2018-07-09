@@ -21,7 +21,7 @@ namespace Davfalcon.UnitTests
 			SystemData.SetSystem(new Engine.SystemData());
 			SystemData.Current.Effects.LoadEffect("Burn", (definition, unit, source, originator, value) =>
 			{
-				unit.GetCombatProperties().CurrentHP -= 10;
+				unit.Properties.GetAs<IUnitCombatProperties>().CurrentHP -= 10;
 				return null;
 			});
 		}

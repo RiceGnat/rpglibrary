@@ -1,7 +1,9 @@
 ﻿using System;
+using RPGLibrary.Collections.Generic;
 
 namespace Davfalcon.Engine
 {
+	// RETHINK this class
 	public class SystemData
 	{
 		public static SystemData Current { get; private set; } = new SystemData();

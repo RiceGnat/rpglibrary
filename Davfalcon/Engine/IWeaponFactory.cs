@@ -1,4 +1,6 @@
-﻿namespace Davfalcon.Engine
+﻿using RPGLibrary.Collections.Generic;
+
+namespace Davfalcon.Engine
 {
 	public interface IWeaponFactory : IAutoCatalog<IWeapon>
 	{

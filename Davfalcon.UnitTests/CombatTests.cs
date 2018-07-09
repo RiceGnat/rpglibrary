@@ -1,5 +1,4 @@
 ﻿using System;
-using Davfalcon.Engine;
 using Davfalcon.Engine.Combat;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RPGLibrary;
@@ -9,6 +8,14 @@ namespace Davfalcon.UnitTests
 	[TestClass]
 	public class CombatTests
 	{
+		private ICombatEvaluator combat;
+
+		[TestInitialize]
+		public void Setup()
+		{
+			combat = new CombatEvaluator(null);
+		}
+
 		private static Unit MakeUnit()
 		{
 			Unit unit = new Unit();
@@ -29,22 +36,22 @@ namespace Davfalcon.UnitTests
 		{
 			IUnit unit = MakeUnit();
 
-			unit.Initialize();
+			combat.Initialize(unit);
 
-			Assert.AreEqual(unit.Stats[CombatStats.HP], unit.GetCombatProperties().CurrentHP);
-			Assert.AreEqual(unit.Stats[CombatStats.MP], unit.GetCombatProperties().CurrentMP);
+			Assert.AreEqual(unit.Stats[CombatStats.HP], combat.GetCombatProperties(unit).CurrentHP);
+			Assert.AreEqual(unit.Stats[CombatStats.MP], combat.GetCombatProperties(unit).CurrentMP);
 		}
 
 		[TestMethod]
 		public void ScaleDamageValue()
 		{
-			Assert.AreEqual(12, CombatOperations.ScaleDamageValue(10, 20));
+			Assert.AreEqual(12, combat.ScaleDamageValue(10, 20));
 		}
 
 		[TestMethod]
 		public void MitigateDamageValue()
 		{
-			Assert.AreEqual(5, CombatOperations.MitigateDamageValue(10, 100));
+			Assert.AreEqual(5, combat.MitigateDamageValue(10, 100));
 		}
 
 		[TestMethod]
@@ -52,7 +59,7 @@ namespace Davfalcon.UnitTests
 		{
 			IUnit unit = MakeUnit();
 
-			Damage d = unit.CalculateAttackDamage();
+			Damage d = combat.CalculateAttackDamage(unit);
 
 			Assert.AreEqual(18, d.Value);
 			Assert.AreEqual(unit.Name, d.Source);
@@ -65,7 +72,7 @@ namespace Davfalcon.UnitTests
 
 			Damage d = new Damage(DamageType.Physical, Element.Neutral, 10, "");
 
-			Assert.AreEqual(8, unit.CalculateReceivedDamage(d));
+			Assert.AreEqual(8, combat.CalculateReceivedDamage(unit, d));
 		}
 
 		[TestMethod]
@@ -75,7 +82,7 @@ namespace Davfalcon.UnitTests
 
 			Damage d = new Damage(DamageType.Magical, Element.Neutral, 10, "");
 
-			Assert.AreEqual(9, unit.CalculateReceivedDamage(d));
+			Assert.AreEqual(9, combat.CalculateReceivedDamage(unit, d));
 		}
 
 		[TestMethod]
@@ -85,19 +92,19 @@ namespace Davfalcon.UnitTests
 
 			Damage d = new Damage(DamageType.True, Element.Neutral, 10, "");
 
-			Assert.AreEqual(10, unit.CalculateReceivedDamage(d));
+			Assert.AreEqual(10, combat.CalculateReceivedDamage(unit, d));
 		}
 
 		[TestMethod]
 		public void ReceiveDamage()
 		{
 			IUnit unit = MakeUnit();
-			unit.Initialize();
+			combat.Initialize(unit);
 
 			Damage d = new Damage(DamageType.Physical, Element.Neutral, 10, "");
-			HPLoss h = unit.ReceiveDamage(d);
+			HPLoss h = combat.ReceiveDamage(unit, d);
 
-			Assert.AreEqual(unit.Stats[CombatStats.HP] - unit.GetCombatProperties().CurrentHP, h.Value);
+			Assert.AreEqual(unit.Stats[CombatStats.HP] - combat.GetCombatProperties(unit).CurrentHP, h.Value);
 			Assert.AreEqual(unit.Name, h.Unit);
 		}
 	}

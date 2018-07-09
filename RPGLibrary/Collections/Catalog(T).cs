@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using RPGLibrary;
 using RPGLibrary.Serialization;
 
-namespace Davfalcon.Engine
+namespace RPGLibrary.Collections.Generic
 {
-	internal class Catalog<T> : IAutoCatalog<T> where T : INameable
+	public class Catalog<T> : IAutoCatalog<T> where T : INameable
 	{
 		private Dictionary<string, T> lookup = new Dictionary<string, T>();
 

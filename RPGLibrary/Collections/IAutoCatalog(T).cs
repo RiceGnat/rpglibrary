@@ -1,7 +1,4 @@
-﻿using RPGLibrary;
-using RPGLibrary.Collections.Generic;
-
-namespace Davfalcon.Engine
+﻿namespace RPGLibrary.Collections.Generic
 {
 	public interface IAutoCatalog<T> : ICatalog<T> where T : INameable
 	{

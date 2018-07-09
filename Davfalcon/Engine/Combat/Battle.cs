@@ -21,6 +21,9 @@ namespace Davfalcon.Engine.Combat
 			}
 		}
 
+		[NonSerialized]
+		private ICombatEvaluator combat;
+
 		private readonly List<ILogEntry> log = new List<ILogEntry>();
 		private readonly Dictionary<int, List<IUnit>> teams = new Dictionary<int, List<IUnit>>();
 		private readonly Dictionary<int, IList<IUnit>> teamsReadOnly = new Dictionary<int, IList<IUnit>>();
@@ -31,6 +34,11 @@ namespace Davfalcon.Engine.Combat
 		public int Turn { get; private set; }
 		public IUnit CurrentUnit { get { return turnOrder.Current; } }
 		public IUnitBattleState CurrentUnitState { get { return GetUnitState(CurrentUnit); } }
+
+		public void SetCombatEvaluator(ICombatEvaluator combatEval)
+		{
+			combat = combatEval ?? throw new ArgumentNullException("Combat evaluator cannot be set to null.");
+		}
 
 		private void AddTeam(int id)
 		{
@@ -50,7 +58,7 @@ namespace Davfalcon.Engine.Combat
 			if (!teams.ContainsKey(teamId)) AddTeam(teamId);
 
 			teams[teamId].Add(unit);
-			unit.GetCombatProperties().BattleState = new UnitState(this)
+			combat.GetCombatProperties(unit).BattleState = new UnitState(this)
 			{
 				Team = teamId
 			};
@@ -62,14 +70,14 @@ namespace Davfalcon.Engine.Combat
 		public void RemoveUnit(IUnit unit, int teamId)
 		{
 			teams[teamId].Remove(unit);
-			unit.GetCombatProperties().BattleState = null;
+			combat.GetCombatProperties(unit).BattleState = null;
 
 			if (teamId >= 0)
 				turnOrder.Remove(unit);
 		}
 
 		public IUnitBattleState GetUnitState(IUnit unit)
-			=> unit.GetCombatProperties().BattleState;
+			=> combat.GetCombatProperties(unit).BattleState;
 
 		public IList<IUnit> GetTeam(int id)
 			=> teamsReadOnly[id];
@@ -83,7 +91,7 @@ namespace Davfalcon.Engine.Combat
 
 			foreach (IUnit unit in GetAllUnits())
 			{
-				unit.Initialize();
+				combat.Initialize(unit);
 			}
 		}
 
@@ -97,12 +105,13 @@ namespace Davfalcon.Engine.Combat
 		{
 			foreach (IUnit unit in GetAllUnits())
 			{
-				unit.Cleanup();
+				combat.Cleanup(unit);
 			}
 		}
 
-		public Battle()
+		public Battle(ICombatEvaluator combatEval)
 		{
+			SetCombatEvaluator(combatEval);
 			Log = log.AsReadOnly();
 			TurnOrder = turnOrder.AsReadOnly();
 		}
