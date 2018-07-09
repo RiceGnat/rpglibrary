@@ -2,9 +2,9 @@
 
 namespace Davfalcon.Engine
 {
-	internal class WeaponFactory : Catalog<IWeapon>, IWeaponFactory
+	public class WeaponRegistry : SelfRegisteredPrototypeCloner<IWeapon>, IWeaponRegistry
 	{
-		public IWeapon Get(string weaponName, IEffectArgs[] effects)
+		public IWeapon GetWithEffects(string weaponName, IEffectArgs[] effects)
 		{
 			IWeapon weapon = Get(weaponName);
 			foreach (IEffectArgs effect in effects)

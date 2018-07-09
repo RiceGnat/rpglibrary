@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using RPGLibrary;
 
 namespace Davfalcon.Engine.Combat
 {

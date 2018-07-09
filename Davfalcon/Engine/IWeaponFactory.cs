@@ -2,8 +2,8 @@
 
 namespace Davfalcon.Engine
 {
-	public interface IWeaponFactory : IAutoCatalog<IWeapon>
+	public interface IWeaponRegistry : ISelfRegistry<IWeapon>
 	{
-		IWeapon Get(string weaponName, params IEffectArgs[] effects);
+		IWeapon GetWithEffects(string weaponName, params IEffectArgs[] effects);
 	}
 }

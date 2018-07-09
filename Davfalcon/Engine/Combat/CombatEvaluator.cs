@@ -8,7 +8,7 @@ namespace Davfalcon.Engine.Combat
 {
 	public class CombatEvaluator : ICombatEvaluator
 	{
-		private IEffectFactory effects;
+		private IEffectsRegistry effects;
 
 		public event BuffEventHandler OnBuffApplied;
 		public event DamageEventHandler OnDamageTaken;
@@ -298,7 +298,7 @@ namespace Davfalcon.Engine.Combat
 			return effects;
 		}
 
-		public CombatEvaluator(IEffectFactory effects)
+		public CombatEvaluator(IEffectsRegistry effects)
 		{
 			this.effects = effects;
 		}

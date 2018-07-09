@@ -3,6 +3,7 @@ using RPGLibrary;
 
 namespace Davfalcon.Engine.Management
 {
+	// Not really needed anymore... maybe again if calls become complex again
 	public static class EquipmentManagement
 	{
 		public static IEnumerable<IEquipment> GetAllEquipment(this IUnit unit)

@@ -42,7 +42,6 @@
     <Compile Include="Engine\Combat\CombatEvaluator.cs" />
     <Compile Include="Engine\Combat\ICombatEvaluator.cs" />
     <Compile Include="Engine\IWeaponFactory.cs" />
-    <Compile Include="Engine\Management\InventoryManagement.cs" />
     <Compile Include="Engine\WeaponFactory.cs" />
     <Compile Include="IBattle.cs" />
     <Compile Include="IEffectArgs.cs" />
@@ -57,12 +56,11 @@
     <Compile Include="IUnitBattleState.cs" />
     <Compile Include="Engine\Combat\SpellAction.cs" />
     <Compile Include="Engine\Combat\SpellCastOptions.cs" />
-    <Compile Include="Engine\EffectFactory.cs" />
-    <Compile Include="Engine\IEffectFactory.cs" />
+    <Compile Include="Engine\EffectsRegistry.cs" />
+    <Compile Include="Engine\IEffectsRegistry.cs" />
     <Compile Include="ILogEntry.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="LogEntry.cs" />
-    <Compile Include="Engine\SystemData.cs" />
     <Compile Include="ISpellItem.cs" />
     <Compile Include="IEffectList.cs" />
     <Compile Include="IEffectSource.cs" />
@@ -92,6 +90,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Engine\Management\" />
     <Folder Include="Engine\Setup\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

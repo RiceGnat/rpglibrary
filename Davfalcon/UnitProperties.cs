@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RPGLibrary;
+using RPGLibrary.Collections.Generic;
 
 namespace Davfalcon
 {
@@ -25,8 +26,11 @@ namespace Davfalcon
 		[NonSerialized]
 		private IUnitModifierStack equipment;
 
-		private List<EquipmentType> equipmentSlots = new List<EquipmentType>();
-		private List<IEquipment> equippedSlots = new List<IEquipment>();
+		private ManagedList<EquipmentType> equipmentSlots = new ManagedList<EquipmentType>();
+		private ManagedList<IEquipment> equippedSlots = new ManagedList<IEquipment>();
+
+		public IEnumerable<EquipmentType> EquipmentSlots { get => equipmentSlots.ReadOnly; }
+		public IEnumerable<IEquipment> Equipment { get => equippedSlots.ReadOnly; }
 
 		private int GetSlotIndex(EquipmentType slotType, int offset)
 		{
@@ -40,9 +44,6 @@ namespace Davfalcon
 
 		private bool IndexHasEquipment(int index)
 			=> index > -1 && index < equippedSlots.Count && equippedSlots[index] != null;
-
-		public IEnumerable<EquipmentType> EquipmentSlots { get => equipmentSlots.AsReadOnly(); }
-		public IEnumerable<IEquipment> Equipment { get => equippedSlots.AsReadOnly(); }
 
 		public void AddEquipmentSlot(EquipmentType slotType)
 		{

@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
-using RPGLibrary;
 
 namespace Davfalcon.Engine
 {
-	internal class EffectFactory : IEffectFactory
+	public class EffectsRegistry : IEffectsRegistry
 	{
 		private Dictionary<string, Effect> effects = new Dictionary<string, Effect>();
 
 		public IEnumerable<string> Names => effects.Keys;
 
-		public void LoadEffect(string name, Effect function)
+		public void Register(Effect function, string name)
 			=> effects.Add(name, function);
 
-		public Effect GetEffect(string name)
+		public Effect Get(string name)
 			=> effects[name];
 
 		public IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator, int value)
@@ -20,7 +19,7 @@ namespace Davfalcon.Engine
 			List<ILogEntry> effects = new List<ILogEntry>();
 			foreach (IEffectArgs definition in source.Effects)
 			{
-				ILogEntry log = GetEffect(definition.Name).Invoke(definition, target, source, originator, value);
+				ILogEntry log = Get(definition.Name).Invoke(definition, target, source, originator, value);
 				if (log != null) effects.Add(log);
 			}
 			return effects;

@@ -4,6 +4,7 @@ using RPGLibrary;
 
 namespace Davfalcon.Engine.Management
 {
+	// Probably not needed either, just here for syntactic sugar
 	public static class InventoryManagement
 	{
 		public static IEnumerable<IItem> GetAllItems(this IUnit unit)
