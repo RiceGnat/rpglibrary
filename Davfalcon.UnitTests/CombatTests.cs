@@ -1,7 +1,6 @@
 ﻿using System;
 using Davfalcon.Engine.Combat;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RPGLibrary;
 
 namespace Davfalcon.UnitTests
 {
@@ -38,8 +37,8 @@ namespace Davfalcon.UnitTests
 
 			combat.Initialize(unit);
 
-			Assert.AreEqual(unit.Stats[CombatStats.HP], combat.GetCombatProperties(unit).CurrentHP);
-			Assert.AreEqual(unit.Stats[CombatStats.MP], combat.GetCombatProperties(unit).CurrentMP);
+			Assert.AreEqual(unit.Stats[CombatStats.HP], unit.CombatProperties.CurrentHP);
+			Assert.AreEqual(unit.Stats[CombatStats.MP], unit.CombatProperties.CurrentMP);
 		}
 
 		[TestMethod]
@@ -104,7 +103,7 @@ namespace Davfalcon.UnitTests
 			Damage d = new Damage(DamageType.Physical, Element.Neutral, 10, "");
 			HPLoss h = combat.ReceiveDamage(unit, d);
 
-			Assert.AreEqual(unit.Stats[CombatStats.HP] - combat.GetCombatProperties(unit).CurrentHP, h.Value);
+			Assert.AreEqual(unit.Stats[CombatStats.HP] - unit.CombatProperties.CurrentHP, h.Value);
 			Assert.AreEqual(unit.Name, h.Unit);
 		}
 	}

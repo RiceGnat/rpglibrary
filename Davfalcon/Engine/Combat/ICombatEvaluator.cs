@@ -22,7 +22,6 @@ namespace Davfalcon.Engine.Combat
 		int ChangeMP(IUnit unit, int amount);
 		HitCheck CheckForHit(IUnit unit, IUnit target);
 		void Cleanup(IUnit unit);
-		IUnitCombatProperties GetCombatProperties(IUnit unit);
 		void Initialize(IUnit unit);
 		int MitigateDamageValue(int incomingValue, int resistance);
 		HPLoss ReceiveDamage(IUnit unit, Damage damage);

@@ -34,10 +34,5 @@
 		/// Gets the modifiers attached to the unit.
 		/// </summary>
 		IUnitModifierStack Modifiers { get; }
-
-		/// <summary>
-		/// Gets the unit's properties.
-		/// </summary>
-		IUnitProperties Properties { get; }
 	}
 }

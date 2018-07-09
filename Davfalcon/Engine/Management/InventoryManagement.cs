@@ -6,19 +6,17 @@ namespace Davfalcon.Engine.Management
 {
 	public static class InventoryManagement
 	{
-		public static IUnitItemProperties GetInventoryProperties(this IUnit unit) => unit.Properties.GetAs<IUnitItemProperties>();
-
 		public static IEnumerable<IItem> GetAllItems(this IUnit unit)
-			=> unit.GetInventoryProperties().Inventory;
+			=> unit.ItemProperties.Inventory;
 
 		public static IEnumerable<T> GetItemsOfType<T>(this IUnit unit) where T : class, IItem
 			=> unit.GetAllItems().Where(item => item is T).Cast<T>();
 
 		public static void AddItem(this IUnit unit, IItem item)
-			=> unit.GetInventoryProperties().Inventory.Add(item);
+			=> unit.ItemProperties.Inventory.Add(item);
 
 		public static bool RemoveItem(this IUnit unit, IItem item)
-			=> unit.GetInventoryProperties().Inventory.Remove(item);
+			=> unit.ItemProperties.Inventory.Remove(item);
 
 		public static void AddTo(this IItem item, IUnit unit)
 			=> unit.AddItem(item);

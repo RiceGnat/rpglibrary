@@ -58,7 +58,7 @@ namespace Davfalcon.Engine.Combat
 			if (!teams.ContainsKey(teamId)) AddTeam(teamId);
 
 			teams[teamId].Add(unit);
-			combat.GetCombatProperties(unit).BattleState = new UnitState(this)
+			unit.CombatProperties.BattleState = new UnitState(this)
 			{
 				Team = teamId
 			};
@@ -70,14 +70,14 @@ namespace Davfalcon.Engine.Combat
 		public void RemoveUnit(IUnit unit, int teamId)
 		{
 			teams[teamId].Remove(unit);
-			combat.GetCombatProperties(unit).BattleState = null;
+			unit.CombatProperties.BattleState = null;
 
 			if (teamId >= 0)
 				turnOrder.Remove(unit);
 		}
 
 		public IUnitBattleState GetUnitState(IUnit unit)
-			=> combat.GetCombatProperties(unit).BattleState;
+			=> unit.CombatProperties.BattleState;
 
 		public IList<IUnit> GetTeam(int id)
 			=> teamsReadOnly[id];

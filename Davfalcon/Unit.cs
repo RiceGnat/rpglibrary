@@ -4,10 +4,15 @@ using RPGLibrary;
 namespace Davfalcon
 {
 	[Serializable]
-	public class Unit : BasicUnit
+	public class Unit : BasicUnit, IUnit
 	{
+		private UnitProperties props;
+
 		public IUnitModifierStack Equipment { get; protected set; }
 		public IUnitModifierStack Buffs { get; protected set; }
+
+		public IUnitCombatProperties CombatProperties { get => props as IUnitCombatProperties; }
+		public IUnitItemProperties ItemProperties { get => props as IUnitItemProperties; }
 
 		protected override void Initialize()
 		{
@@ -20,7 +25,7 @@ namespace Davfalcon
 			Modifiers.Add(Equipment);
 			Modifiers.Add(Buffs);
 
-			Properties = new UnitProperties();
+			props = new UnitProperties();
 
 			Level = 1;
 
@@ -35,7 +40,7 @@ namespace Davfalcon
 		{
 			base.Link();
 			(BaseStats as UnitStats).Bind(this);
-			(Properties as UnitProperties).Bind(this);
+			props.Bind(this);
 		}
 	}
 }

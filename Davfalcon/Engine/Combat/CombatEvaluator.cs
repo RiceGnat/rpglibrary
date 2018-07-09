@@ -13,8 +13,6 @@ namespace Davfalcon.Engine.Combat
 		public event BuffEventHandler OnBuffApplied;
 		public event DamageEventHandler OnDamageTaken;
 
-		public IUnitCombatProperties GetCombatProperties(IUnit unit) => unit.Properties.GetAs<IUnitCombatProperties>();
-
 		private IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator)
 			=> effects.ApplyEffects(source, target, originator);
 
@@ -23,8 +21,8 @@ namespace Davfalcon.Engine.Combat
 
 		private void AdjustHPMP(IUnit unit, int prevMaxHP, int prevMaxMP)
 		{
-			GetCombatProperties(unit).CurrentHP += unit.Stats[CombatStats.HP] - prevMaxHP;
-			GetCombatProperties(unit).CurrentMP += unit.Stats[CombatStats.MP] - prevMaxMP;
+			unit.CombatProperties.CurrentHP += unit.Stats[CombatStats.HP] - prevMaxHP;
+			unit.CombatProperties.CurrentMP += unit.Stats[CombatStats.MP] - prevMaxMP;
 		}
 
 		public void ApplyBuff(IUnit unit, IBuff buff, string source = null)
@@ -35,7 +33,7 @@ namespace Davfalcon.Engine.Combat
 			IBuff b = (IBuff)Serializer.DeepClone(buff);
 			b.Source = source;
 			b.Reset();
-			GetCombatProperties(unit).Buffs.Add(b);
+			unit.CombatProperties.Buffs.Add(b);
 
 			AdjustHPMP(unit, maxHP, maxMP);
 
@@ -47,7 +45,7 @@ namespace Davfalcon.Engine.Combat
 			int maxHP = unit.Stats[CombatStats.HP];
 			int maxMP = unit.Stats[CombatStats.MP];
 
-			GetCombatProperties(unit).Buffs.Remove(buff);
+			unit.CombatProperties.Buffs.Remove(buff);
 
 			AdjustHPMP(unit, maxHP, maxMP);
 		}
@@ -55,11 +53,11 @@ namespace Davfalcon.Engine.Combat
 		public void Initialize(IUnit unit)
 		{
 			// Set HP/MP to max values
-			GetCombatProperties(unit).CurrentHP = unit.Stats[CombatStats.HP];
-			GetCombatProperties(unit).CurrentMP = unit.Stats[CombatStats.MP];
+			unit.CombatProperties.CurrentHP = unit.Stats[CombatStats.HP];
+			unit.CombatProperties.CurrentMP = unit.Stats[CombatStats.MP];
 
 			// Apply buffs granted by equipment
-			foreach (IEquipment equip in GetCombatProperties(unit).Equipment)
+			foreach (IEquipment equip in unit.CombatProperties.Equipment)
 			{
 				foreach (IBuff buff in equip.GrantedBuffs)
 				{
@@ -71,11 +69,11 @@ namespace Davfalcon.Engine.Combat
 		public void Cleanup(IUnit unit)
 		{
 			// Reset HP/MP to 0
-			GetCombatProperties(unit).CurrentHP = 0;
-			GetCombatProperties(unit).CurrentMP = 0;
+			unit.CombatProperties.CurrentHP = 0;
+			unit.CombatProperties.CurrentMP = 0;
 
 			// Clear all buffs/debuffs
-			GetCombatProperties(unit).Buffs.Clear();
+			unit.CombatProperties.Buffs.Clear();
 		}
 
 		public IList<ILogEntry> Upkeep(IUnit unit)
@@ -83,7 +81,7 @@ namespace Davfalcon.Engine.Combat
 			List<ILogEntry> effects = new List<ILogEntry>();
 			List<IBuff> expired = new List<IBuff>();
 
-			foreach (IBuff buff in GetCombatProperties(unit).Buffs)
+			foreach (IBuff buff in unit.CombatProperties.Buffs)
 			{
 				// Apply repeating effects
 				if (buff.Duration > 0 && buff.Remaining > 0 ||
@@ -119,21 +117,21 @@ namespace Davfalcon.Engine.Combat
 
 		public int ChangeHP(IUnit unit, int amount)
 		{
-			int initial = GetCombatProperties(unit).CurrentHP;
-			GetCombatProperties(unit).CurrentHP = (GetCombatProperties(unit).CurrentHP + amount).Clamp(0, unit.Stats[CombatStats.HP]);
-			return GetCombatProperties(unit).CurrentHP - initial;
+			int initial = unit.CombatProperties.CurrentHP;
+			unit.CombatProperties.CurrentHP = (unit.CombatProperties.CurrentHP + amount).Clamp(0, unit.Stats[CombatStats.HP]);
+			return unit.CombatProperties.CurrentHP - initial;
 		}
 
 		public int ChangeMP(IUnit unit, int amount)
 		{
-			int initial = GetCombatProperties(unit).CurrentMP;
-			GetCombatProperties(unit).CurrentMP = (GetCombatProperties(unit).CurrentMP + amount).Clamp(0, unit.Stats[CombatStats.MP]);
-			return GetCombatProperties(unit).CurrentMP - initial;
+			int initial = unit.CombatProperties.CurrentMP;
+			unit.CombatProperties.CurrentMP = (unit.CombatProperties.CurrentMP + amount).Clamp(0, unit.Stats[CombatStats.MP]);
+			return unit.CombatProperties.CurrentMP - initial;
 		}
 
 		public Damage CalculateAttackDamage(IUnit unit, bool crit = false)
 		{
-			IWeapon weapon = GetCombatProperties(unit).EquippedWeapon;
+			IWeapon weapon = unit.CombatProperties.EquippedWeapon;
 
 			return new Damage(
 				DamageType.Physical,
@@ -206,7 +204,7 @@ namespace Davfalcon.Engine.Combat
 			HitCheck hit = CheckForHit(unit, target);
 			Damage damage = hit.Hit ? CalculateAttackDamage(unit, hit.Crit) : null;
 			HPLoss hp = hit.Hit ? ReceiveDamage(target, damage) : null;
-			IList<ILogEntry> effects = hit.Hit ? ApplyEffects(GetCombatProperties(unit).EquippedWeapon, target, unit, hp.Value) : null;
+			IList<ILogEntry> effects = hit.Hit ? ApplyEffects(unit.CombatProperties.EquippedWeapon, target, unit, hp.Value) : null;
 
 			return new AttackAction(
 				unit,
@@ -227,7 +225,7 @@ namespace Davfalcon.Engine.Combat
 			IList<ILogEntry>[] effects = new IList<ILogEntry>[n];
 
 			// MP cost (calling layer is responsible for validation)
-			GetCombatProperties(unit).CurrentMP -= options.AdjustedCost > -1 ? options.AdjustedCost : spell.Cost;
+			unit.CombatProperties.CurrentMP -= options.AdjustedCost > -1 ? options.AdjustedCost : spell.Cost;
 
 			for (int i = 0; i < n; i++)
 			{

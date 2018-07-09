@@ -3,7 +3,7 @@ using RPGLibrary;
 
 namespace Davfalcon
 {
-	public interface IUnitItemProperties : IUnitProperties
+	public interface IUnitItemProperties
 	{
 		IEnumerable<IEquipment> Equipment { get; }
 		IDictionary<EquipmentSlot, IEquipment> EquipmentLookup { get; }

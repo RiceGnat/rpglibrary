@@ -1,6 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Davfalcon.Engine;
-using RPGLibrary;
 
 namespace Davfalcon.UnitTests
 {

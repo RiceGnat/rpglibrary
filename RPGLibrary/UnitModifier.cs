@@ -29,7 +29,6 @@ namespace RPGLibrary
 		IStats IUnit.Stats => InterfaceUnit.Stats;
 		IStatsPackage IUnit.StatsDetails => InterfaceUnit.StatsDetails;
 		IUnitModifierStack IUnit.Modifiers => InterfaceUnit.Modifiers;
-		IUnitProperties IUnit.Properties => InterfaceUnit.Properties;
 		#endregion
 	}
 }

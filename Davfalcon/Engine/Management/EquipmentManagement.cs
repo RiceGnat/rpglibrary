@@ -5,13 +5,11 @@ namespace Davfalcon.Engine.Management
 {
 	public static class EquipmentManagement
 	{
-		public static IUnitItemProperties GetEquipmentProperties(this IUnit unit) => unit.Properties.GetAs<IUnitItemProperties>();
-
 		public static IEnumerable<IEquipment> GetAllEquipment(this IUnit unit)
-			=> unit.GetEquipmentProperties().Equipment;
+			=> unit.ItemProperties.Equipment;
 
 		public static IEquipment GetEquipped(this IUnit unit, EquipmentSlot slot)
-			=> unit.GetEquipmentProperties().GetEquipment(slot);
+			=> unit.ItemProperties.GetEquipment(slot);
 
 		public static IEquipment Equip(this IUnit unit, IEquipment equipment)
 		{
@@ -21,11 +19,11 @@ namespace Davfalcon.Engine.Management
 			IEquipment current = unit.GetEquipped(slot);
 
 			// Remove current equipment
-			unit.GetEquipmentProperties().EquipmentLookup.Remove(slot);
+			unit.ItemProperties.EquipmentLookup.Remove(slot);
 
 			// If not null, add new equipment
 			if (equipment != null)
-				unit.GetEquipmentProperties().EquipmentLookup.Add(slot, equipment);
+				unit.ItemProperties.EquipmentLookup.Add(slot, equipment);
 
 			// Return previously equipped weapon
 			return current;
