@@ -114,6 +114,11 @@ namespace Saffron.Serialization
 			}
 		}
 
+		/// <summary>
+		/// Converts an object to a byte array.
+		/// </summary>
+		/// <param name="obj">The object to be converted.</param>
+		/// <returns>A byte array containing the serialized data of the object.</returns>
 		public static byte[] ConvertToByteArray(object obj)
 		{
 			using (MemoryStream ms = new MemoryStream())
@@ -123,6 +128,12 @@ namespace Saffron.Serialization
 			}
 		}
 
+		/// <summary>
+		/// Converts a byte array back to an object.
+		/// </summary>
+		/// <typeparam name="T">The type of the object.</typeparam>
+		/// <param name="buffer">A byte array containing the serialized data of the object.</param>
+		/// <returns>The original object.</returns>
 		public static T ConvertFromByteArray<T>(byte[] buffer)
 		{
 			using (MemoryStream ms = new MemoryStream(buffer))

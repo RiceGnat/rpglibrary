@@ -11,10 +11,20 @@ namespace Saffron
 	{
 		private List<IUnitModifier> stack = new List<IUnitModifier>();
 
+		/// <summary>
+		/// Gets the <see cref="IUnit"/> that will be presented as the unit.
+		/// </summary>
 		protected override IUnit InterfaceUnit => stack.Count > 0 ? stack[stack.Count - 1] : Target;
 
+		/// <summary>
+		/// Gets the number of modifiers in the stack.
+		/// </summary>
 		public int Count => stack.Count;
 
+		/// <summary>
+		/// Binds the stack to an <see cref="IUnit"/>.
+		/// </summary>
+		/// <param name="target">The <see cref="IUnit"/> to bind the stack to.</param>
 		public override void Bind(IUnit target)
 		{
 			// Set target
@@ -38,12 +48,21 @@ namespace Saffron
 			}
 		}
 
+		/// <summary>
+		/// Adds an <see cref="IUnitModifier"/> to the stack.
+		/// </summary>
+		/// <param name="item">The <see cref="IUnitModifier"/> to be added to the stack.</param>
 		public void Add(IUnitModifier item)
 		{
 			item.Bind(InterfaceUnit);
 			stack.Add(item);
 		}
 
+		/// <summary>
+		/// Removes a specific <see cref="IUnitModifier"/> from the stack.
+		/// </summary>
+		/// <param name="item">The <see cref="IUnitModifier"/> to remove from the stack.</param>
+		/// <returns></returns>
 		public bool Remove(IUnitModifier item)
 		{
 			// Search for referenced item
@@ -56,12 +75,19 @@ namespace Saffron
 			return true;
 		}
 
+		/// <summary>
+		/// Removes the <see cref="IUnitModifier"/> at the specified index of the stack.
+		/// </summary>
+		/// <param name="index">The zero-based index of the <see cref="IUnitModifier"/> to remove.</param>
 		public void RemoveAt(int index)
 		{
 			stack.RemoveAt(index);
 			BindStack();
 		}
 
+		/// <summary>
+		/// Removes all modifiers from the stack.
+		/// </summary>
 		public void Clear()	=> stack.Clear();
 
 		#region IEnumerable implementation

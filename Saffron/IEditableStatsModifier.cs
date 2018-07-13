@@ -1,5 +1,8 @@
 ﻿namespace Saffron
 {
+	/// <summary>
+	/// Exposes properties to edit a modifier's stats.
+	/// </summary>
 	public interface IEditableStatsModifier : IUnitModifier
 	{
 		/// <summary>

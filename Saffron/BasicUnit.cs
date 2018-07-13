@@ -42,24 +42,53 @@ namespace Saffron
 		[NonSerialized]
 		private BaseStatsRouter statsRouter;
 
+		/// <summary>
+		/// Gets or sets the unit's name.
+		/// </summary>
 		public virtual string Name { get; set; }
+
+		/// <summary>
+		/// Gets or sets the unit's class.
+		/// </summary>
 		public virtual string Class { get; set; }
+
+		/// <summary>
+		/// Gets or sets the unit's level.
+		/// </summary>
 		public virtual int Level { get; set; }
 
+		/// <summary>
+		/// Gets a representation of the unit's stats.
+		/// </summary>
 		public virtual IStats Stats { get { return Modifiers.StatsDetails == StatsDetails ? StatsDetails.Base : StatsDetails.Final; } }
+
+		/// <summary>
+		/// Gets a detailed breakdown of the unit's stats.
+		/// </summary>
 		public virtual IStatsPackage StatsDetails { get { return statsRouter; } }
 
+		/// <summary>
+		/// Gets an editable version of the unit's base stats.
+		/// </summary>
 		public IEditableStats BaseStats { get; protected set; }
+
+		/// <summary>
+		/// Gets the unit's modifiers.
+		/// </summary>
 		public IUnitModifierStack Modifiers { get; protected set; }
 
-		// Perform initial setup
+		/// <summary>
+		/// Perform initial setup.
+		/// </summary>
 		protected virtual void Initialize()
 		{
 			BaseStats = new StatsMap();
 			Modifiers = new UnitModifierStack();
 		}
 
-		// Set internal object references
+		/// <summary>
+		/// Set internal object references
+		/// </summary>
 		protected virtual void Link()
 		{
 			statsRouter = new BaseStatsRouter(this);
@@ -75,6 +104,9 @@ namespace Saffron
 			Link();
 		}
 
+		/// <summary>
+		/// Constructs a basic unit with no properties set.
+		/// </summary>
 		public BasicUnit()
 		{
 			Initialize();

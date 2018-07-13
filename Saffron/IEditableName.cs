@@ -1,5 +1,8 @@
 ﻿namespace Saffron
 {
+	/// <summary>
+	/// Represents an object that has an editable name.
+	/// </summary>
 	public interface IEditableName
 	{
 		/// <summary>

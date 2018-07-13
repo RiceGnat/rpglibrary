@@ -1,5 +1,8 @@
 ﻿namespace Saffron
 {
+	/// <summary>
+	/// Represents an object that modifies a unit's stats.
+	/// </summary>
 	public interface IStatsModifier : IUnitModifier
 	{
 		/// <summary>

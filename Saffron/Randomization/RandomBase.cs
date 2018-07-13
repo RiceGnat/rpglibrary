@@ -9,6 +9,9 @@ namespace Saffron.Randomization
 	{
 		private static readonly Random random = new Random();
 
+		/// <summary>
+		/// Gets the singleton random number generator.
+		/// </summary>
 		protected Random Generator
 		{
 			get { return random; }

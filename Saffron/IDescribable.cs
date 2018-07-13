@@ -1,9 +1,12 @@
 ﻿namespace Saffron
 {
+	/// <summary>
+	/// Represents an object that has a description.
+	/// </summary>
 	public interface IDescribable : INameable
 	{
 		/// <summary>
-		/// Gets a description of the object.
+		/// Gets the description of the object.
 		/// </summary>
 		string Description { get; }
 	}

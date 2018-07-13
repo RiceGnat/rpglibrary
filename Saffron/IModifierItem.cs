@@ -1,5 +1,6 @@
 ﻿namespace Saffron
 {
+	// Not sure if needed
 	/// <summary>
 	/// Represents an item that can be attached to a unit to modify its stats.
 	/// </summary>

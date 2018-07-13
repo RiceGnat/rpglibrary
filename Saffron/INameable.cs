@@ -1,5 +1,8 @@
 ﻿namespace Saffron
 {
+	/// <summary>
+	/// Represents an object that has a name.
+	/// </summary>
 	public interface INameable
 	{
 		/// <summary>

@@ -47,9 +47,20 @@ namespace Saffron
 		[NonSerialized]
 		private StatsModifier statsModifier;
 
+		/// <summary>
+		/// Gets or sets the values to be added to each stat.
+		/// </summary>
 		public IEditableStats Additions { get; set; }
+
+		/// <summary>
+		/// Gets or sets the values to be multiplied with each stat.
+		/// </summary>
 		public IEditableStats Multiplications { get; set; }
 
+		/// <summary>
+		/// Binds the modifier to an <see cref="IUnit"/>.
+		/// </summary>
+		/// <param name="target">The <see cref="IUnit"/> to bind the modifier to.</param>
 		public override void Bind(IUnit target)
 		{
 			base.Bind(target);
@@ -62,6 +73,9 @@ namespace Saffron
 		IStats IStatsModifier.Additions => Additions;
 		IStats IStatsModifier.Multiplications => Multiplications;
 
+		/// <summary>
+		/// Initializes a new <see cref="UnitStatsModifier"/> with no values set.
+		/// </summary>
 		public UnitStatsModifier()
 		{
 			Additions = new StatsMap();
