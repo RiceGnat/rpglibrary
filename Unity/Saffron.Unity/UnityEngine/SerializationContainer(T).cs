@@ -1,5 +1,5 @@
 ﻿using System;
-using RPGLibrary.Serialization;
+using Saffron.Serialization;
 
 namespace UnityEngine
 {
