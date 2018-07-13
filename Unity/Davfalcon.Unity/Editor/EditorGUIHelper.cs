@@ -196,8 +196,7 @@ namespace Davfalcon.Unity.Editor
 				for (int i = 0; i < effects.Count; i++)
 				{
 					int selected = 0;
-					// TODO: Find replacement for static SystemData
-					List<string> names = Current.Effects.Names.ToList();
+					List<string> names = SystemDataService.current.effects.Names.ToList();
 					if (effects[i] != null)
 					{
 						selected = names.IndexOf(effects[i].Name);

@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:\Program Files\Unity\Editor\Data\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +57,7 @@
     <Compile Include="Editor\UnitEditor.cs" />
     <Compile Include="Editor\UsableItemEditor.cs" />
     <Compile Include="EquipmentDefinition.cs" />
+    <Compile Include="SystemDataService.cs" />
     <Compile Include="UI\UnitEquipmentView.cs" />
     <Compile Include="UI\UnitView.cs" />
     <Compile Include="UnitTemplate.cs" />
@@ -88,7 +90,8 @@
   <Target Name="GenerateMonoSymbols">
     <Message Text="$(ProjectName) -&gt; $(TargetPath).mdb" Importance="High" />
     <Exec Command="$(MonoMdbGenerator) $(AssemblyName).dll" WorkingDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" />
-    <Exec Command="$(MonoMdbGenerator) RPGLibrary.dll" WorkingDirectory="..\RPGLibrary\bin\$(Configuration)" />
-    <Exec Command="$(MonoMdbGenerator) Davfalcon.dll" WorkingDirectory="..\Davfalcon\bin\$(Configuration)" />
+    <Exec Command="$(MonoMdbGenerator) Davfalcon.dll" WorkingDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" />
+    <Exec Command="$(MonoMdbGenerator) Saffron.dll" WorkingDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" />
+    <Exec Command="$(MonoMdbGenerator) Saffron.Unity.dll" WorkingDirectory="$(MSBuildProjectDirectory)\$(OutputPath)" />
   </Target>
 </Project>
