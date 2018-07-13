@@ -12,9 +12,9 @@ namespace Davfalcon.Unity.UI
 		{
 			IUnitItemProperties props = GetDataAs<IUnitItemProperties>();
 
-			if (weaponName != null) weaponName.text = props.GetEquipment(EquipmentSlot.Weapon).Name;
-			if (armorName != null) armorName.text = props.GetEquipment(EquipmentSlot.Armor).Name;
-			if (accessoryName != null) accessoryName.text = props.GetEquipment(EquipmentSlot.Accessory).Name;
+			if (weaponName != null) weaponName.text = props.GetEquipment(EquipmentType.Weapon).Name;
+			if (armorName != null) armorName.text = props.GetEquipment(EquipmentType.Armor).Name;
+			if (accessoryName != null) accessoryName.text = props.GetEquipment(EquipmentType.Accessory).Name;
 
 			base.Draw();
 		}

@@ -16,13 +16,13 @@ namespace Davfalcon.Unity.Editor
 
 			Space();
 
-			bool wasWeapon = equipment.Slot == EquipmentSlot.Weapon;
-			equipment.Slot = (EquipmentSlot)EnumPopup("Equipment slot", equipment.Slot);
-			bool isWeapon = equipment.Slot == EquipmentSlot.Weapon;
+			bool wasWeapon = equipment.SlotType == EquipmentType.Weapon;
+			equipment.SlotType = (EquipmentType)EnumPopup("Equipment slot", equipment.SlotType);
+			bool isWeapon = equipment.SlotType == EquipmentType.Weapon;
 
 			if (wasWeapon != isWeapon)
 			{
-				equipment = isWeapon ? new Weapon() : new Equipment(equipment.Slot);
+				equipment = isWeapon ? new Weapon() : new Equipment(equipment.SlotType);
 				((EquipmentDefinition)target).obj = equipment;
 			}
 

@@ -67,9 +67,12 @@ namespace Davfalcon
 		}
 
 		public bool Equip(IEquipment equipment) => Equip(equipment, 0);
-		public bool Equip(IEquipment equipment, int offset)
+		public bool Equip(IEquipment equipment, int offset) => EquipSlotIndex(equipment, GetSlotIndex(equipment.SlotType, offset));
+		public bool EquipSlotIndex(IEquipment equipment, int index)
 		{
-			int index = GetSlotIndex(equipment.SlotType, offset);
+			if (equipmentSlots[index] != equipment.SlotType)
+				throw new ArgumentException(String.Format("Equipment type ({2}) does not match slot specified by index {0} ({1}).", index, equipmentSlots[index], equipment.SlotType));
+
 			if (index < 0 || IndexHasEquipment(index)) return false;
 
 			equippedSlots[index] = equipment;

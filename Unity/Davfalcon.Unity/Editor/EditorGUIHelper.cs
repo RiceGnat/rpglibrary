@@ -2,10 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using RPGLibrary;
+using Saffron;
 using UnityEditor;
 using UnityEngine;
-using static Davfalcon.Engine.SystemData;
 using static UnityEditor.EditorGUILayout;
 
 namespace Davfalcon.Unity.Editor
@@ -105,20 +104,24 @@ namespace Davfalcon.Unity.Editor
 		public static void RenderStatModifiers(IEditableStatsModifier modifier, ref bool expanded)
 			=> RenderStatColumns("Additions", modifier.Additions, "Multiplications", modifier.Multiplications, ref expanded);
 
-		public static void RenderEquipmentSlots(string label, IUnitItemProperties equipProps, ref bool expanded)
+		public static void RenderEquipmentTypes(string label, IUnitItemProperties equipProps, ref bool expanded)
 		{
 			expanded = Foldout(expanded, label, true);
 			if (expanded)
 			{
-				foreach (EquipmentSlot slot in Enum.GetValues(typeof(EquipmentSlot)))
+				int i = 0;
+				foreach (EquipmentType slot in equipProps.EquipmentSlots)
 				{
 					IEquipment selected = RenderMappedObjectField<IEquipment, EquipmentDefinition>(slot.ToString(), equipProps.GetEquipment(slot), true);
+
 					if (selected != null)
 					{
-						if (selected.Slot == slot)
-							equipProps.EquipmentLookup[slot] = selected;
+						if (selected.SlotType == slot)
+							equipProps.EquipSlotIndex(selected, i);
 					}
-					else equipProps.EquipmentLookup.Remove(slot);
+					else equipProps.UnequipSlotIndex(i);
+
+					i++;
 				}
 			}
 		}
@@ -193,6 +196,7 @@ namespace Davfalcon.Unity.Editor
 				for (int i = 0; i < effects.Count; i++)
 				{
 					int selected = 0;
+					// TODO: Find replacement for static SystemData
 					List<string> names = Current.Effects.Names.ToList();
 					if (effects[i] != null)
 					{

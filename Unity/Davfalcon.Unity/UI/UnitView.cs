@@ -1,4 +1,4 @@
-﻿using RPGLibrary;
+﻿using Saffron;
 using UnityEditor;
 using UnityEngine.UI;
 
@@ -23,7 +23,7 @@ namespace Davfalcon.Unity.UI
 			if (unitLevel != null) unitLevel.text = unit.Level.ToString();
 
 			statsView?.Bind(unit.Stats);
-			equipmentView?.Bind(unit.Properties.GetAs<IUnitItemProperties>());
+			equipmentView?.Bind(unit.ItemProperties);
 
 			base.Draw();
 		}

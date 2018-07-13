@@ -77,5 +77,15 @@ namespace Davfalcon.UnitTests
 			IUnit unit = MakeUnit();
 			Assert.IsNull(unit.ItemProperties.GetEquipment(EquipmentType.Armor));
 		}
+
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentException), "Equipped to a mismatched slot.")]
+		public void EquipSlotIndexTypeMismatch()
+		{
+			IUnit unit = MakeUnit();
+			IEquipment equip = MakeEquip(EquipmentType.Accessory, 10, 0);
+
+			unit.ItemProperties.EquipSlotIndex(equip, 0);
+		}
 	}
 }

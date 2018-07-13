@@ -37,7 +37,7 @@ namespace Davfalcon.Unity.Editor
 
 			Space();
 
-			RenderEquipmentSlots("Equipment", unit.Properties.GetAs<IUnitItemProperties>(), ref ((UnitTemplate)target).equipmentExpanded);
+			RenderEquipmentTypes("Equipment", unit.ItemProperties, ref ((UnitTemplate)target).equipmentExpanded);
 
 			Space();
 
@@ -57,7 +57,7 @@ namespace Davfalcon.Unity.Editor
 
 			Space();
 
-			RenderInventory("Inventory", unit.Properties.GetAs<IUnitItemProperties>().Inventory, ref ((UnitTemplate)target).inventoryExpanded);
+			RenderInventory("Inventory", unit.ItemProperties.Inventory, ref ((UnitTemplate)target).inventoryExpanded);
 
 			CheckChanged(target);
 		}
