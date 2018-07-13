@@ -5,7 +5,7 @@ using Saffron;
 namespace Davfalcon
 {
 	[Serializable]
-	public class Equipment : ModifierItem, IEquipment
+	public class Equipment : UnitStatsModifier, IEquipment
 	{
 		public EquipmentType SlotType { get; set; }
 

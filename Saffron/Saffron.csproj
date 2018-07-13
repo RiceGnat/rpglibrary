@@ -66,10 +66,7 @@
     <Compile Include="IStats.cs" />
     <Compile Include="IStatsMath.cs" />
     <Compile Include="IStatsPackage.cs" />
-    <Compile Include="ModifierItem.cs" />
-    <Compile Include="IModifierItem.cs" />
     <Compile Include="IItem.cs" />
-    <Compile Include="Item.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="IUnitModifier.cs" />
     <Compile Include="IUnitModifierStack.cs" />

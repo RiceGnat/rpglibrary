@@ -7,6 +7,8 @@ namespace Davfalcon.UnitTests
 	public class EquipmentTests
 	{
 		private const Attributes STAT = Attributes.STR;
+		private const string UNIT_NAME = "UNIT";
+		private const string EQUIP_NAME = "EQUIPMENT";
 
 		private static Unit MakeUnit()
 		{
@@ -21,6 +23,7 @@ namespace Davfalcon.UnitTests
 			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Armor);
 			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Accessory);
 			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Accessory);
+			unit.Name = UNIT_NAME;
 
 			return unit;
 		}
@@ -31,6 +34,7 @@ namespace Davfalcon.UnitTests
 
 			equipment.Additions[STAT] = add;
 			equipment.Multiplications[STAT] = mult;
+			equipment.Name = EQUIP_NAME;
 
 			return equipment;
 		}
@@ -45,6 +49,8 @@ namespace Davfalcon.UnitTests
 
 			Assert.AreEqual(20, unit.Stats[STAT]);
 			Assert.AreEqual(equip, unit.ItemProperties.GetEquipment(EquipmentType.Armor));
+			Assert.AreEqual(UNIT_NAME, unit.Name);
+			Assert.AreEqual(EQUIP_NAME, equip.Name);
 		}
 
 		[TestMethod]

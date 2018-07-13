@@ -3,7 +3,7 @@ using Saffron;
 
 namespace Davfalcon
 {
-	public interface IEquipment : IModifierItem
+	public interface IEquipment : IItem, IStatsModifier
 	{
 		EquipmentType SlotType { get; }
 		IList<IBuff> GrantedBuffs { get; }
