@@ -61,7 +61,7 @@
       <Project>{3f1fa461-a8b2-4b6d-8c39-050069ce2a66}</Project>
       <Name>Davfalcon</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RPGLibrary\RPGLibrary.csproj">
+    <ProjectReference Include="..\Saffron\Saffron.csproj">
       <Project>{1fcb4578-21b8-4db5-b560-c87beeb7fd2e}</Project>
       <Name>RPGLibrary</Name>
     </ProjectReference>

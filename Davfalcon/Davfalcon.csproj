@@ -84,14 +84,14 @@
     <Compile Include="Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RPGLibrary\RPGLibrary.csproj">
-      <Project>{1fcb4578-21b8-4db5-b560-c87beeb7fd2e}</Project>
-      <Name>RPGLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Engine\Management\" />
     <Folder Include="Engine\Setup\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Saffron\Saffron.csproj">
+      <Project>{1fcb4578-21b8-4db5-b560-c87beeb7fd2e}</Project>
+      <Name>Saffron</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

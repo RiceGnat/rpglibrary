@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using RPGLibrary;
-using RPGLibrary.Randomization;
-using RPGLibrary.Serialization;
+using Saffron;
+using Saffron.Randomization;
+using Saffron.Serialization;
 
 namespace Davfalcon.Engine.Combat
 {

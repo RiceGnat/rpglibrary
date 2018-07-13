@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RPGLibrary;
-using RPGLibrary.Collections.Generic;
+using Saffron;
+using Saffron.Collections.Generic;
 
 namespace Davfalcon.Engine.Combat
 {

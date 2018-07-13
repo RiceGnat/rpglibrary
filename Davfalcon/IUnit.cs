@@ -1,6 +1,6 @@
 ﻿namespace Davfalcon
 {
-	public interface IUnit : RPGLibrary.IUnit
+	public interface IUnit : Saffron.IUnit
 	{
 		IUnitCombatProperties CombatProperties { get; }
 		IUnitItemProperties ItemProperties { get; }
