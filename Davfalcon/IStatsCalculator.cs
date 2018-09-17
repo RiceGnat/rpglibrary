@@ -1,9 +1,9 @@
 ﻿namespace Davfalcon
 {
 	/// <summary>
-	/// Specifies a format for defining stat math.
+	/// Specifies a formula to use to calculate stats
 	/// </summary>
-	public interface IStatsMath
+	public interface IStatsCalculator
 	{
 		/// <summary>
 		/// Perform a calculation on the given parameters.

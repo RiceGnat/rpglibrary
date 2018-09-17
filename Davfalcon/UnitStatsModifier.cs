@@ -35,17 +35,23 @@ namespace Davfalcon
 				get { return final; }
 			}
 
-			public StatsModifier(IUnit unit, IStats additions, IStats multiplications)
+			public StatsModifier(IUnit unit, IStats additions, IStats multiplications, IStatsCalculator calculator)
 			{
 				this.unit = unit;
+				
+				// Since these are only summing the modifiers, they will always use the default formula
 				this.additions = new StatsMath(unit.StatsDetails.Additions, additions, StatsConstant.Zero);
 				this.multiplications = new StatsMath(unit.StatsDetails.Multiplications, multiplications, StatsConstant.Zero);
-				final = new StatsMath(Base, Additions, Multiplications);
+
+				// The final calculation will use the defined formula
+				final = new StatsMath(Base, Additions, Multiplications, calculator);
 			}
 		}
 
 		[NonSerialized]
 		private StatsModifier statsModifier;
+
+		private IStatsCalculator calculator;
 
 		/// <summary>
 		/// Gets or sets the values to be added to each stat.
@@ -64,7 +70,7 @@ namespace Davfalcon
 		public override void Bind(IUnit target)
 		{
 			base.Bind(target);
-			statsModifier = new StatsModifier(Target, Additions, Multiplications);
+			statsModifier = new StatsModifier(Target, Additions, Multiplications, calculator);
 		}
 
 		IStats IUnit.Stats => statsModifier.Final;
@@ -80,6 +86,12 @@ namespace Davfalcon
 		{
 			Additions = new StatsMap();
 			Multiplications = new StatsMap();
+		}
+
+		public UnitStatsModifier(IStatsCalculator calculator)
+			: this()
+		{
+			this.calculator = calculator;
 		}
 	}
 }

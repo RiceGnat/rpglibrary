@@ -64,7 +64,7 @@
     <Compile Include="ITimedModifier.cs" />
     <Compile Include="IEditableStats.cs" />
     <Compile Include="IStats.cs" />
-    <Compile Include="IStatsMath.cs" />
+    <Compile Include="IStatsCalculator.cs" />
     <Compile Include="IStatsPackage.cs" />
     <Compile Include="IItem.cs" />
     <Compile Include="IUnit.cs" />

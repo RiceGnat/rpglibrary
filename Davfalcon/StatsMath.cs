@@ -3,14 +3,9 @@
 	/// <summary>
 	/// Performs math across a set of stats.
 	/// </summary>
-	public class StatsMath : StatsPrototype, IStatsMath
+	public class StatsMath : StatsPrototype, IStatsCalculator
 	{
-		private static IStatsMath calculator = new StatsMath();
-
-		/// <summary>
-		/// Sets the math operation to use for calculating stat math.
-		/// </summary>
-		public static IStatsMath Calculator { set { calculator = value; } }
+		private readonly IStatsCalculator calculator;
 
 		private IStats original;
 		private IStats additions;
@@ -29,20 +24,23 @@
 		private StatsMath() { }
 
 		/// <summary>
-		/// Initializes a new <see cref="StatsMath"/> that will calculate using the specified stat operands.
+		/// Initializes a new <see cref="StatsMath"/> that will calculate using the specified stat operands and calculator.
 		/// </summary>
 		/// <param name="original">The original set of stats to use.</param>
 		/// <param name="additions">A set of values to add to each stat.</param>
 		/// <param name="multiplications">A set of values to multiply each stat.</param>
-		public StatsMath(IStats original, IStats additions, IStats multiplications)
+		/// <param name="calculator">An object that specifies the calculation formula to use. If not given or null, the default formula will be used.</param>
+		public StatsMath(IStats original, IStats additions, IStats multiplications, IStatsCalculator calculator = null)
 		{
 			this.original = original;
 			this.additions = additions;
 			this.multiplications = multiplications;
+
+			this.calculator = calculator ?? new StatsMath();
 		}
 
-		// Defines the main calculation to be used for stat math
-		int IStatsMath.Calculate(int a, int b, int m)
+		// Defines the default calculation to be used for stat math
+		int IStatsCalculator.Calculate(int a, int b, int m)
 		{
 			return (a + b).Scale(m);
 		}
