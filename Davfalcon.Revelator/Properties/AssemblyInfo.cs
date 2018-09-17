@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Davfalcon")]
-[assembly: AssemblyDescription("Basic RPG data structures")]
+[assembly: AssemblyTitle("Davfalcon.Revelator")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("86f681a3-f76b-48fb-aa4f-2ef64926f1a6")]
+[assembly: Guid("3f1fa461-a8b2-4b6d-8c39-050069ce2a66")]
 
 // Version information for an assembly consists of the following four values:
 //

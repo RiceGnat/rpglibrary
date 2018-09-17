@@ -22,8 +22,3 @@ TestResults/
 Library/
 Temp/
 UnityGenerated/
-tactics/*.sln
-tactics/*.csproj
-
-# Specifics
-save.bin

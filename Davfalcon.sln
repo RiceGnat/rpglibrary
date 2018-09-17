@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davfalcon", "Davfalcon\Davfalcon.csproj", "{3F1FA461-A8B2-4B6D-8C39-050069CE2A66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davfalcon", "Davfalcon\Davfalcon.csproj", "{1FCB4578-21B8-4DB5-B560-C87BEEB7FD2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davfalcon.UnitTests", "Davfalcon.UnitTests\Davfalcon.UnitTests.csproj", "{B6F86762-E634-4425-9D8B-1C0873B7E12B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davfalcon.UnitTests", "Davfalcon.UnitTests\Davfalcon.UnitTests.csproj", "{1019C09A-ACB3-4212-9372-4E28E628B46F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saffron", "Saffron\Saffron.csproj", "{1FCB4578-21B8-4DB5-B560-C87BEEB7FD2E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davfalcon.Revelator", "Davfalcon.Revelator\Davfalcon.Revelator.csproj", "{3F1FA461-A8B2-4B6D-8C39-050069CE2A66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saffron.UnitTests", "Saffron.UnitTests\Saffron.UnitTests.csproj", "{1019C09A-ACB3-4212-9372-4E28E628B46F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davfalcon.Revelator.UnitTests", "Davfalcon.Revelator.UnitTests\Davfalcon.Revelator.UnitTests.csproj", "{B6F86762-E634-4425-9D8B-1C0873B7E12B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
