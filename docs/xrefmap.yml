@@ -4879,6 +4879,678 @@ references:
   isSpec: "True"
   fullName: Davfalcon.Revelator.UnitStats.GetAllStatNames
   nameWithType: UnitStats.GetAllStatNames
+- uid: Davfalcon.Revelator.Unity
+  name: Davfalcon.Revelator.Unity
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.html
+  commentId: N:Davfalcon.Revelator.Unity
+  fullName: Davfalcon.Revelator.Unity
+  nameWithType: Davfalcon.Revelator.Unity
+- uid: Davfalcon.Revelator.Unity.BuffDefinition
+  name: BuffDefinition
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.BuffDefinition.html
+  commentId: T:Davfalcon.Revelator.Unity.BuffDefinition
+  fullName: Davfalcon.Revelator.Unity.BuffDefinition
+  nameWithType: BuffDefinition
+- uid: Davfalcon.Revelator.Unity.BuffDefinition.effectsExpanded
+  name: effectsExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.BuffDefinition.html#Davfalcon_Revelator_Unity_BuffDefinition_effectsExpanded
+  commentId: F:Davfalcon.Revelator.Unity.BuffDefinition.effectsExpanded
+  fullName: Davfalcon.Revelator.Unity.BuffDefinition.effectsExpanded
+  nameWithType: BuffDefinition.effectsExpanded
+- uid: Davfalcon.Revelator.Unity.BuffDefinition.statsExpanded
+  name: statsExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.BuffDefinition.html#Davfalcon_Revelator_Unity_BuffDefinition_statsExpanded
+  commentId: F:Davfalcon.Revelator.Unity.BuffDefinition.statsExpanded
+  fullName: Davfalcon.Revelator.Unity.BuffDefinition.statsExpanded
+  nameWithType: BuffDefinition.statsExpanded
+- uid: Davfalcon.Revelator.Unity.ClassDefinition
+  name: ClassDefinition
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.ClassDefinition.html
+  commentId: T:Davfalcon.Revelator.Unity.ClassDefinition
+  fullName: Davfalcon.Revelator.Unity.ClassDefinition
+  nameWithType: ClassDefinition
+- uid: Davfalcon.Revelator.Unity.ClassDefinition.statsExpanded
+  name: statsExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.ClassDefinition.html#Davfalcon_Revelator_Unity_ClassDefinition_statsExpanded
+  commentId: F:Davfalcon.Revelator.Unity.ClassDefinition.statsExpanded
+  fullName: Davfalcon.Revelator.Unity.ClassDefinition.statsExpanded
+  nameWithType: ClassDefinition.statsExpanded
+- uid: Davfalcon.Revelator.Unity.Editor
+  name: Davfalcon.Revelator.Unity.Editor
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.html
+  commentId: N:Davfalcon.Revelator.Unity.Editor
+  fullName: Davfalcon.Revelator.Unity.Editor
+  nameWithType: Davfalcon.Revelator.Unity.Editor
+- uid: Davfalcon.Revelator.Unity.Editor.BuffEditor
+  name: BuffEditor
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.BuffEditor.html
+  commentId: T:Davfalcon.Revelator.Unity.Editor.BuffEditor
+  fullName: Davfalcon.Revelator.Unity.Editor.BuffEditor
+  nameWithType: BuffEditor
+- uid: Davfalcon.Revelator.Unity.Editor.BuffEditor.OnInspectorGUI
+  name: OnInspectorGUI()
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.BuffEditor.html#Davfalcon_Revelator_Unity_Editor_BuffEditor_OnInspectorGUI
+  commentId: M:Davfalcon.Revelator.Unity.Editor.BuffEditor.OnInspectorGUI
+  fullName: Davfalcon.Revelator.Unity.Editor.BuffEditor.OnInspectorGUI()
+  nameWithType: BuffEditor.OnInspectorGUI()
+- uid: Davfalcon.Revelator.Unity.Editor.BuffEditor.OnInspectorGUI*
+  name: OnInspectorGUI
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.BuffEditor.html#Davfalcon_Revelator_Unity_Editor_BuffEditor_OnInspectorGUI_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.BuffEditor.OnInspectorGUI
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.BuffEditor.OnInspectorGUI
+  nameWithType: BuffEditor.OnInspectorGUI
+- uid: Davfalcon.Revelator.Unity.Editor.ClassEditor
+  name: ClassEditor
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.ClassEditor.html
+  commentId: T:Davfalcon.Revelator.Unity.Editor.ClassEditor
+  fullName: Davfalcon.Revelator.Unity.Editor.ClassEditor
+  nameWithType: ClassEditor
+- uid: Davfalcon.Revelator.Unity.Editor.ClassEditor.OnInspectorGUI
+  name: OnInspectorGUI()
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.ClassEditor.html#Davfalcon_Revelator_Unity_Editor_ClassEditor_OnInspectorGUI
+  commentId: M:Davfalcon.Revelator.Unity.Editor.ClassEditor.OnInspectorGUI
+  fullName: Davfalcon.Revelator.Unity.Editor.ClassEditor.OnInspectorGUI()
+  nameWithType: ClassEditor.OnInspectorGUI()
+- uid: Davfalcon.Revelator.Unity.Editor.ClassEditor.OnInspectorGUI*
+  name: OnInspectorGUI
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.ClassEditor.html#Davfalcon_Revelator_Unity_Editor_ClassEditor_OnInspectorGUI_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.ClassEditor.OnInspectorGUI
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.ClassEditor.OnInspectorGUI
+  nameWithType: ClassEditor.OnInspectorGUI
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper
+  name: EditorGUIHelper
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html
+  commentId: T:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper
+  nameWithType: EditorGUIHelper
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.CheckChanged(UnityEngine.Object)
+  name: CheckChanged(Object)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_CheckChanged_UnityEngine_Object_
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.CheckChanged(UnityEngine.Object)
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.CheckChanged(UnityEngine.Object)
+  nameWithType: EditorGUIHelper.CheckChanged(Object)
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.CheckChanged*
+  name: CheckChanged
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_CheckChanged_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.CheckChanged
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.CheckChanged
+  nameWithType: EditorGUIHelper.CheckChanged
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.FindAssetWithName*
+  name: FindAssetWithName
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_FindAssetWithName_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.FindAssetWithName
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.FindAssetWithName
+  nameWithType: EditorGUIHelper.FindAssetWithName
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.FindAssetWithName``1(System.String)
+  name: FindAssetWithName<T>(String)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_FindAssetWithName__1_System_String_
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.FindAssetWithName``1(System.String)
+  name.vb: FindAssetWithName(Of T)(String)
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.FindAssetWithName<T>(System.String)
+  fullName.vb: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.FindAssetWithName(Of T)(System.String)
+  nameWithType: EditorGUIHelper.FindAssetWithName<T>(String)
+  nameWithType.vb: EditorGUIHelper.FindAssetWithName(Of T)(String)
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderBuffsList(System.String,System.Collections.Generic.IList{Davfalcon.Revelator.IBuff},System.Boolean,System.Boolean@)
+  name: RenderBuffsList(String, IList<IBuff>, Boolean, ref Boolean)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderBuffsList_System_String_System_Collections_Generic_IList_Davfalcon_Revelator_IBuff__System_Boolean_System_Boolean__
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderBuffsList(System.String,System.Collections.Generic.IList{Davfalcon.Revelator.IBuff},System.Boolean,System.Boolean@)
+  name.vb: RenderBuffsList(String, IList(Of IBuff), Boolean, ByRef Boolean)
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderBuffsList(System.String, System.Collections.Generic.IList<Davfalcon.Revelator.IBuff>, System.Boolean, ref System.Boolean)
+  fullName.vb: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderBuffsList(System.String, System.Collections.Generic.IList(Of Davfalcon.Revelator.IBuff), System.Boolean, ByRef System.Boolean)
+  nameWithType: EditorGUIHelper.RenderBuffsList(String, IList<IBuff>, Boolean, ref Boolean)
+  nameWithType.vb: EditorGUIHelper.RenderBuffsList(String, IList(Of IBuff), Boolean, ByRef Boolean)
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderBuffsList*
+  name: RenderBuffsList
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderBuffsList_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderBuffsList
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderBuffsList
+  nameWithType: EditorGUIHelper.RenderBuffsList
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderDescriptionField(Davfalcon.IEditableDescription)
+  name: RenderDescriptionField(IEditableDescription)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderDescriptionField_Davfalcon_IEditableDescription_
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderDescriptionField(Davfalcon.IEditableDescription)
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderDescriptionField(Davfalcon.IEditableDescription)
+  nameWithType: EditorGUIHelper.RenderDescriptionField(IEditableDescription)
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderDescriptionField*
+  name: RenderDescriptionField
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderDescriptionField_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderDescriptionField
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderDescriptionField
+  nameWithType: EditorGUIHelper.RenderDescriptionField
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEffectsList(System.String,Davfalcon.Revelator.IEffectList,System.Boolean@)
+  name: RenderEffectsList(String, IEffectList, ref Boolean)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderEffectsList_System_String_Davfalcon_Revelator_IEffectList_System_Boolean__
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEffectsList(System.String,Davfalcon.Revelator.IEffectList,System.Boolean@)
+  name.vb: RenderEffectsList(String, IEffectList, ByRef Boolean)
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEffectsList(System.String, Davfalcon.Revelator.IEffectList, ref System.Boolean)
+  fullName.vb: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEffectsList(System.String, Davfalcon.Revelator.IEffectList, ByRef System.Boolean)
+  nameWithType: EditorGUIHelper.RenderEffectsList(String, IEffectList, ref Boolean)
+  nameWithType.vb: EditorGUIHelper.RenderEffectsList(String, IEffectList, ByRef Boolean)
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEffectsList*
+  name: RenderEffectsList
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderEffectsList_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEffectsList
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEffectsList
+  nameWithType: EditorGUIHelper.RenderEffectsList
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEquipmentTypes(System.String,Davfalcon.Revelator.IUnitItemProperties,System.Boolean@)
+  name: RenderEquipmentTypes(String, IUnitItemProperties, ref Boolean)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderEquipmentTypes_System_String_Davfalcon_Revelator_IUnitItemProperties_System_Boolean__
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEquipmentTypes(System.String,Davfalcon.Revelator.IUnitItemProperties,System.Boolean@)
+  name.vb: RenderEquipmentTypes(String, IUnitItemProperties, ByRef Boolean)
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEquipmentTypes(System.String, Davfalcon.Revelator.IUnitItemProperties, ref System.Boolean)
+  fullName.vb: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEquipmentTypes(System.String, Davfalcon.Revelator.IUnitItemProperties, ByRef System.Boolean)
+  nameWithType: EditorGUIHelper.RenderEquipmentTypes(String, IUnitItemProperties, ref Boolean)
+  nameWithType.vb: EditorGUIHelper.RenderEquipmentTypes(String, IUnitItemProperties, ByRef Boolean)
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEquipmentTypes*
+  name: RenderEquipmentTypes
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderEquipmentTypes_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEquipmentTypes
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderEquipmentTypes
+  nameWithType: EditorGUIHelper.RenderEquipmentTypes
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderInventory(System.String,System.Collections.Generic.IList{Davfalcon.IItem},System.Boolean@)
+  name: RenderInventory(String, IList<IItem>, ref Boolean)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderInventory_System_String_System_Collections_Generic_IList_Davfalcon_IItem__System_Boolean__
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderInventory(System.String,System.Collections.Generic.IList{Davfalcon.IItem},System.Boolean@)
+  name.vb: RenderInventory(String, IList(Of IItem), ByRef Boolean)
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderInventory(System.String, System.Collections.Generic.IList<Davfalcon.IItem>, ref System.Boolean)
+  fullName.vb: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderInventory(System.String, System.Collections.Generic.IList(Of Davfalcon.IItem), ByRef System.Boolean)
+  nameWithType: EditorGUIHelper.RenderInventory(String, IList<IItem>, ref Boolean)
+  nameWithType.vb: EditorGUIHelper.RenderInventory(String, IList(Of IItem), ByRef Boolean)
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderInventory*
+  name: RenderInventory
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderInventory_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderInventory
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderInventory
+  nameWithType: EditorGUIHelper.RenderInventory
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderMappedObjectField*
+  name: RenderMappedObjectField
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderMappedObjectField_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderMappedObjectField
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderMappedObjectField
+  nameWithType: EditorGUIHelper.RenderMappedObjectField
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderMappedObjectField``2(``0,System.Boolean)
+  name: RenderMappedObjectField<Tobj, Tdef>(Tobj, Boolean)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderMappedObjectField__2___0_System_Boolean_
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderMappedObjectField``2(``0,System.Boolean)
+  name.vb: RenderMappedObjectField(Of Tobj, Tdef)(Tobj, Boolean)
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderMappedObjectField<Tobj, Tdef>(Tobj, System.Boolean)
+  fullName.vb: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderMappedObjectField(Of Tobj, Tdef)(Tobj, System.Boolean)
+  nameWithType: EditorGUIHelper.RenderMappedObjectField<Tobj, Tdef>(Tobj, Boolean)
+  nameWithType.vb: EditorGUIHelper.RenderMappedObjectField(Of Tobj, Tdef)(Tobj, Boolean)
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderMappedObjectField``2(System.String,``0,System.Boolean)
+  name: RenderMappedObjectField<Tobj, Tdef>(String, Tobj, Boolean)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderMappedObjectField__2_System_String___0_System_Boolean_
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderMappedObjectField``2(System.String,``0,System.Boolean)
+  name.vb: RenderMappedObjectField(Of Tobj, Tdef)(String, Tobj, Boolean)
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderMappedObjectField<Tobj, Tdef>(System.String, Tobj, System.Boolean)
+  fullName.vb: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderMappedObjectField(Of Tobj, Tdef)(System.String, Tobj, System.Boolean)
+  nameWithType: EditorGUIHelper.RenderMappedObjectField<Tobj, Tdef>(String, Tobj, Boolean)
+  nameWithType.vb: EditorGUIHelper.RenderMappedObjectField(Of Tobj, Tdef)(String, Tobj, Boolean)
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumn(System.String,Davfalcon.IEditableStats,System.Boolean@)
+  name: RenderStatColumn(String, IEditableStats, ref Boolean)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderStatColumn_System_String_Davfalcon_IEditableStats_System_Boolean__
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumn(System.String,Davfalcon.IEditableStats,System.Boolean@)
+  name.vb: RenderStatColumn(String, IEditableStats, ByRef Boolean)
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumn(System.String, Davfalcon.IEditableStats, ref System.Boolean)
+  fullName.vb: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumn(System.String, Davfalcon.IEditableStats, ByRef System.Boolean)
+  nameWithType: EditorGUIHelper.RenderStatColumn(String, IEditableStats, ref Boolean)
+  nameWithType.vb: EditorGUIHelper.RenderStatColumn(String, IEditableStats, ByRef Boolean)
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumn*
+  name: RenderStatColumn
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderStatColumn_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumn
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumn
+  nameWithType: EditorGUIHelper.RenderStatColumn
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumns(System.String,Davfalcon.IEditableStats,System.String,Davfalcon.IEditableStats,System.Boolean@)
+  name: RenderStatColumns(String, IEditableStats, String, IEditableStats, ref Boolean)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderStatColumns_System_String_Davfalcon_IEditableStats_System_String_Davfalcon_IEditableStats_System_Boolean__
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumns(System.String,Davfalcon.IEditableStats,System.String,Davfalcon.IEditableStats,System.Boolean@)
+  name.vb: RenderStatColumns(String, IEditableStats, String, IEditableStats, ByRef Boolean)
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumns(System.String, Davfalcon.IEditableStats, System.String, Davfalcon.IEditableStats, ref System.Boolean)
+  fullName.vb: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumns(System.String, Davfalcon.IEditableStats, System.String, Davfalcon.IEditableStats, ByRef System.Boolean)
+  nameWithType: EditorGUIHelper.RenderStatColumns(String, IEditableStats, String, IEditableStats, ref Boolean)
+  nameWithType.vb: EditorGUIHelper.RenderStatColumns(String, IEditableStats, String, IEditableStats, ByRef Boolean)
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumns*
+  name: RenderStatColumns
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderStatColumns_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumns
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatColumns
+  nameWithType: EditorGUIHelper.RenderStatColumns
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatModifiers(Davfalcon.IEditableStatsModifier,System.Boolean@)
+  name: RenderStatModifiers(IEditableStatsModifier, ref Boolean)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderStatModifiers_Davfalcon_IEditableStatsModifier_System_Boolean__
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatModifiers(Davfalcon.IEditableStatsModifier,System.Boolean@)
+  name.vb: RenderStatModifiers(IEditableStatsModifier, ByRef Boolean)
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatModifiers(Davfalcon.IEditableStatsModifier, ref System.Boolean)
+  fullName.vb: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatModifiers(Davfalcon.IEditableStatsModifier, ByRef System.Boolean)
+  nameWithType: EditorGUIHelper.RenderStatModifiers(IEditableStatsModifier, ref Boolean)
+  nameWithType.vb: EditorGUIHelper.RenderStatModifiers(IEditableStatsModifier, ByRef Boolean)
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatModifiers*
+  name: RenderStatModifiers
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_RenderStatModifiers_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatModifiers
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.RenderStatModifiers
+  nameWithType: EditorGUIHelper.RenderStatModifiers
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.SetLabelWidth
+  name: SetLabelWidth()
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_SetLabelWidth
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.SetLabelWidth
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.SetLabelWidth()
+  nameWithType: EditorGUIHelper.SetLabelWidth()
+- uid: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.SetLabelWidth*
+  name: SetLabelWidth
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html#Davfalcon_Revelator_Unity_Editor_EditorGUIHelper_SetLabelWidth_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.SetLabelWidth
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.SetLabelWidth
+  nameWithType: EditorGUIHelper.SetLabelWidth
+- uid: Davfalcon.Revelator.Unity.Editor.EquipmentEditor
+  name: EquipmentEditor
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EquipmentEditor.html
+  commentId: T:Davfalcon.Revelator.Unity.Editor.EquipmentEditor
+  fullName: Davfalcon.Revelator.Unity.Editor.EquipmentEditor
+  nameWithType: EquipmentEditor
+- uid: Davfalcon.Revelator.Unity.Editor.EquipmentEditor.OnInspectorGUI
+  name: OnInspectorGUI()
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EquipmentEditor.html#Davfalcon_Revelator_Unity_Editor_EquipmentEditor_OnInspectorGUI
+  commentId: M:Davfalcon.Revelator.Unity.Editor.EquipmentEditor.OnInspectorGUI
+  fullName: Davfalcon.Revelator.Unity.Editor.EquipmentEditor.OnInspectorGUI()
+  nameWithType: EquipmentEditor.OnInspectorGUI()
+- uid: Davfalcon.Revelator.Unity.Editor.EquipmentEditor.OnInspectorGUI*
+  name: OnInspectorGUI
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EquipmentEditor.html#Davfalcon_Revelator_Unity_Editor_EquipmentEditor_OnInspectorGUI_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.EquipmentEditor.OnInspectorGUI
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.EquipmentEditor.OnInspectorGUI
+  nameWithType: EquipmentEditor.OnInspectorGUI
+- uid: Davfalcon.Revelator.Unity.Editor.SpellEditor
+  name: SpellEditor
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.SpellEditor.html
+  commentId: T:Davfalcon.Revelator.Unity.Editor.SpellEditor
+  fullName: Davfalcon.Revelator.Unity.Editor.SpellEditor
+  nameWithType: SpellEditor
+- uid: Davfalcon.Revelator.Unity.Editor.SpellEditor.OnInspectorGUI
+  name: OnInspectorGUI()
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.SpellEditor.html#Davfalcon_Revelator_Unity_Editor_SpellEditor_OnInspectorGUI
+  commentId: M:Davfalcon.Revelator.Unity.Editor.SpellEditor.OnInspectorGUI
+  fullName: Davfalcon.Revelator.Unity.Editor.SpellEditor.OnInspectorGUI()
+  nameWithType: SpellEditor.OnInspectorGUI()
+- uid: Davfalcon.Revelator.Unity.Editor.SpellEditor.OnInspectorGUI*
+  name: OnInspectorGUI
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.SpellEditor.html#Davfalcon_Revelator_Unity_Editor_SpellEditor_OnInspectorGUI_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.SpellEditor.OnInspectorGUI
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.SpellEditor.OnInspectorGUI
+  nameWithType: SpellEditor.OnInspectorGUI
+- uid: Davfalcon.Revelator.Unity.Editor.UnitEditor
+  name: UnitEditor
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.UnitEditor.html
+  commentId: T:Davfalcon.Revelator.Unity.Editor.UnitEditor
+  fullName: Davfalcon.Revelator.Unity.Editor.UnitEditor
+  nameWithType: UnitEditor
+- uid: Davfalcon.Revelator.Unity.Editor.UnitEditor.OnInspectorGUI
+  name: OnInspectorGUI()
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.UnitEditor.html#Davfalcon_Revelator_Unity_Editor_UnitEditor_OnInspectorGUI
+  commentId: M:Davfalcon.Revelator.Unity.Editor.UnitEditor.OnInspectorGUI
+  fullName: Davfalcon.Revelator.Unity.Editor.UnitEditor.OnInspectorGUI()
+  nameWithType: UnitEditor.OnInspectorGUI()
+- uid: Davfalcon.Revelator.Unity.Editor.UnitEditor.OnInspectorGUI*
+  name: OnInspectorGUI
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.UnitEditor.html#Davfalcon_Revelator_Unity_Editor_UnitEditor_OnInspectorGUI_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.UnitEditor.OnInspectorGUI
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.UnitEditor.OnInspectorGUI
+  nameWithType: UnitEditor.OnInspectorGUI
+- uid: Davfalcon.Revelator.Unity.Editor.UsableItemEditor
+  name: UsableItemEditor
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.UsableItemEditor.html
+  commentId: T:Davfalcon.Revelator.Unity.Editor.UsableItemEditor
+  fullName: Davfalcon.Revelator.Unity.Editor.UsableItemEditor
+  nameWithType: UsableItemEditor
+- uid: Davfalcon.Revelator.Unity.Editor.UsableItemEditor.OnInspectorGUI
+  name: OnInspectorGUI()
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.UsableItemEditor.html#Davfalcon_Revelator_Unity_Editor_UsableItemEditor_OnInspectorGUI
+  commentId: M:Davfalcon.Revelator.Unity.Editor.UsableItemEditor.OnInspectorGUI
+  fullName: Davfalcon.Revelator.Unity.Editor.UsableItemEditor.OnInspectorGUI()
+  nameWithType: UsableItemEditor.OnInspectorGUI()
+- uid: Davfalcon.Revelator.Unity.Editor.UsableItemEditor.OnInspectorGUI*
+  name: OnInspectorGUI
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.UsableItemEditor.html#Davfalcon_Revelator_Unity_Editor_UsableItemEditor_OnInspectorGUI_
+  commentId: Overload:Davfalcon.Revelator.Unity.Editor.UsableItemEditor.OnInspectorGUI
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.Editor.UsableItemEditor.OnInspectorGUI
+  nameWithType: UsableItemEditor.OnInspectorGUI
+- uid: Davfalcon.Revelator.Unity.EquipmentDefinition
+  name: EquipmentDefinition
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.EquipmentDefinition.html
+  commentId: T:Davfalcon.Revelator.Unity.EquipmentDefinition
+  fullName: Davfalcon.Revelator.Unity.EquipmentDefinition
+  nameWithType: EquipmentDefinition
+- uid: Davfalcon.Revelator.Unity.EquipmentDefinition.buffsExpanded
+  name: buffsExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.EquipmentDefinition.html#Davfalcon_Revelator_Unity_EquipmentDefinition_buffsExpanded
+  commentId: F:Davfalcon.Revelator.Unity.EquipmentDefinition.buffsExpanded
+  fullName: Davfalcon.Revelator.Unity.EquipmentDefinition.buffsExpanded
+  nameWithType: EquipmentDefinition.buffsExpanded
+- uid: Davfalcon.Revelator.Unity.EquipmentDefinition.effectsExpanded
+  name: effectsExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.EquipmentDefinition.html#Davfalcon_Revelator_Unity_EquipmentDefinition_effectsExpanded
+  commentId: F:Davfalcon.Revelator.Unity.EquipmentDefinition.effectsExpanded
+  fullName: Davfalcon.Revelator.Unity.EquipmentDefinition.effectsExpanded
+  nameWithType: EquipmentDefinition.effectsExpanded
+- uid: Davfalcon.Revelator.Unity.EquipmentDefinition.statsExpanded
+  name: statsExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.EquipmentDefinition.html#Davfalcon_Revelator_Unity_EquipmentDefinition_statsExpanded
+  commentId: F:Davfalcon.Revelator.Unity.EquipmentDefinition.statsExpanded
+  fullName: Davfalcon.Revelator.Unity.EquipmentDefinition.statsExpanded
+  nameWithType: EquipmentDefinition.statsExpanded
+- uid: Davfalcon.Revelator.Unity.SpellDefinition
+  name: SpellDefinition
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SpellDefinition.html
+  commentId: T:Davfalcon.Revelator.Unity.SpellDefinition
+  fullName: Davfalcon.Revelator.Unity.SpellDefinition
+  nameWithType: SpellDefinition
+- uid: Davfalcon.Revelator.Unity.SpellDefinition.buffsExpanded
+  name: buffsExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SpellDefinition.html#Davfalcon_Revelator_Unity_SpellDefinition_buffsExpanded
+  commentId: F:Davfalcon.Revelator.Unity.SpellDefinition.buffsExpanded
+  fullName: Davfalcon.Revelator.Unity.SpellDefinition.buffsExpanded
+  nameWithType: SpellDefinition.buffsExpanded
+- uid: Davfalcon.Revelator.Unity.SpellDefinition.effectsExpanded
+  name: effectsExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SpellDefinition.html#Davfalcon_Revelator_Unity_SpellDefinition_effectsExpanded
+  commentId: F:Davfalcon.Revelator.Unity.SpellDefinition.effectsExpanded
+  fullName: Davfalcon.Revelator.Unity.SpellDefinition.effectsExpanded
+  nameWithType: SpellDefinition.effectsExpanded
+- uid: Davfalcon.Revelator.Unity.SystemDataService
+  name: SystemDataService
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SystemDataService.html
+  commentId: T:Davfalcon.Revelator.Unity.SystemDataService
+  fullName: Davfalcon.Revelator.Unity.SystemDataService
+  nameWithType: SystemDataService
+- uid: Davfalcon.Revelator.Unity.SystemDataService.current
+  name: current
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SystemDataService.html#Davfalcon_Revelator_Unity_SystemDataService_current
+  commentId: P:Davfalcon.Revelator.Unity.SystemDataService.current
+  fullName: Davfalcon.Revelator.Unity.SystemDataService.current
+  nameWithType: SystemDataService.current
+- uid: Davfalcon.Revelator.Unity.SystemDataService.current*
+  name: current
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SystemDataService.html#Davfalcon_Revelator_Unity_SystemDataService_current_
+  commentId: Overload:Davfalcon.Revelator.Unity.SystemDataService.current
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.SystemDataService.current
+  nameWithType: SystemDataService.current
+- uid: Davfalcon.Revelator.Unity.SystemDataService.effects
+  name: effects
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SystemDataService.html#Davfalcon_Revelator_Unity_SystemDataService_effects
+  commentId: F:Davfalcon.Revelator.Unity.SystemDataService.effects
+  fullName: Davfalcon.Revelator.Unity.SystemDataService.effects
+  nameWithType: SystemDataService.effects
+- uid: Davfalcon.Revelator.Unity.UI
+  name: Davfalcon.Revelator.Unity.UI
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.html
+  commentId: N:Davfalcon.Revelator.Unity.UI
+  fullName: Davfalcon.Revelator.Unity.UI
+  nameWithType: Davfalcon.Revelator.Unity.UI
+- uid: Davfalcon.Revelator.Unity.UI.Editor
+  name: Davfalcon.Revelator.Unity.UI.Editor
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.html
+  commentId: N:Davfalcon.Revelator.Unity.UI.Editor
+  fullName: Davfalcon.Revelator.Unity.UI.Editor
+  nameWithType: Davfalcon.Revelator.Unity.UI.Editor
+- uid: Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer
+  name: AttributeBindingDrawer
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer.html
+  commentId: T:Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer
+  fullName: Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer
+  nameWithType: AttributeBindingDrawer
+- uid: Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer.OnGUI(UnityEngine.Rect,UnityEditor.SerializedProperty,UnityEngine.GUIContent)
+  name: OnGUI(Rect, SerializedProperty, GUIContent)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer.html#Davfalcon_Revelator_Unity_UI_Editor_AttributeBindingDrawer_OnGUI_UnityEngine_Rect_UnityEditor_SerializedProperty_UnityEngine_GUIContent_
+  commentId: M:Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer.OnGUI(UnityEngine.Rect,UnityEditor.SerializedProperty,UnityEngine.GUIContent)
+  fullName: Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer.OnGUI(UnityEngine.Rect, UnityEditor.SerializedProperty, UnityEngine.GUIContent)
+  nameWithType: AttributeBindingDrawer.OnGUI(Rect, SerializedProperty, GUIContent)
+- uid: Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer.OnGUI*
+  name: OnGUI
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer.html#Davfalcon_Revelator_Unity_UI_Editor_AttributeBindingDrawer_OnGUI_
+  commentId: Overload:Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer.OnGUI
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer.OnGUI
+  nameWithType: AttributeBindingDrawer.OnGUI
+- uid: Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer
+  name: CombatStatsBindingDrawer
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer.html
+  commentId: T:Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer
+  fullName: Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer
+  nameWithType: CombatStatsBindingDrawer
+- uid: Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer.OnGUI(UnityEngine.Rect,UnityEditor.SerializedProperty,UnityEngine.GUIContent)
+  name: OnGUI(Rect, SerializedProperty, GUIContent)
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer.html#Davfalcon_Revelator_Unity_UI_Editor_CombatStatsBindingDrawer_OnGUI_UnityEngine_Rect_UnityEditor_SerializedProperty_UnityEngine_GUIContent_
+  commentId: M:Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer.OnGUI(UnityEngine.Rect,UnityEditor.SerializedProperty,UnityEngine.GUIContent)
+  fullName: Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer.OnGUI(UnityEngine.Rect, UnityEditor.SerializedProperty, UnityEngine.GUIContent)
+  nameWithType: CombatStatsBindingDrawer.OnGUI(Rect, SerializedProperty, GUIContent)
+- uid: Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer.OnGUI*
+  name: OnGUI
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer.html#Davfalcon_Revelator_Unity_UI_Editor_CombatStatsBindingDrawer_OnGUI_
+  commentId: Overload:Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer.OnGUI
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer.OnGUI
+  nameWithType: CombatStatsBindingDrawer.OnGUI
+- uid: Davfalcon.Revelator.Unity.UI.StatsView
+  name: StatsView
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.html
+  commentId: T:Davfalcon.Revelator.Unity.UI.StatsView
+  fullName: Davfalcon.Revelator.Unity.UI.StatsView
+  nameWithType: StatsView
+- uid: Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding
+  name: StatsView.AttributeBinding
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding.html
+  commentId: T:Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding
+  fullName: Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding
+  nameWithType: StatsView.AttributeBinding
+- uid: Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding.attribute
+  name: attribute
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding.html#Davfalcon_Revelator_Unity_UI_StatsView_AttributeBinding_attribute
+  commentId: F:Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding.attribute
+  fullName: Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding.attribute
+  nameWithType: StatsView.AttributeBinding.attribute
+- uid: Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding.textElement
+  name: textElement
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding.html#Davfalcon_Revelator_Unity_UI_StatsView_AttributeBinding_textElement
+  commentId: F:Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding.textElement
+  fullName: Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding.textElement
+  nameWithType: StatsView.AttributeBinding.textElement
+- uid: Davfalcon.Revelator.Unity.UI.StatsView.attributes
+  name: attributes
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.html#Davfalcon_Revelator_Unity_UI_StatsView_attributes
+  commentId: F:Davfalcon.Revelator.Unity.UI.StatsView.attributes
+  fullName: Davfalcon.Revelator.Unity.UI.StatsView.attributes
+  nameWithType: StatsView.attributes
+- uid: Davfalcon.Revelator.Unity.UI.StatsView.combatStats
+  name: combatStats
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.html#Davfalcon_Revelator_Unity_UI_StatsView_combatStats
+  commentId: F:Davfalcon.Revelator.Unity.UI.StatsView.combatStats
+  fullName: Davfalcon.Revelator.Unity.UI.StatsView.combatStats
+  nameWithType: StatsView.combatStats
+- uid: Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding
+  name: StatsView.CombatStatsBinding
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding.html
+  commentId: T:Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding
+  fullName: Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding
+  nameWithType: StatsView.CombatStatsBinding
+- uid: Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding.stat
+  name: stat
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding.html#Davfalcon_Revelator_Unity_UI_StatsView_CombatStatsBinding_stat
+  commentId: F:Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding.stat
+  fullName: Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding.stat
+  nameWithType: StatsView.CombatStatsBinding.stat
+- uid: Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding.textElement
+  name: textElement
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding.html#Davfalcon_Revelator_Unity_UI_StatsView_CombatStatsBinding_textElement
+  commentId: F:Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding.textElement
+  fullName: Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding.textElement
+  nameWithType: StatsView.CombatStatsBinding.textElement
+- uid: Davfalcon.Revelator.Unity.UI.StatsView.Draw
+  name: Draw()
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.html#Davfalcon_Revelator_Unity_UI_StatsView_Draw
+  commentId: M:Davfalcon.Revelator.Unity.UI.StatsView.Draw
+  fullName: Davfalcon.Revelator.Unity.UI.StatsView.Draw()
+  nameWithType: StatsView.Draw()
+- uid: Davfalcon.Revelator.Unity.UI.StatsView.Draw*
+  name: Draw
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.html#Davfalcon_Revelator_Unity_UI_StatsView_Draw_
+  commentId: Overload:Davfalcon.Revelator.Unity.UI.StatsView.Draw
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.UI.StatsView.Draw
+  nameWithType: StatsView.Draw
+- uid: Davfalcon.Revelator.Unity.UI.UnitEquipmentView
+  name: UnitEquipmentView
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitEquipmentView.html
+  commentId: T:Davfalcon.Revelator.Unity.UI.UnitEquipmentView
+  fullName: Davfalcon.Revelator.Unity.UI.UnitEquipmentView
+  nameWithType: UnitEquipmentView
+- uid: Davfalcon.Revelator.Unity.UI.UnitEquipmentView.accessoryName
+  name: accessoryName
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitEquipmentView.html#Davfalcon_Revelator_Unity_UI_UnitEquipmentView_accessoryName
+  commentId: F:Davfalcon.Revelator.Unity.UI.UnitEquipmentView.accessoryName
+  fullName: Davfalcon.Revelator.Unity.UI.UnitEquipmentView.accessoryName
+  nameWithType: UnitEquipmentView.accessoryName
+- uid: Davfalcon.Revelator.Unity.UI.UnitEquipmentView.armorName
+  name: armorName
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitEquipmentView.html#Davfalcon_Revelator_Unity_UI_UnitEquipmentView_armorName
+  commentId: F:Davfalcon.Revelator.Unity.UI.UnitEquipmentView.armorName
+  fullName: Davfalcon.Revelator.Unity.UI.UnitEquipmentView.armorName
+  nameWithType: UnitEquipmentView.armorName
+- uid: Davfalcon.Revelator.Unity.UI.UnitEquipmentView.Draw
+  name: Draw()
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitEquipmentView.html#Davfalcon_Revelator_Unity_UI_UnitEquipmentView_Draw
+  commentId: M:Davfalcon.Revelator.Unity.UI.UnitEquipmentView.Draw
+  fullName: Davfalcon.Revelator.Unity.UI.UnitEquipmentView.Draw()
+  nameWithType: UnitEquipmentView.Draw()
+- uid: Davfalcon.Revelator.Unity.UI.UnitEquipmentView.Draw*
+  name: Draw
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitEquipmentView.html#Davfalcon_Revelator_Unity_UI_UnitEquipmentView_Draw_
+  commentId: Overload:Davfalcon.Revelator.Unity.UI.UnitEquipmentView.Draw
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.UI.UnitEquipmentView.Draw
+  nameWithType: UnitEquipmentView.Draw
+- uid: Davfalcon.Revelator.Unity.UI.UnitEquipmentView.weaponName
+  name: weaponName
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitEquipmentView.html#Davfalcon_Revelator_Unity_UI_UnitEquipmentView_weaponName
+  commentId: F:Davfalcon.Revelator.Unity.UI.UnitEquipmentView.weaponName
+  fullName: Davfalcon.Revelator.Unity.UI.UnitEquipmentView.weaponName
+  nameWithType: UnitEquipmentView.weaponName
+- uid: Davfalcon.Revelator.Unity.UI.UnitView
+  name: UnitView
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitView.html
+  commentId: T:Davfalcon.Revelator.Unity.UI.UnitView
+  fullName: Davfalcon.Revelator.Unity.UI.UnitView
+  nameWithType: UnitView
+- uid: Davfalcon.Revelator.Unity.UI.UnitView.Draw
+  name: Draw()
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitView.html#Davfalcon_Revelator_Unity_UI_UnitView_Draw
+  commentId: M:Davfalcon.Revelator.Unity.UI.UnitView.Draw
+  fullName: Davfalcon.Revelator.Unity.UI.UnitView.Draw()
+  nameWithType: UnitView.Draw()
+- uid: Davfalcon.Revelator.Unity.UI.UnitView.Draw*
+  name: Draw
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitView.html#Davfalcon_Revelator_Unity_UI_UnitView_Draw_
+  commentId: Overload:Davfalcon.Revelator.Unity.UI.UnitView.Draw
+  isSpec: "True"
+  fullName: Davfalcon.Revelator.Unity.UI.UnitView.Draw
+  nameWithType: UnitView.Draw
+- uid: Davfalcon.Revelator.Unity.UI.UnitView.equipmentView
+  name: equipmentView
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitView.html#Davfalcon_Revelator_Unity_UI_UnitView_equipmentView
+  commentId: F:Davfalcon.Revelator.Unity.UI.UnitView.equipmentView
+  fullName: Davfalcon.Revelator.Unity.UI.UnitView.equipmentView
+  nameWithType: UnitView.equipmentView
+- uid: Davfalcon.Revelator.Unity.UI.UnitView.statsView
+  name: statsView
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitView.html#Davfalcon_Revelator_Unity_UI_UnitView_statsView
+  commentId: F:Davfalcon.Revelator.Unity.UI.UnitView.statsView
+  fullName: Davfalcon.Revelator.Unity.UI.UnitView.statsView
+  nameWithType: UnitView.statsView
+- uid: Davfalcon.Revelator.Unity.UI.UnitView.unitClass
+  name: unitClass
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitView.html#Davfalcon_Revelator_Unity_UI_UnitView_unitClass
+  commentId: F:Davfalcon.Revelator.Unity.UI.UnitView.unitClass
+  fullName: Davfalcon.Revelator.Unity.UI.UnitView.unitClass
+  nameWithType: UnitView.unitClass
+- uid: Davfalcon.Revelator.Unity.UI.UnitView.unitLevel
+  name: unitLevel
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitView.html#Davfalcon_Revelator_Unity_UI_UnitView_unitLevel
+  commentId: F:Davfalcon.Revelator.Unity.UI.UnitView.unitLevel
+  fullName: Davfalcon.Revelator.Unity.UI.UnitView.unitLevel
+  nameWithType: UnitView.unitLevel
+- uid: Davfalcon.Revelator.Unity.UI.UnitView.unitName
+  name: unitName
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitView.html#Davfalcon_Revelator_Unity_UI_UnitView_unitName
+  commentId: F:Davfalcon.Revelator.Unity.UI.UnitView.unitName
+  fullName: Davfalcon.Revelator.Unity.UI.UnitView.unitName
+  nameWithType: UnitView.unitName
+- uid: Davfalcon.Revelator.Unity.UI.UnitView.unitTemplate
+  name: unitTemplate
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitView.html#Davfalcon_Revelator_Unity_UI_UnitView_unitTemplate
+  commentId: F:Davfalcon.Revelator.Unity.UI.UnitView.unitTemplate
+  fullName: Davfalcon.Revelator.Unity.UI.UnitView.unitTemplate
+  nameWithType: UnitView.unitTemplate
+- uid: Davfalcon.Revelator.Unity.UnitTemplate
+  name: UnitTemplate
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UnitTemplate.html
+  commentId: T:Davfalcon.Revelator.Unity.UnitTemplate
+  fullName: Davfalcon.Revelator.Unity.UnitTemplate
+  nameWithType: UnitTemplate
+- uid: Davfalcon.Revelator.Unity.UnitTemplate.attributesExpanded
+  name: attributesExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UnitTemplate.html#Davfalcon_Revelator_Unity_UnitTemplate_attributesExpanded
+  commentId: F:Davfalcon.Revelator.Unity.UnitTemplate.attributesExpanded
+  fullName: Davfalcon.Revelator.Unity.UnitTemplate.attributesExpanded
+  nameWithType: UnitTemplate.attributesExpanded
+- uid: Davfalcon.Revelator.Unity.UnitTemplate.equipmentExpanded
+  name: equipmentExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UnitTemplate.html#Davfalcon_Revelator_Unity_UnitTemplate_equipmentExpanded
+  commentId: F:Davfalcon.Revelator.Unity.UnitTemplate.equipmentExpanded
+  fullName: Davfalcon.Revelator.Unity.UnitTemplate.equipmentExpanded
+  nameWithType: UnitTemplate.equipmentExpanded
+- uid: Davfalcon.Revelator.Unity.UnitTemplate.inventoryExpanded
+  name: inventoryExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UnitTemplate.html#Davfalcon_Revelator_Unity_UnitTemplate_inventoryExpanded
+  commentId: F:Davfalcon.Revelator.Unity.UnitTemplate.inventoryExpanded
+  fullName: Davfalcon.Revelator.Unity.UnitTemplate.inventoryExpanded
+  nameWithType: UnitTemplate.inventoryExpanded
+- uid: Davfalcon.Revelator.Unity.UnitTemplate.statsExpanded
+  name: statsExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UnitTemplate.html#Davfalcon_Revelator_Unity_UnitTemplate_statsExpanded
+  commentId: F:Davfalcon.Revelator.Unity.UnitTemplate.statsExpanded
+  fullName: Davfalcon.Revelator.Unity.UnitTemplate.statsExpanded
+  nameWithType: UnitTemplate.statsExpanded
+- uid: Davfalcon.Revelator.Unity.UsableItemDefinition
+  name: UsableItemDefinition
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UsableItemDefinition.html
+  commentId: T:Davfalcon.Revelator.Unity.UsableItemDefinition
+  fullName: Davfalcon.Revelator.Unity.UsableItemDefinition
+  nameWithType: UsableItemDefinition
+- uid: Davfalcon.Revelator.Unity.UsableItemDefinition.effectsExpanded
+  name: effectsExpanded
+  href: api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UsableItemDefinition.html#Davfalcon_Revelator_Unity_UsableItemDefinition_effectsExpanded
+  commentId: F:Davfalcon.Revelator.Unity.UsableItemDefinition.effectsExpanded
+  fullName: Davfalcon.Revelator.Unity.UsableItemDefinition.effectsExpanded
+  nameWithType: UsableItemDefinition.effectsExpanded
 - uid: Davfalcon.Revelator.UsableDuringState
   name: UsableDuringState
   href: api/Davfalcon.Revelator/Davfalcon.Revelator.UsableDuringState.html
@@ -6066,3 +6738,618 @@ references:
   isSpec: "True"
   fullName: Davfalcon.UnitStatsModifier.Multiplications
   nameWithType: UnitStatsModifier.Multiplications
+- uid: UnityEditor
+  name: UnityEditor
+  href: api/Unity/Davfalcon.Unity/UnityEditor.html
+  commentId: N:UnityEditor
+  fullName: UnityEditor
+  nameWithType: UnityEditor
+- uid: UnityEditor.EditorHelper
+  name: EditorHelper
+  href: api/Unity/Davfalcon.Unity/UnityEditor.EditorHelper.html
+  commentId: T:UnityEditor.EditorHelper
+  fullName: UnityEditor.EditorHelper
+  nameWithType: EditorHelper
+- uid: UnityEditor.EditorHelper.CreateGameObjectWithComponent*
+  name: CreateGameObjectWithComponent
+  href: api/Unity/Davfalcon.Unity/UnityEditor.EditorHelper.html#UnityEditor_EditorHelper_CreateGameObjectWithComponent_
+  commentId: Overload:UnityEditor.EditorHelper.CreateGameObjectWithComponent
+  isSpec: "True"
+  fullName: UnityEditor.EditorHelper.CreateGameObjectWithComponent
+  nameWithType: EditorHelper.CreateGameObjectWithComponent
+- uid: UnityEditor.EditorHelper.CreateGameObjectWithComponent``1(System.String,UnityEditor.MenuCommand)
+  name: CreateGameObjectWithComponent<T>(String, MenuCommand)
+  href: api/Unity/Davfalcon.Unity/UnityEditor.EditorHelper.html#UnityEditor_EditorHelper_CreateGameObjectWithComponent__1_System_String_UnityEditor_MenuCommand_
+  commentId: M:UnityEditor.EditorHelper.CreateGameObjectWithComponent``1(System.String,UnityEditor.MenuCommand)
+  name.vb: CreateGameObjectWithComponent(Of T)(String, MenuCommand)
+  fullName: UnityEditor.EditorHelper.CreateGameObjectWithComponent<T>(System.String, UnityEditor.MenuCommand)
+  fullName.vb: UnityEditor.EditorHelper.CreateGameObjectWithComponent(Of T)(System.String, UnityEditor.MenuCommand)
+  nameWithType: EditorHelper.CreateGameObjectWithComponent<T>(String, MenuCommand)
+  nameWithType.vb: EditorHelper.CreateGameObjectWithComponent(Of T)(String, MenuCommand)
+- uid: UnityEngine
+  name: UnityEngine
+  href: api/Unity/Davfalcon.Unity/UnityEngine.html
+  commentId: N:UnityEngine
+  fullName: UnityEngine
+  nameWithType: UnityEngine
+- uid: UnityEngine.NameableSerializationContainer`1
+  name: NameableSerializationContainer<T>
+  href: api/Unity/Davfalcon.Unity/UnityEngine.NameableSerializationContainer-1.html
+  commentId: T:UnityEngine.NameableSerializationContainer`1
+  name.vb: NameableSerializationContainer(Of T)
+  fullName: UnityEngine.NameableSerializationContainer<T>
+  fullName.vb: UnityEngine.NameableSerializationContainer(Of T)
+  nameWithType: NameableSerializationContainer<T>
+  nameWithType.vb: NameableSerializationContainer(Of T)
+- uid: UnityEngine.NameableSerializationContainer`1.SerializationPrep
+  name: SerializationPrep()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.NameableSerializationContainer-1.html#UnityEngine_NameableSerializationContainer_1_SerializationPrep
+  commentId: M:UnityEngine.NameableSerializationContainer`1.SerializationPrep
+  fullName: UnityEngine.NameableSerializationContainer<T>.SerializationPrep()
+  fullName.vb: UnityEngine.NameableSerializationContainer(Of T).SerializationPrep()
+  nameWithType: NameableSerializationContainer<T>.SerializationPrep()
+  nameWithType.vb: NameableSerializationContainer(Of T).SerializationPrep()
+- uid: UnityEngine.NameableSerializationContainer`1.SerializationPrep*
+  name: SerializationPrep
+  href: api/Unity/Davfalcon.Unity/UnityEngine.NameableSerializationContainer-1.html#UnityEngine_NameableSerializationContainer_1_SerializationPrep_
+  commentId: Overload:UnityEngine.NameableSerializationContainer`1.SerializationPrep
+  isSpec: "True"
+  fullName: UnityEngine.NameableSerializationContainer<T>.SerializationPrep
+  fullName.vb: UnityEngine.NameableSerializationContainer(Of T).SerializationPrep
+  nameWithType: NameableSerializationContainer<T>.SerializationPrep
+  nameWithType.vb: NameableSerializationContainer(Of T).SerializationPrep
+- uid: UnityEngine.ObjectContainer
+  name: ObjectContainer
+  href: api/Unity/Davfalcon.Unity/UnityEngine.ObjectContainer.html
+  commentId: T:UnityEngine.ObjectContainer
+  fullName: UnityEngine.ObjectContainer
+  nameWithType: ObjectContainer
+- uid: UnityEngine.ObjectContainer.GetObjectAs*
+  name: GetObjectAs
+  href: api/Unity/Davfalcon.Unity/UnityEngine.ObjectContainer.html#UnityEngine_ObjectContainer_GetObjectAs_
+  commentId: Overload:UnityEngine.ObjectContainer.GetObjectAs
+  isSpec: "True"
+  fullName: UnityEngine.ObjectContainer.GetObjectAs
+  nameWithType: ObjectContainer.GetObjectAs
+- uid: UnityEngine.ObjectContainer.GetObjectAs``1
+  name: GetObjectAs<T>()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.ObjectContainer.html#UnityEngine_ObjectContainer_GetObjectAs__1
+  commentId: M:UnityEngine.ObjectContainer.GetObjectAs``1
+  name.vb: GetObjectAs(Of T)()
+  fullName: UnityEngine.ObjectContainer.GetObjectAs<T>()
+  fullName.vb: UnityEngine.ObjectContainer.GetObjectAs(Of T)()
+  nameWithType: ObjectContainer.GetObjectAs<T>()
+  nameWithType.vb: ObjectContainer.GetObjectAs(Of T)()
+- uid: UnityEngine.SerializationContainer`1
+  name: SerializationContainer<T>
+  href: api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.html
+  commentId: T:UnityEngine.SerializationContainer`1
+  name.vb: SerializationContainer(Of T)
+  fullName: UnityEngine.SerializationContainer<T>
+  fullName.vb: UnityEngine.SerializationContainer(Of T)
+  nameWithType: SerializationContainer<T>
+  nameWithType.vb: SerializationContainer(Of T)
+- uid: UnityEngine.SerializationContainer`1.GetObjectAs*
+  name: GetObjectAs
+  href: api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.html#UnityEngine_SerializationContainer_1_GetObjectAs_
+  commentId: Overload:UnityEngine.SerializationContainer`1.GetObjectAs
+  isSpec: "True"
+  fullName: UnityEngine.SerializationContainer<T>.GetObjectAs
+  fullName.vb: UnityEngine.SerializationContainer(Of T).GetObjectAs
+  nameWithType: SerializationContainer<T>.GetObjectAs
+  nameWithType.vb: SerializationContainer(Of T).GetObjectAs
+- uid: UnityEngine.SerializationContainer`1.GetObjectAs``1
+  name: GetObjectAs<U>()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.html#UnityEngine_SerializationContainer_1_GetObjectAs__1
+  commentId: M:UnityEngine.SerializationContainer`1.GetObjectAs``1
+  name.vb: GetObjectAs(Of U)()
+  fullName: UnityEngine.SerializationContainer<T>.GetObjectAs<U>()
+  fullName.vb: UnityEngine.SerializationContainer(Of T).GetObjectAs(Of U)()
+  nameWithType: SerializationContainer<T>.GetObjectAs<U>()
+  nameWithType.vb: SerializationContainer(Of T).GetObjectAs(Of U)()
+- uid: UnityEngine.SerializationContainer`1.obj
+  name: obj
+  href: api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.html#UnityEngine_SerializationContainer_1_obj
+  commentId: F:UnityEngine.SerializationContainer`1.obj
+  fullName: UnityEngine.SerializationContainer<T>.obj
+  fullName.vb: UnityEngine.SerializationContainer(Of T).obj
+  nameWithType: SerializationContainer<T>.obj
+  nameWithType.vb: SerializationContainer(Of T).obj
+- uid: UnityEngine.SerializationContainer`1.OnAfterDeserialize
+  name: OnAfterDeserialize()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.html#UnityEngine_SerializationContainer_1_OnAfterDeserialize
+  commentId: M:UnityEngine.SerializationContainer`1.OnAfterDeserialize
+  fullName: UnityEngine.SerializationContainer<T>.OnAfterDeserialize()
+  fullName.vb: UnityEngine.SerializationContainer(Of T).OnAfterDeserialize()
+  nameWithType: SerializationContainer<T>.OnAfterDeserialize()
+  nameWithType.vb: SerializationContainer(Of T).OnAfterDeserialize()
+- uid: UnityEngine.SerializationContainer`1.OnAfterDeserialize*
+  name: OnAfterDeserialize
+  href: api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.html#UnityEngine_SerializationContainer_1_OnAfterDeserialize_
+  commentId: Overload:UnityEngine.SerializationContainer`1.OnAfterDeserialize
+  isSpec: "True"
+  fullName: UnityEngine.SerializationContainer<T>.OnAfterDeserialize
+  fullName.vb: UnityEngine.SerializationContainer(Of T).OnAfterDeserialize
+  nameWithType: SerializationContainer<T>.OnAfterDeserialize
+  nameWithType.vb: SerializationContainer(Of T).OnAfterDeserialize
+- uid: UnityEngine.SerializationContainer`1.OnBeforeSerialize
+  name: OnBeforeSerialize()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.html#UnityEngine_SerializationContainer_1_OnBeforeSerialize
+  commentId: M:UnityEngine.SerializationContainer`1.OnBeforeSerialize
+  fullName: UnityEngine.SerializationContainer<T>.OnBeforeSerialize()
+  fullName.vb: UnityEngine.SerializationContainer(Of T).OnBeforeSerialize()
+  nameWithType: SerializationContainer<T>.OnBeforeSerialize()
+  nameWithType.vb: SerializationContainer(Of T).OnBeforeSerialize()
+- uid: UnityEngine.SerializationContainer`1.OnBeforeSerialize*
+  name: OnBeforeSerialize
+  href: api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.html#UnityEngine_SerializationContainer_1_OnBeforeSerialize_
+  commentId: Overload:UnityEngine.SerializationContainer`1.OnBeforeSerialize
+  isSpec: "True"
+  fullName: UnityEngine.SerializationContainer<T>.OnBeforeSerialize
+  fullName.vb: UnityEngine.SerializationContainer(Of T).OnBeforeSerialize
+  nameWithType: SerializationContainer<T>.OnBeforeSerialize
+  nameWithType.vb: SerializationContainer(Of T).OnBeforeSerialize
+- uid: UnityEngine.SerializationContainer`1.SerializationPrep
+  name: SerializationPrep()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.html#UnityEngine_SerializationContainer_1_SerializationPrep
+  commentId: M:UnityEngine.SerializationContainer`1.SerializationPrep
+  fullName: UnityEngine.SerializationContainer<T>.SerializationPrep()
+  fullName.vb: UnityEngine.SerializationContainer(Of T).SerializationPrep()
+  nameWithType: SerializationContainer<T>.SerializationPrep()
+  nameWithType.vb: SerializationContainer(Of T).SerializationPrep()
+- uid: UnityEngine.SerializationContainer`1.SerializationPrep*
+  name: SerializationPrep
+  href: api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.html#UnityEngine_SerializationContainer_1_SerializationPrep_
+  commentId: Overload:UnityEngine.SerializationContainer`1.SerializationPrep
+  isSpec: "True"
+  fullName: UnityEngine.SerializationContainer<T>.SerializationPrep
+  fullName.vb: UnityEngine.SerializationContainer(Of T).SerializationPrep
+  nameWithType: SerializationContainer<T>.SerializationPrep
+  nameWithType.vb: SerializationContainer(Of T).SerializationPrep
+- uid: UnityEngine.UI
+  name: UnityEngine.UI
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.html
+  commentId: N:UnityEngine.UI
+  fullName: UnityEngine.UI
+  nameWithType: UnityEngine.UI
+- uid: UnityEngine.UI.DataBoundElement
+  name: DataBoundElement
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundElement.html
+  commentId: T:UnityEngine.UI.DataBoundElement
+  fullName: UnityEngine.UI.DataBoundElement
+  nameWithType: DataBoundElement
+- uid: UnityEngine.UI.DataBoundElement.Bind(System.Object)
+  name: Bind(Object)
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundElement.html#UnityEngine_UI_DataBoundElement_Bind_System_Object_
+  commentId: M:UnityEngine.UI.DataBoundElement.Bind(System.Object)
+  fullName: UnityEngine.UI.DataBoundElement.Bind(System.Object)
+  nameWithType: DataBoundElement.Bind(Object)
+- uid: UnityEngine.UI.DataBoundElement.Bind*
+  name: Bind
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundElement.html#UnityEngine_UI_DataBoundElement_Bind_
+  commentId: Overload:UnityEngine.UI.DataBoundElement.Bind
+  isSpec: "True"
+  fullName: UnityEngine.UI.DataBoundElement.Bind
+  nameWithType: DataBoundElement.Bind
+- uid: UnityEngine.UI.DataBoundElement.GetDataAs*
+  name: GetDataAs
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundElement.html#UnityEngine_UI_DataBoundElement_GetDataAs_
+  commentId: Overload:UnityEngine.UI.DataBoundElement.GetDataAs
+  isSpec: "True"
+  fullName: UnityEngine.UI.DataBoundElement.GetDataAs
+  nameWithType: DataBoundElement.GetDataAs
+- uid: UnityEngine.UI.DataBoundElement.GetDataAs``1
+  name: GetDataAs<T>()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundElement.html#UnityEngine_UI_DataBoundElement_GetDataAs__1
+  commentId: M:UnityEngine.UI.DataBoundElement.GetDataAs``1
+  name.vb: GetDataAs(Of T)()
+  fullName: UnityEngine.UI.DataBoundElement.GetDataAs<T>()
+  fullName.vb: UnityEngine.UI.DataBoundElement.GetDataAs(Of T)()
+  nameWithType: DataBoundElement.GetDataAs<T>()
+  nameWithType.vb: DataBoundElement.GetDataAs(Of T)()
+- uid: UnityEngine.UI.DataBoundText
+  name: DataBoundText
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundText.html
+  commentId: T:UnityEngine.UI.DataBoundText
+  fullName: UnityEngine.UI.DataBoundText
+  nameWithType: DataBoundText
+- uid: UnityEngine.UI.DataBoundText.Draw
+  name: Draw()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundText.html#UnityEngine_UI_DataBoundText_Draw
+  commentId: M:UnityEngine.UI.DataBoundText.Draw
+  fullName: UnityEngine.UI.DataBoundText.Draw()
+  nameWithType: DataBoundText.Draw()
+- uid: UnityEngine.UI.DataBoundText.Draw*
+  name: Draw
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundText.html#UnityEngine_UI_DataBoundText_Draw_
+  commentId: Overload:UnityEngine.UI.DataBoundText.Draw
+  isSpec: "True"
+  fullName: UnityEngine.UI.DataBoundText.Draw
+  nameWithType: DataBoundText.Draw
+- uid: UnityEngine.UI.DataBoundText.text
+  name: text
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundText.html#UnityEngine_UI_DataBoundText_text
+  commentId: P:UnityEngine.UI.DataBoundText.text
+  fullName: UnityEngine.UI.DataBoundText.text
+  nameWithType: DataBoundText.text
+- uid: UnityEngine.UI.DataBoundText.text*
+  name: text
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundText.html#UnityEngine_UI_DataBoundText_text_
+  commentId: Overload:UnityEngine.UI.DataBoundText.text
+  isSpec: "True"
+  fullName: UnityEngine.UI.DataBoundText.text
+  nameWithType: DataBoundText.text
+- uid: UnityEngine.UI.Element
+  name: Element
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html
+  commentId: T:UnityEngine.UI.Element
+  fullName: UnityEngine.UI.Element
+  nameWithType: Element
+- uid: UnityEngine.UI.Element.Draw
+  name: Draw()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_Draw
+  commentId: M:UnityEngine.UI.Element.Draw
+  fullName: UnityEngine.UI.Element.Draw()
+  nameWithType: Element.Draw()
+- uid: UnityEngine.UI.Element.Draw*
+  name: Draw
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_Draw_
+  commentId: Overload:UnityEngine.UI.Element.Draw
+  isSpec: "True"
+  fullName: UnityEngine.UI.Element.Draw
+  nameWithType: Element.Draw
+- uid: UnityEngine.UI.Element.height
+  name: height
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_height
+  commentId: P:UnityEngine.UI.Element.height
+  fullName: UnityEngine.UI.Element.height
+  nameWithType: Element.height
+- uid: UnityEngine.UI.Element.height*
+  name: height
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_height_
+  commentId: Overload:UnityEngine.UI.Element.height
+  isSpec: "True"
+  fullName: UnityEngine.UI.Element.height
+  nameWithType: Element.height
+- uid: UnityEngine.UI.Element.rectTransform
+  name: rectTransform
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_rectTransform
+  commentId: P:UnityEngine.UI.Element.rectTransform
+  fullName: UnityEngine.UI.Element.rectTransform
+  nameWithType: Element.rectTransform
+- uid: UnityEngine.UI.Element.rectTransform*
+  name: rectTransform
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_rectTransform_
+  commentId: Overload:UnityEngine.UI.Element.rectTransform
+  isSpec: "True"
+  fullName: UnityEngine.UI.Element.rectTransform
+  nameWithType: Element.rectTransform
+- uid: UnityEngine.UI.Element.Shift(System.Single,System.Single)
+  name: Shift(Single, Single)
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_Shift_System_Single_System_Single_
+  commentId: M:UnityEngine.UI.Element.Shift(System.Single,System.Single)
+  fullName: UnityEngine.UI.Element.Shift(System.Single, System.Single)
+  nameWithType: Element.Shift(Single, Single)
+- uid: UnityEngine.UI.Element.Shift*
+  name: Shift
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_Shift_
+  commentId: Overload:UnityEngine.UI.Element.Shift
+  isSpec: "True"
+  fullName: UnityEngine.UI.Element.Shift
+  nameWithType: Element.Shift
+- uid: UnityEngine.UI.Element.ShiftDown(System.Single)
+  name: ShiftDown(Single)
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_ShiftDown_System_Single_
+  commentId: M:UnityEngine.UI.Element.ShiftDown(System.Single)
+  fullName: UnityEngine.UI.Element.ShiftDown(System.Single)
+  nameWithType: Element.ShiftDown(Single)
+- uid: UnityEngine.UI.Element.ShiftDown*
+  name: ShiftDown
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_ShiftDown_
+  commentId: Overload:UnityEngine.UI.Element.ShiftDown
+  isSpec: "True"
+  fullName: UnityEngine.UI.Element.ShiftDown
+  nameWithType: Element.ShiftDown
+- uid: UnityEngine.UI.Element.ShiftRight(System.Single)
+  name: ShiftRight(Single)
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_ShiftRight_System_Single_
+  commentId: M:UnityEngine.UI.Element.ShiftRight(System.Single)
+  fullName: UnityEngine.UI.Element.ShiftRight(System.Single)
+  nameWithType: Element.ShiftRight(Single)
+- uid: UnityEngine.UI.Element.ShiftRight*
+  name: ShiftRight
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_ShiftRight_
+  commentId: Overload:UnityEngine.UI.Element.ShiftRight
+  isSpec: "True"
+  fullName: UnityEngine.UI.Element.ShiftRight
+  nameWithType: Element.ShiftRight
+- uid: UnityEngine.UI.Element.width
+  name: width
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_width
+  commentId: P:UnityEngine.UI.Element.width
+  fullName: UnityEngine.UI.Element.width
+  nameWithType: Element.width
+- uid: UnityEngine.UI.Element.width*
+  name: width
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html#UnityEngine_UI_Element_width_
+  commentId: Overload:UnityEngine.UI.Element.width
+  isSpec: "True"
+  fullName: UnityEngine.UI.Element.width
+  nameWithType: Element.width
+- uid: UnityEngine.UI.EnumerableView
+  name: EnumerableView
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.html
+  commentId: T:UnityEngine.UI.EnumerableView
+  fullName: UnityEngine.UI.EnumerableView
+  nameWithType: EnumerableView
+- uid: UnityEngine.UI.EnumerableView.Clear
+  name: Clear()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.html#UnityEngine_UI_EnumerableView_Clear
+  commentId: M:UnityEngine.UI.EnumerableView.Clear
+  fullName: UnityEngine.UI.EnumerableView.Clear()
+  nameWithType: EnumerableView.Clear()
+- uid: UnityEngine.UI.EnumerableView.Clear*
+  name: Clear
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.html#UnityEngine_UI_EnumerableView_Clear_
+  commentId: Overload:UnityEngine.UI.EnumerableView.Clear
+  isSpec: "True"
+  fullName: UnityEngine.UI.EnumerableView.Clear
+  nameWithType: EnumerableView.Clear
+- uid: UnityEngine.UI.EnumerableView.direction
+  name: direction
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.html#UnityEngine_UI_EnumerableView_direction
+  commentId: P:UnityEngine.UI.EnumerableView.direction
+  fullName: UnityEngine.UI.EnumerableView.direction
+  nameWithType: EnumerableView.direction
+- uid: UnityEngine.UI.EnumerableView.Direction
+  name: EnumerableView.Direction
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.Direction.html
+  commentId: T:UnityEngine.UI.EnumerableView.Direction
+  fullName: UnityEngine.UI.EnumerableView.Direction
+  nameWithType: EnumerableView.Direction
+- uid: UnityEngine.UI.EnumerableView.direction*
+  name: direction
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.html#UnityEngine_UI_EnumerableView_direction_
+  commentId: Overload:UnityEngine.UI.EnumerableView.direction
+  isSpec: "True"
+  fullName: UnityEngine.UI.EnumerableView.direction
+  nameWithType: EnumerableView.direction
+- uid: UnityEngine.UI.EnumerableView.Direction.Horizontal
+  name: Horizontal
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.Direction.html#UnityEngine_UI_EnumerableView_Direction_Horizontal
+  commentId: F:UnityEngine.UI.EnumerableView.Direction.Horizontal
+  fullName: UnityEngine.UI.EnumerableView.Direction.Horizontal
+  nameWithType: EnumerableView.Direction.Horizontal
+- uid: UnityEngine.UI.EnumerableView.Direction.Vertical
+  name: Vertical
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.Direction.html#UnityEngine_UI_EnumerableView_Direction_Vertical
+  commentId: F:UnityEngine.UI.EnumerableView.Direction.Vertical
+  fullName: UnityEngine.UI.EnumerableView.Direction.Vertical
+  nameWithType: EnumerableView.Direction.Vertical
+- uid: UnityEngine.UI.EnumerableView.Draw
+  name: Draw()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.html#UnityEngine_UI_EnumerableView_Draw
+  commentId: M:UnityEngine.UI.EnumerableView.Draw
+  fullName: UnityEngine.UI.EnumerableView.Draw()
+  nameWithType: EnumerableView.Draw()
+- uid: UnityEngine.UI.EnumerableView.Draw*
+  name: Draw
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.html#UnityEngine_UI_EnumerableView_Draw_
+  commentId: Overload:UnityEngine.UI.EnumerableView.Draw
+  isSpec: "True"
+  fullName: UnityEngine.UI.EnumerableView.Draw
+  nameWithType: EnumerableView.Draw
+- uid: UnityEngine.UI.EnumerableView.elements
+  name: elements
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.html#UnityEngine_UI_EnumerableView_elements
+  commentId: P:UnityEngine.UI.EnumerableView.elements
+  fullName: UnityEngine.UI.EnumerableView.elements
+  nameWithType: EnumerableView.elements
+- uid: UnityEngine.UI.EnumerableView.elements*
+  name: elements
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.html#UnityEngine_UI_EnumerableView_elements_
+  commentId: Overload:UnityEngine.UI.EnumerableView.elements
+  isSpec: "True"
+  fullName: UnityEngine.UI.EnumerableView.elements
+  nameWithType: EnumerableView.elements
+- uid: UnityEngine.UI.EnumerableView.template
+  name: template
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.html#UnityEngine_UI_EnumerableView_template
+  commentId: F:UnityEngine.UI.EnumerableView.template
+  fullName: UnityEngine.UI.EnumerableView.template
+  nameWithType: EnumerableView.template
+- uid: UnityEngine.UI.Extensions
+  name: Extensions
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Extensions.html
+  commentId: T:UnityEngine.UI.Extensions
+  fullName: UnityEngine.UI.Extensions
+  nameWithType: Extensions
+- uid: UnityEngine.UI.Extensions.SetFieldAndReturnComponent*
+  name: SetFieldAndReturnComponent
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Extensions.html#UnityEngine_UI_Extensions_SetFieldAndReturnComponent_
+  commentId: Overload:UnityEngine.UI.Extensions.SetFieldAndReturnComponent
+  isSpec: "True"
+  fullName: UnityEngine.UI.Extensions.SetFieldAndReturnComponent
+  nameWithType: Extensions.SetFieldAndReturnComponent
+- uid: UnityEngine.UI.Extensions.SetFieldAndReturnComponent``1(UnityEngine.MonoBehaviour,``0@)
+  name: SetFieldAndReturnComponent<T>(MonoBehaviour, ref T)
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Extensions.html#UnityEngine_UI_Extensions_SetFieldAndReturnComponent__1_UnityEngine_MonoBehaviour___0__
+  commentId: M:UnityEngine.UI.Extensions.SetFieldAndReturnComponent``1(UnityEngine.MonoBehaviour,``0@)
+  name.vb: SetFieldAndReturnComponent(Of T)(MonoBehaviour, ByRef T)
+  fullName: UnityEngine.UI.Extensions.SetFieldAndReturnComponent<T>(UnityEngine.MonoBehaviour, ref T)
+  fullName.vb: UnityEngine.UI.Extensions.SetFieldAndReturnComponent(Of T)(UnityEngine.MonoBehaviour, ByRef T)
+  nameWithType: Extensions.SetFieldAndReturnComponent<T>(MonoBehaviour, ref T)
+  nameWithType.vb: Extensions.SetFieldAndReturnComponent(Of T)(MonoBehaviour, ByRef T)
+- uid: UnityEngine.UI.Extensions.SetX(UnityEngine.Vector2,System.Single)
+  name: SetX(Vector2, Single)
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Extensions.html#UnityEngine_UI_Extensions_SetX_UnityEngine_Vector2_System_Single_
+  commentId: M:UnityEngine.UI.Extensions.SetX(UnityEngine.Vector2,System.Single)
+  fullName: UnityEngine.UI.Extensions.SetX(UnityEngine.Vector2, System.Single)
+  nameWithType: Extensions.SetX(Vector2, Single)
+- uid: UnityEngine.UI.Extensions.SetX*
+  name: SetX
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Extensions.html#UnityEngine_UI_Extensions_SetX_
+  commentId: Overload:UnityEngine.UI.Extensions.SetX
+  isSpec: "True"
+  fullName: UnityEngine.UI.Extensions.SetX
+  nameWithType: Extensions.SetX
+- uid: UnityEngine.UI.Extensions.SetY(UnityEngine.Vector2,System.Single)
+  name: SetY(Vector2, Single)
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Extensions.html#UnityEngine_UI_Extensions_SetY_UnityEngine_Vector2_System_Single_
+  commentId: M:UnityEngine.UI.Extensions.SetY(UnityEngine.Vector2,System.Single)
+  fullName: UnityEngine.UI.Extensions.SetY(UnityEngine.Vector2, System.Single)
+  nameWithType: Extensions.SetY(Vector2, Single)
+- uid: UnityEngine.UI.Extensions.SetY*
+  name: SetY
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Extensions.html#UnityEngine_UI_Extensions_SetY_
+  commentId: Overload:UnityEngine.UI.Extensions.SetY
+  isSpec: "True"
+  fullName: UnityEngine.UI.Extensions.SetY
+  nameWithType: Extensions.SetY
+- uid: UnityEngine.UI.Menu
+  name: Menu
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html
+  commentId: T:UnityEngine.UI.Menu
+  fullName: UnityEngine.UI.Menu
+  nameWithType: Menu
+- uid: UnityEngine.UI.Menu.Callback
+  name: Menu.Callback
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.Callback.html
+  commentId: T:UnityEngine.UI.Menu.Callback
+  fullName: UnityEngine.UI.Menu.Callback
+  nameWithType: Menu.Callback
+- uid: UnityEngine.UI.Menu.Focus
+  name: Focus()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_Focus
+  commentId: M:UnityEngine.UI.Menu.Focus
+  fullName: UnityEngine.UI.Menu.Focus()
+  nameWithType: Menu.Focus()
+- uid: UnityEngine.UI.Menu.Focus(UnityEngine.UI.Menu.Callback)
+  name: Focus(Menu.Callback)
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_Focus_UnityEngine_UI_Menu_Callback_
+  commentId: M:UnityEngine.UI.Menu.Focus(UnityEngine.UI.Menu.Callback)
+  fullName: UnityEngine.UI.Menu.Focus(UnityEngine.UI.Menu.Callback)
+  nameWithType: Menu.Focus(Menu.Callback)
+- uid: UnityEngine.UI.Menu.Focus*
+  name: Focus
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_Focus_
+  commentId: Overload:UnityEngine.UI.Menu.Focus
+  isSpec: "True"
+  fullName: UnityEngine.UI.Menu.Focus
+  nameWithType: Menu.Focus
+- uid: UnityEngine.UI.Menu.Focused
+  name: Focused
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_Focused
+  commentId: P:UnityEngine.UI.Menu.Focused
+  fullName: UnityEngine.UI.Menu.Focused
+  nameWithType: Menu.Focused
+- uid: UnityEngine.UI.Menu.Focused*
+  name: Focused
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_Focused_
+  commentId: Overload:UnityEngine.UI.Menu.Focused
+  isSpec: "True"
+  fullName: UnityEngine.UI.Menu.Focused
+  nameWithType: Menu.Focused
+- uid: UnityEngine.UI.Menu.IsFocused
+  name: IsFocused
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_IsFocused
+  commentId: P:UnityEngine.UI.Menu.IsFocused
+  fullName: UnityEngine.UI.Menu.IsFocused
+  nameWithType: Menu.IsFocused
+- uid: UnityEngine.UI.Menu.IsFocused*
+  name: IsFocused
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_IsFocused_
+  commentId: Overload:UnityEngine.UI.Menu.IsFocused
+  isSpec: "True"
+  fullName: UnityEngine.UI.Menu.IsFocused
+  nameWithType: Menu.IsFocused
+- uid: UnityEngine.UI.Menu.OpenChild(UnityEngine.UI.Menu,UnityEngine.UI.Menu.Callback)
+  name: OpenChild(Menu, Menu.Callback)
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_OpenChild_UnityEngine_UI_Menu_UnityEngine_UI_Menu_Callback_
+  commentId: M:UnityEngine.UI.Menu.OpenChild(UnityEngine.UI.Menu,UnityEngine.UI.Menu.Callback)
+  fullName: UnityEngine.UI.Menu.OpenChild(UnityEngine.UI.Menu, UnityEngine.UI.Menu.Callback)
+  nameWithType: Menu.OpenChild(Menu, Menu.Callback)
+- uid: UnityEngine.UI.Menu.OpenChild*
+  name: OpenChild
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_OpenChild_
+  commentId: Overload:UnityEngine.UI.Menu.OpenChild
+  isSpec: "True"
+  fullName: UnityEngine.UI.Menu.OpenChild
+  nameWithType: Menu.OpenChild
+- uid: UnityEngine.UI.Menu.Return(System.Object)
+  name: Return(Object)
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_Return_System_Object_
+  commentId: M:UnityEngine.UI.Menu.Return(System.Object)
+  fullName: UnityEngine.UI.Menu.Return(System.Object)
+  nameWithType: Menu.Return(Object)
+- uid: UnityEngine.UI.Menu.Return*
+  name: Return
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_Return_
+  commentId: Overload:UnityEngine.UI.Menu.Return
+  isSpec: "True"
+  fullName: UnityEngine.UI.Menu.Return
+  nameWithType: Menu.Return
+- uid: UnityEngine.UI.Menu.Show
+  name: Show()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_Show
+  commentId: M:UnityEngine.UI.Menu.Show
+  fullName: UnityEngine.UI.Menu.Show()
+  nameWithType: Menu.Show()
+- uid: UnityEngine.UI.Menu.Show*
+  name: Show
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html#UnityEngine_UI_Menu_Show_
+  commentId: Overload:UnityEngine.UI.Menu.Show
+  isSpec: "True"
+  fullName: UnityEngine.UI.Menu.Show
+  nameWithType: Menu.Show
+- uid: UnityEngine.UI.Screen
+  name: Screen
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html
+  commentId: T:UnityEngine.UI.Screen
+  fullName: UnityEngine.UI.Screen
+  nameWithType: Screen
+- uid: UnityEngine.UI.Screen.Displayed
+  name: Displayed
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_Displayed
+  commentId: P:UnityEngine.UI.Screen.Displayed
+  fullName: UnityEngine.UI.Screen.Displayed
+  nameWithType: Screen.Displayed
+- uid: UnityEngine.UI.Screen.Displayed*
+  name: Displayed
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_Displayed_
+  commentId: Overload:UnityEngine.UI.Screen.Displayed
+  isSpec: "True"
+  fullName: UnityEngine.UI.Screen.Displayed
+  nameWithType: Screen.Displayed
+- uid: UnityEngine.UI.Screen.initialFocus
+  name: initialFocus
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_initialFocus
+  commentId: F:UnityEngine.UI.Screen.initialFocus
+  fullName: UnityEngine.UI.Screen.initialFocus
+  nameWithType: Screen.initialFocus
+- uid: UnityEngine.UI.Screen.IsVisible
+  name: IsVisible
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_IsVisible
+  commentId: P:UnityEngine.UI.Screen.IsVisible
+  fullName: UnityEngine.UI.Screen.IsVisible
+  nameWithType: Screen.IsVisible
+- uid: UnityEngine.UI.Screen.IsVisible*
+  name: IsVisible
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_IsVisible_
+  commentId: Overload:UnityEngine.UI.Screen.IsVisible
+  isSpec: "True"
+  fullName: UnityEngine.UI.Screen.IsVisible
+  nameWithType: Screen.IsVisible
+- uid: UnityEngine.UI.Screen.Show
+  name: Show()
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_Show
+  commentId: M:UnityEngine.UI.Screen.Show
+  fullName: UnityEngine.UI.Screen.Show()
+  nameWithType: Screen.Show()
+- uid: UnityEngine.UI.Screen.Show*
+  name: Show
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_Show_
+  commentId: Overload:UnityEngine.UI.Screen.Show
+  isSpec: "True"
+  fullName: UnityEngine.UI.Screen.Show
+  nameWithType: Screen.Show

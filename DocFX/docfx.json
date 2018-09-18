@@ -4,13 +4,8 @@
       "src": [
         {
           "src": "../Davfalcon",
-          "files": [
-            "*.csproj"
-          ],
-          "exclude": [
-            "**/obj/**",
-            "**/bin/**"
-          ]
+          "files": [ "*.csproj" ],
+          "exclude": [ "**/obj/**", "**/bin/**" ]
         }
       ],
       "dest": "obj/api/Davfalcon"
@@ -19,16 +14,31 @@
       "src": [
         {
           "src": "../Davfalcon.Revelator",
-          "files": [
-            "*.csproj"
-          ],
-          "exclude": [
-            "**/obj/**",
-            "**/bin/**"
-          ]
+          "files": [ "*.csproj" ],
+          "exclude": [ "**/obj/**", "**/bin/**" ]
         }
       ],
       "dest": "obj/api/Davfalcon.Revelator"
+    },
+    {
+      "src": [
+        {
+          "src": "../Unity/Davfalcon.Unity",
+          "files": [ "*.csproj" ],
+          "exclude": [ "**/obj/**", "**/bin/**" ]
+        }
+      ],
+      "dest": "obj/api/Unity/Davfalcon.Unity"
+    },
+    {
+      "src": [
+        {
+          "src": "../Unity/Davfalcon.Revelator.Unity",
+          "files": [ "*.csproj" ],
+          "exclude": [ "**/obj/**", "**/bin/**" ]
+        }
+      ],
+      "dest": "obj/api/Unity/Davfalcon.Revelator.Unity"
     }
   ],
   "build": {
@@ -41,8 +51,7 @@
       },
       {
         "files": [
-          "api/*.md",
-          "api/*.yml",
+          "api/**.yml",
           "articles/**.md",
           "toc.yml",
           "*.md"
