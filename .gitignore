@@ -22,3 +22,6 @@ TestResults/
 Library/
 Temp/
 UnityGenerated/
+
+# DocFX generated
+log.txt

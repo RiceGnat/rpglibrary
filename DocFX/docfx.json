@@ -1,0 +1,60 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../Davfalcon",
+          "files": [
+            "*.csproj"
+          ],
+          "exclude": [
+            "**/obj/**",
+            "**/bin/**"
+          ]
+        }
+      ],
+      "dest": "obj/api/Davfalcon"
+    },
+    {
+      "src": [
+        {
+          "src": "../Davfalcon.Revelator",
+          "files": [
+            "*.csproj"
+          ],
+          "exclude": [
+            "**/obj/**",
+            "**/bin/**"
+          ]
+        }
+      ],
+      "dest": "obj/api/Davfalcon.Revelator"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "src": "obj",
+        "files": [
+          "api/**.yml"
+        ]
+      },
+      {
+        "files": [
+          "api/*.md",
+          "api/*.yml",
+          "articles/**.md",
+          "toc.yml",
+          "*.md"
+        ],
+        "exclude": [
+          "obj/**"
+        ]
+      }
+    ],
+    "dest": "../docs",
+    "template": [
+      "default"
+    ]
+  }
+}

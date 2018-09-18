@@ -11,6 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davfalcon.Revelator", "Davf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Davfalcon.Revelator.UnitTests", "Davfalcon.Revelator.UnitTests\Davfalcon.Revelator.UnitTests.csproj", "{B6F86762-E634-4425-9D8B-1C0873B7E12B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocFX", "DocFX\DocFX.csproj", "{CC299174-677C-49D6-9EC4-8A664C4DFAC4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F1FA461-A8B2-4B6D-8C39-050069CE2A66} = {3F1FA461-A8B2-4B6D-8C39-050069CE2A66}
+		{1FCB4578-21B8-4DB5-B560-C87BEEB7FD2E} = {1FCB4578-21B8-4DB5-B560-C87BEEB7FD2E}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Tests", "Unit Tests", "{50090B04-3BEE-4904-9F85-523E930CCA89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,9 +89,28 @@ Global
 		{B6F86762-E634-4425-9D8B-1C0873B7E12B}.Release|ARM.ActiveCfg = Release|Any CPU
 		{B6F86762-E634-4425-9D8B-1C0873B7E12B}.Release|x64.ActiveCfg = Release|Any CPU
 		{B6F86762-E634-4425-9D8B-1C0873B7E12B}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Debug|ARM.Build.0 = Debug|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Debug|x64.Build.0 = Debug|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Debug|x86.Build.0 = Debug|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Release|ARM.ActiveCfg = Release|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Release|ARM.Build.0 = Release|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Release|x64.ActiveCfg = Release|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Release|x64.Build.0 = Release|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC299174-677C-49D6-9EC4-8A664C4DFAC4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1019C09A-ACB3-4212-9372-4E28E628B46F} = {50090B04-3BEE-4904-9F85-523E930CCA89}
+		{B6F86762-E634-4425-9D8B-1C0873B7E12B} = {50090B04-3BEE-4904-9F85-523E930CCA89}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8158D293-D59B-4255-9ADD-AABC287B9E81}
