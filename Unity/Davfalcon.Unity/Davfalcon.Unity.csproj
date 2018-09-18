@@ -62,7 +62,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnityEngine\UI\Extensions.cs" />
     <Compile Include="UnityEngine\UI\Menu.cs" />
-    <Compile Include="UnityEngine\UI\Screen.cs" />
+    <Compile Include="UnityEngine\UI\TopLevelScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Davfalcon\Davfalcon.csproj">

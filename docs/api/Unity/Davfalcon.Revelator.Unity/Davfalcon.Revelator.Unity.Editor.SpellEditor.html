@@ -86,9 +86,6 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">UnityEditor.Editor.CreateEditorWithContext(UnityEngine.Object[], UnityEngine.Object, System.Type)</span>
-    </div>
-    <div>
       <span class="xref">UnityEditor.Editor.CreateEditorWithContext(UnityEngine.Object[], UnityEngine.Object)</span>
     </div>
     <div>
@@ -122,10 +119,19 @@
       <span class="xref">UnityEditor.Editor.DrawDefaultInspector()</span>
     </div>
     <div>
+      <span class="xref">UnityEditor.Editor.Repaint()</span>
+    </div>
+    <div>
       <span class="xref">UnityEditor.Editor.RequiresConstantRepaint()</span>
     </div>
     <div>
-      <span class="xref">UnityEditor.Editor.Repaint()</span>
+      <span class="xref">UnityEditor.Editor.DrawHeader()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEditor.Editor.OnHeaderGUI()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEditor.Editor.ShouldHideOpenButton()</span>
     </div>
     <div>
       <span class="xref">UnityEditor.Editor.HasPreviewGUI()</span>
@@ -149,16 +155,10 @@
       <span class="xref">UnityEditor.Editor.GetInfoString()</span>
     </div>
     <div>
-      <span class="xref">UnityEditor.Editor.ReloadPreviewInstances()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEditor.Editor.DrawHeader()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEditor.Editor.OnHeaderGUI()</span>
-    </div>
-    <div>
       <span class="xref">UnityEditor.Editor.DrawPreview(UnityEngine.Rect)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEditor.Editor.ReloadPreviewInstances()</span>
     </div>
     <div>
       <span class="xref">UnityEditor.Editor.UseDefaultMargins()</span>
@@ -173,6 +173,9 @@
       <span class="xref">UnityEditor.Editor.ResetTarget()</span>
     </div>
     <div>
+      <span class="xref">UnityEditor.Editor.CreateEditorWithContext(UnityEngine.Object[], UnityEngine.Object, System.Type)</span>
+    </div>
+    <div>
       <span class="xref">UnityEditor.Editor.target</span>
     </div>
     <div>
@@ -180,6 +183,9 @@
     </div>
     <div>
       <span class="xref">UnityEditor.Editor.serializedObject</span>
+    </div>
+    <div>
+      <span class="xref">UnityEditor.Editor.finishedDefaultHeaderGUI</span>
     </div>
     <div>
       <span class="xref">UnityEngine.ScriptableObject.SetDirty()</span>
@@ -192,42 +198,6 @@
     </div>
     <div>
       <span class="xref">UnityEngine.ScriptableObject.CreateInstance&lt;T&gt;()</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object, System.Boolean)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object, System.Single)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindSceneObjectsOfType(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeIncludingAssets(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.FindObjectsOfTypeAll(System.Type)</span>
-    </div>
-    <div>
-      <span class="xref">UnityEngine.Object.ToString()</span>
     </div>
     <div>
       <span class="xref">UnityEngine.Object.GetInstanceID()</span>
@@ -269,13 +239,49 @@
       <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform, System.Boolean)</span>
     </div>
     <div>
+      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object, System.Single)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object, System.Single)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindSceneObjectsOfType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfTypeIncludingAssets(System.Type)</span>
+    </div>
+    <div>
       <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;()</span>
     </div>
     <div>
       <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;()</span>
     </div>
     <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfTypeAll(System.Type)</span>
+    </div>
+    <div>
       <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.ToString()</span>
     </div>
     <div>
       <span class="xref">UnityEngine.Object.name</span>
@@ -287,13 +293,13 @@
       <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
     </div>
     <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
       <span class="xref">System.Object.GetType()</span>
     </div>
     <div>
       <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Davfalcon.Revelator.Unity.Editor.html">Davfalcon.Revelator.Unity.Editor</a></h6>

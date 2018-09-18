@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/toc.html",
-          "hash": "rTfo7dglUF3+Z7yBEN5FKA=="
+          "hash": "zsuyMRg63r6XOr/7ptgAUw=="
         }
       },
       "is_incremental": false,
@@ -765,7 +765,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Collections.Generic.ManagedList-1.html",
-          "hash": "0CJebtuIPa+qfuDv7t+WZA=="
+          "hash": "bnBBoZGavRWhuzpAzM/01Q=="
         }
       },
       "is_incremental": false,
@@ -1209,7 +1209,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.BuffDefinition.html",
-          "hash": "VCKCYaVU3GfPJ5Ebn+INQw=="
+          "hash": "OD8pig+Mzid+UlkKYLMcxA=="
         }
       },
       "is_incremental": false,
@@ -1221,7 +1221,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.ClassDefinition.html",
-          "hash": "d0ttKIzhdRDWW8gVFIH+dA=="
+          "hash": "iCLssGXgJi+3psdYoIIRPw=="
         }
       },
       "is_incremental": false,
@@ -1233,7 +1233,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.BuffEditor.html",
-          "hash": "ezh8cvSDB0EySNrZLiXzFg=="
+          "hash": "1b/I3bTFYS6KC3tgHNHyDA=="
         }
       },
       "is_incremental": false,
@@ -1245,7 +1245,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.ClassEditor.html",
-          "hash": "fHSS2CVcDd8gamwjQtySOQ=="
+          "hash": "6U9oFOhpqMU959DFt74imA=="
         }
       },
       "is_incremental": false,
@@ -1257,7 +1257,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html",
-          "hash": "hoiBV5Yxfwb8vNa1eOSx7A=="
+          "hash": "QLsaFnNAjkyOTAS8oJH05Q=="
         }
       },
       "is_incremental": false,
@@ -1269,7 +1269,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EquipmentEditor.html",
-          "hash": "wWvHTcVnxUdgsNctuJrfwA=="
+          "hash": "ZIrZlfy+aM9C53/dbk0iGw=="
         }
       },
       "is_incremental": false,
@@ -1281,7 +1281,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.SpellEditor.html",
-          "hash": "KyHYedMF1XEJaFDd0+4ftg=="
+          "hash": "knY/C9dZtmWKrfYcazkytA=="
         }
       },
       "is_incremental": false,
@@ -1293,7 +1293,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.UnitEditor.html",
-          "hash": "3qMYNYeURdqeGRSRU42olg=="
+          "hash": "H/O5BsKjBqXEqMWeITyfDw=="
         }
       },
       "is_incremental": false,
@@ -1305,7 +1305,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.UsableItemEditor.html",
-          "hash": "nhIZDanD7k0OIvGxmwi0Jg=="
+          "hash": "3XRGuZ+0LHbcMf+AEd9vfA=="
         }
       },
       "is_incremental": false,
@@ -1329,7 +1329,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.EquipmentDefinition.html",
-          "hash": "WD2VVtqkgE0c3ukl3ufb/A=="
+          "hash": "kqzMbG27KMRGE3M8fsXvGw=="
         }
       },
       "is_incremental": false,
@@ -1341,7 +1341,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SpellDefinition.html",
-          "hash": "m/fVrY397Waz66hkmENgEA=="
+          "hash": "iFVnxxM5Tsczj2iwPuwBvw=="
         }
       },
       "is_incremental": false,
@@ -1353,7 +1353,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SystemDataService.html",
-          "hash": "elrhA+yLF5KpbM8zatzDaQ=="
+          "hash": "j9GwtxqE/+8Na1qyzqwbSg=="
         }
       },
       "is_incremental": false,
@@ -1365,7 +1365,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer.html",
-          "hash": "Fa/QVRJUY2H4r16IsxS6cA=="
+          "hash": "0KgoFNEmxgPcItCvq57Ycw=="
         }
       },
       "is_incremental": false,
@@ -1377,7 +1377,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer.html",
-          "hash": "+yA9a4UWtr+bBnhUCqtoWw=="
+          "hash": "ZWCp+Zu3h26y1JuPTSjU6g=="
         }
       },
       "is_incremental": false,
@@ -1401,7 +1401,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding.html",
-          "hash": "aVUuLwK3fc8scXeSy6QB1Q=="
+          "hash": "F55+d9A5evGmYVypQhsl2A=="
         }
       },
       "is_incremental": false,
@@ -1413,7 +1413,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding.html",
-          "hash": "8KbtRLhpJxNtrpKs27lCww=="
+          "hash": "8XdaIU7+DKh+g5ViB2oHJg=="
         }
       },
       "is_incremental": false,
@@ -1425,7 +1425,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.html",
-          "hash": "xj7o5zgKYxvkq45Cw5PzqA=="
+          "hash": "iCTYCzO0R009CDQyxbspug=="
         }
       },
       "is_incremental": false,
@@ -1437,7 +1437,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitEquipmentView.html",
-          "hash": "wi6cgzFLMKmFezx6mDgTVw=="
+          "hash": "BUD64xcccYczgKwppp3kMg=="
         }
       },
       "is_incremental": false,
@@ -1449,7 +1449,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitView.html",
-          "hash": "8tBfl/rlL7np+OCzpNW1Rw=="
+          "hash": "jGtB9SK/2gDwUtcFQ7k41g=="
         }
       },
       "is_incremental": false,
@@ -1473,7 +1473,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UnitTemplate.html",
-          "hash": "rRoPtlosegkckuexOS0SlA=="
+          "hash": "/sh0ATnlgMknGijR9I8kWg=="
         }
       },
       "is_incremental": false,
@@ -1485,7 +1485,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UsableItemDefinition.html",
-          "hash": "+J/zYoHDoUYVaNurfdT0Ww=="
+          "hash": "IcwOqceZOlok2UCWQ/WUcA=="
         }
       },
       "is_incremental": false,
@@ -1509,7 +1509,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Unity/UnityEditor.EditorHelper.html",
-          "hash": "scx14+dmSL+5vqobuikO4A=="
+          "hash": "cJAY6ktMJNTPF2WdRhaOOA=="
         }
       },
       "is_incremental": false,
@@ -1533,7 +1533,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.NameableSerializationContainer-1.html",
-          "hash": "EngIFc2ng7r861IaGMWH9A=="
+          "hash": "SCpzBqYz9CA8RXa4TZEjIA=="
         }
       },
       "is_incremental": false,
@@ -1545,7 +1545,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.ObjectContainer.html",
-          "hash": "etJJc78hUYL1gZ/5bJU9Ng=="
+          "hash": "ZJenpgHI4kVxr3hb28ePfg=="
         }
       },
       "is_incremental": false,
@@ -1557,7 +1557,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.html",
-          "hash": "Fcub8BRdTAVbn/HuCtG+bA=="
+          "hash": "jnFpNv0S1LaSVdcvDEuvjg=="
         }
       },
       "is_incremental": false,
@@ -1569,7 +1569,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundElement.html",
-          "hash": "LPbzJZPhu6iEPNZitugEfg=="
+          "hash": "sWhMhr/yboa9JYIko3kEdA=="
         }
       },
       "is_incremental": false,
@@ -1581,7 +1581,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundText.html",
-          "hash": "1DiSnFvfcZOb/9xWgPuwRw=="
+          "hash": "OzYK3m0Knx6nyKh2nZNm9g=="
         }
       },
       "is_incremental": false,
@@ -1593,7 +1593,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html",
-          "hash": "pxOf/cSPkaRFVtotM/bL1w=="
+          "hash": "FbggqxEqT+6E/k8oYhnwqA=="
         }
       },
       "is_incremental": false,
@@ -1617,7 +1617,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.html",
-          "hash": "Z6qtpnfdHlQ7kULe6dS84A=="
+          "hash": "vUyTWEcGJeLHhZYKBVtPWQ=="
         }
       },
       "is_incremental": false,
@@ -1629,7 +1629,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.Extensions.html",
-          "hash": "55/QiWNOoLq2tqsaAao2+A=="
+          "hash": "usHH2xYEPe6plLgpFHGkIA=="
         }
       },
       "is_incremental": false,
@@ -1653,7 +1653,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html",
-          "hash": "VylS2+VcCry8swz5V/YAHw=="
+          "hash": "ls5lb/NSLXZ951xfgkpdPw=="
         }
       },
       "is_incremental": false,
@@ -1661,11 +1661,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.yml",
+      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.UI.TopLevelScreen.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html",
-          "hash": "rrHkRt2rQCD5d7vwNWCEIg=="
+          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.TopLevelScreen.html",
+          "hash": "2ovaH9DQSjcUh88SXza0+A=="
         }
       },
       "is_incremental": false,
@@ -1677,7 +1677,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.html",
-          "hash": "1AdUsmmROPO3WR70gO9VCQ=="
+          "hash": "7iom0wjDZsypv41Y7ntrxA=="
         }
       },
       "is_incremental": false,
@@ -1712,7 +1712,7 @@
     {
       "status": {
         "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
+        "details": "Disable incremental build by force rebuild option.",
         "incrementalPhase": "build"
       },
       "processors": {
@@ -1721,11 +1721,11 @@
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         },
-        "ConceptualDocumentProcessor": {
+        "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         },
-        "ManagedReferenceDocumentProcessor": {
+        "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build"
         }

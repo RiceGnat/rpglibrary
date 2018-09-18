@@ -7302,54 +7302,54 @@ references:
   isSpec: "True"
   fullName: UnityEngine.UI.Menu.Show
   nameWithType: Menu.Show
-- uid: UnityEngine.UI.Screen
-  name: Screen
-  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html
-  commentId: T:UnityEngine.UI.Screen
-  fullName: UnityEngine.UI.Screen
-  nameWithType: Screen
-- uid: UnityEngine.UI.Screen.Displayed
+- uid: UnityEngine.UI.TopLevelScreen
+  name: TopLevelScreen
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.TopLevelScreen.html
+  commentId: T:UnityEngine.UI.TopLevelScreen
+  fullName: UnityEngine.UI.TopLevelScreen
+  nameWithType: TopLevelScreen
+- uid: UnityEngine.UI.TopLevelScreen.Displayed
   name: Displayed
-  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_Displayed
-  commentId: P:UnityEngine.UI.Screen.Displayed
-  fullName: UnityEngine.UI.Screen.Displayed
-  nameWithType: Screen.Displayed
-- uid: UnityEngine.UI.Screen.Displayed*
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.TopLevelScreen.html#UnityEngine_UI_TopLevelScreen_Displayed
+  commentId: P:UnityEngine.UI.TopLevelScreen.Displayed
+  fullName: UnityEngine.UI.TopLevelScreen.Displayed
+  nameWithType: TopLevelScreen.Displayed
+- uid: UnityEngine.UI.TopLevelScreen.Displayed*
   name: Displayed
-  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_Displayed_
-  commentId: Overload:UnityEngine.UI.Screen.Displayed
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.TopLevelScreen.html#UnityEngine_UI_TopLevelScreen_Displayed_
+  commentId: Overload:UnityEngine.UI.TopLevelScreen.Displayed
   isSpec: "True"
-  fullName: UnityEngine.UI.Screen.Displayed
-  nameWithType: Screen.Displayed
-- uid: UnityEngine.UI.Screen.initialFocus
+  fullName: UnityEngine.UI.TopLevelScreen.Displayed
+  nameWithType: TopLevelScreen.Displayed
+- uid: UnityEngine.UI.TopLevelScreen.initialFocus
   name: initialFocus
-  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_initialFocus
-  commentId: F:UnityEngine.UI.Screen.initialFocus
-  fullName: UnityEngine.UI.Screen.initialFocus
-  nameWithType: Screen.initialFocus
-- uid: UnityEngine.UI.Screen.IsVisible
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.TopLevelScreen.html#UnityEngine_UI_TopLevelScreen_initialFocus
+  commentId: F:UnityEngine.UI.TopLevelScreen.initialFocus
+  fullName: UnityEngine.UI.TopLevelScreen.initialFocus
+  nameWithType: TopLevelScreen.initialFocus
+- uid: UnityEngine.UI.TopLevelScreen.IsVisible
   name: IsVisible
-  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_IsVisible
-  commentId: P:UnityEngine.UI.Screen.IsVisible
-  fullName: UnityEngine.UI.Screen.IsVisible
-  nameWithType: Screen.IsVisible
-- uid: UnityEngine.UI.Screen.IsVisible*
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.TopLevelScreen.html#UnityEngine_UI_TopLevelScreen_IsVisible
+  commentId: P:UnityEngine.UI.TopLevelScreen.IsVisible
+  fullName: UnityEngine.UI.TopLevelScreen.IsVisible
+  nameWithType: TopLevelScreen.IsVisible
+- uid: UnityEngine.UI.TopLevelScreen.IsVisible*
   name: IsVisible
-  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_IsVisible_
-  commentId: Overload:UnityEngine.UI.Screen.IsVisible
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.TopLevelScreen.html#UnityEngine_UI_TopLevelScreen_IsVisible_
+  commentId: Overload:UnityEngine.UI.TopLevelScreen.IsVisible
   isSpec: "True"
-  fullName: UnityEngine.UI.Screen.IsVisible
-  nameWithType: Screen.IsVisible
-- uid: UnityEngine.UI.Screen.Show
+  fullName: UnityEngine.UI.TopLevelScreen.IsVisible
+  nameWithType: TopLevelScreen.IsVisible
+- uid: UnityEngine.UI.TopLevelScreen.Show
   name: Show()
-  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_Show
-  commentId: M:UnityEngine.UI.Screen.Show
-  fullName: UnityEngine.UI.Screen.Show()
-  nameWithType: Screen.Show()
-- uid: UnityEngine.UI.Screen.Show*
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.TopLevelScreen.html#UnityEngine_UI_TopLevelScreen_Show
+  commentId: M:UnityEngine.UI.TopLevelScreen.Show
+  fullName: UnityEngine.UI.TopLevelScreen.Show()
+  nameWithType: TopLevelScreen.Show()
+- uid: UnityEngine.UI.TopLevelScreen.Show*
   name: Show
-  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.Screen.html#UnityEngine_UI_Screen_Show_
-  commentId: Overload:UnityEngine.UI.Screen.Show
+  href: api/Unity/Davfalcon.Unity/UnityEngine.UI.TopLevelScreen.html#UnityEngine_UI_TopLevelScreen_Show_
+  commentId: Overload:UnityEngine.UI.TopLevelScreen.Show
   isSpec: "True"
-  fullName: UnityEngine.UI.Screen.Show
-  nameWithType: Screen.Show
+  fullName: UnityEngine.UI.TopLevelScreen.Show
+  nameWithType: TopLevelScreen.Show
