@@ -1,6 +1,6 @@
 ﻿namespace Davfalcon.Revelator.Engine.Combat
 {
-	public class HitCheck
+	public struct HitCheck
 	{
 		public readonly double HitChance;
 		public readonly bool Hit;
@@ -14,5 +14,8 @@
 			CritChance = critChance;
 			Crit = crit;
 		}
+
+		public static HitCheck Success = new HitCheck(100, true);
+		public static HitCheck Miss = new HitCheck(0, false);
 	}
 }

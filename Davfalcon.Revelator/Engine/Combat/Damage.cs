@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Davfalcon.Revelator.Engine.Combat
 {
@@ -7,28 +9,24 @@ namespace Davfalcon.Revelator.Engine.Combat
 	{
 		public static bool LogFullDamage = true;
 
-		public readonly DamageType Type;
-		public readonly Element Element;
+		public readonly IEnumerable<Enum> Types;
 		public readonly int Value;
 		public readonly string Source;
 
-		public Damage(DamageType type, Element element, int value, string source)
+		public Damage(int value, string source, params Enum[] types)
 		{
-			Type = type;
-			Element = element;
+			Types = new ReadOnlyCollection<Enum>(types);
 			Value = value;
 			Source = source;
 		}
 
 		public override string ToString()
-		{
-			return String.Format("{0} deals {1} outgoing {2} {3} damage.", Source, Value, Type, Element);
-		}
+			=> String.Format($"{Source} deals {Value} outgoing {String.Join(" ", Types)} damage.");
 
 		public string LogWith(HPLoss hpLoss)
 		{
 			if (LogFullDamage) return this + Environment.NewLine + hpLoss;
-			else return String.Format("{0} deals {1} {2} {3} damage to {4}.", Source, hpLoss.Value, Type, Element, hpLoss.Unit);
+			else return String.Format($"{hpLoss.Unit} takes {hpLoss.Value} {String.Join(" ", Types)} damage from {Source}.");
 		}
 	}
 }

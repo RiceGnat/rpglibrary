@@ -11,8 +11,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 		event DamageEventHandler OnDamageTaken;
 
 		void ApplyBuff(IUnit unit, IBuff buff, string source = null);
-		AttackAction Attack(IUnit unit, IUnit target);
-		Damage CalculateAttackDamage(IUnit unit, bool crit = false);
+		AttackAction Attack(IUnit unit, IUnit target, IWeapon weapon);
+		Damage CalculateAttackDamage(IUnit unit, IWeapon weapon, bool crit = false);
 		int CalculateReceivedDamage(IUnit unit, Damage damage);
 		Damage CalculateSpellDamage(IUnit unit, ISpell spell, bool scale = true, bool crit = false);
 		SpellAction Cast(IUnit unit, ISpell spell, params IUnit[] targets);

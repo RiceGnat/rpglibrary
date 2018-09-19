@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Davfalcon.Revelator
 {
@@ -6,18 +7,18 @@ namespace Davfalcon.Revelator
 	{
 		IList<IItem> Inventory { get; }
 
-		IEnumerable<EquipmentType> EquipmentSlots { get; }
+		IEnumerable<Enum> EquipmentSlots { get; }
 		IEnumerable<IEquipment> Equipment { get; }
 
-		void AddEquipmentSlot(EquipmentType slotType);
+		void AddEquipmentSlot(Enum slotType);
 		void RemoveEquipmentSlotIndex(int index);
-		IEquipment GetEquipment(EquipmentType slot);
-		IEquipment GetEquipment(EquipmentType slotType, int offset);
+		IEquipment GetEquipment(Enum slot);
+		IEquipment GetEquipment(Enum slotType, int offset);
 		bool Equip(IEquipment equipment);
 		bool Equip(IEquipment equipment, int offset);
 		bool EquipSlotIndex(IEquipment equipment, int index);
-		bool UnequipSlot(EquipmentType slot);
-		bool UnequipSlot(EquipmentType slotType, int offset);
+		bool UnequipSlot(Enum slot);
+		bool UnequipSlot(Enum slotType, int offset);
 		bool UnequipSlotIndex(int index);
 	}
 }

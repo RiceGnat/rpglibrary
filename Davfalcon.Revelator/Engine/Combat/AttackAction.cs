@@ -14,10 +14,10 @@ namespace Davfalcon.Revelator.Engine.Combat
 		public readonly HPLoss HPLost;
 		public readonly IList<ILogEntry> OnHitEffects;
 
-		public AttackAction(IUnit attacker, IUnit defender, HitCheck hit, Damage damageDealt, HPLoss hpLost, IList<ILogEntry> effects)
+		public AttackAction(IUnit attacker, IUnit defender, IWeapon weapon, HitCheck hit, Damage damageDealt, HPLoss hpLost, IList<ILogEntry> effects)
 		{
 			Attacker = attacker.Name;
-			Weapon = attacker.CombatProperties.GetEquippedWeapon().Name;
+			Weapon = weapon.Name;
 			Defender = defender.Name;
 			Hit = hit;
 			DamageDealt = damageDealt;

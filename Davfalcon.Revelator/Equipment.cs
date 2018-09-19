@@ -6,7 +6,7 @@ namespace Davfalcon.Revelator
 	[Serializable]
 	public class Equipment : UnitStatsModifier, IEquipment
 	{
-		public EquipmentType SlotType { get; set; }
+		public Enum SlotType { get; set; }
 
 		private readonly List<IBuff> grantedBuffs = new List<IBuff>();
 		public IList<IBuff> GrantedBuffs { get { return grantedBuffs; } }
@@ -17,11 +17,6 @@ namespace Davfalcon.Revelator
 			: base()
 		{
 			grantedBuffsReadOnly = grantedBuffs.AsReadOnly();
-		}
-
-		public Equipment(EquipmentType slot) : this()
-		{
-			SlotType = slot;
 		}
 	}
 }

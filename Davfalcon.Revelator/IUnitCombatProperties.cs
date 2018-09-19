@@ -8,7 +8,5 @@ namespace Davfalcon.Revelator
 		int CurrentMP { get; set; }
 		IUnitModifierStack Buffs { get; }
 		IUnitBattleState BattleState { get; set; }
-
-		IWeapon GetEquippedWeapon();
 	}
 }

@@ -16,22 +16,19 @@ namespace Davfalcon.Revelator
 		public IUnitModifierStack Buffs { get { return buffs; } }
 
 		public IUnitBattleState BattleState { get; set; }
-
-		public IWeapon GetEquippedWeapon()
-			=> GetEquipment(EquipmentType.Weapon) as IWeapon ?? Weapon.Unarmed;
 		#endregion
 
 		#region Equipment
 		[NonSerialized]
 		private IUnitModifierStack equipment;
 
-		private ManagedList<EquipmentType> equipmentSlots = new ManagedList<EquipmentType>();
+		private ManagedList<Enum> equipmentSlots = new ManagedList<Enum>();
 		private ManagedList<IEquipment> equippedSlots = new ManagedList<IEquipment>();
 
-		public IEnumerable<EquipmentType> EquipmentSlots { get => equipmentSlots.ReadOnly; }
+		public IEnumerable<Enum> EquipmentSlots { get => equipmentSlots.ReadOnly; }
 		public IEnumerable<IEquipment> Equipment { get => equippedSlots.ReadOnly; }
 
-		private int GetSlotIndex(EquipmentType slotType, int offset)
+		private int GetSlotIndex(Enum slotType, int offset)
 		{
 			int index = -1;
 			for (int n = 0; n <= offset; n++)
@@ -44,7 +41,7 @@ namespace Davfalcon.Revelator
 		private bool IndexHasEquipment(int index)
 			=> index > -1 && index < equippedSlots.Count && equippedSlots[index] != null;
 
-		public void AddEquipmentSlot(EquipmentType slotType)
+		public void AddEquipmentSlot(Enum slotType)
 		{
 			equipmentSlots.Add(slotType);
 			equippedSlots.Add(null);
@@ -57,8 +54,8 @@ namespace Davfalcon.Revelator
 			equipmentSlots.RemoveAt(index); 
 		}
 
-		public IEquipment GetEquipment(EquipmentType slot) => GetEquipment(slot, 0);
-		public IEquipment GetEquipment(EquipmentType slotType, int offset)
+		public IEquipment GetEquipment(Enum slot) => GetEquipment(slot, 0);
+		public IEquipment GetEquipment(Enum slotType, int offset)
 		{
 			int index = GetSlotIndex(slotType, offset);
 
@@ -79,8 +76,8 @@ namespace Davfalcon.Revelator
 			return true;
 		}
 
-		public bool UnequipSlot(EquipmentType slot) => UnequipSlot(slot, 0);
-		public bool UnequipSlot(EquipmentType slotType, int offset) => UnequipSlotIndex(GetSlotIndex(slotType, offset));
+		public bool UnequipSlot(Enum slot) => UnequipSlot(slot, 0);
+		public bool UnequipSlot(Enum slotType, int offset) => UnequipSlotIndex(GetSlotIndex(slotType, offset));
 		public bool UnequipSlotIndex(int index)
 		{
 			if (!IndexHasEquipment(index)) return false;

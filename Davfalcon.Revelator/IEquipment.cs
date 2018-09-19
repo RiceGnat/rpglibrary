@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Davfalcon.Revelator
 {
 	public interface IEquipment : IItem, IStatsModifier
 	{
-		EquipmentType SlotType { get; }
+		Enum SlotType { get; }
 		IList<IBuff> GrantedBuffs { get; }
 	}
 }

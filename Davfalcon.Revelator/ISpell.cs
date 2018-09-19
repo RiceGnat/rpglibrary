@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Davfalcon.Revelator
 {
 	public interface ISpell : IEffectSource, IDescribable
 	{
-		SpellTargetType TargetType { get; }
-		Element SpellElement { get; }
-		DamageType DamageType { get; }
+		Enum TargetType { get; }
+		Enum SpellElement { get; }
+		Enum DamageType { get; }
 		int Cost { get; }
 		int BaseDamage { get; }
 		int BaseHeal { get; }

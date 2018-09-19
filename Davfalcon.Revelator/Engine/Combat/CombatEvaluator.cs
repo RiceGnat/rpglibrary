@@ -7,27 +7,29 @@ namespace Davfalcon.Revelator.Engine.Combat
 {
 	public class CombatEvaluator : ICombatEvaluator
 	{
-		private IEffectsRegistry effects;
+		private CombatEvaluatorConfig config;
 
 		public event BuffEventHandler OnBuffApplied;
 		public event DamageEventHandler OnDamageTaken;
 
 		private IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator)
-			=> effects.ApplyEffects(source, target, originator);
+			=> config.Effects.ApplyEffects(source, target, originator);
 
 		private IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator, int value)
-			=> effects.ApplyEffects(source, target, originator, value);
+			=> config.Effects.ApplyEffects(source, target, originator, value);
 
 		private void AdjustHPMP(IUnit unit, int prevMaxHP, int prevMaxMP)
 		{
-			unit.CombatProperties.CurrentHP += unit.Stats[CombatStats.HP] - prevMaxHP;
-			unit.CombatProperties.CurrentMP += unit.Stats[CombatStats.MP] - prevMaxMP;
+			// Generalize this later
+			unit.CombatProperties.CurrentHP += unit.Stats[config.HPStat] - prevMaxHP;
+			unit.CombatProperties.CurrentMP += unit.Stats[config.MPStat] - prevMaxMP;
 		}
 
 		public void ApplyBuff(IUnit unit, IBuff buff, string source = null)
 		{
-			int maxHP = unit.Stats[CombatStats.HP];
-			int maxMP = unit.Stats[CombatStats.MP];
+			// Generalize this later
+			int maxHP = unit.Stats[config.HPStat];
+			int maxMP = unit.Stats[config.MPStat];
 
 			IBuff b = (IBuff)Serializer.DeepClone(buff);
 			b.Source = source;
@@ -41,8 +43,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 		public void RemoveBuff(IUnit unit, IBuff buff)
 		{
-			int maxHP = unit.Stats[CombatStats.HP];
-			int maxMP = unit.Stats[CombatStats.MP];
+			int maxHP = unit.Stats[config.HPStat];
+			int maxMP = unit.Stats[config.MPStat];
 
 			unit.CombatProperties.Buffs.Remove(buff);
 
@@ -52,8 +54,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 		public void Initialize(IUnit unit)
 		{
 			// Set HP/MP to max values
-			unit.CombatProperties.CurrentHP = unit.Stats[CombatStats.HP];
-			unit.CombatProperties.CurrentMP = unit.Stats[CombatStats.MP];
+			unit.CombatProperties.CurrentHP = unit.Stats[config.HPStat];
+			unit.CombatProperties.CurrentMP = unit.Stats[config.MPStat];
 
 			// Apply buffs granted by equipment
 			foreach (IEquipment equip in unit.ItemProperties.Equipment)
@@ -117,21 +119,19 @@ namespace Davfalcon.Revelator.Engine.Combat
 		public int ChangeHP(IUnit unit, int amount)
 		{
 			int initial = unit.CombatProperties.CurrentHP;
-			unit.CombatProperties.CurrentHP = (unit.CombatProperties.CurrentHP + amount).Clamp(0, unit.Stats[CombatStats.HP]);
+			unit.CombatProperties.CurrentHP = (unit.CombatProperties.CurrentHP + amount).Clamp(0, unit.Stats[config.HPStat]);
 			return unit.CombatProperties.CurrentHP - initial;
 		}
 
 		public int ChangeMP(IUnit unit, int amount)
 		{
 			int initial = unit.CombatProperties.CurrentMP;
-			unit.CombatProperties.CurrentMP = (unit.CombatProperties.CurrentMP + amount).Clamp(0, unit.Stats[CombatStats.MP]);
+			unit.CombatProperties.CurrentMP = (unit.CombatProperties.CurrentMP + amount).Clamp(0, unit.Stats[config.MPStat]);
 			return unit.CombatProperties.CurrentMP - initial;
 		}
 
-		public Damage CalculateAttackDamage(IUnit unit, bool crit = false)
+		public Damage CalculateAttackDamage(IUnit unit, IWeapon weapon, bool crit = false)
 		{
-			IWeapon weapon = unit.CombatProperties.GetEquippedWeapon();
-
 			return new Damage(
 				DamageType.Physical,
 				weapon.AttackElement,
@@ -154,17 +154,14 @@ namespace Davfalcon.Revelator.Engine.Combat
 		{
 			int finalDamage;
 
-			if (damage.Type == DamageType.True)
+			Enum resistStat = config.DamageResistMap[damage.Type];
+
+			if (resistStat == null)
 			{
 				finalDamage = damage.Value;
 			}
 			else
 			{
-				CombatStats resistStat;
-
-				if (damage.Type == DamageType.Magical) resistStat = CombatStats.RES;
-				else resistStat = CombatStats.DEF;
-
 				finalDamage = MitigateDamageValue(damage.Value, unit.Stats[resistStat]);
 			}
 
@@ -173,6 +170,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 		public HitCheck CheckForHit(IUnit unit, IUnit target)
 		{
+			// Inject this formula
 			double threshold = MathExtensions.Clamp(unit.Stats[CombatStats.HIT] - target.Stats[CombatStats.AVD], 0, 100) / 100f;
 			bool hit = new CenterWeightedChecker(threshold).Check();
 			double critThreshold = MathExtensions.Clamp(unit.Stats[CombatStats.CRT], 0, 100) / 100f;
@@ -198,16 +196,17 @@ namespace Davfalcon.Revelator.Engine.Combat
 			);
 		}
 
-		public AttackAction Attack(IUnit unit, IUnit target)
+		public AttackAction Attack(IUnit unit, IUnit target, IWeapon weapon)
 		{
 			HitCheck hit = CheckForHit(unit, target);
-			Damage damage = hit.Hit ? CalculateAttackDamage(unit, hit.Crit) : null;
+			Damage damage = hit.Hit ? CalculateAttackDamage(unit, weapon, hit.Crit) : null;
 			HPLoss hp = hit.Hit ? ReceiveDamage(target, damage) : null;
-			IList<ILogEntry> effects = hit.Hit ? ApplyEffects(unit.CombatProperties.GetEquippedWeapon(), target, unit, hp.Value) : null;
+			IList<ILogEntry> effects = hit.Hit ? ApplyEffects(weapon, target, unit, hp.Value) : null;
 
 			return new AttackAction(
 				unit,
 				target,
+				weapon,
 				hit,
 				damage,
 				hp,
@@ -229,7 +228,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			for (int i = 0; i < n; i++)
 			{
 				// Roll hit for attack type spells
-				if (spell.TargetType == SpellTargetType.Attack)
+				if (config.SpellAttackType != null && spell.TargetType == config.SpellAttackType)
 				{
 					hit[i] = CheckForHit(unit, targets[i]);
 					if (!hit[i].Hit) continue;
@@ -297,9 +296,9 @@ namespace Davfalcon.Revelator.Engine.Combat
 			return effects;
 		}
 
-		public CombatEvaluator(IEffectsRegistry effects)
+		public CombatEvaluator(CombatEvaluatorConfig config)
 		{
-			this.effects = effects;
+			this.config = config;
 		}
 	}
 }
