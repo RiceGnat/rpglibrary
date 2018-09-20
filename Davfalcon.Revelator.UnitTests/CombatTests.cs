@@ -44,7 +44,7 @@ namespace Davfalcon.Revelator.UnitTests
 		[TestMethod]
 		public void CalculateAttackDamage()
 		{
-			ICombatEvaluator combat = new CombatEvaluator();
+			ICombatEvaluator combat = CombatEvaluator.Default;
 			IUnit unit = MakeUnit();
 
 			Damage d = combat.CalculateOutgoingDamage(unit, MakeWeapon());
@@ -56,7 +56,7 @@ namespace Davfalcon.Revelator.UnitTests
 		[TestMethod]
 		public void CalculateAttackDamage_WithBonus()
 		{
-			ICombatEvaluator combat = new CombatEvaluator();
+			ICombatEvaluator combat = CombatEvaluator.Default;
 			IUnit unit = MakeUnit();
 
 			Weapon weapon = MakeWeapon();
@@ -71,7 +71,7 @@ namespace Davfalcon.Revelator.UnitTests
 		[TestMethod]
 		public void CalculateAttackDamage_WithScaling()
 		{
-			ICombatEvaluator combat = new CombatEvaluator(new CombatEvaluatorConfig.Builder().AddDamageScaling(DamageType.Physical, CombatStats.ATK).Build());
+			ICombatEvaluator combat = new CombatEvaluator.Builder().AddDamageScaling(DamageType.Physical, CombatStats.ATK).Build();
 			IUnit unit = MakeUnit();
 
 			Weapon weapon = MakeWeapon();
@@ -87,7 +87,7 @@ namespace Davfalcon.Revelator.UnitTests
 		[TestMethod]
 		public void CalculateReceivedDamage()
 		{
-			ICombatEvaluator combat = new CombatEvaluator();
+			ICombatEvaluator combat = CombatEvaluator.Default;
 			IUnit unit = MakeUnit();
 
 			Damage d = new Damage(10, "", DamageType.Physical);
@@ -98,7 +98,7 @@ namespace Davfalcon.Revelator.UnitTests
 		[TestMethod]
 		public void CalculateReceivedDamage_WithResist()
 		{
-			ICombatEvaluator combat = new CombatEvaluator(new CombatEvaluatorConfig.Builder().AddDamageResist(DamageType.Physical, CombatStats.DEF).Build());
+			ICombatEvaluator combat = new CombatEvaluator.Builder().AddDamageResist(DamageType.Physical, CombatStats.DEF).Build();
 			IUnit unit = MakeUnit();
 
 			Damage d = new Damage(10, "", DamageType.Physical);

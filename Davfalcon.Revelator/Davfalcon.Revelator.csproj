@@ -45,11 +45,9 @@
   <ItemGroup>
     <Compile Include="EffectArgs.cs" />
     <Compile Include="Engine\Combat\CombatEvaluator.cs" />
-    <Compile Include="Engine\Combat\CombatEvaluatorConfig.cs" />
     <Compile Include="Engine\Combat\CombatMath.cs" />
     <Compile Include="Engine\Combat\ICombatEvaluator.cs" />
     <Compile Include="Engine\Combat\ICombatMath.cs" />
-    <Compile Include="Engine\Combat\ICombatStatBinding.cs" />
     <Compile Include="Engine\IWeaponRegistry.cs" />
     <Compile Include="Engine\WeaponRegistry.cs" />
     <Compile Include="IBattle.cs" />
