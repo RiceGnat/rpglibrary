@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Davfalcon.Revelator
 {
 	public interface IUnitCombatProperties
 	{
-		int CurrentHP { get; set; }
-		int CurrentMP { get; set; }
+		IDictionary<Enum, int> VolatileStats { get; }
 		IUnitModifierStack Buffs { get; }
 		IUnitBattleState BattleState { get; set; }
 	}

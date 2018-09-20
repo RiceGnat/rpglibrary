@@ -11,10 +11,11 @@ namespace Davfalcon.Revelator
 		public string Description { get; set; }
 
 		public Enum TargetType { get; set; }
-		public Enum SpellElement { get; set; }
-		public Enum DamageType { get; set; }
 		public int Cost { get; set; }
 		public int BaseDamage { get; set; }
+		public Enum BonusDamageStat { get; set; }
+		public int CritMultiplier { get; set; }
+		public IEnumerable<Enum> DamageTypes { get; set; }
 		public int BaseHeal { get; set; }
 		public int Range { get; set; }
 		public int Size { get; set; }

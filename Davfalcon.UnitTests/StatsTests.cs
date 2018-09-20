@@ -19,7 +19,7 @@ namespace Davfalcon.UnitTests
 		[TestMethod]
 		public void StatsMath()
 		{
-			IStats stats = new StatsMath(
+			IStats stats = new StatsCalculator(
 				new StatsMap().Set(STAT_NAME, STAT_VALUE),
 				new StatsMap().Set(STAT_NAME, STAT_VALUE),
 				new StatsMap().Set(STAT_NAME, STAT_MULT));
@@ -27,7 +27,7 @@ namespace Davfalcon.UnitTests
 			int expected = (STAT_VALUE + STAT_VALUE) * (int)(1 + STAT_MULT / 100f);
 
 			Assert.AreEqual(expected, stats[STAT_NAME]);
-			Assert.AreEqual(expected, ((IStatsCalculator)stats).Calculate(STAT_VALUE, STAT_VALUE, STAT_MULT));
+			Assert.AreEqual(expected, Davfalcon.StatsMath.Default.Calculate(STAT_VALUE, STAT_VALUE, STAT_MULT));
 		}
 	}
 }

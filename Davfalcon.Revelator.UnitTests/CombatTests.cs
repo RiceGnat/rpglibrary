@@ -7,14 +7,6 @@ namespace Davfalcon.Revelator.UnitTests
 	[TestClass]
 	public class CombatTests
 	{
-		private ICombatEvaluator combat;
-
-		[TestInitialize]
-		public void Setup()
-		{
-			combat = new CombatEvaluator(null);
-		}
-
 		private static Unit MakeUnit()
 		{
 			Unit unit = new Unit();
@@ -30,6 +22,13 @@ namespace Davfalcon.Revelator.UnitTests
 			return unit;
 		}
 
+		private static Weapon MakeWeapon()
+			=> new Weapon()
+			{
+				BaseDamage = 5
+			};
+
+		/*
 		[TestMethod]
 		public void InitializeHPMP()
 		{
@@ -40,60 +39,73 @@ namespace Davfalcon.Revelator.UnitTests
 			Assert.AreEqual(unit.Stats[CombatStats.HP], unit.CombatProperties.CurrentHP);
 			Assert.AreEqual(unit.Stats[CombatStats.MP], unit.CombatProperties.CurrentMP);
 		}
-
-		[TestMethod]
-		public void ScaleDamageValue()
-		{
-			Assert.AreEqual(12, combat.ScaleDamageValue(10, 20));
-		}
-
-		[TestMethod]
-		public void MitigateDamageValue()
-		{
-			Assert.AreEqual(5, combat.MitigateDamageValue(10, 100));
-		}
+		*/
 
 		[TestMethod]
 		public void CalculateAttackDamage()
 		{
+			ICombatEvaluator combat = new CombatEvaluator();
 			IUnit unit = MakeUnit();
 
-			Damage d = combat.CalculateAttackDamage(unit);
+			Damage d = combat.CalculateOutgoingDamage(unit, MakeWeapon());
 
-			Assert.AreEqual(18, d.Value);
+			Assert.AreEqual(5, d.Value);
 			Assert.AreEqual(unit.Name, d.Source);
 		}
 
 		[TestMethod]
-		public void CalculateReceivedPhysicalDamage()
+		public void CalculateAttackDamage_WithBonus()
 		{
+			ICombatEvaluator combat = new CombatEvaluator();
 			IUnit unit = MakeUnit();
 
-			Damage d = new Damage(DamageType.Physical, Element.Neutral, 10, "");
+			Weapon weapon = MakeWeapon();
+			weapon.BonusDamageStat = Attributes.STR;
 
-			Assert.AreEqual(8, combat.CalculateReceivedDamage(unit, d));
+			Damage d = combat.CalculateOutgoingDamage(unit, weapon);
+
+			Assert.AreEqual(20, d.Value);
+			Assert.AreEqual(unit.Name, d.Source);
 		}
 
 		[TestMethod]
-		public void CalculateReceivedMagicalDamage()
+		public void CalculateAttackDamage_WithScaling()
 		{
+			ICombatEvaluator combat = new CombatEvaluator(new CombatEvaluatorConfig.Builder().AddDamageScaling(DamageType.Physical, CombatStats.ATK).Build());
 			IUnit unit = MakeUnit();
 
-			Damage d = new Damage(DamageType.Magical, Element.Neutral, 10, "");
+			Weapon weapon = MakeWeapon();
+			weapon.BonusDamageStat = Attributes.STR;
+			weapon.DamageTypes.Add(DamageType.Physical);
 
-			Assert.AreEqual(9, combat.CalculateReceivedDamage(unit, d));
+			Damage d = combat.CalculateOutgoingDamage(unit, weapon);
+
+			Assert.AreEqual(24, d.Value);
+			Assert.AreEqual(unit.Name, d.Source);
 		}
 
 		[TestMethod]
-		public void CalculateReceivedTrueDamage()
+		public void CalculateReceivedDamage()
 		{
+			ICombatEvaluator combat = new CombatEvaluator();
 			IUnit unit = MakeUnit();
 
-			Damage d = new Damage(DamageType.True, Element.Neutral, 10, "");
+			Damage d = new Damage(10, "", DamageType.Physical);
 
 			Assert.AreEqual(10, combat.CalculateReceivedDamage(unit, d));
 		}
 
+		[TestMethod]
+		public void CalculateReceivedDamage_WithResist()
+		{
+			ICombatEvaluator combat = new CombatEvaluator(new CombatEvaluatorConfig.Builder().AddDamageResist(DamageType.Physical, CombatStats.DEF).Build());
+			IUnit unit = MakeUnit();
+
+			Damage d = new Damage(10, "", DamageType.Physical);
+
+			Assert.AreEqual(8, combat.CalculateReceivedDamage(unit, d));
+		}
+		/*
 		[TestMethod]
 		public void ReceiveDamage()
 		{
@@ -106,5 +118,6 @@ namespace Davfalcon.Revelator.UnitTests
 			Assert.AreEqual(unit.Stats[CombatStats.HP] - unit.CombatProperties.CurrentHP, h.Value);
 			Assert.AreEqual(unit.Name, h.Unit);
 		}
+		*/
 	}
 }

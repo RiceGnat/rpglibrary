@@ -31,7 +31,7 @@ namespace Davfalcon
 			{
 				f = 1;
 			}
-			else if (factor >= 0)
+			else if (factor > 0)
 			{
 				f = 1 + factor / 100f;
 			}

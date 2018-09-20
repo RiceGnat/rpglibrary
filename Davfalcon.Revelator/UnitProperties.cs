@@ -8,8 +8,7 @@ namespace Davfalcon.Revelator
 	internal class UnitProperties : IUnitCombatProperties, IUnitItemProperties, IUnitLevelingProperties
 	{
 		#region Combat
-		public int CurrentHP { get; set; }
-		public int CurrentMP { get; set; }
+		public IDictionary<Enum, int> VolatileStats { get; } = new Dictionary<Enum, int>();
 
 		[NonSerialized]
 		private IUnitModifierStack buffs;
@@ -66,7 +65,7 @@ namespace Davfalcon.Revelator
 		public bool Equip(IEquipment equipment, int offset) => EquipSlotIndex(equipment, GetSlotIndex(equipment.SlotType, offset));
 		public bool EquipSlotIndex(IEquipment equipment, int index)
 		{
-			if (equipmentSlots[index] != equipment.SlotType)
+			if (!equipmentSlots[index].Equals(equipment.SlotType))
 				throw new ArgumentException(String.Format("Equipment type ({2}) does not match slot specified by index {0} ({1}).", index, equipmentSlots[index], equipment.SlotType));
 
 			if (index < 0 || IndexHasEquipment(index)) return false;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Davfalcon.Revelator.Engine.Combat
 {
@@ -19,6 +20,10 @@ namespace Davfalcon.Revelator.Engine.Combat
 			Value = value;
 			Source = source;
 		}
+
+		public Damage(int value, string source, IEnumerable<Enum> types)
+			: this(value, source, types.ToArray())
+		{ }
 
 		public override string ToString()
 			=> String.Format($"{Source} deals {Value} outgoing {String.Join(" ", Types)} damage.");

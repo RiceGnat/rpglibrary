@@ -30,7 +30,8 @@ namespace Davfalcon.Revelator.UnitTests
 
 		private static Equipment MakeEquip(EquipmentType slot, int add, int mult)
 		{
-			Equipment equipment = new Equipment(slot);
+			Equipment equipment = new Equipment();
+			equipment.SlotType = slot;
 
 			equipment.Additions[STAT] = add;
 			equipment.Multiplications[STAT] = mult;

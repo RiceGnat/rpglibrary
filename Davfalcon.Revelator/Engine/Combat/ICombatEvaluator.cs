@@ -12,9 +12,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 		void ApplyBuff(IUnit unit, IBuff buff, string source = null);
 		AttackAction Attack(IUnit unit, IUnit target, IWeapon weapon);
-		Damage CalculateAttackDamage(IUnit unit, IWeapon weapon, bool crit = false);
+		Damage CalculateOutgoingDamage(IUnit unit, IDamageSource source, bool scale = true, bool crit = false);
 		int CalculateReceivedDamage(IUnit unit, Damage damage);
-		Damage CalculateSpellDamage(IUnit unit, ISpell spell, bool scale = true, bool crit = false);
 		SpellAction Cast(IUnit unit, ISpell spell, params IUnit[] targets);
 		SpellAction Cast(IUnit unit, ISpell spell, SpellCastOptions options, params IUnit[] targets);
 		int ChangeHP(IUnit unit, int amount);
@@ -22,10 +21,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 		HitCheck CheckForHit(IUnit unit, IUnit target);
 		void Cleanup(IUnit unit);
 		void Initialize(IUnit unit);
-		int MitigateDamageValue(int incomingValue, int resistance);
 		HPLoss ReceiveDamage(IUnit unit, Damage damage);
 		void RemoveBuff(IUnit unit, IBuff buff);
-		int ScaleDamageValue(int baseValue, int scaling);
 		IList<ILogEntry> Upkeep(IUnit unit);
 		IList<ILogEntry> UseItem(IUnit unit, ISpellItem item, params IUnit[] targets);
 		IList<ILogEntry> UseItem(IUnit unit, IUsableItem item, params IUnit[] targets);

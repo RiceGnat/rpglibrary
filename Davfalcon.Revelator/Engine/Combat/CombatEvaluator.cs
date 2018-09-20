@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Davfalcon.Randomization;
 using Davfalcon.Serialization;
 
@@ -18,44 +19,52 @@ namespace Davfalcon.Revelator.Engine.Combat
 		private IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator, int value)
 			=> config.Effects.ApplyEffects(source, target, originator, value);
 
-		private void AdjustHPMP(IUnit unit, int prevMaxHP, int prevMaxMP)
+		private void AdjustVolatileStats(IUnit unit, IDictionary<Enum, int> prevValues)
 		{
-			// Generalize this later
-			unit.CombatProperties.CurrentHP += unit.Stats[config.HPStat] - prevMaxHP;
-			unit.CombatProperties.CurrentMP += unit.Stats[config.MPStat] - prevMaxMP;
+			foreach (Enum stat in config.StatBindings.VolatileStats)
+			{
+				unit.CombatProperties.VolatileStats[stat] += unit.Stats[stat] - prevValues[stat];
+			}
 		}
 
 		public void ApplyBuff(IUnit unit, IBuff buff, string source = null)
 		{
-			// Generalize this later
-			int maxHP = unit.Stats[config.HPStat];
-			int maxMP = unit.Stats[config.MPStat];
-
+			Dictionary<Enum, int> currentValues = new Dictionary<Enum, int>();
+			foreach (Enum stat in config.StatBindings.VolatileStats)
+			{
+				currentValues[stat] = unit.Stats[stat];
+			}
+			
 			IBuff b = (IBuff)Serializer.DeepClone(buff);
 			b.Source = source;
 			b.Reset();
 			unit.CombatProperties.Buffs.Add(b);
 
-			AdjustHPMP(unit, maxHP, maxMP);
+			AdjustVolatileStats(unit, currentValues);
 
 			OnBuffApplied?.Invoke(unit, buff);
 		}
 
 		public void RemoveBuff(IUnit unit, IBuff buff)
 		{
-			int maxHP = unit.Stats[config.HPStat];
-			int maxMP = unit.Stats[config.MPStat];
+			Dictionary<Enum, int> currentValues = new Dictionary<Enum, int>();
+			foreach (Enum stat in config.StatBindings.VolatileStats)
+			{
+				currentValues[stat] = unit.Stats[stat];
+			}
 
 			unit.CombatProperties.Buffs.Remove(buff);
 
-			AdjustHPMP(unit, maxHP, maxMP);
+			AdjustVolatileStats(unit, currentValues);
 		}
 
 		public void Initialize(IUnit unit)
 		{
-			// Set HP/MP to max values
-			unit.CombatProperties.CurrentHP = unit.Stats[config.HPStat];
-			unit.CombatProperties.CurrentMP = unit.Stats[config.MPStat];
+			// Initialize volatile stats
+			foreach (Enum stat in config.StatBindings.VolatileStats)
+			{
+				unit.CombatProperties.VolatileStats[stat] = unit.Stats[stat];
+			}
 
 			// Apply buffs granted by equipment
 			foreach (IEquipment equip in unit.ItemProperties.Equipment)
@@ -69,9 +78,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 		public void Cleanup(IUnit unit)
 		{
-			// Reset HP/MP to 0
-			unit.CombatProperties.CurrentHP = 0;
-			unit.CombatProperties.CurrentMP = 0;
+			// Clean up volatile stats
+			unit.CombatProperties.VolatileStats.Clear();
 
 			// Clear all buffs/debuffs
 			unit.CombatProperties.Buffs.Clear();
@@ -106,16 +114,6 @@ namespace Davfalcon.Revelator.Engine.Combat
 			return effects;
 		}
 
-		public int ScaleDamageValue(int baseValue, int scaling)
-		{
-			return baseValue.Scale(scaling);
-		}
-
-		public int MitigateDamageValue(int incomingValue, int resistance)
-		{
-			return incomingValue.Scale(-resistance);
-		}
-
 		public int ChangeHP(IUnit unit, int amount)
 		{
 			int initial = unit.CombatProperties.CurrentHP;
@@ -130,58 +128,41 @@ namespace Davfalcon.Revelator.Engine.Combat
 			return unit.CombatProperties.CurrentMP - initial;
 		}
 
-		public Damage CalculateAttackDamage(IUnit unit, IWeapon weapon, bool crit = false)
-		{
-			return new Damage(
-				DamageType.Physical,
-				weapon.AttackElement,
-				ScaleDamageValue(weapon.BaseDamage + unit.Stats[Attributes.STR], unit.Stats[CombatStats.ATK]) * (crit ? weapon.CritMultiplier : 1),
-				unit.Name
+		public Damage CalculateOutgoingDamage(IUnit unit, IDamageSource source, bool scale = true, bool crit = false)
+			=> new Damage(
+				(scale ? config.Math.Scale(
+					source.BaseDamage + (source.BonusDamageStat != null ? unit.Stats[source.BonusDamageStat] : 0),
+					source.DamageTypes
+						.Where(type => config.StatBindings?.GetDamageScalingStat(type) != null)
+						.Select(type => unit.Stats[config.StatBindings.GetDamageScalingStat(type)])
+						.Aggregate(config.Math.AggregateSeed, config.Math.Aggregate))
+				: source.BaseDamage) * (crit ? source.CritMultiplier : 1),
+				unit.Name,
+				source.DamageTypes
 			);
-		}
-
-		public Damage CalculateSpellDamage(IUnit unit, ISpell spell, bool scale = true, bool crit = false)
-		{
-			return new Damage(
-				spell.DamageType,
-				spell.SpellElement,
-				ScaleDamageValue(spell.BaseDamage, scale ? unit.Stats[CombatStats.MAG] : 0) * (crit ? 2 : 1),
-				unit.Name
-			);
-		}
 
 		public int CalculateReceivedDamage(IUnit unit, Damage damage)
-		{
-			int finalDamage;
+			=> config.Math.ScaleInverse(damage.Value, damage.Types
+				.Where(type => config.StatBindings?.GetDamageResistStat(type) != null)
+				.Select(type => unit.Stats[config.StatBindings.GetDamageResistStat(type)])
+				.Aggregate(config.Math.AggregateSeed, config.Math.Aggregate));
 
-			Enum resistStat = config.DamageResistMap[damage.Type];
-
-			if (resistStat == null)
-			{
-				finalDamage = damage.Value;
-			}
-			else
-			{
-				finalDamage = MitigateDamageValue(damage.Value, unit.Stats[resistStat]);
-			}
-
-			return finalDamage;
-		}
 
 		public HitCheck CheckForHit(IUnit unit, IUnit target)
 		{
-			// Inject this formula
-			double threshold = MathExtensions.Clamp(unit.Stats[CombatStats.HIT] - target.Stats[CombatStats.AVD], 0, 100) / 100f;
+			int hitChance = config.StatBindings.Hit != null ? unit.Stats[config.StatBindings.Hit] : 100;
+			int dodgeChance = config.StatBindings.Dodge!= null ? unit.Stats[config.StatBindings.Dodge] : 0;
+
+			double threshold = config.Math.CalculateHitChance(hitChance, dodgeChance).Clamp(0, 100) / 100f;
 			bool hit = new CenterWeightedChecker(threshold).Check();
-			double critThreshold = MathExtensions.Clamp(unit.Stats[CombatStats.CRT], 0, 100) / 100f;
+
+			if (config.StatBindings.Crit == null)
+				return new HitCheck(threshold, hit);
+
+			double critThreshold = MathExtensions.Clamp(unit.Stats[config.StatBindings.Crit], 0, 100) / 100f;
 			bool crit = hit ? new SuccessChecker(critThreshold).Check() : false;
 
-			return new HitCheck(
-				threshold,
-				hit,
-				critThreshold,
-				crit
-			);
+			return new HitCheck(threshold, hit, critThreshold, crit);
 		}
 
 		public HPLoss ReceiveDamage(IUnit unit, Damage damage)
@@ -199,7 +180,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 		public AttackAction Attack(IUnit unit, IUnit target, IWeapon weapon)
 		{
 			HitCheck hit = CheckForHit(unit, target);
-			Damage damage = hit.Hit ? CalculateAttackDamage(unit, weapon, hit.Crit) : null;
+			Damage damage = hit.Hit ? CalculateOutgoingDamage(unit, weapon, hit.Crit) : null;
 			HPLoss hp = hit.Hit ? ReceiveDamage(target, damage) : null;
 			IList<ILogEntry> effects = hit.Hit ? ApplyEffects(weapon, target, unit, hp.Value) : null;
 
@@ -233,13 +214,17 @@ namespace Davfalcon.Revelator.Engine.Combat
 					hit[i] = CheckForHit(unit, targets[i]);
 					if (!hit[i].Hit) continue;
 				}
+				else
+				{
+					hit[i] = HitCheck.Success;
+				}
 
 				List<ILogEntry> effectsList = new List<ILogEntry>();
 
 				// Damage dealing spells
 				if (spell.BaseDamage > 0)
 				{
-					damage[i] = CalculateSpellDamage(unit, spell, !options.NoScaling, hit[i]?.Crit ?? false);
+					damage[i] = CalculateOutgoingDamage(unit, spell, !options.NoScaling, hit[i].Crit);
 					hpLost[i] = ReceiveDamage(targets[i], damage[i]);
 				}
 
@@ -253,7 +238,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 				// Healing spells
 				if (spell.BaseHeal > 0)
 				{
-					int healValue = ChangeHP(targets[i], spell.BaseHeal * (options.NoScaling ? 1 : unit.Stats[Attributes.WIS]));
+					// Need to genericize scaling for heals
+					int healValue = ChangeHP(targets[i], spell.BaseHeal);
 					effectsList.Add(new LogEntry(string.Format("{0} is healed for {1} HP.", targets[i].Name, healValue)));
 				}
 
@@ -300,5 +286,9 @@ namespace Davfalcon.Revelator.Engine.Combat
 		{
 			this.config = config;
 		}
+
+		public CombatEvaluator()
+			: this(CombatEvaluatorConfig.Default)
+		{ }
 	}
 }

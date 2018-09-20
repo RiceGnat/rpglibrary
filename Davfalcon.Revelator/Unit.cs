@@ -49,5 +49,13 @@ namespace Davfalcon.Revelator
 			// Equipment will be serialized in properties object
 			Equipment.Clear();
 		}
+
+		public Unit()
+			: base()
+		{ }
+
+		public Unit(IStatsMath statsMath)
+			: base(statsMath)
+		{ }
 	}
 }

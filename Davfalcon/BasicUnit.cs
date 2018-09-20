@@ -25,7 +25,7 @@ namespace Davfalcon
 
 			public IStats Multiplications
 			{
-				get { return StatsConstant.Zero; }
+				get { return new StatsConstant(unit.statsMath.AggregateSeed); }
 			}
 
 			public IStats Final
@@ -41,6 +41,8 @@ namespace Davfalcon
 
 		[NonSerialized]
 		private BaseStatsRouter statsRouter;
+
+		private readonly IStatsMath statsMath = StatsMath.Default;
 
 		/// <summary>
 		/// Gets or sets the unit's name.
@@ -111,6 +113,12 @@ namespace Davfalcon
 		{
 			Initialize();
 			Link();
+		}
+
+		public BasicUnit(IStatsMath statsMath)
+			: this()
+		{
+			this.statsMath = statsMath;
 		}
 	}
 }

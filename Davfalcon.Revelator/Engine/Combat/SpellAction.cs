@@ -42,10 +42,10 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 			for (int i = 0; i < Targets.Length; i++)
 			{
-				if (Hit[i] != null && !Hit[i].Hit)
+				if (Hit[i].IsSet && !Hit[i].Hit)
 					s += Environment.NewLine + String.Format("The spell misses {0}.", Targets[i]);
 
-				if (Hit[i]?.Crit ?? false)
+				if (Hit[i].Crit)
 					s += Environment.NewLine + String.Format("The spell crits {0}!", Targets[i]);
 
 				if (DamageDealt[i] != null)

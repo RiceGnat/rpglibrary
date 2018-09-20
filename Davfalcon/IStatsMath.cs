@@ -3,8 +3,16 @@
 	/// <summary>
 	/// Specifies a formula to use to calculate stats
 	/// </summary>
-	public interface IStatsCalculator
+	public interface IStatsMath
 	{
+		int AggregateSeed { get; }
+
+		int Aggregate(int a, int b);
+
+		int Scale(int a, int b);
+
+		int ScaleInverse(int a, int b);
+
 		/// <summary>
 		/// Perform a calculation on the given parameters.
 		/// </summary>

@@ -2,10 +2,11 @@
 {
 	public struct HitCheck
 	{
-		public readonly double HitChance;
-		public readonly bool Hit;
-		public readonly double CritChance;
-		public readonly bool Crit;
+		public bool IsSet { get; }
+		public bool Crit { get; }
+		public double HitChance { get; }
+		public bool Hit { get; }
+		public double CritChance { get; }
 
 		public HitCheck(double hitChance, bool hit, double critChance = 0, bool crit = false)
 		{
@@ -13,9 +14,14 @@
 			Hit = hit;
 			CritChance = critChance;
 			Crit = crit;
+			IsSet = true;
 		}
 
-		public static HitCheck Success = new HitCheck(100, true);
-		public static HitCheck Miss = new HitCheck(0, false);
+		private HitCheck(bool success)
+			: this(0, success)
+			=> IsSet = false;
+
+		public static HitCheck Success = new HitCheck(true);
+		public static HitCheck Miss = new HitCheck(false);
 	}
 }

@@ -1,48 +1,55 @@
 ﻿namespace Davfalcon
 {
 	/// <summary>
-	/// Performs math across a set of stats.
+	/// Defines default stat operations.
 	/// </summary>
-	public class StatsMath : StatsPrototype, IStatsCalculator
+	public class StatsMath : IStatsMath
 	{
-		private readonly IStatsCalculator calculator;
-
-		private IStats original;
-		private IStats additions;
-		private IStats multiplications;
+		/// <summary>
+		/// Defines the seed value for aggregating multipliers. Should be 0 for additive and 1 for multiplicative stacking.
+		/// </summary>
+		public int AggregateSeed { get; protected set; } = 0;
 
 		/// <summary>
-		/// Gets the resulting stat after performing calculations.
+		/// Defines the default method for aggregating multipliers.
 		/// </summary>
-		/// <param name="stat">The name of the stat.</param>
-		/// <returns>The stat after calculations.</returns>
-		public override int Get(string stat)
-		{
-			return calculator.Calculate(original[stat], additions[stat], multiplications[stat]);
-		}
-
-		private StatsMath() { }
+		/// <param name="a">Accumulator value.</param>
+		/// <param name="b">Value to add to the accumulator.</param>
+		/// <returns>The new accumulator value.</returns>
+		public virtual int Aggregate(int a, int b)
+			=> a + b;
 
 		/// <summary>
-		/// Initializes a new <see cref="StatsMath"/> that will calculate using the specified stat operands and calculator.
+		/// Defines the default scaling formula.
 		/// </summary>
-		/// <param name="original">The original set of stats to use.</param>
-		/// <param name="additions">A set of values to add to each stat.</param>
-		/// <param name="multiplications">A set of values to multiply each stat.</param>
-		/// <param name="calculator">An object that specifies the calculation formula to use. If not given or null, the default formula will be used.</param>
-		public StatsMath(IStats original, IStats additions, IStats multiplications, IStatsCalculator calculator = null)
-		{
-			this.original = original;
-			this.additions = additions;
-			this.multiplications = multiplications;
+		/// <param name="a">Value to be scaled.</param>
+		/// <param name="b">Scalar modifier.</param>
+		/// <returns>The scaled value.</returns>
+		public virtual int Scale(int a, int b)
+			=> a.Scale(b);
 
-			this.calculator = calculator ?? new StatsMath();
-		}
+		/// <summary>
+		/// Defines the default method for applying an inverse scale.
+		/// </summary>
+		/// <param name="a">Value to be scaled.</param>
+		/// <param name="b">Scalar modifier.</param>
+		/// <returns>The inversely scaled value.</returns>
+		public virtual int ScaleInverse(int a, int b)
+			=> Scale(a, -b);
 
-		// Defines the default calculation to be used for stat math
-		int IStatsCalculator.Calculate(int a, int b, int m)
-		{
-			return (a + b).Scale(m);
-		}
+		/// <summary>
+		/// Defines the default formula to be used for stat calculation.
+		/// </summary>
+		/// <param name="a">The base stat.</param>
+		/// <param name="b">The addition modifier.</param>
+		/// <param name="m">The multiplicative modifier.</param>
+		/// <returns>The calculated result.</returns>
+		public virtual int Calculate(int a, int b, int m)
+			=> Scale(a + b, m);
+
+		/// <summary>
+		/// A singleton instance of the default <see cref="StatsMath"/> definition.
+		/// </summary>
+		public static IStatsMath Default = new StatsMath();
 	}
 }

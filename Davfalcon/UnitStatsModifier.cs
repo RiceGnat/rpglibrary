@@ -11,9 +11,9 @@ namespace Davfalcon
 		private class StatsModifier : IStatsPackage
 		{
 			private IUnit unit;
-			private StatsMath additions;
-			private StatsMath multiplications;
-			private StatsMath final;
+			private StatsAggregator additions;
+			private StatsAggregator multiplications;
+			private StatsCalculator final;
 
 			public IStats Base
 			{
@@ -35,23 +35,23 @@ namespace Davfalcon
 				get { return final; }
 			}
 
-			public StatsModifier(IUnit unit, IStats additions, IStats multiplications, IStatsCalculator calculator)
+			public StatsModifier(IUnit unit, IStats additions, IStats multiplications, IStatsMath calculator)
 			{
 				this.unit = unit;
 				
-				// Since these are only summing the modifiers, they will always use the default formula
-				this.additions = new StatsMath(unit.StatsDetails.Additions, additions, StatsConstant.Zero);
-				this.multiplications = new StatsMath(unit.StatsDetails.Multiplications, multiplications, StatsConstant.Zero);
+				// Always use default aggregator for addition (sum)
+				this.additions = new StatsAggregator(unit.StatsDetails.Additions, additions);
+				this.multiplications = new StatsAggregator(unit.StatsDetails.Multiplications, multiplications, calculator);
 
-				// The final calculation will use the defined formula
-				final = new StatsMath(Base, Additions, Multiplications, calculator);
+				// The final calculation will use the defined formula (or default if not specified)
+				final = new StatsCalculator(Base, Additions, Multiplications, calculator);
 			}
 		}
 
 		[NonSerialized]
 		private StatsModifier statsModifier;
 
-		private IStatsCalculator calculator;
+		private IStatsMath calculator;
 
 		/// <summary>
 		/// Gets or sets the values to be added to each stat.
@@ -88,7 +88,7 @@ namespace Davfalcon
 			Multiplications = new StatsMap();
 		}
 
-		public UnitStatsModifier(IStatsCalculator calculator)
+		public UnitStatsModifier(IStatsMath calculator)
 			: this()
 		{
 			this.calculator = calculator;
