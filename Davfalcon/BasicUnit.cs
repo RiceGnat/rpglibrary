@@ -42,7 +42,7 @@ namespace Davfalcon
 		[NonSerialized]
 		private BaseStatsRouter statsRouter;
 
-		private readonly IStatsMath statsMath = StatsMath.Default;
+		private readonly IStatsResolver statsMath = StatsResolver.Default;
 
 		/// <summary>
 		/// Gets or sets the unit's name.
@@ -115,7 +115,7 @@ namespace Davfalcon
 			Link();
 		}
 
-		public BasicUnit(IStatsMath statsMath)
+		public BasicUnit(IStatsResolver statsMath)
 			: this()
 		{
 			this.statsMath = statsMath;

@@ -54,7 +54,7 @@ namespace Davfalcon.Revelator
 			: base()
 		{ }
 
-		public Unit(IStatsMath statsMath)
+		public Unit(IStatsResolver statsMath)
 			: base(statsMath)
 		{ }
 	}

@@ -35,7 +35,7 @@ namespace Davfalcon
 				get { return final; }
 			}
 
-			public StatsModifier(IUnit unit, IStats additions, IStats multiplications, IStatsMath calculator)
+			public StatsModifier(IUnit unit, IStats additions, IStats multiplications, IStatsResolver calculator)
 			{
 				this.unit = unit;
 				
@@ -51,7 +51,7 @@ namespace Davfalcon
 		[NonSerialized]
 		private StatsModifier statsModifier;
 
-		private IStatsMath calculator;
+		private IStatsResolver calculator;
 
 		/// <summary>
 		/// Gets or sets the values to be added to each stat.
@@ -88,7 +88,7 @@ namespace Davfalcon
 			Multiplications = new StatsMap();
 		}
 
-		public UnitStatsModifier(IStatsMath calculator)
+		public UnitStatsModifier(IStatsResolver calculator)
 			: this()
 		{
 			this.calculator = calculator;

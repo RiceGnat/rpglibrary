@@ -1,6 +1,6 @@
 ﻿namespace Davfalcon.Revelator.Engine.Combat
 {
-	public interface ICombatMath : IStatsMath
+	public interface ICombatOperations : IStatsResolver
 	{
 		int CalculateHitChance(int hit, int avoid);
 	}

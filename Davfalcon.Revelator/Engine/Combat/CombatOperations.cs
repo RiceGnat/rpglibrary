@@ -1,10 +1,10 @@
 ﻿namespace Davfalcon.Revelator.Engine.Combat
 {
-	public class CombatMath : StatsMath, ICombatMath
+	public class CombatOperations : StatsResolver, ICombatOperations
 	{
 		public virtual int CalculateHitChance(int hit, int dodge)
 			=> hit - dodge;
 
-		public static CombatMath Default = new CombatMath();
+		public static CombatOperations Default = new CombatOperations();
 	}
 }

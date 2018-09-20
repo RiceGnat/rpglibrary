@@ -66,12 +66,12 @@
     <Compile Include="Randomization\RandomInteger.cs" />
     <Compile Include="Randomization\SuccessChecker.cs" />
     <Compile Include="StatsAggregator.cs" />
-    <Compile Include="StatsMath.cs" />
+    <Compile Include="StatsResolver.cs" />
     <Compile Include="TimedModifier.cs" />
     <Compile Include="ITimedModifier.cs" />
     <Compile Include="IEditableStats.cs" />
     <Compile Include="IStats.cs" />
-    <Compile Include="IStatsMath.cs" />
+    <Compile Include="IStatsResolver.cs" />
     <Compile Include="IStatsPackage.cs" />
     <Compile Include="IItem.cs" />
     <Compile Include="IUnit.cs" />

@@ -5,7 +5,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 	public delegate void BuffEventHandler(IUnit unit, IBuff buff);
 	public delegate void DamageEventHandler(IUnit unit, Damage damage, int hpLost);
 
-	public interface ICombatEvaluator
+	public interface ICombatResolver
 	{
 		event BuffEventHandler OnBuffApplied;
 		event DamageEventHandler OnDamageTaken;

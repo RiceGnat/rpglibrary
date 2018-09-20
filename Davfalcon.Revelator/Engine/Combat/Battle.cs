@@ -21,7 +21,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 		}
 
 		[NonSerialized]
-		private ICombatEvaluator combat;
+		private ICombatResolver combat;
 
 		private readonly List<ILogEntry> log = new List<ILogEntry>();
 		private readonly Dictionary<int, List<IUnit>> teams = new Dictionary<int, List<IUnit>>();
@@ -34,7 +34,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 		public IUnit CurrentUnit { get { return turnOrder.Current; } }
 		public IUnitBattleState CurrentUnitState { get { return GetUnitState(CurrentUnit); } }
 
-		public void SetCombatEvaluator(ICombatEvaluator combatEval)
+		public void SetCombatEvaluator(ICombatResolver combatEval)
 		{
 			combat = combatEval ?? throw new ArgumentNullException("Combat evaluator cannot be set to null.");
 		}
@@ -108,7 +108,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			}
 		}
 
-		public Battle(ICombatEvaluator combatEval)
+		public Battle(ICombatResolver combatEval)
 		{
 			SetCombatEvaluator(combatEval);
 			Log = log.AsReadOnly();

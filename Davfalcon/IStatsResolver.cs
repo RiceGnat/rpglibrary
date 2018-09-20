@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Specifies a formula to use to calculate stats
 	/// </summary>
-	public interface IStatsMath
+	public interface IStatsResolver
 	{
 		int AggregateSeed { get; }
 

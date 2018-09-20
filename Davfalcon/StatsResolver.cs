@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Defines default stat operations.
 	/// </summary>
-	public class StatsMath : IStatsMath
+	public class StatsResolver : IStatsResolver
 	{
 		/// <summary>
 		/// Defines the seed value for aggregating multipliers. Should be 0 for additive and 1 for multiplicative stacking.
@@ -48,8 +48,8 @@
 			=> Scale(a + b, m);
 
 		/// <summary>
-		/// A singleton instance of the default <see cref="StatsMath"/> definition.
+		/// A singleton instance of the default <see cref="StatsResolver"/> definition.
 		/// </summary>
-		public static IStatsMath Default = new StatsMath();
+		public static IStatsResolver Default = new StatsResolver();
 	}
 }

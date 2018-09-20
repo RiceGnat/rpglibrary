@@ -5,7 +5,7 @@
 	/// </summary>
 	public class StatsCalculator : StatsPrototype
 	{
-		private readonly IStatsMath calculator;
+		private readonly IStatsResolver calculator;
 
 		private readonly IStats original;
 		private readonly IStats additions;
@@ -30,13 +30,13 @@
 		/// <param name="additions">A set of values to add to each stat.</param>
 		/// <param name="multiplications">A set of values to multiply each stat.</param>
 		/// <param name="calculator">An object that specifies the calculation formula to use. If null, the default formula will be used.</param>
-		public StatsCalculator(IStats original, IStats additions, IStats multiplications, IStatsMath calculator)
+		public StatsCalculator(IStats original, IStats additions, IStats multiplications, IStatsResolver calculator)
 		{
 			this.original = original;
 			this.additions = additions;
 			this.multiplications = multiplications;
 
-			this.calculator = calculator ?? StatsMath.Default;
+			this.calculator = calculator ?? StatsResolver.Default;
 		}
 
 		/// <summary>

@@ -2,7 +2,7 @@
 {
 	public class StatsAggregator : StatsPrototype
 	{
-		private readonly IStatsMath calculator;
+		private readonly IStatsResolver calculator;
 
 		private readonly IStats a;
 		private readonly IStats b;
@@ -14,12 +14,12 @@
 
 		private StatsAggregator() { }
 
-		public StatsAggregator(IStats a, IStats b, IStatsMath calculator)
+		public StatsAggregator(IStats a, IStats b, IStatsResolver calculator)
 		{
 			this.a = a;
 			this.b = b;
 
-			this.calculator = calculator ?? StatsMath.Default;
+			this.calculator = calculator ?? StatsResolver.Default;
 		}
 
 		public StatsAggregator(IStats a, IStats b)

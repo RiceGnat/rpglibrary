@@ -6,7 +6,7 @@ using Davfalcon.Serialization;
 
 namespace Davfalcon.Revelator.Engine.Combat
 {
-	public class CombatEvaluator : ICombatEvaluator
+	public class CombatResolver : ICombatResolver
 	{
 		private Config config;
 
@@ -282,17 +282,17 @@ namespace Davfalcon.Revelator.Engine.Combat
 			return effects;
 		}
 
-		private CombatEvaluator(Config config)
+		private CombatResolver(Config config)
 		{
 			this.config = config;
 		}
 
-		public static ICombatEvaluator Default = new Builder().Build();
+		public static ICombatResolver Default = new Builder().Build();
 
 		private class Config
 		{
 			public IEffectsRegistry Effects { get; set; }
-			public ICombatMath Math { get; set; }
+			public ICombatOperations Math { get; set; }
 			public CombatStatBinding StatBindings { get; set; }
 			public Enum SpellAttackType { get; set; }
 			public Enum HPStat { get; set; }
@@ -326,7 +326,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 				statBindings = new CombatStatBinding();
 				config = new Config
 				{
-					Math = CombatMath.Default,
+					Math = CombatOperations.Default,
 					StatBindings = statBindings
 				};
 				return this;
@@ -338,7 +338,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 				return this;
 			}
 
-			public Builder SetMath(ICombatMath combatMath)
+			public Builder SetMath(ICombatOperations combatMath)
 			{
 				config.Math = combatMath;
 				return this;
@@ -370,8 +370,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 				return this;
 			}
 
-			public ICombatEvaluator Build()
-				=> new CombatEvaluator(config);
+			public ICombatResolver Build()
+				=> new CombatResolver(config);
 
 			public Builder()
 			{
