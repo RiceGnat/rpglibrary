@@ -6,7 +6,7 @@ using System.Linq;
 namespace Davfalcon.Revelator.Engine.Combat
 {
 	[Serializable]
-	public class Damage : ILogEntry
+	public struct Damage : ILogEntry
 	{
 		public static bool LogFullDamage = true;
 
@@ -25,10 +25,12 @@ namespace Davfalcon.Revelator.Engine.Combat
 			: this(value, source, types.ToArray())
 		{ }
 
+		public static Damage None = new Damage(0, "");
+
 		public override string ToString()
 			=> String.Format($"{Source} deals {Value} outgoing {String.Join(" ", Types)} damage.");
 
-		public string LogWith(HPLoss hpLoss)
+		public string LogWith(PointLoss hpLoss)
 		{
 			if (LogFullDamage) return this + Environment.NewLine + hpLoss;
 			else return String.Format($"{hpLoss.Unit} takes {hpLoss.Value} {String.Join(" ", Types)} damage from {Source}.");

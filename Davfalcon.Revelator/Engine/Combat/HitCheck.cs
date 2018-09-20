@@ -1,12 +1,15 @@
-﻿namespace Davfalcon.Revelator.Engine.Combat
+﻿using System;
+
+namespace Davfalcon.Revelator.Engine.Combat
 {
+	[Serializable]
 	public struct HitCheck
 	{
-		public bool IsSet { get; }
-		public bool Crit { get; }
-		public double HitChance { get; }
-		public bool Hit { get; }
-		public double CritChance { get; }
+		public readonly bool IsSet;
+		public readonly bool Crit;
+		public readonly double HitChance;
+		public readonly bool Hit;
+		public readonly double CritChance;
 
 		public HitCheck(double hitChance, bool hit, double critChance = 0, bool crit = false)
 		{

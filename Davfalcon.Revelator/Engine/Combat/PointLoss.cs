@@ -3,14 +3,16 @@
 namespace Davfalcon.Revelator.Engine.Combat
 {
 	[Serializable]
-	public class HPLoss : ILogEntry
+	public struct PointLoss : ILogEntry
 	{
 		public readonly string Unit;
+		public readonly Enum Stat;
 		public readonly int Value;
 
-		public HPLoss(string unit, int value)
+		public PointLoss(string unit, Enum stat, int value)
 		{
 			Unit = unit;
+			Stat = stat;
 			Value = value;
 		}
 

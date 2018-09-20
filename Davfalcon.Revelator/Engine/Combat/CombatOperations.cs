@@ -1,4 +1,6 @@
-﻿namespace Davfalcon.Revelator.Engine.Combat
+﻿using System;
+
+namespace Davfalcon.Revelator.Engine.Combat
 {
 	public class CombatOperations : StatsResolver, ICombatOperations
 	{

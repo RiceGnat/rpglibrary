@@ -8,10 +8,50 @@ namespace Davfalcon.Revelator.Engine.Combat
 {
 	public class CombatResolver : ICombatResolver
 	{
-		private Config config;
+		private class Config
+		{
+			public IEffectsRegistry Effects { get; set; }
+			public ICombatOperations Operations { get; set; }
+			public CombatStatBinding StatBindings { get; set; }
+			public Enum SpellAttackType { get; set; }
+			public Enum HPStat { get; set; }
+			public Enum MPStat { get; set; }
+		}
 
-		public event BuffEventHandler OnBuffApplied;
-		public event DamageEventHandler OnDamageTaken;
+		private class CombatStatBinding
+		{
+			public Enum Hit { get; set; }
+			public Enum Dodge { get; set; }
+			public Enum Crit { get; set; }
+			public IList<Enum> VolatileStats { get; } = new List<Enum>();
+			public IDictionary<Enum, Enum> DamageScalingMap { get; } = new Dictionary<Enum, Enum>();
+			public IDictionary<Enum, Enum> DamageResistMap { get; } = new Dictionary<Enum, Enum>();
+			public Enum DefaultDamageResource { get; set; }
+			public IDictionary<Enum, IList<Enum>> DamageResourceMap { get; } = new Dictionary<Enum, IList<Enum>>();
+
+			public Enum GetDamageScalingStat(Enum damageType)
+				=> DamageScalingMap.ContainsKey(damageType) ? DamageScalingMap[damageType] : null;
+
+			public Enum GetDamageResistStat(Enum damageType)
+				=> DamageResistMap.ContainsKey(damageType) ? DamageResistMap[damageType] : null;
+
+			public IEnumerable<Enum> ResolveDamageResource(params Enum[] damageTypes)
+			{
+				List<Enum> stats = new List<Enum>();
+				foreach(Enum type in damageTypes)
+				{
+					if (DamageResourceMap.ContainsKey(type))
+						stats.AddRange(DamageResourceMap[type]);
+				}
+				stats.Add(DefaultDamageResource);
+				return stats;
+			}
+
+			public IEnumerable<Enum> ResolveDamageResource(IEnumerable<Enum> damageTypes)
+				=> ResolveDamageResource(damageTypes.ToArray());
+		}
+
+		private Config config;
 
 		private IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator)
 			=> config.Effects.ApplyEffects(source, target, originator);
@@ -19,7 +59,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 		private IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator, int value)
 			=> config.Effects.ApplyEffects(source, target, originator, value);
 
-		private void AdjustVolatileStats(IUnit unit, IDictionary<Enum, int> prevValues)
+		private void AdjustMaxVolatileStats(IUnit unit, IDictionary<Enum, int> prevValues)
 		{
 			foreach (Enum stat in config.StatBindings.VolatileStats)
 			{
@@ -40,9 +80,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			b.Reset();
 			unit.CombatProperties.Buffs.Add(b);
 
-			AdjustVolatileStats(unit, currentValues);
-
-			OnBuffApplied?.Invoke(unit, buff);
+			AdjustMaxVolatileStats(unit, currentValues);
 		}
 
 		public void RemoveBuff(IUnit unit, IBuff buff)
@@ -55,7 +93,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 			unit.CombatProperties.Buffs.Remove(buff);
 
-			AdjustVolatileStats(unit, currentValues);
+			AdjustMaxVolatileStats(unit, currentValues);
 		}
 
 		public void Initialize(IUnit unit)
@@ -114,46 +152,12 @@ namespace Davfalcon.Revelator.Engine.Combat
 			return effects;
 		}
 
-		public int ChangeHP(IUnit unit, int amount)
-		{
-			int initial = unit.CombatProperties.CurrentHP;
-			unit.CombatProperties.CurrentHP = (unit.CombatProperties.CurrentHP + amount).Clamp(0, unit.Stats[config.HPStat]);
-			return unit.CombatProperties.CurrentHP - initial;
-		}
-
-		public int ChangeMP(IUnit unit, int amount)
-		{
-			int initial = unit.CombatProperties.CurrentMP;
-			unit.CombatProperties.CurrentMP = (unit.CombatProperties.CurrentMP + amount).Clamp(0, unit.Stats[config.MPStat]);
-			return unit.CombatProperties.CurrentMP - initial;
-		}
-
-		public Damage CalculateOutgoingDamage(IUnit unit, IDamageSource source, bool scale = true, bool crit = false)
-			=> new Damage(
-				(scale ? config.Math.Scale(
-					source.BaseDamage + (source.BonusDamageStat != null ? unit.Stats[source.BonusDamageStat] : 0),
-					source.DamageTypes
-						.Where(type => config.StatBindings?.GetDamageScalingStat(type) != null)
-						.Select(type => unit.Stats[config.StatBindings.GetDamageScalingStat(type)])
-						.Aggregate(config.Math.AggregateSeed, config.Math.Aggregate))
-				: source.BaseDamage) * (crit ? source.CritMultiplier : 1),
-				unit.Name,
-				source.DamageTypes
-			);
-
-		public int CalculateReceivedDamage(IUnit unit, Damage damage)
-			=> config.Math.ScaleInverse(damage.Value, damage.Types
-				.Where(type => config.StatBindings?.GetDamageResistStat(type) != null)
-				.Select(type => unit.Stats[config.StatBindings.GetDamageResistStat(type)])
-				.Aggregate(config.Math.AggregateSeed, config.Math.Aggregate));
-
-
 		public HitCheck CheckForHit(IUnit unit, IUnit target)
 		{
 			int hitChance = config.StatBindings.Hit != null ? unit.Stats[config.StatBindings.Hit] : 100;
-			int dodgeChance = config.StatBindings.Dodge!= null ? unit.Stats[config.StatBindings.Dodge] : 0;
+			int dodgeChance = config.StatBindings.Dodge != null ? unit.Stats[config.StatBindings.Dodge] : 0;
 
-			double threshold = config.Math.CalculateHitChance(hitChance, dodgeChance).Clamp(0, 100) / 100f;
+			double threshold = config.Operations.CalculateHitChance(hitChance, dodgeChance).Clamp(0, 100) / 100f;
 			bool hit = new CenterWeightedChecker(threshold).Check();
 
 			if (config.StatBindings.Crit == null)
@@ -165,23 +169,62 @@ namespace Davfalcon.Revelator.Engine.Combat
 			return new HitCheck(threshold, hit, critThreshold, crit);
 		}
 
-		public HPLoss ReceiveDamage(IUnit unit, Damage damage)
-		{
-			int hpLost = -ChangeHP(unit, -CalculateReceivedDamage(unit, damage));
-
-			OnDamageTaken?.Invoke(unit, damage, hpLost);
-
-			return new HPLoss(
+		public Damage CalculateOutgoingDamage(IUnit unit, IDamageSource source, bool scale = true, bool crit = false)
+			=> new Damage(
+				(scale ? config.Operations.Scale(
+					source.BaseDamage + (source.BonusDamageStat != null ? unit.Stats[source.BonusDamageStat] : 0),
+					source.DamageTypes
+						.Where(type => config.StatBindings?.GetDamageScalingStat(type) != null)
+						.Select(type => unit.Stats[config.StatBindings.GetDamageScalingStat(type)])
+						.Aggregate(config.Operations.AggregateSeed, config.Operations.Aggregate))
+				: source.BaseDamage) * (crit ? source.CritMultiplier : 1),
 				unit.Name,
-				hpLost
+				source.DamageTypes
 			);
+
+		public int CalculateReceivedDamage(IUnit unit, Damage damage)
+			=> config.Operations.ScaleInverse(damage.Value, damage.Types
+				.Where(type => config.StatBindings?.GetDamageResistStat(type) != null)
+				.Select(type => unit.Stats[config.StatBindings.GetDamageResistStat(type)])
+				.Aggregate(config.Operations.AggregateSeed, config.Operations.Aggregate));
+
+		public IEnumerable<PointLoss> ReceiveDamage(IUnit unit, Damage damage)
+		{
+			// Calculate the amount of damage the unit will take after resistances
+			int adjusted = CalculateReceivedDamage(unit, damage);
+
+			// Get targeted resource points and apply damage pool in order
+			List<PointLoss> losses = new List<PointLoss>();
+			foreach (Enum stat in config.StatBindings.ResolveDamageResource(damage.Types))
+			{
+				// Apply up to the remaining number of points in the stat
+				int actual = -AdjustVolatileStat(unit, stat, -adjusted);
+
+				// Log the loss
+				losses.Add(new PointLoss(unit.Name, stat, actual));
+
+				// Subtract from remaining damage pool
+				adjusted -= actual;
+
+				// Break if all damage is applied
+				if (adjusted <= 0)
+					break;
+			}
+			return losses;
+		}
+
+		public int AdjustVolatileStat(IUnit unit, Enum stat, int change)
+		{
+			int initial = unit.CombatProperties.VolatileStats[stat];
+			unit.CombatProperties.VolatileStats[stat] = (unit.CombatProperties.VolatileStats[stat] + change).Clamp(0, unit.Stats[stat]);
+			return unit.CombatProperties.VolatileStats[stat] - initial;
 		}
 
 		public AttackAction Attack(IUnit unit, IUnit target, IWeapon weapon)
 		{
 			HitCheck hit = CheckForHit(unit, target);
-			Damage damage = hit.Hit ? CalculateOutgoingDamage(unit, weapon, hit.Crit) : null;
-			HPLoss hp = hit.Hit ? ReceiveDamage(target, damage) : null;
+			Damage damage = hit.Hit ? CalculateOutgoingDamage(unit, weapon, hit.Crit) : Damage.None;
+			IEnumerable<PointLoss> loss = hit.Hit ? ReceiveDamage(target, damage) : null;
 			IList<ILogEntry> effects = hit.Hit ? ApplyEffects(weapon, target, unit, hp.Value) : null;
 
 			return new AttackAction(
@@ -200,7 +243,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			int n = targets.Length;
 			HitCheck[] hit = new HitCheck[n];
 			Damage[] damage = new Damage[n];
-			HPLoss[] hpLost = new HPLoss[n];
+			PointLoss[] hpLost = new PointLoss[n];
 			IList<ILogEntry>[] effects = new IList<ILogEntry>[n];
 
 			// MP cost (calling layer is responsible for validation)
@@ -289,33 +332,6 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 		public static ICombatResolver Default = new Builder().Build();
 
-		private class Config
-		{
-			public IEffectsRegistry Effects { get; set; }
-			public ICombatOperations Math { get; set; }
-			public CombatStatBinding StatBindings { get; set; }
-			public Enum SpellAttackType { get; set; }
-			public Enum HPStat { get; set; }
-			public Enum MPStat { get; set; }
-		}
-
-		private class CombatStatBinding
-		{
-			public Enum Hit { get; set; }
-			public Enum Dodge { get; set; }
-			public Enum Crit { get; set; }
-			public List<Enum> VolatileStatsEditable { get; } = new List<Enum>();
-			public IEnumerable<Enum> VolatileStats => VolatileStatsEditable.AsReadOnly();
-			public IDictionary<Enum, Enum> DamageScalingMap { get; } = new Dictionary<Enum, Enum>();
-			public IDictionary<Enum, Enum> DamageResistMap { get; } = new Dictionary<Enum, Enum>();
-
-			public Enum GetDamageScalingStat(Enum damageType)
-				=> DamageScalingMap.ContainsKey(damageType) ? DamageScalingMap[damageType] : null;
-
-			public Enum GetDamageResistStat(Enum damageType)
-				=> DamageResistMap.ContainsKey(damageType) ? DamageResistMap[damageType] : null;
-		}
-
 		public class Builder
 		{
 			private Config config;
@@ -326,7 +342,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 				statBindings = new CombatStatBinding();
 				config = new Config
 				{
-					Math = CombatOperations.Default,
+					Operations = CombatOperations.Default,
 					StatBindings = statBindings
 				};
 				return this;
@@ -338,9 +354,9 @@ namespace Davfalcon.Revelator.Engine.Combat
 				return this;
 			}
 
-			public Builder SetMath(ICombatOperations combatMath)
+			public Builder SetOperations(ICombatOperations operations)
 			{
-				config.Math = combatMath;
+				config.Operations = operations;
 				return this;
 			}
 
@@ -354,7 +370,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 			public Builder AddVolatileStat(Enum stat)
 			{
-				statBindings.VolatileStatsEditable.Add(stat);
+				statBindings.VolatileStats.Add(stat);
 				return this;
 			}
 
@@ -367,6 +383,20 @@ namespace Davfalcon.Revelator.Engine.Combat
 			public Builder AddDamageResist(Enum damageType, Enum stat)
 			{
 				statBindings.DamageResistMap[damageType] = stat;
+				return this;
+			}
+
+			public Builder AddDamageResourceRule(Enum damageType, Enum resourceStat)
+			{
+				if (!statBindings.DamageResourceMap.ContainsKey(damageType))
+					statBindings.DamageResourceMap[damageType] = new List<Enum>();
+				statBindings.DamageResourceMap[damageType].Add(resourceStat);
+				return this;
+			}
+
+			public Builder SetDefaultDamageResource(Enum resourceStat)
+			{
+				statBindings.DefaultDamageResource = resourceStat;
 				return this;
 			}
 
