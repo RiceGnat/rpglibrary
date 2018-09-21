@@ -9,8 +9,8 @@ namespace Davfalcon.UnitTests
 		[TestMethod]
 		public void StatsMap()
 		{
-			IStats stats = new StatsMap()
-				.Set(STAT_NAME, STAT_VALUE);
+			IEditableStats stats = new StatsMap();
+			stats.Set(STAT_NAME, STAT_VALUE);
 
 			Assert.AreEqual(STAT_VALUE, stats.Get(STAT_NAME));
 			Assert.AreEqual(STAT_VALUE, stats[STAT_NAME]);
@@ -19,10 +19,13 @@ namespace Davfalcon.UnitTests
 		[TestMethod]
 		public void StatsMath()
 		{
-			IStats stats = new StatsCalculator(
-				new StatsMap().Set(STAT_NAME, STAT_VALUE),
-				new StatsMap().Set(STAT_NAME, STAT_VALUE),
-				new StatsMap().Set(STAT_NAME, STAT_MULT));
+			IEditableStats a = new StatsMap();
+			a.Set(STAT_NAME, STAT_VALUE);
+			IEditableStats b = new StatsMap();
+			b.Set(STAT_NAME, STAT_VALUE);
+			IEditableStats m = new StatsMap();
+			m.Set(STAT_NAME, STAT_MULT);
+			IStats stats = new StatsCalculator(a, b, m);
 
 			int expected = (STAT_VALUE + STAT_VALUE) * (int)(1 + STAT_MULT / 100f);
 

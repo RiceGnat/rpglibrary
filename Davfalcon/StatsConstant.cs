@@ -1,4 +1,6 @@
-﻿namespace Davfalcon
+﻿using System;
+
+namespace Davfalcon
 {
 	/// <summary>
 	/// Returns a constant value for every stat.
@@ -12,7 +14,7 @@
 		/// </summary>
 		/// <param name="stat">The name of the stat.</param>
 		/// <returns>The constant value of the stat.</returns>
-		public override int Get(string stat) => value;
+		public override int Get(Enum stat) => value;
 
 		/// <summary>
 		/// Initializes a new <see cref="StatsConstant"/> that returns a constant value for every stat.

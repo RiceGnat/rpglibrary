@@ -1,4 +1,6 @@
-﻿namespace Davfalcon
+﻿using System;
+
+namespace Davfalcon
 {
 	/// <summary>
 	/// Performs math across a set of stats.
@@ -16,7 +18,7 @@
 		/// </summary>
 		/// <param name="stat">The name of the stat.</param>
 		/// <returns>The stat after calculations.</returns>
-		public override int Get(string stat)
+		public override int Get(Enum stat)
 		{
 			return calculator.Calculate(original[stat], additions[stat], multiplications[stat]);
 		}

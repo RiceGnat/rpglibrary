@@ -1,4 +1,6 @@
-﻿namespace Davfalcon
+﻿using System;
+
+namespace Davfalcon
 {
 	public class StatsAggregator : StatsPrototype
 	{
@@ -7,7 +9,7 @@
 		private readonly IStats a;
 		private readonly IStats b;
 
-		public override int Get(string stat)
+		public override int Get(Enum stat)
 		{
 			return calculator.Aggregate(a[stat], b[stat]);
 		}
