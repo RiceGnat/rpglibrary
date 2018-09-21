@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Davfalcon.Revelator
+﻿namespace Davfalcon.Revelator.Borger
 {
 	public enum Attributes
 	{
@@ -37,10 +35,4 @@ namespace Davfalcon.Revelator
 		Self, Target, Area, Line, Attack
 	}
 
-	[Flags]
-	public enum UsableDuringState : short
-	{
-		OutOfCombat = 0,
-		InCombat = 1
-	}
 }

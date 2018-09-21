@@ -50,6 +50,7 @@
     <Compile Include="Engine\Combat\ICombatOperations.cs" />
     <Compile Include="Engine\IWeaponRegistry.cs" />
     <Compile Include="Engine\WeaponRegistry.cs" />
+    <Compile Include="Borger\LinkedStatsResolver.cs" />
     <Compile Include="IBattle.cs" />
     <Compile Include="IDamageSource.cs" />
     <Compile Include="IEffectArgs.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Engine\Combat\Damage.cs" />
     <Compile Include="Engine\Combat\HitCheck.cs" />
     <Compile Include="Engine\Combat\PointLoss.cs" />
+    <Compile Include="ILinkedStatResolver.cs" />
     <Compile Include="IUnitBattleState.cs" />
     <Compile Include="Engine\Combat\SpellAction.cs" />
     <Compile Include="Engine\Combat\SpellCastOptions.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Engine\IEffectsRegistry.cs" />
     <Compile Include="ILogEntry.cs" />
     <Compile Include="IUnit.cs" />
+    <Compile Include="LinkedStatsResolverBase.cs" />
     <Compile Include="LogEntry.cs" />
     <Compile Include="ISpellItem.cs" />
     <Compile Include="IEffectList.cs" />
@@ -78,7 +81,7 @@
     <Compile Include="IUsableItem.cs" />
     <Compile Include="SpellItem.cs" />
     <Compile Include="UsableItem.cs" />
-    <Compile Include="Enums.cs" />
+    <Compile Include="Borger\Enums.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="IBuff.cs" />
     <Compile Include="IEquipment.cs" />

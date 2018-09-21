@@ -1,25 +1,22 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Davfalcon.Revelator.Borger;
 
 namespace Davfalcon.Revelator.UnitTests
 {
 	[TestClass]
-	public class UnitStatsTests
+	public class LinkedStatsTests
 	{
 		private IUnit unit;
 
 		[TestInitialize]
 		public void MakeUnit()
-		{
-			Unit unit = new Unit();
-
-			unit.BaseStats[Attributes.STR] = 15;
-			unit.BaseStats[Attributes.VIT] = 12;
-			unit.BaseStats[Attributes.AGI] = 8;
-			unit.BaseStats[Attributes.INT] = 14;
-			unit.BaseStats[Attributes.WIS] = 10;
-
-			this.unit = unit;
-		}
+			=> unit = new Unit.Builder(StatsResolver.Default, new LinkedStatsResolver())
+				.SetBaseStat(Attributes.STR, 15)
+				.SetBaseStat(Attributes.VIT, 12)
+				.SetBaseStat(Attributes.AGI, 8)
+				.SetBaseStat(Attributes.INT, 14)
+				.SetBaseStat(Attributes.WIS, 10)
+				.Build();
 
 		[TestMethod]
 		public void HP()

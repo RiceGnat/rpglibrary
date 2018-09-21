@@ -4,39 +4,25 @@ using System.Collections.Generic;
 namespace Davfalcon.Revelator.Engine.Combat
 {
 	[Serializable]
-	public class AttackAction : ILogEntry
+	public struct AttackAction : ILogEntry
 	{
 		public readonly string Attacker;
 		public readonly string Weapon;
 		public readonly string Defender;
 		public readonly HitCheck Hit;
 		public readonly Damage DamageDealt;
-		public readonly PointLoss HPLost;
-		public readonly IList<ILogEntry> OnHitEffects;
+		public readonly IEnumerable<PointLoss> Losses;
+		public readonly IEnumerable<ILogEntry> OnHitEffects;
 
-		public AttackAction(IUnit attacker, IUnit defender, IWeapon weapon, HitCheck hit, Damage damageDealt, PointLoss hpLost, IList<ILogEntry> effects)
+		public AttackAction(IUnit attacker, IUnit defender, IWeapon weapon, HitCheck hit, Damage damageDealt, IEnumerable<PointLoss> losses, IEnumerable<ILogEntry> effects)
 		{
 			Attacker = attacker.Name;
 			Weapon = weapon.Name;
 			Defender = defender.Name;
 			Hit = hit;
 			DamageDealt = damageDealt;
-			HPLost = hpLost;
+			Losses = losses;
 			OnHitEffects = effects == null ? null : new List<ILogEntry>(effects);
-		}
-
-		public override string ToString()
-		{
-			String s = String.Format("{0} attacks {1} with {2}.", Attacker, Defender, Weapon) + Environment.NewLine +
-				   (Hit.Crit ? String.Format("Critical!", Attacker) + Environment.NewLine : "") +
-				   (Hit.Hit ? DamageDealt.LogWith(HPLost)
-				   : String.Format("{0} misses.", Attacker));
-
-			if (OnHitEffects != null)
-				foreach (ILogEntry effect in OnHitEffects)
-					s += Environment.NewLine + effect;
-
-			return s;
 		}
 	}
 }

@@ -4,16 +4,15 @@ using Davfalcon.Engine.Combat;
 using Davfalcon.Engine.Management;
 using Davfalcon.Engine.Setup;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RPGLibrary;
-using RPGLibrary.Serialization;
+using Davfalcon.Revelator.Borger;
 
-namespace Davfalcon.UnitTests
+namespace Davfalcon.Revelator.UnitTests
 {
 	[TestClass]
 	public class SerializationTests
 	{
+		/*
 		private static SystemData data;
-
 		[ClassInitialize]
 		public static void Load(TestContext context)
 		{
@@ -31,7 +30,7 @@ namespace Davfalcon.UnitTests
 		{
 			Engine.SystemData.SetSystem(data);
 		}
-
+		*/
 		private Unit MakeUnit()
 		{
 			Unit unit = new Unit

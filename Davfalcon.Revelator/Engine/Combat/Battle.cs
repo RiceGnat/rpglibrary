@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Davfalcon.Collections.Generic;
+using Davfalcon.Revelator.Borger;
 
 namespace Davfalcon.Revelator.Engine.Combat
 {

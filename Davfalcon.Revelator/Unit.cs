@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Runtime.Serialization;
 
 namespace Davfalcon.Revelator
@@ -6,6 +7,7 @@ namespace Davfalcon.Revelator
 	[Serializable]
 	public class Unit : BasicUnit, IUnit
 	{
+		private ILinkedStatResolver statLinker = new LinkedStatsResolverBase();
 		private UnitProperties props;
 
 		public IUnitModifierStack Equipment { get; protected set; }
@@ -14,9 +16,9 @@ namespace Davfalcon.Revelator
 		public IUnitCombatProperties CombatProperties { get => props as IUnitCombatProperties; }
 		public IUnitItemProperties ItemProperties { get => props as IUnitItemProperties; }
 
-		protected override void Initialize()
+		public override void Initialize()
 		{
-			BaseStats = new UnitStats(this);
+			BaseStats = new UnitStats(statLinker);
 			Modifiers = new UnitModifierStack();
 
 			// Internal references will be maintained after deserialization
@@ -27,19 +29,13 @@ namespace Davfalcon.Revelator
 
 			props = new UnitProperties();
 
-			Level = 1;
-
-			// Set base attributes
-			foreach (Attributes stat in Enum.GetValues(typeof(Attributes)))
-			{
-				BaseStats[stat] = UnitStats.BASE_ATTRIBUTE;
-			}
+			Link();
 		}
 
 		protected override void Link()
 		{
 			base.Link();
-			(BaseStats as UnitStats).Bind(this);
+			statLinker.Bind(this);
 			props.Bind(this);
 		}
 
@@ -50,12 +46,61 @@ namespace Davfalcon.Revelator
 			Equipment.Clear();
 		}
 
-		public Unit()
-			: base()
-		{ }
-
-		public Unit(IStatsResolver statsMath)
+		private Unit(IStatsResolver statsMath, ILinkedStatResolver statLinker)
 			: base(statsMath)
-		{ }
+		{
+			this.statLinker = statLinker;
+		}
+
+		public class Builder
+		{
+			private Unit unit;
+			private readonly IStatsResolver statsMath;
+			private readonly ILinkedStatResolver statLinker;
+
+			public Builder() :
+				this(StatsResolver.Default, LinkedStatsResolverBase.Default)
+			{ }
+
+			public Builder(IStatsResolver statsMath, ILinkedStatResolver statLinker)
+			{
+				this.statsMath = statsMath;
+				this.statLinker = statLinker;
+				Reset();
+			}
+
+			public Builder Reset()
+			{
+				unit = new Unit(statsMath, statLinker);
+				unit.Initialize();
+				return this;
+			}
+
+			public Builder SetMainDetails(string name, string className = "", int level = 1)
+			{
+				unit.Name = name;
+				unit.Class = className;
+				unit.Level = level;
+				return this;
+			}
+
+			public Builder SetBaseStat(Enum stat, int value)
+			{
+				unit.BaseStats[stat] = value;
+				return this;
+			}
+
+			public Builder SetBaseStats(IEnumerable stats, int value)
+			{
+				foreach (Enum stat in stats)
+				{
+					unit.BaseStats[stat] = value;
+				}
+				return this;
+			}
+
+			public IUnit Build()
+				=> unit;
+		}
 	}
 }

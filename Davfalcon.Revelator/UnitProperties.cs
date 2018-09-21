@@ -104,9 +104,5 @@ namespace Davfalcon.Revelator
 				if (e != null) equipment.Add(e);
 			}
 		}
-
-		public UnitProperties()
-		{
-		}
 	}
 }

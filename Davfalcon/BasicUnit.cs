@@ -25,7 +25,7 @@ namespace Davfalcon
 
 			public IStats Multiplications
 			{
-				get { return new StatsConstant(unit.statsMath.AggregateSeed); }
+				get { return new StatsConstant(unit.statsResolver.AggregateSeed); }
 			}
 
 			public IStats Final
@@ -42,7 +42,7 @@ namespace Davfalcon
 		[NonSerialized]
 		private BaseStatsRouter statsRouter;
 
-		private readonly IStatsResolver statsMath = StatsResolver.Default;
+		private readonly IStatsResolver statsResolver;
 
 		/// <summary>
 		/// Gets or sets the unit's name.
@@ -82,10 +82,11 @@ namespace Davfalcon
 		/// <summary>
 		/// Perform initial setup.
 		/// </summary>
-		protected virtual void Initialize()
+		public virtual void Initialize()
 		{
 			BaseStats = new StatsMap();
 			Modifiers = new UnitModifierStack();
+			Link();
 		}
 
 		/// <summary>
@@ -110,15 +111,12 @@ namespace Davfalcon
 		/// Constructs a basic unit with no properties set.
 		/// </summary>
 		public BasicUnit()
-		{
-			Initialize();
-			Link();
-		}
+			: this(StatsResolver.Default)
+		{ }
 
-		public BasicUnit(IStatsResolver statsMath)
-			: this()
+		public BasicUnit(IStatsResolver statsResolver)
 		{
-			this.statsMath = statsMath;
+			this.statsResolver = statsResolver;
 		}
 	}
 }

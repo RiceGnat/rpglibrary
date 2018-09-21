@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Davfalcon.Revelator.Borger;
 
 namespace Davfalcon.Revelator.UnitTests
 {
@@ -10,35 +11,27 @@ namespace Davfalcon.Revelator.UnitTests
 		private const string UNIT_NAME = "UNIT";
 		private const string EQUIP_NAME = "EQUIPMENT";
 
-		private static Unit MakeUnit()
+		private static IUnit MakeUnit()
 		{
-			Unit unit = new Unit();
+			IUnit unit = new Unit.Builder()
+				.SetMainDetails(UNIT_NAME)
+				.SetBaseStats(Enum.GetValues(typeof(Attributes)), 10)
+				.SetBaseStat(STAT, 15)
+				.Build();
 
-			foreach (Attributes stat in Enum.GetValues(typeof(Attributes)))
-			{
-				unit.BaseStats[stat] = 10;
-			}
-
-			unit.BaseStats[STAT] = 15;
 			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Armor);
 			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Accessory);
 			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Accessory);
-			unit.Name = UNIT_NAME;
 
 			return unit;
 		}
 
-		private static Equipment MakeEquip(EquipmentType slot, int add, int mult)
-		{
-			Equipment equipment = new Equipment();
-			equipment.SlotType = slot;
-
-			equipment.Additions[STAT] = add;
-			equipment.Multiplications[STAT] = mult;
-			equipment.Name = EQUIP_NAME;
-
-			return equipment;
-		}
+		private static IEquipment MakeEquip(EquipmentType slot, int add, int mult)
+			=> new Equipment.Builder(slot)
+				.SetName(EQUIP_NAME)
+				.SetStatAddition(STAT, add)
+				.SetStatMultiplier(STAT, mult)
+				.Build();
 
 		[TestMethod]
 		public void SingleEquipment()

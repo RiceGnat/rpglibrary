@@ -35,27 +35,5 @@ namespace Davfalcon.Revelator.Engine.Combat
 				OtherEffects[i] = new List<ILogEntry>(effects[i]);
 			}
 		}
-
-		public override string ToString()
-		{
-			string s = String.Format("{0} casts {1}.", Caster, Spell);
-
-			for (int i = 0; i < Targets.Length; i++)
-			{
-				if (Hit[i].IsSet && !Hit[i].Hit)
-					s += Environment.NewLine + String.Format("The spell misses {0}.", Targets[i]);
-
-				if (Hit[i].Crit)
-					s += Environment.NewLine + String.Format("The spell crits {0}!", Targets[i]);
-
-				if (DamageDealt[i] != null)
-					s += Environment.NewLine + DamageDealt[i].LogWith(HPLost[i]);
-
-				foreach (ILogEntry effect in OtherEffects[i])
-					s += Environment.NewLine + effect;
-			}
-
-			return s;
-		}
 	}
 }

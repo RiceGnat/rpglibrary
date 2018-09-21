@@ -51,7 +51,7 @@ namespace Davfalcon
 		[NonSerialized]
 		private StatsModifier statsModifier;
 
-		private IStatsResolver calculator;
+		private readonly IStatsResolver calculator;
 
 		/// <summary>
 		/// Gets or sets the values to be added to each stat.

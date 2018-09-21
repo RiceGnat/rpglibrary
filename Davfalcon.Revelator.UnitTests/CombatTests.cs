@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Davfalcon.Revelator.Engine.Combat;
+using Davfalcon.Revelator.Borger;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Davfalcon.Revelator.UnitTests
@@ -7,39 +10,31 @@ namespace Davfalcon.Revelator.UnitTests
 	[TestClass]
 	public class CombatTests
 	{
-		private static Unit MakeUnit()
-		{
-			Unit unit = new Unit();
+		private static IUnit MakeUnit()
+			=> new Unit.Builder()
+				.SetBaseStats(Enum.GetValues(typeof(Attributes)), 10)
+				.SetBaseStat(Attributes.STR, 15)
+				.SetBaseStat(Attributes.VIT, 15)
+				.SetBaseStat(CombatStats.ATK, 20)
+				.SetBaseStat(CombatStats.DEF, 20)
+				.SetBaseStat(CombatStats.HP, 100)
+				.SetBaseStat(CombatStats.MP, 100)
+				.Build();
 
-			foreach (Attributes stat in Enum.GetValues(typeof(Attributes)))
-			{
-				unit.BaseStats[stat] = 10;
-			}
-
-			unit.BaseStats[Attributes.STR] = 15;
-			unit.BaseStats[Attributes.VIT] = 15;
-
-			return unit;
-		}
-
-		private static Weapon MakeWeapon()
-			=> new Weapon()
-			{
-				BaseDamage = 5
-			};
-
-		/*
 		[TestMethod]
 		public void InitializeHPMP()
 		{
+			ICombatResolver combat = new CombatResolver.Builder()
+				.AddVolatileStat(CombatStats.HP)
+				.AddVolatileStat(CombatStats.MP)
+				.Build();
 			IUnit unit = MakeUnit();
 
 			combat.Initialize(unit);
 
-			Assert.AreEqual(unit.Stats[CombatStats.HP], unit.CombatProperties.CurrentHP);
-			Assert.AreEqual(unit.Stats[CombatStats.MP], unit.CombatProperties.CurrentMP);
+			Assert.AreEqual(unit.Stats[CombatStats.HP], unit.CombatProperties.VolatileStats[CombatStats.HP]);
+			Assert.AreEqual(unit.Stats[CombatStats.MP], unit.CombatProperties.VolatileStats[CombatStats.MP]);
 		}
-		*/
 
 		[TestMethod]
 		public void CalculateAttackDamage()
@@ -47,7 +42,11 @@ namespace Davfalcon.Revelator.UnitTests
 			ICombatResolver combat = CombatResolver.Default;
 			IUnit unit = MakeUnit();
 
-			Damage d = combat.CalculateOutgoingDamage(unit, MakeWeapon());
+			IWeapon weapon = new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
+				.SetDamage(5)
+				.Build();
+
+			Damage d = combat.CalculateOutgoingDamage(unit, weapon);
 
 			Assert.AreEqual(5, d.Value);
 			Assert.AreEqual(unit.Name, d.Source);
@@ -59,8 +58,9 @@ namespace Davfalcon.Revelator.UnitTests
 			ICombatResolver combat = CombatResolver.Default;
 			IUnit unit = MakeUnit();
 
-			Weapon weapon = MakeWeapon();
-			weapon.BonusDamageStat = Attributes.STR;
+			IWeapon weapon = new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
+				.SetDamage(5, Attributes.STR)
+				.Build();
 
 			Damage d = combat.CalculateOutgoingDamage(unit, weapon);
 
@@ -71,12 +71,15 @@ namespace Davfalcon.Revelator.UnitTests
 		[TestMethod]
 		public void CalculateAttackDamage_WithScaling()
 		{
-			ICombatResolver combat = new CombatResolver.Builder().AddDamageScaling(DamageType.Physical, CombatStats.ATK).Build();
+			ICombatResolver combat = new CombatResolver.Builder()
+				.AddDamageScaling(DamageType.Physical, CombatStats.ATK)
+				.Build();
 			IUnit unit = MakeUnit();
 
-			Weapon weapon = MakeWeapon();
-			weapon.BonusDamageStat = Attributes.STR;
-			weapon.DamageTypes.Add(DamageType.Physical);
+			IWeapon weapon = new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
+				.SetDamage(5, Attributes.STR)
+				.AddDamageType(DamageType.Physical)
+				.Build();
 
 			Damage d = combat.CalculateOutgoingDamage(unit, weapon);
 
@@ -98,26 +101,31 @@ namespace Davfalcon.Revelator.UnitTests
 		[TestMethod]
 		public void CalculateReceivedDamage_WithResist()
 		{
-			ICombatResolver combat = new CombatResolver.Builder().AddDamageResist(DamageType.Physical, CombatStats.DEF).Build();
+			ICombatResolver combat = new CombatResolver.Builder()
+				.AddDamageResist(DamageType.Physical, CombatStats.DEF)
+				.Build();
 			IUnit unit = MakeUnit();
 
 			Damage d = new Damage(10, "", DamageType.Physical);
 
 			Assert.AreEqual(8, combat.CalculateReceivedDamage(unit, d));
 		}
-		/*
+		
 		[TestMethod]
 		public void ReceiveDamage()
 		{
+			ICombatResolver combat = new CombatResolver.Builder()
+				.AddDamageResourceRule(DamageType.Physical, CombatStats.HP)
+				.AddVolatileStat(CombatStats.HP)
+				.Build();
 			IUnit unit = MakeUnit();
 			combat.Initialize(unit);
 
-			Damage d = new Damage(DamageType.Physical, Element.Neutral, 10, "");
-			HPLoss h = combat.ReceiveDamage(unit, d);
+			Damage d = new Damage(10, "", DamageType.Physical);
+			IEnumerable<PointLoss> h = combat.ReceiveDamage(unit, d);
 
-			Assert.AreEqual(unit.Stats[CombatStats.HP] - unit.CombatProperties.CurrentHP, h.Value);
-			Assert.AreEqual(unit.Name, h.Unit);
+			Assert.AreEqual(unit.Stats[CombatStats.HP] - unit.CombatProperties.VolatileStats[CombatStats.HP], h.First().Value);
+			Assert.AreEqual(unit.Name, h.First().Unit);
 		}
-		*/
 	}
 }

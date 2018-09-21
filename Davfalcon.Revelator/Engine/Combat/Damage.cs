@@ -8,11 +8,17 @@ namespace Davfalcon.Revelator.Engine.Combat
 	[Serializable]
 	public struct Damage : ILogEntry
 	{
-		public static bool LogFullDamage = true;
-
 		public readonly IEnumerable<Enum> Types;
 		public readonly int Value;
 		public readonly string Source;
+
+		public Damage(int value, INameable source, params Enum[] types)
+			: this(value, source.Name, types)
+		{ }
+
+		public Damage(int value, INameable source, IEnumerable<Enum> types)
+			: this(value, source.Name, types)
+		{ }
 
 		public Damage(int value, string source, params Enum[] types)
 		{
@@ -29,11 +35,5 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 		public override string ToString()
 			=> String.Format($"{Source} deals {Value} outgoing {String.Join(" ", Types)} damage.");
-
-		public string LogWith(PointLoss hpLoss)
-		{
-			if (LogFullDamage) return this + Environment.NewLine + hpLoss;
-			else return String.Format($"{hpLoss.Unit} takes {hpLoss.Value} {String.Join(" ", Types)} damage from {Source}.");
-		}
 	}
 }

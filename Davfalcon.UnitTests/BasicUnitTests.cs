@@ -8,12 +8,14 @@ namespace Davfalcon.UnitTests
 	{
 		private BasicUnit CreateTestUnit()
 		{
-			return new BasicUnit
+			BasicUnit unit = new BasicUnit
 			{
 				Name = NAME,
 				Class = CLASS,
 				Level = LEVEL
 			};
+			unit.Initialize();
+			return unit;
 		}
 
 		[TestMethod]

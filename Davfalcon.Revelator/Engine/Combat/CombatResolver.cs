@@ -38,7 +38,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			public IEnumerable<Enum> ResolveDamageResource(params Enum[] damageTypes)
 			{
 				List<Enum> stats = new List<Enum>();
-				foreach(Enum type in damageTypes)
+				foreach (Enum type in damageTypes)
 				{
 					if (DamageResourceMap.ContainsKey(type))
 						stats.AddRange(DamageResourceMap[type]);
@@ -74,7 +74,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			{
 				currentValues[stat] = unit.Stats[stat];
 			}
-			
+
 			IBuff b = (IBuff)Serializer.DeepClone(buff);
 			b.Source = source;
 			b.Reset();
@@ -178,7 +178,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 						.Select(type => unit.Stats[config.StatBindings.GetDamageScalingStat(type)])
 						.Aggregate(config.Operations.AggregateSeed, config.Operations.Aggregate))
 				: source.BaseDamage) * (crit ? source.CritMultiplier : 1),
-				unit.Name,
+				unit,
 				source.DamageTypes
 			);
 
@@ -201,7 +201,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 				int actual = -AdjustVolatileStat(unit, stat, -adjusted);
 
 				// Log the loss
-				losses.Add(new PointLoss(unit.Name, stat, actual));
+				losses.Add(new PointLoss(unit, stat, actual));
 
 				// Subtract from remaining damage pool
 				adjusted -= actual;
@@ -224,8 +224,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 		{
 			HitCheck hit = CheckForHit(unit, target);
 			Damage damage = hit.Hit ? CalculateOutgoingDamage(unit, weapon, hit.Crit) : Damage.None;
-			IEnumerable<PointLoss> loss = hit.Hit ? ReceiveDamage(target, damage) : null;
-			IList<ILogEntry> effects = hit.Hit ? ApplyEffects(weapon, target, unit, hp.Value) : null;
+			IEnumerable<PointLoss> losses = hit.Hit ? ReceiveDamage(target, damage) : null;
+			//IList<ILogEntry> effects = hit.Hit ? ApplyEffects(weapon, target, unit, hp.Value) : null;
 
 			return new AttackAction(
 				unit,
@@ -233,13 +233,13 @@ namespace Davfalcon.Revelator.Engine.Combat
 				weapon,
 				hit,
 				damage,
-				hp,
-				effects
+				losses,
+				null
 			);
 		}
 
 		public SpellAction Cast(IUnit unit, ISpell spell, SpellCastOptions options, params IUnit[] targets)
-		{
+		{/*
 			int n = targets.Length;
 			HitCheck[] hit = new HitCheck[n];
 			Damage[] damage = new Damage[n];
@@ -300,7 +300,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 				damage,
 				hpLost,
 				effects
-			);
+			);*/
+			return null;
 		}
 
 		public SpellAction Cast(IUnit unit, ISpell spell, params IUnit[] targets)
@@ -326,9 +327,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 		}
 
 		private CombatResolver(Config config)
-		{
-			this.config = config;
-		}
+			=> this.config = config;
 
 		public static ICombatResolver Default = new Builder().Build();
 
@@ -337,7 +336,10 @@ namespace Davfalcon.Revelator.Engine.Combat
 			private Config config;
 			private CombatStatBinding statBindings;
 
-			public Builder Initialize()
+			public Builder()
+				=> Reset();
+
+			public Builder Reset()
 			{
 				statBindings = new CombatStatBinding();
 				config = new Config
@@ -402,11 +404,6 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 			public ICombatResolver Build()
 				=> new CombatResolver(config);
-
-			public Builder()
-			{
-				Initialize();
-			}
 		}
 	}
 }

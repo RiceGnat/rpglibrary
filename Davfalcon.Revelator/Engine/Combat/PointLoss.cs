@@ -16,9 +16,14 @@ namespace Davfalcon.Revelator.Engine.Combat
 			Value = value;
 		}
 
+		public PointLoss(IUnit unit, Enum stat, int value)
+			: this(unit.Name, stat, value)
+		{ }
+
+
 		public override string ToString()
 		{
-			return String.Format("{0} loses {1} HP.", Unit, Value);
+			return String.Format($"{Unit} loses {1} HP.", Unit, Value);
 		}
 	}
 }
