@@ -21,10 +21,10 @@ namespace Davfalcon.Revelator
 		[NonSerialized]
 		private IUnitModifierStack equipment;
 
-		private ManagedList<Enum> equipmentSlots = new ManagedList<Enum>();
+		private ManagedList<EnumString> equipmentSlots = new ManagedList<EnumString>();
 		private ManagedList<IEquipment> equippedSlots = new ManagedList<IEquipment>();
 
-		public IEnumerable<Enum> EquipmentSlots { get => equipmentSlots.ReadOnly; }
+		public IEnumerable<Enum> EquipmentSlots { get => (IEnumerable<Enum>)equipmentSlots.ReadOnly; }
 		public IEnumerable<IEquipment> Equipment { get => equippedSlots.ReadOnly; }
 
 		private int GetSlotIndex(Enum slotType, int offset)

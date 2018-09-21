@@ -197,7 +197,7 @@ namespace Davfalcon.Collections.Generic
 
 		IEnumerator<T> IEnumerable<T>.GetEnumerator()
 		{
-			return new CLLEnumerator(this);
+			return GetEnumerator();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
@@ -282,27 +282,17 @@ namespace Davfalcon.Collections.Generic
 			return cll;
 		}
 
-		/// <summary>
-		/// Enumerates the elements of a <see cref="CircularLinkedList{T}"/>.
-		/// </summary>
-		public class CLLEnumerator : IEnumerator<T>
+		private class CLLEnumerator : IEnumerator<T>
 		{
 			private CircularLinkedList<T> list;
 			private int curIndex;
 
-			/// <summary>
-			/// Creates a new <see cref="CLLEnumerator"/> for the specified <see cref="CircularLinkedList{T}"/>.
-			/// </summary>
-			/// <param name="list">The <see cref="CircularLinkedList{T}"/> to be enumerated by the new <see cref="CLLEnumerator"/>.</param>
 			public CLLEnumerator(CircularLinkedList<T> list)
 			{
 				this.list = list;
 				Reset();
 			}
 
-			/// <summary>
-			/// Gets the element at the current position of the enumerator.
-			/// </summary>
 			public T Current
 			{
 				get { return curIndex < 0 ? default(T) : list[curIndex]; }
@@ -315,19 +305,12 @@ namespace Davfalcon.Collections.Generic
 				get { return Current; }
 			}
 
-			/// <summary>
-			/// Advances the enumerator to the next element of the <see cref="CircularLinkedList{T}"/>.
-			/// </summary>
-			/// <returns></returns>
 			public bool MoveNext()
 			{
 				curIndex++;
 				return curIndex < list.Count;
 			}
 
-			/// <summary>
-			/// Sets the enumerator to its initial position, which is before the current head of the list.
-			/// </summary>
 			public void Reset()
 			{
 				curIndex = -1;

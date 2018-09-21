@@ -42,13 +42,13 @@ namespace Davfalcon.UnitTests
 			Assert.IsTrue(a.Equals(TestEnum.A));
 		}
 
-		[TestMethod]
-		public void ImplicitConversionToEnum()
-		{
-			EnumString a = TestEnum.A;
-			Enum _a = a;
-			Assert.AreEqual(TestEnum.A, _a);
-		}
+		//[TestMethod]
+		//public void ImplicitConversionToEnum()
+		//{
+		//	EnumString a = TestEnum.A;
+		//	Enum _a = a;
+		//	Assert.AreEqual(TestEnum.A, _a);
+		//}
 
 		[TestMethod]
 		public void ImplicitConversionToString()
@@ -99,8 +99,14 @@ namespace Davfalcon.UnitTests
 
 			Assert.AreEqual(a, clone);
 			Assert.AreEqual(clone, TestEnum.A);
+		}
 
-			List<EnumString> list = new List<EnumString> { a, clone };
+		[TestMethod]
+		public void CollectionSerialization()
+		{
+			EnumString a = new EnumString(TestEnum.A);
+
+			List<EnumString> list = new List<EnumString> { a  };
 			List<EnumString> listClone = Serializer.DeepClone(list);
 
 			Assert.AreEqual(list[0], listClone[0]);

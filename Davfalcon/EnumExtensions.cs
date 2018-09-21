@@ -37,5 +37,8 @@ namespace Davfalcon
 			}
 			return null;
 		}
+
+		public static EnumString[] ConvertEnumArray(this Enum[] array)
+			=> Array.ConvertAll<Enum, EnumString>(array, e => e);
 	}
 }

@@ -7,7 +7,7 @@ namespace Davfalcon.Revelator
 	{
 		private readonly ILinkedStatResolver linker;
 
-		public override int Get(string stat)
+		public override int Get(Enum stat)
 		{
 			if (linker.Get(stat, out int value))
 				return value;

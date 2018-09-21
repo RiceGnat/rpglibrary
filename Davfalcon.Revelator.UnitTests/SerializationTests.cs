@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Davfalcon.Collections.Generic;
 using Davfalcon.Revelator.Borger;
 using Davfalcon.Serialization;
 
@@ -46,7 +45,7 @@ namespace Davfalcon.Revelator.UnitTests
 		public void UnitSerialization()
 		{
 			IUnit unit = MakeUnit();
-			IUnit clone = (IUnit)Serializer.DeepClone(unit);
+			IUnit clone = Serializer.DeepClone(unit);
 
 			Assert.AreEqual(unit.Name, clone.Name);
 			Assert.AreEqual(unit.Class, clone.Class);
@@ -59,38 +58,30 @@ namespace Davfalcon.Revelator.UnitTests
 		{
 			IEquipment armor = MakeEquipment();
 
-			IEquipment clone = (IEquipment)Serializer.DeepClone(armor);
+			IEquipment clone = Serializer.DeepClone(armor);
 			Assert.AreEqual(armor.Additions[CombatStats.DEF], clone.Additions[CombatStats.DEF]);
 		}
-		
+
+		[TestMethod]
+		public void WeaponSerialization()
+		{
+			IWeapon weapon = new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
+				.AddDamageTypes(DamageType.Physical, Element.Fire)
+				.Build();
+
+			IWeapon clone = Serializer.DeepClone(weapon);
+			
+			Assert.AreEqual(weapon.DamageTypes.First(), clone.DamageTypes.First());
+		}
+
 		[TestMethod]
 		public void BuffSerialization()
 		{
 			Buff buff = new Buff();
 			buff.Multiplications[CombatStats.DEF] = 10;
 
-			Buff clone = (Buff)Serializer.DeepClone(buff);
+			Buff clone = Serializer.DeepClone(buff);
 			Assert.AreEqual(buff.Multiplications[CombatStats.DEF], clone.Multiplications[CombatStats.DEF]);
-		}
-
-		[TestMethod]
-		public void EnumSerialization()
-		{
-			Enum e = EquipmentType.Armor;
-			Enum clone = (Enum)Serializer.DeepClone(e);
-			Assert.AreEqual(EquipmentType.Armor, clone);
-		}
-
-		[TestMethod]
-		public void EnumListSerialization()
-		{
-			List<Enum> list = new List<Enum>
-			{
-				EquipmentType.Armor
-			};
-
-			List<Enum> clone = (List<Enum>)Serializer.DeepClone(list);
-			Assert.AreEqual(EquipmentType.Armor, clone[0]);
 		}
 		
 		[TestMethod]

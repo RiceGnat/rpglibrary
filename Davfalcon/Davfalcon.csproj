@@ -49,7 +49,9 @@
     <Compile Include="Collections\ICircularLinkedList%28T%29.cs" />
     <Compile Include="Collections\ISelfRegistry%28T%29.cs" />
     <Compile Include="Collections\IRegistry%28T%29.cs" />
+    <Compile Include="Collections\ListAdapter%28T1,T2%29.cs" />
     <Compile Include="Collections\ManagedList%28T%29.cs" />
+    <Compile Include="Collections\ManagedList%28T,U%29.cs" />
     <Compile Include="Collections\PrototypeCloner%28T%29.cs" />
     <Compile Include="Collections\SelfRegisteredPrototypeCloner%28T%29.cs" />
     <Compile Include="EnumExtensions.cs" />

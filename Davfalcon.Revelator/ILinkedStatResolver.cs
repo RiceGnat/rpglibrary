@@ -1,8 +1,10 @@
-﻿namespace Davfalcon.Revelator
+﻿using System;
+
+namespace Davfalcon.Revelator
 {
 	public interface ILinkedStatResolver
 	{
-		bool Get(string stat, out int value);
+		bool Get(Enum stat, out int value);
 		void Bind(IUnit unit);
 	}
 }

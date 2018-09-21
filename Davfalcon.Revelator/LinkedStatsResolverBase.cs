@@ -13,7 +13,7 @@ namespace Davfalcon.Revelator
 		public void Bind(IUnit unit)
 			=> this.unit = unit;
 
-		public virtual bool Get(string stat, out int value)
+		public virtual bool Get(Enum stat, out int value)
 		{
 			value = 0;
 			return false;

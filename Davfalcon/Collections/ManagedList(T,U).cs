@@ -4,24 +4,23 @@ using System.Collections.Generic;
 namespace Davfalcon.Collections.Generic
 {
 	/// <summary>
-	/// Convenience class to avoid repeated calls to <see cref="List{T}.AsReadOnly"/>.
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	[Serializable]
-	public class ManagedList<T> : List<T>
+	public class ManagedList<T, U> : ManagedList<T> where T : class where U : class
 	{
 		[NonSerialized]
-		private IList<T> readOnly;
+		private IList<U> readOnly;
 
 		/// <summary>
 		/// Gets the read-only collection wrapper for the <see cref="List{T}"/>.
 		/// </summary>
-		public IList<T> ReadOnly
+		new public IList<U> ReadOnly
 		{
 			get
 			{
 				if (readOnly == null)
-					readOnly = AsReadOnly();
+					readOnly = new ListAdapter<T, U>(AsReadOnly());
 				return readOnly;
 			}
 		}

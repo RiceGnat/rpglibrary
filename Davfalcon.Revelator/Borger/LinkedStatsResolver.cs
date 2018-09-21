@@ -14,38 +14,38 @@ namespace Davfalcon.Revelator.Borger
 			return Stats[stat] - BASE_ATTRIBUTE;
 		}
 
-		public override bool Get(string stat, out int value)
+		public override bool Get(Enum stat, out int value)
 		{
 			bool found = true;
-			if (stat == CombatStats.HP.ToString())
+			if (stat.Equals(CombatStats.HP))
 			{
 				value = 25 * Stats[Attributes.VIT];
 			}
-			else if (stat == CombatStats.MP.ToString())
+			else if (stat.Equals(CombatStats.MP))
 			{
 				value = 5 * Stats[Attributes.INT] + 5 * Stats[Attributes.WIS];
 			}
-			else if (stat == CombatStats.ATK.ToString())
+			else if (stat.Equals(CombatStats.ATK))
 			{
 				value = 2 * AdjustAttribute(Attributes.STR);
 			}
-			else if (stat == CombatStats.DEF.ToString())
+			else if (stat.Equals(CombatStats.DEF))
 			{
 				value = AdjustAttribute(Attributes.VIT) + AdjustAttribute(Attributes.STR);
 			}
-			else if (stat == CombatStats.MAG.ToString())
+			else if (stat.Equals(CombatStats.MAG))
 			{
 				value = 2 * AdjustAttribute(Attributes.INT);
 			}
-			else if (stat == CombatStats.RES.ToString())
+			else if (stat.Equals(CombatStats.RES))
 			{
 				value = AdjustAttribute(Attributes.INT) + AdjustAttribute(Attributes.WIS);
 			}
-			else if (stat == CombatStats.HIT.ToString())
+			else if (stat.Equals(CombatStats.HIT))
 			{
 				value = BASE_HIT + AdjustAttribute(Attributes.AGI);
 			}
-			else if (stat == CombatStats.AVD.ToString())
+			else if (stat.Equals(CombatStats.AVD))
 			{
 				value = BASE_EVADE + AdjustAttribute(Attributes.AGI);
 			}

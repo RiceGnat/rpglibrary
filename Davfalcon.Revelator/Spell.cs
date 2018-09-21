@@ -22,12 +22,12 @@ namespace Davfalcon.Revelator
 		public int MaxTargets { get; set; }
 
 		private ManagedList<IBuff> grantedBuffs = new ManagedList<IBuff>();
-		public IList<IBuff> GrantedBuffs { get { return grantedBuffs; } }
-		ICollection<IBuff> ISpell.GrantedBuffs { get { return grantedBuffs.ReadOnly; } }
+		public IList<IBuff> GrantedBuffs => grantedBuffs;
+		ICollection<IBuff> ISpell.GrantedBuffs => grantedBuffs.ReadOnly;
 
 		private EffectList effects = new EffectList();
-		public IEffectList CastEffects { get { return effects; } }
-		IEnumerable<IEffectArgs> IEffectSource.Effects { get { return effects.ReadOnly; } }
-		string IEffectSource.SourceName { get { return Name; } }
+		public IEffectList CastEffects => effects;
+		IEnumerable<IEffectArgs> IEffectSource.Effects => effects.ReadOnly;
+		string IEffectSource.SourceName => Name;
 	}
 }
