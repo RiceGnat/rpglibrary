@@ -11,7 +11,7 @@ namespace Davfalcon.Serialization
 		private static BinaryFormatter formatter = new BinaryFormatter();
 
 		/// <summary>
-		/// Makes a deep clone of an object.
+		/// Makes a deep clone of an object using serialization.
 		/// </summary>
 		/// <param name="obj">The object to be cloned.</param>
 		/// <returns>A deep clone of the object.</returns>
@@ -24,6 +24,15 @@ namespace Davfalcon.Serialization
 				return formatter.Deserialize(ms);
 			}
 		}
+
+		/// <summary>
+		/// Makes a deep clone of an object using serialization.
+		/// </summary>
+		/// <typeparam name="T">The type of the object</typeparam>
+		/// <param name="obj">The object to be cloned.</param>
+		/// <returns>A deep clone of the object.</returns>
+		public static T DeepClone<T>(T obj)
+			=> (T)DeepClone((object)obj);
 
 		/// <summary>
 		/// Writes an object to a file.
@@ -98,7 +107,7 @@ namespace Davfalcon.Serialization
 		/// Checks if a file exists and can be read.
 		/// </summary>
 		/// <param name="path">The location and filename of the file.</param>
-		/// <returns>True if the file was successfully accessed, false otherwise.</returns>
+		/// <returns>True if the file was successfully accessed; otherwise, <c>false</c>.</returns>
 		public static bool CheckFile(string path)
 		{
 			try

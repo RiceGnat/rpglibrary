@@ -19,5 +19,23 @@ namespace Davfalcon
 				throw new ArgumentException($"Could not parse {value} into Enum type {typeof(T)}");
 			return result;
 		}
+
+		/// <summary>
+		/// Gets the type of an enum from its full type name.
+		/// </summary>
+		/// <param name="typeName">The string name of the enum type.</param>
+		/// <returns>The type of the enum if it is loaded; otherwise, <c>null</c>.</returns>
+		public static Type GetEnumType(this string typeName)
+		{
+			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+			{
+				var type = assembly.GetType(typeName);
+				if (type == null)
+					continue;
+				if (type.IsEnum)
+					return type;
+			}
+			return null;
+		}
 	}
 }

@@ -67,6 +67,7 @@
     <Compile Include="Randomization\SuccessChecker.cs" />
     <Compile Include="StatsAggregator.cs" />
     <Compile Include="StatsResolver.cs" />
+    <Compile Include="EnumString.cs" />
     <Compile Include="TimedModifier.cs" />
     <Compile Include="ITimedModifier.cs" />
     <Compile Include="IEditableStats.cs" />
