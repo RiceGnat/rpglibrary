@@ -1,8 +1,11 @@
-﻿namespace Davfalcon
+﻿using System;
+
+namespace Davfalcon
 {
 	/// <summary>
 	/// Defines default stat operations.
 	/// </summary>
+	[Serializable]
 	public class StatsResolver : IStatsResolver
 	{
 		/// <summary>

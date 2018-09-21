@@ -57,6 +57,7 @@
     <Compile Include="EquipmentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LinkedStatsTests.cs" />
+    <Compile Include="SerializationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Davfalcon.Revelator\Davfalcon.Revelator.csproj">

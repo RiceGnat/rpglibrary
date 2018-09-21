@@ -1,5 +1,8 @@
-﻿namespace Davfalcon.Revelator.Borger
+﻿using System;
+
+namespace Davfalcon.Revelator.Borger
 {
+	[Serializable]
 	public class LinkedStatsResolver : LinkedStatsResolverBase
 	{
 		public const int BASE_ATTRIBUTE = 5;
@@ -53,5 +56,7 @@
 			}
 			return found;
 		}
+
+		new public static ILinkedStatResolver Default = new LinkedStatsResolver();
 	}
 }

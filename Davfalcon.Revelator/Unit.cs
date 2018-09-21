@@ -99,6 +99,12 @@ namespace Davfalcon.Revelator
 				return this;
 			}
 
+			public Builder AddEquipmentSlot(Enum slotType)
+			{
+				unit.ItemProperties.AddEquipmentSlot(slotType);
+				return this;
+			}
+
 			public IUnit Build()
 				=> unit;
 		}
