@@ -53,11 +53,13 @@
   <ItemGroup>
     <Compile Include="BasicUnitTests.cs" />
     <Compile Include="EnumStringTests.cs" />
+    <Compile Include="ManagedListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatsTests.cs" />
     <Compile Include="TestConstants.cs" />
     <Compile Include="UnitModifierTests.cs" />
     <Compile Include="CircularLinkedListTests.cs" />
+    <Compile Include="AdapterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
