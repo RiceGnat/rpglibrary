@@ -43,16 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Effect.cs" />
     <Compile Include="EffectArgs.cs" />
     <Compile Include="Engine\Combat\CombatResolver.cs" />
     <Compile Include="Engine\Combat\CombatOperations.cs" />
     <Compile Include="Engine\Combat\ICombatResolver.cs" />
     <Compile Include="Engine\Combat\ICombatOperations.cs" />
+    <Compile Include="Borger\LinkedStatsResolver.cs" />
+    <Compile Include="Engine\EffectsRegistry.cs" />
+    <Compile Include="Engine\IEffectsRegistry.cs" />
     <Compile Include="Engine\IWeaponRegistry.cs" />
     <Compile Include="Engine\WeaponRegistry.cs" />
-    <Compile Include="Borger\LinkedStatsResolver.cs" />
     <Compile Include="IBattle.cs" />
     <Compile Include="IDamageSource.cs" />
+    <Compile Include="IEffect.cs" />
     <Compile Include="IEffectArgs.cs" />
     <Compile Include="Buff.cs" />
     <Compile Include="ClassProperties.cs" />
@@ -66,8 +70,6 @@
     <Compile Include="IUnitBattleState.cs" />
     <Compile Include="Engine\Combat\SpellAction.cs" />
     <Compile Include="Engine\Combat\SpellCastOptions.cs" />
-    <Compile Include="Engine\EffectsRegistry.cs" />
-    <Compile Include="Engine\IEffectsRegistry.cs" />
     <Compile Include="ILogEntry.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="LinkedStatsResolverBase.cs" />

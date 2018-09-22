@@ -30,8 +30,8 @@ namespace Davfalcon.UnitTests
 		{
 			EnumString a = new EnumString(TestEnum.A);
 			EnumString aa = new EnumString(OtherTestEnum.A);
-			Assert.IsTrue(a.Equals(TestEnum.A));
-			Assert.IsTrue(a.Equals("A"));
+			Assert.AreEqual(a, TestEnum.A);
+			Assert.AreEqual(a, "A");
 			Assert.IsFalse(a.Equals(aa));
 		}
 
@@ -42,13 +42,13 @@ namespace Davfalcon.UnitTests
 			Assert.IsTrue(a.Equals(TestEnum.A));
 		}
 
-		//[TestMethod]
-		//public void ImplicitConversionToEnum()
-		//{
-		//	EnumString a = TestEnum.A;
-		//	Enum _a = a;
-		//	Assert.AreEqual(TestEnum.A, _a);
-		//}
+		[TestMethod]
+		public void ImplicitConversionToEnum()
+		{
+			EnumString a = TestEnum.A;
+			Enum _a = a;
+			Assert.AreEqual(TestEnum.A, _a);
+		}
 
 		[TestMethod]
 		public void ImplicitConversionToString()

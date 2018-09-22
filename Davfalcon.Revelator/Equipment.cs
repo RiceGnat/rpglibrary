@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Davfalcon.Collections.Generic;
 
 namespace Davfalcon.Revelator
 {
@@ -8,17 +9,8 @@ namespace Davfalcon.Revelator
 	{
 		public Enum SlotType { get; set; }
 
-		private readonly List<IBuff> grantedBuffs = new List<IBuff>();
-		public IList<IBuff> GrantedBuffs { get { return grantedBuffs; } }
-		private readonly IList<IBuff> grantedBuffsReadOnly;
-		IList<IBuff> IEquipment.GrantedBuffs { get { return grantedBuffsReadOnly; } }
-
-		protected Equipment(Enum slot)
-			: base()
-		{
-			grantedBuffsReadOnly = grantedBuffs.AsReadOnly();
-			SlotType = slot;
-		}
+		public ManagedList<IBuff> GrantedBuffs { get; } = new ManagedList<IBuff>();
+		IEnumerable<IBuff> IEquipment.GrantedBuffs => GrantedBuffs.AsReadOnly();
 
 		public class Builder
 		{
@@ -33,7 +25,10 @@ namespace Davfalcon.Revelator
 
 			public Builder Reset()
 			{
-				equipment = new Equipment(slot);
+				equipment = new Equipment()
+				{
+					SlotType = slot
+				};
 				return this;
 			}
 

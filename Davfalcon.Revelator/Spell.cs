@@ -9,6 +9,7 @@ namespace Davfalcon.Revelator
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }
+		public string Owner { get; set; }
 
 		public Enum TargetType { get; set; }
 		public int Cost { get; set; }
@@ -21,13 +22,10 @@ namespace Davfalcon.Revelator
 		public int Size { get; set; }
 		public int MaxTargets { get; set; }
 
-		private ManagedList<IBuff> grantedBuffs = new ManagedList<IBuff>();
-		public IList<IBuff> GrantedBuffs => grantedBuffs;
-		ICollection<IBuff> ISpell.GrantedBuffs => grantedBuffs.ReadOnly;
+		public ManagedList<IBuff> GrantedBuffs { get; } = new ManagedList<IBuff>();
+		IEnumerable<IBuff> ISpell.GrantedBuffs => GrantedBuffs.AsReadOnly();
 
-		private EffectList effects = new EffectList();
-		public IEffectList CastEffects => effects;
-		IEnumerable<IEffectArgs> IEffectSource.Effects => effects.ReadOnly;
-		string IEffectSource.SourceName => Name;
+		public ManagedList<IEffect> Effects { get; } = new ManagedList<IEffect>();
+		IEnumerable<IEffect> IEffectSource.Effects => Effects.AsReadOnly();
 	}
 }

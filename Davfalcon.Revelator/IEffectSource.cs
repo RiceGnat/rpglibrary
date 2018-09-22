@@ -2,9 +2,9 @@
 
 namespace Davfalcon.Revelator
 {
-	public interface IEffectSource
+	public interface IEffectSource : INameable
 	{
-		string SourceName { get; }
-		IEnumerable<IEffectArgs> Effects { get; }
+		string Owner { get; }
+		IEnumerable<IEffect> Effects { get; }
 	}
 }

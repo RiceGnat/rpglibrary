@@ -9,7 +9,7 @@ namespace Davfalcon.Revelator.Engine
 			IWeapon weapon = Get(weaponName);
 			foreach (IEffectArgs effect in effects)
 			{
-				weapon.OnHitEffects.Add(effect);
+				//weapon.OnHitEffects.Add(effect);
 			}
 			return weapon;
 		}

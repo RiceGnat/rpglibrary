@@ -52,15 +52,6 @@ namespace Davfalcon.Revelator.UnitTests
 			Assert.AreEqual(unit.Level, clone.Level);
 			Assert.AreEqual(unit.Stats[Attributes.STR], clone.Stats[Attributes.STR]);
 		}
-		
-		[TestMethod]
-		public void EquipmentSerialization()
-		{
-			IEquipment armor = MakeEquipment();
-
-			IEquipment clone = Serializer.DeepClone(armor);
-			Assert.AreEqual(armor.Additions[CombatStats.DEF], clone.Additions[CombatStats.DEF]);
-		}
 
 		[TestMethod]
 		public void WeaponSerialization()

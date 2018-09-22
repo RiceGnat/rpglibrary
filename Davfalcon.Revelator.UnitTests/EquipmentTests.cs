@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Davfalcon.Revelator.Borger;
+using Davfalcon.Serialization;
 
 namespace Davfalcon.Revelator.UnitTests
 {
@@ -34,6 +36,18 @@ namespace Davfalcon.Revelator.UnitTests
 				.Build();
 
 		[TestMethod]
+		public void Properties()
+		{
+			IUnit unit = MakeUnit();
+			IEquipment equip = MakeEquip(EquipmentType.Accessory, 10, 0);
+			unit.ItemProperties.Equip(equip);
+
+			Assert.AreEqual(EQUIP_NAME, equip.Name);
+			Assert.AreEqual(EQUIP_NAME, (equip as IUnitModifier).Name);
+			Assert.AreEqual(UNIT_NAME, (equip as Davfalcon.IUnit).Name);
+		}
+
+		[TestMethod]
 		public void SingleEquipment()
 		{
 			IUnit unit = MakeUnit();
@@ -48,7 +62,7 @@ namespace Davfalcon.Revelator.UnitTests
 		}
 
 		[TestMethod]
-		public void MultipleEquipment()
+		public void StackingMultipleEquipment()
 		{
 			IUnit unit = MakeUnit();
 			IEquipment equip1 = MakeEquip(EquipmentType.Armor, 5, 0);
@@ -80,6 +94,29 @@ namespace Davfalcon.Revelator.UnitTests
 			IEquipment equip = MakeEquip(EquipmentType.Accessory, 10, 0);
 
 			unit.ItemProperties.EquipSlotIndex(equip, 0);
+		}
+
+		[TestMethod]
+		public void GrantedBuffs()
+		{
+			IEquipment equip = new Equipment.Builder(EquipmentType.Armor)
+				.AddBuff(new Buff.Builder().SetName("test1").Build())
+				.AddBuff(new Buff.Builder().SetName("test2").Build())
+				.AddBuff(new Buff.Builder().SetName("test3").Build())
+				.Build();
+
+			Assert.AreEqual("test1", equip.GrantedBuffs.First().Name);
+			Assert.AreEqual("test2", equip.GrantedBuffs.ElementAt(1).Name);
+			Assert.AreEqual("test3", equip.GrantedBuffs.ElementAt(2).Name);
+		}
+
+		[TestMethod]
+		public void Serialization()
+		{
+			IEquipment equip = MakeEquip(EquipmentType.Accessory, 10, 0);
+
+			IEquipment clone = Serializer.DeepClone(equip);
+			Assert.AreEqual(equip.Additions[STAT], clone.Additions[STAT]);
 		}
 	}
 }

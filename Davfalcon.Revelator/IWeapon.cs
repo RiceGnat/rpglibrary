@@ -5,6 +5,5 @@ namespace Davfalcon.Revelator
 	public interface IWeapon : IEquipment, IDamageSource, IEffectSource
 	{
 		Enum WeaponType { get; }
-		IEffectList OnHitEffects { get; }
 	}
 }

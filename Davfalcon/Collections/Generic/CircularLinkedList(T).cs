@@ -277,8 +277,7 @@ namespace Davfalcon.Collections.Generic
 		/// <returns>A new <see cref="CircularLinkedList{T}"/> with <paramref name="list"/> as the base.</returns>
 		public static CircularLinkedList<T> WrapList(List<T> list)
 		{
-			CircularLinkedList<T> cll = new CircularLinkedList<T>();
-			cll.list = list;
+			CircularLinkedList<T> cll = new CircularLinkedList<T> { list = list };
 			return cll;
 		}
 
@@ -295,7 +294,7 @@ namespace Davfalcon.Collections.Generic
 
 			public T Current
 			{
-				get { return curIndex < 0 ? default(T) : list[curIndex]; }
+				get { return curIndex < 0 ? default : list[curIndex]; }
 			}
 
 			void IDisposable.Dispose() { }

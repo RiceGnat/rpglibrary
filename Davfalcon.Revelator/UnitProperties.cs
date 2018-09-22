@@ -25,8 +25,8 @@ namespace Davfalcon.Revelator
 		private ManagedEnumStringList equipmentSlots = new ManagedEnumStringList();
 		private ManagedList<IEquipment> equippedSlots = new ManagedList<IEquipment>();
 
-		public IEnumerable<Enum> EquipmentSlots { get => equipmentSlots.ReadOnly; }
-		public IEnumerable<IEquipment> Equipment { get => equippedSlots.ReadOnly; }
+		public IEnumerable<Enum> EquipmentSlots { get => equipmentSlots.AsReadOnly(); }
+		public IEnumerable<IEquipment> Equipment { get => equippedSlots.AsReadOnly(); }
 
 		private int GetSlotIndex(Enum slotType, int offset)
 		{

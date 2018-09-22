@@ -10,14 +10,11 @@ namespace Davfalcon.Collections.Adapters
 		[NonSerialized]
 		private IList<Enum> readOnly;
 
-		new public IList<Enum> ReadOnly
+		new public IList<Enum> AsReadOnly()
 		{
-			get
-			{
-				if (readOnly == null)
-					readOnly = new EnumStringListAdapter(AsReadOnly());
-				return readOnly;
-			}
+			if (readOnly == null)
+				readOnly = new EnumStringListAdapter(base.AsReadOnly());
+			return readOnly;
 		}
 	}
 }

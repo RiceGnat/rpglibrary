@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Davfalcon
+namespace Davfalcon.Revelator
 {
 	public interface IDamageSource
 	{

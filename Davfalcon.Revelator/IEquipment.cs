@@ -6,6 +6,6 @@ namespace Davfalcon.Revelator
 	public interface IEquipment : IItem, IStatsModifier
 	{
 		Enum SlotType { get; }
-		IList<IBuff> GrantedBuffs { get; }
+		IEnumerable<IBuff> GrantedBuffs { get; }
 	}
 }

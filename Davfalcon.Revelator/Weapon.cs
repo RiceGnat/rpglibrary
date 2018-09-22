@@ -1,29 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using Davfalcon.Collections.Adapters;
+using Davfalcon.Collections.Generic;
 
 namespace Davfalcon.Revelator
 {
 	[Serializable]
 	public class Weapon : Equipment, IWeapon
 	{
+		public string Owner => InterfaceUnit?.Name;
 		public Enum WeaponType { get; set; }
 		public int BaseDamage { get; set; }
 		public Enum BonusDamageStat { get; set; }
 		public int CritMultiplier { get; set; }
-		private ManagedEnumStringList damageTypes;
-		IEnumerable<Enum> IDamageSource.DamageTypes => damageTypes.ReadOnly;
 
-		private EffectList effects = new EffectList();
-		public IEffectList OnHitEffects => effects;
-		IEnumerable<IEffectArgs> IEffectSource.Effects => effects.ReadOnly;
-		string IEffectSource.SourceName => Name;
+		public ManagedEnumStringList DamageTypes { get; } = new ManagedEnumStringList();
+		IEnumerable<Enum> IDamageSource.DamageTypes => DamageTypes.AsReadOnly();
 
-		private Weapon(Enum equipmentSlot, Enum type)
-			: base(equipmentSlot)
-		{
-			WeaponType = type;
-		}
+		public ManagedList<IEffect> Effects { get; } = new ManagedList<IEffect>();
+		IEnumerable<IEffect> IEffectSource.Effects => Effects.AsReadOnly();
 
 		new public class Builder : Equipment.Builder
 		{
@@ -43,10 +38,11 @@ namespace Davfalcon.Revelator
 
 			new public Builder Reset()
 			{
-				Weapon = new Weapon(slot, type)
+				Weapon = new Weapon()
 				{
-					CritMultiplier = 1,
-					damageTypes = new ManagedEnumStringList()
+					SlotType = slot,
+					WeaponType = type,
+					CritMultiplier = 1
 				};
 				return this;
 			}
@@ -60,19 +56,25 @@ namespace Davfalcon.Revelator
 
 			public Builder AddDamageType(Enum type)
 			{
-				Weapon.damageTypes.Add(type);
+				Weapon.DamageTypes.Add(type);
 				return this;
 			}
 
 			public Builder AddDamageTypes(params Enum[] types)
 			{
-				Weapon.damageTypes.AddRange(types.ConvertEnumArray());
+				Weapon.DamageTypes.AddRange(types.ConvertEnumArray());
 				return this;
 			}
 
 			public Builder SetCritMultiplier(int crit)
 			{
 				Weapon.CritMultiplier = crit;
+				return this;
+			}
+
+			public Builder AddOnHitEffect(IEffect effect)
+			{
+				Weapon.Effects.Add(effect);
 				return this;
 			}
 

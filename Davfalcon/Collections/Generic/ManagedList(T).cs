@@ -16,14 +16,11 @@ namespace Davfalcon.Collections.Generic
 		/// <summary>
 		/// Gets the read-only collection wrapper for the <see cref="List{T}"/>.
 		/// </summary>
-		public IList<T> ReadOnly
+		new public IList<T> AsReadOnly()
 		{
-			get
-			{
-				if (readOnly == null)
-					readOnly = AsReadOnly();
-				return readOnly;
-			}
+			if (readOnly == null)
+				readOnly = base.AsReadOnly();
+			return readOnly;
 		}
 	}
 }

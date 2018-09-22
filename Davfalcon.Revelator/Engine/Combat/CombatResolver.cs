@@ -75,8 +75,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 				currentValues[stat] = unit.Stats[stat];
 			}
 
-			IBuff b = (IBuff)Serializer.DeepClone(buff);
-			b.Source = source;
+			IBuff b = Serializer.DeepClone(buff);
+			//b.Source = source;
 			b.Reset();
 			unit.CombatProperties.Buffs.Add(b);
 

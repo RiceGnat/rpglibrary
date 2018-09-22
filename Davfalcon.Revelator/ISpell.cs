@@ -11,6 +11,6 @@ namespace Davfalcon.Revelator
 		int Range { get; }
 		int Size { get; }
 		int MaxTargets { get; }
-		ICollection<IBuff> GrantedBuffs { get; }
+		IEnumerable<IBuff> GrantedBuffs { get; }
 	}
 }
