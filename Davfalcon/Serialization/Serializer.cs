@@ -98,7 +98,7 @@ namespace Davfalcon.Serialization
 			}
 			catch
 			{
-				obj = default(T);
+				obj = default;
 				return false;
 			}
 		}

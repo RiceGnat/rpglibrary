@@ -49,6 +49,7 @@ namespace Davfalcon.Revelator
 		[OnSerialized]
 		private void SerializationRestore(StreamingContext context)
 		{
+			// Restore equipment
 			props.Bind(this);
 		}
 
