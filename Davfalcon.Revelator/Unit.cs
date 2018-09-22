@@ -46,6 +46,13 @@ namespace Davfalcon.Revelator
 			Equipment.Clear();
 		}
 
+		[OnSerialized]
+		private void SerializationRestore(StreamingContext context)
+		{
+			props.Bind(this);
+		}
+
+
 		private Unit(IStatsResolver statsMath, ILinkedStatResolver statLinker)
 			: base(statsMath)
 		{

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Davfalcon.Collections.Generic;
+using Davfalcon.Collections.Adapters;
 
 namespace Davfalcon.Revelator
 {
@@ -11,7 +11,7 @@ namespace Davfalcon.Revelator
 		public int BaseDamage { get; set; }
 		public Enum BonusDamageStat { get; set; }
 		public int CritMultiplier { get; set; }
-		private ManagedList<EnumString, Enum> damageTypes;
+		private ManagedEnumStringList damageTypes;
 		IEnumerable<Enum> IDamageSource.DamageTypes => damageTypes.ReadOnly;
 
 		private EffectList effects = new EffectList();
@@ -46,7 +46,7 @@ namespace Davfalcon.Revelator
 				Weapon = new Weapon(slot, type)
 				{
 					CritMultiplier = 1,
-					damageTypes = new ManagedList<EnumString, Enum>()
+					damageTypes = new ManagedEnumStringList()
 				};
 				return this;
 			}

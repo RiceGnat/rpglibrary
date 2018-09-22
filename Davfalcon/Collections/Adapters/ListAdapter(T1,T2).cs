@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Davfalcon.Collections.Generic
+namespace Davfalcon.Collections.Adapters
 {
 	[Serializable]
 	public class ListAdapter<T1, T2> : IList<T2> where T1 : class where T2 : class
@@ -11,7 +11,7 @@ namespace Davfalcon.Collections.Generic
 
 		T2 IList<T2>.this[int index]
 		{
-			get => (T2)(object)list[index];
+			get => list[index] as T2;
 			set => list[index] = value as T1;
 		}
 

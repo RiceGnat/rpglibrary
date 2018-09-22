@@ -51,7 +51,7 @@ namespace Davfalcon
 		public static implicit operator EnumString(Enum e)
 			=> new EnumString(e);
 
-		public static explicit operator Enum(EnumString es)
+		public static implicit operator Enum(EnumString es)
 			=> (Enum)Enum.Parse(es.t, es.str);
 
 		public static implicit operator string(EnumString es)

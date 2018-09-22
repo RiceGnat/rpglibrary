@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Davfalcon.Collections.Adapters;
 using Davfalcon.Collections.Generic;
 
 namespace Davfalcon.Revelator
@@ -21,10 +22,10 @@ namespace Davfalcon.Revelator
 		[NonSerialized]
 		private IUnitModifierStack equipment;
 
-		private ManagedList<EnumString> equipmentSlots = new ManagedList<EnumString>();
+		private ManagedEnumStringList equipmentSlots = new ManagedEnumStringList();
 		private ManagedList<IEquipment> equippedSlots = new ManagedList<IEquipment>();
 
-		public IEnumerable<Enum> EquipmentSlots { get => (IEnumerable<Enum>)equipmentSlots.ReadOnly; }
+		public IEnumerable<Enum> EquipmentSlots { get => equipmentSlots.ReadOnly; }
 		public IEnumerable<IEquipment> Equipment { get => equippedSlots.ReadOnly; }
 
 		private int GetSlotIndex(Enum slotType, int offset)

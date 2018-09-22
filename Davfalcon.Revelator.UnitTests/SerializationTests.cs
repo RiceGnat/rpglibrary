@@ -89,10 +89,14 @@ namespace Davfalcon.Revelator.UnitTests
 		{
 			IUnit unit = MakeUnit();
 			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Armor);
+			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Armor);
 
 			IEquipment armor = MakeEquipment();
+			unit.ItemProperties.Equip(armor);
+			armor = MakeEquipment();
+			unit.ItemProperties.Equip(armor, 1);
 
-			IUnit clone = (IUnit)Serializer.DeepClone(unit);
+			IUnit clone = Serializer.DeepClone(unit);
 
 			Assert.AreEqual(unit.Stats[CombatStats.DEF], clone.Stats[CombatStats.DEF]);
 		}
