@@ -7,17 +7,18 @@ namespace Davfalcon.Revelator.Engine.Combat
 	{
 		void Initialize(IUnit unit);
 		void Cleanup(IUnit unit);
-		void ApplyBuff(IUnit unit, IBuff buff, string source = null);
+		void ApplyBuff(IUnit unit, IBuff buff, IUnit source = null);
 		void RemoveBuff(IUnit unit, IBuff buff);
 		IList<ILogEntry> Upkeep(IUnit unit);
 		HitCheck CheckForHit(IUnit unit, IUnit target);
 		Damage CalculateOutgoingDamage(IUnit unit, IDamageSource source, bool scale = true, bool crit = false);
 		int CalculateReceivedDamage(IUnit unit, Damage damage);
-		IEnumerable<PointLoss> ReceiveDamage(IUnit unit, Damage damage);
+		IEnumerable<StatChange> ReceiveDamage(IUnit unit, Damage damage);
 		int AdjustVolatileStat(IUnit unit, Enum stat, int change);
-		AttackAction Attack(IUnit unit, IUnit target, IWeapon weapon);
-		SpellAction Cast(IUnit unit, ISpell spell, params IUnit[] targets);
-		SpellAction Cast(IUnit unit, ISpell spell, SpellCastOptions options, params IUnit[] targets);
+		IEnumerable<EffectResult> ApplyEffects(IEffectSource source, IUnit owner, IUnit target, Damage damage = null);
+		AttackResult Attack(IUnit unit, IUnit target, IWeapon weapon);
+		SpellResult Cast(IUnit unit, ISpell spell, params IUnit[] targets);
+		SpellResult Cast(IUnit unit, ISpell spell, SpellCastOptions options, params IUnit[] targets);
 		IList<ILogEntry> UseItem(IUnit unit, ISpellItem item, params IUnit[] targets);
 		IList<ILogEntry> UseItem(IUnit unit, IUsableItem item, params IUnit[] targets);
 	}

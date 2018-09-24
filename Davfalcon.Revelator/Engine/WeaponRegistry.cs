@@ -4,10 +4,10 @@ namespace Davfalcon.Revelator.Engine
 {
 	public class WeaponRegistry : SelfRegisteredPrototypeCloner<IWeapon>, IWeaponRegistry
 	{
-		public IWeapon GetWithEffects(string weaponName, IEffectArgs[] effects)
+		public IWeapon GetWithEffects(string weaponName, EffectArgs[] effects)
 		{
 			IWeapon weapon = Get(weaponName);
-			foreach (IEffectArgs effect in effects)
+			foreach (EffectArgs effect in effects)
 			{
 				//weapon.OnHitEffects.Add(effect);
 			}

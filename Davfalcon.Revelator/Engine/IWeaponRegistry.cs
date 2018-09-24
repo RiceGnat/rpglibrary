@@ -4,6 +4,6 @@ namespace Davfalcon.Revelator.Engine
 {
 	public interface IWeaponRegistry : ISelfRegistry<IWeapon>
 	{
-		IWeapon GetWithEffects(string weaponName, params IEffectArgs[] effects);
+		IWeapon GetWithEffects(string weaponName, params EffectArgs[] effects);
 	}
 }

@@ -110,7 +110,7 @@ namespace Davfalcon.Revelator.UnitTests
 
 			Assert.AreEqual(8, combat.CalculateReceivedDamage(unit, d));
 		}
-		
+
 		[TestMethod]
 		public void ReceiveDamage()
 		{
@@ -122,10 +122,27 @@ namespace Davfalcon.Revelator.UnitTests
 			combat.Initialize(unit);
 
 			Damage d = new Damage(10, "", DamageType.Physical);
-			IEnumerable<PointLoss> h = combat.ReceiveDamage(unit, d);
+			IEnumerable<StatChange> h = combat.ReceiveDamage(unit, d);
 
-			Assert.AreEqual(unit.Stats[CombatStats.HP] - unit.CombatProperties.VolatileStats[CombatStats.HP], h.First().Value);
+			Assert.AreEqual(unit.Stats[CombatStats.HP] - unit.CombatProperties.VolatileStats[CombatStats.HP], -h.First().Value);
 			Assert.AreEqual(unit.Name, h.First().Unit);
+		}
+
+		[TestMethod]
+		public void ApplyBuff()
+		{
+			ICombatResolver combat = new CombatResolver.Builder()
+				.Build();
+
+			IUnit unit = MakeUnit();
+			IBuff b = new Buff.Builder()
+				.SetName("Test buff")
+				.SetStatAddition(CombatStats.ATK, 10)
+				.Build();
+
+			combat.ApplyBuff(unit, b);
+
+			Assert.AreEqual(30, unit.Stats[CombatStats.ATK]);
 		}
 	}
 }

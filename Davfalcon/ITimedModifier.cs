@@ -23,6 +23,7 @@
 		/// <summary>
 		/// Ticks the modifier. Call this on each time unit.
 		/// </summary>
-		void Tick();
+		/// <returns><c>true</c> if the modifier's remaining time has run out; otherwise, <c>false</c>.</returns>
+		bool Tick();
 	}
 }

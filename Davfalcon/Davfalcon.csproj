@@ -55,7 +55,7 @@
     <Compile Include="Collections\Generic\ManagedList%28T%29.cs" />
     <Compile Include="Collections\Generic\PrototypeCloner%28T%29.cs" />
     <Compile Include="Collections\Generic\SelfRegisteredPrototypeCloner%28T%29.cs" />
-    <Compile Include="EnumExtensions.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="IDescribable.cs" />
     <Compile Include="IEditableDescription.cs" />
     <Compile Include="IEditableName.cs" />

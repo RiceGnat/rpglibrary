@@ -29,9 +29,11 @@ namespace Davfalcon
 		/// <summary>
 		/// Decrements the remaining time if it is greater than 0.
 		/// </summary>
-		public virtual void Tick()
+		/// <returns><c>true</c> if the modifier's remaining time has run out; otherwise, <c>false</c>.</returns>
+		public virtual bool Tick()
 		{
 			if (Remaining > 0) Remaining--;
+			return Remaining <= 0;
 		}
 	}
 }

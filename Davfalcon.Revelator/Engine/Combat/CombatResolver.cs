@@ -10,7 +10,6 @@ namespace Davfalcon.Revelator.Engine.Combat
 	{
 		private class Config
 		{
-			public IEffectsRegistry Effects { get; set; }
 			public ICombatOperations Operations { get; set; }
 			public CombatStatBinding StatBindings { get; set; }
 			public Enum SpellAttackType { get; set; }
@@ -53,12 +52,6 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 		private Config config;
 
-		private IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator)
-			=> config.Effects.ApplyEffects(source, target, originator);
-
-		private IList<ILogEntry> ApplyEffects(IEffectSource source, IUnit target, IUnit originator, int value)
-			=> config.Effects.ApplyEffects(source, target, originator, value);
-
 		private void AdjustMaxVolatileStats(IUnit unit, IDictionary<Enum, int> prevValues)
 		{
 			foreach (Enum stat in config.StatBindings.VolatileStats)
@@ -67,7 +60,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			}
 		}
 
-		public void ApplyBuff(IUnit unit, IBuff buff, string source = null)
+		public void ApplyBuff(IUnit unit, IBuff buff, IUnit source = null)
 		{
 			Dictionary<Enum, int> currentValues = new Dictionary<Enum, int>();
 			foreach (Enum stat in config.StatBindings.VolatileStats)
@@ -75,8 +68,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 				currentValues[stat] = unit.Stats[stat];
 			}
 
-			IBuff b = Serializer.DeepClone(buff);
-			//b.Source = source;
+			IBuff b = buff.DeepClone();
+			b.Source = source ?? unit;
 			b.Reset();
 			unit.CombatProperties.Buffs.Add(b);
 
@@ -109,7 +102,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			{
 				foreach (IBuff buff in equip.GrantedBuffs)
 				{
-					ApplyBuff(unit, buff, String.Format("{0}'s {1}", unit.Name, equip.Name));
+					ApplyBuff(unit, buff, unit);
 				}
 			}
 		}
@@ -133,7 +126,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 				// Apply repeating effects
 				if (buff.Duration > 0 && buff.Remaining > 0 ||
 					buff.Duration == 0)
-					effects.AddRange(ApplyEffects(buff, unit, unit));
+					effects.AddRange(ApplyEffects(buff, buff.Source, unit));
 
 				// Tick buff timers
 				buff.Tick();
@@ -188,23 +181,23 @@ namespace Davfalcon.Revelator.Engine.Combat
 				.Select(type => unit.Stats[config.StatBindings.GetDamageResistStat(type)])
 				.Aggregate(config.Operations.AggregateSeed, config.Operations.Aggregate));
 
-		public IEnumerable<PointLoss> ReceiveDamage(IUnit unit, Damage damage)
+		public IEnumerable<StatChange> ReceiveDamage(IUnit unit, Damage damage)
 		{
 			// Calculate the amount of damage the unit will take after resistances
 			int adjusted = CalculateReceivedDamage(unit, damage);
 
 			// Get targeted resource points and apply damage pool in order
-			List<PointLoss> losses = new List<PointLoss>();
+			List<StatChange> losses = new List<StatChange>();
 			foreach (Enum stat in config.StatBindings.ResolveDamageResource(damage.Types))
 			{
 				// Apply up to the remaining number of points in the stat
-				int actual = -AdjustVolatileStat(unit, stat, -adjusted);
+				int actual = AdjustVolatileStat(unit, stat, -adjusted);
 
 				// Log the loss
-				losses.Add(new PointLoss(unit, stat, actual));
+				losses.Add(new StatChange(unit, stat, actual));
 
 				// Subtract from remaining damage pool
-				adjusted -= actual;
+				adjusted += actual;
 
 				// Break if all damage is applied
 				if (adjusted <= 0)
@@ -220,25 +213,37 @@ namespace Davfalcon.Revelator.Engine.Combat
 			return unit.CombatProperties.VolatileStats[stat] - initial;
 		}
 
-		public AttackAction Attack(IUnit unit, IUnit target, IWeapon weapon)
+		public IEnumerable<EffectResult> ApplyEffects(IEffectSource source, IUnit owner, IUnit target, Damage damage = null)
+		{
+			List<EffectResult> list = new List<EffectResult>();
+			foreach (IEffect effect in source.Effects)
+			{
+				CombatEffectArgs args = new CombatEffectArgs(source, owner, target, this, damage);
+				effect.Resolve(args);
+				list.Add(args.Result);
+			}
+			return list;
+		}
+
+		public AttackResult Attack(IUnit unit, IUnit target, IWeapon weapon)
 		{
 			HitCheck hit = CheckForHit(unit, target);
 			Damage damage = hit.Hit ? CalculateOutgoingDamage(unit, weapon, hit.Crit) : Damage.None;
-			IEnumerable<PointLoss> losses = hit.Hit ? ReceiveDamage(target, damage) : null;
-			//IList<ILogEntry> effects = hit.Hit ? ApplyEffects(weapon, target, unit, hp.Value) : null;
+			IEnumerable<StatChange> losses = hit.Hit ? ReceiveDamage(target, damage) : null;
+			IEnumerable<ILogEntry> effects = hit.Hit ? ApplyEffects(weapon, unit, target, damage) : null;
 
-			return new AttackAction(
+			return new AttackResult(
 				unit,
 				target,
 				weapon,
 				hit,
 				damage,
 				losses,
-				null
+				effects
 			);
 		}
 
-		public SpellAction Cast(IUnit unit, ISpell spell, SpellCastOptions options, params IUnit[] targets)
+		public SpellResult Cast(IUnit unit, ISpell spell, SpellCastOptions options, params IUnit[] targets)
 		{/*
 			int n = targets.Length;
 			HitCheck[] hit = new HitCheck[n];
@@ -304,7 +309,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			return null;
 		}
 
-		public SpellAction Cast(IUnit unit, ISpell spell, params IUnit[] targets)
+		public SpellResult Cast(IUnit unit, ISpell spell, params IUnit[] targets)
 			=> Cast(unit, spell, new SpellCastOptions(), targets);
 
 		public IList<ILogEntry> UseItem(IUnit unit, IUsableItem item, params IUnit[] targets)
@@ -313,7 +318,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			effects.Add(new LogEntry(string.Format("{0} uses {1}.", unit.Name, item.Name)));
 			foreach (IUnit target in targets)
 			{
-				effects.AddRange(ApplyEffects(item, target, unit));
+				effects.AddRange(ApplyEffects(item, unit, target));
 			}
 			return effects;
 		}
@@ -347,12 +352,6 @@ namespace Davfalcon.Revelator.Engine.Combat
 					Operations = CombatOperations.Default,
 					StatBindings = statBindings
 				};
-				return this;
-			}
-
-			public Builder SetEffects(IEffectsRegistry effectsRegistry)
-			{
-				config.Effects = effectsRegistry;
 				return this;
 			}
 

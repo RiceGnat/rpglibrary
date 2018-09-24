@@ -1,19 +1,16 @@
-﻿using System;
-
-namespace Davfalcon.Revelator
+﻿namespace Davfalcon.Revelator
 {
-	[Serializable]
-	public class EffectArgs : IEffectArgs
+	public class EffectArgs
 	{
-		public string Name { get; private set; }
-		//public int Value { get; private set; }
-		public object[] Args { get; private set; }
+		public IEffectSource Source { get; }
+		public IUnit Owner { get; }
+		public IUnit Target { get; }
 
-		public EffectArgs(string name, object[] args)
+		public EffectArgs(IEffectSource source, IUnit owner, IUnit target)
 		{
-			Name = name;
-			//Value = value;
-			Args = args ?? new object[] { };
+			Source = source;
+			Owner = owner;
+			Target = target;
 		}
 	}
 }

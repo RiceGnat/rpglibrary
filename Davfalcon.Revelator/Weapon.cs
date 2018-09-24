@@ -8,7 +8,12 @@ namespace Davfalcon.Revelator
 	[Serializable]
 	public class Weapon : Equipment, IWeapon
 	{
-		public string Owner => InterfaceUnit?.Name;
+		private string owner;
+		public string Owner {
+			get => owner ?? InterfaceUnit.Name;
+			set => owner = value;
+		}
+
 		public Enum WeaponType { get; set; }
 		public int BaseDamage { get; set; }
 		public Enum BonusDamageStat { get; set; }

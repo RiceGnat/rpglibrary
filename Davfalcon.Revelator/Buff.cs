@@ -7,6 +7,14 @@ namespace Davfalcon.Revelator
 	[Serializable]
 	public class Buff : TimedModifier, IBuff
 	{
+		[NonSerialized]
+		private IUnit source;
+		public IUnit Source
+		{
+			get => source;
+			set => source = value;
+		}
+
 		public string Owner { get; set; }
 		public bool IsDebuff { get; set; }
 
@@ -19,6 +27,10 @@ namespace Davfalcon.Revelator
 
 			public Builder()
 				=> Reset();
+
+			public Builder(IBuff buff)
+				=> buff = (buff ?? throw new ArgumentNullException("buff cannot be null."))
+					as Buff ?? throw new ArgumentException("This builder can only be used with objects of the Buff class.");
 
 			public Builder Reset()
 			{
@@ -38,9 +50,9 @@ namespace Davfalcon.Revelator
 				return this;
 			}
 
-			public Builder SetDebuff()
+			public Builder SetDebuff(bool isDebuff = true)
 			{
-				buff.IsDebuff = true;
+				buff.IsDebuff = isDebuff;
 				return this;
 			}
 

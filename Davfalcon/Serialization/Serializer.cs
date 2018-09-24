@@ -13,26 +13,18 @@ namespace Davfalcon.Serialization
 		/// <summary>
 		/// Makes a deep clone of an object using serialization.
 		/// </summary>
+		/// <typeparam name="T">The type of the object</typeparam>
 		/// <param name="obj">The object to be cloned.</param>
 		/// <returns>A deep clone of the object.</returns>
-		public static object DeepClone(object obj)
+		public static T DeepClone<T>(this T obj)
 		{
 			using (MemoryStream ms = new MemoryStream())
 			{
 				formatter.Serialize(ms, obj);
 				ms.Position = 0;
-				return formatter.Deserialize(ms);
+				return (T)formatter.Deserialize(ms);
 			}
 		}
-
-		/// <summary>
-		/// Makes a deep clone of an object using serialization.
-		/// </summary>
-		/// <typeparam name="T">The type of the object</typeparam>
-		/// <param name="obj">The object to be cloned.</param>
-		/// <returns>A deep clone of the object.</returns>
-		public static T DeepClone<T>(T obj)
-			=> (T)DeepClone((object)obj);
 
 		/// <summary>
 		/// Writes an object to a file.

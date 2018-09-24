@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Davfalcon
 {
 	/// <summary>
-	/// Extension methods for casting enums.
+	/// Extension methods.
 	/// </summary>
-	public static class EnumExtensions
+	public static class Extensions
 	{
 		/// <summary>
 		/// Converts a string name or value into an enum type.
@@ -40,5 +41,8 @@ namespace Davfalcon
 
 		public static EnumString[] ConvertEnumArray(this Enum[] array)
 			=> Array.ConvertAll<Enum, EnumString>(array, e => e);
+
+		public static IReadOnlyCollection<T> ToNewReadOnlyCollectionSafe<T>(this IEnumerable<T> collection)
+			=> (collection == null ? new List<T>() : new List<T>(collection)).AsReadOnly();
 	}
 }

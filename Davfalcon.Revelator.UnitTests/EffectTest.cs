@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Davfalcon.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Davfalcon.Serialization;
 
 namespace Davfalcon.Revelator.UnitTests
 {
@@ -10,13 +9,13 @@ namespace Davfalcon.Revelator.UnitTests
 		[TestMethod]
 		public void Serialization()
 		{
-			IEffect e = new Effect("Test", (unit, targets) =>
+			IEffect e = new Effect("Test", (args) =>
 			{
 				return new LogEntry("effect result");
 			});
 
 			IEffect clone = Serializer.DeepClone(e);
-			ILogEntry result = clone.Resolve(null, null);
+			ILogEntry result = clone.Resolve(null);
 
 			Assert.AreEqual("effect result", result.ToString());
 		}

@@ -4,7 +4,7 @@ namespace Davfalcon.Revelator
 {
 	public interface IEffectSource : INameable
 	{
-		string Owner { get; }
+		string Owner { get; set; }
 		IEnumerable<IEffect> Effects { get; }
 	}
 }

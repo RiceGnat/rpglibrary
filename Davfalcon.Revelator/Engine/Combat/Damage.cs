@@ -6,11 +6,11 @@ using System.Linq;
 namespace Davfalcon.Revelator.Engine.Combat
 {
 	[Serializable]
-	public struct Damage : ILogEntry
+	public class Damage : ILogEntry
 	{
-		public readonly IEnumerable<Enum> Types;
-		public readonly int Value;
-		public readonly string Source;
+		public IEnumerable<Enum> Types { get; }
+		public int Value { get; }
+		public string Source { get; }
 
 		public Damage(int value, INameable source, params Enum[] types)
 			: this(value, source.Name, types)
@@ -34,6 +34,6 @@ namespace Davfalcon.Revelator.Engine.Combat
 		public static Damage None = new Damage(0, "");
 
 		public override string ToString()
-			=> String.Format($"{Source} deals {Value} outgoing {String.Join(" ", Types)} damage.");
+			=> $"{Source} deals {Value} outgoing {String.Join(" ", Types)} damage.";
 	}
 }
