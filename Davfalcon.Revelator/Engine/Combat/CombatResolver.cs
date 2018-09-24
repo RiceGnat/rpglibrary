@@ -228,7 +228,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 		public AttackResult Attack(IUnit unit, IUnit target, IWeapon weapon)
 		{
 			HitCheck hit = CheckForHit(unit, target);
-			Damage damage = hit.Hit ? CalculateOutgoingDamage(unit, weapon, hit.Crit) : Damage.None;
+			Damage damage = hit.Hit ? CalculateOutgoingDamage(unit, weapon, true, hit.Crit) : Damage.None;
 			IEnumerable<StatChange> losses = hit.Hit ? ReceiveDamage(target, damage) : null;
 			IEnumerable<ILogEntry> effects = hit.Hit ? ApplyEffects(weapon, unit, target, damage) : null;
 

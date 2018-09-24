@@ -17,9 +17,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			UnitsAffected = unitsAffected.ToNewReadOnlyCollectionSafe();
 		}
 
-		public static void FromArgs(CombatEffectArgs args, IEnumerable<ActionResult> unitsAffected)
-		{
-			args.Result = new EffectResult(args.Owner, args.Source, unitsAffected);
-		}
+		public static EffectResult FromArgs(CombatEffectArgs args, IEnumerable<ActionResult> unitsAffected)
+			=> args.Result = new EffectResult(args.Owner, args.Source, unitsAffected);
 	}
 }

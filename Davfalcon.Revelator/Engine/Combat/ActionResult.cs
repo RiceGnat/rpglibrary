@@ -20,5 +20,9 @@ namespace Davfalcon.Revelator.Engine.Combat
 			DamageDealt = damageDealt;
 			StatChanges = statChanges.ToNewReadOnlyCollectionSafe();
 		}
+
+		public ActionResult(IUnit unit, IUnit target, HitCheck hit, Damage damageDealt, StatChange statChange)
+			: this(unit, target, hit, damageDealt, new List<StatChange> { statChange })
+		{ }
 	}
 }

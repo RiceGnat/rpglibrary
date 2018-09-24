@@ -9,7 +9,8 @@ namespace Davfalcon.Revelator
 	public class Weapon : Equipment, IWeapon
 	{
 		private string owner;
-		public string Owner {
+		public string Owner
+		{
 			get => owner ?? InterfaceUnit.Name;
 			set => owner = value;
 		}
@@ -52,6 +53,18 @@ namespace Davfalcon.Revelator
 				return this;
 			}
 
+			new public Builder SetName(string name)
+				=> base.SetName(name) as Builder;
+
+			new public Builder SetStatAddition(Enum stat, int value)
+				=> base.SetStatAddition(stat, value) as Builder;
+
+			new public Builder SetStatMultiplier(Enum stat, int value)
+				=> base.SetStatAddition(stat, value) as Builder;
+
+			new public Builder AddBuff(IBuff buff)
+				=> base.AddBuff(buff) as Builder;
+
 			public Builder SetDamage(int baseDamage, Enum bonusDamageStat = null)
 			{
 				Weapon.BaseDamage = baseDamage;
@@ -82,6 +95,9 @@ namespace Davfalcon.Revelator
 				Weapon.Effects.Add(effect);
 				return this;
 			}
+
+			public Builder AddOnHitEffect(string name, EffectResolver resolver)
+				=> AddOnHitEffect(new Effect(name, resolver));
 
 			new public IWeapon Build()
 				=> Weapon;

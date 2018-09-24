@@ -22,7 +22,7 @@ namespace Davfalcon.Revelator.UnitTests
 				.Build();
 
 		[TestMethod]
-		public void InitializeHPMP()
+		public void InitializeVolatileStats()
 		{
 			ICombatResolver combat = new CombatResolver.Builder()
 				.AddVolatileStat(CombatStats.HP)
