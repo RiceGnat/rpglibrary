@@ -21,9 +21,9 @@ namespace Davfalcon.Revelator.UnitTests
 				.SetBaseStat(STAT, 15)
 				.Build();
 
-			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Armor);
-			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Accessory);
-			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Accessory);
+			unit.Equipment.AddEquipmentSlot(EquipmentType.Armor);
+			unit.Equipment.AddEquipmentSlot(EquipmentType.Accessory);
+			unit.Equipment.AddEquipmentSlot(EquipmentType.Accessory);
 
 			return unit;
 		}
@@ -36,27 +36,15 @@ namespace Davfalcon.Revelator.UnitTests
 				.Build();
 
 		[TestMethod]
-		public void Properties()
-		{
-			IUnit unit = MakeUnit();
-			IEquipment equip = MakeEquip(EquipmentType.Accessory, 10, 0);
-			unit.ItemProperties.Equip(equip);
-
-			Assert.AreEqual(EQUIP_NAME, equip.Name);
-			Assert.AreEqual(EQUIP_NAME, (equip as IUnitModifier).Name);
-			Assert.AreEqual(UNIT_NAME, (equip as Davfalcon.IUnit).Name);
-		}
-
-		[TestMethod]
-		public void SingleEquipment()
+		public void EquippingSingleEquipment()
 		{
 			IUnit unit = MakeUnit();
 			IEquipment equip = MakeEquip(EquipmentType.Armor, 5, 0);
 
-			unit.ItemProperties.Equip(equip);
+			unit.Equipment.Equip(equip);
 
 			Assert.AreEqual(20, unit.Stats[STAT]);
-			Assert.AreEqual(equip, unit.ItemProperties.GetEquipment(EquipmentType.Armor));
+			Assert.AreEqual(equip, unit.Equipment.GetEquipment(EquipmentType.Armor));
 			Assert.AreEqual(UNIT_NAME, unit.Name);
 			Assert.AreEqual(EQUIP_NAME, equip.Name);
 		}
@@ -69,21 +57,21 @@ namespace Davfalcon.Revelator.UnitTests
 			IEquipment equip2 = MakeEquip(EquipmentType.Accessory, 10, 0);
 			IEquipment equip3 = MakeEquip(EquipmentType.Accessory, 0, 100);
 
-			unit.ItemProperties.Equip(equip1);
-			unit.ItemProperties.Equip(equip2, 0);
-			unit.ItemProperties.Equip(equip3, 1);
+			unit.Equipment.Equip(equip1);
+			unit.Equipment.Equip(equip2, 0);
+			unit.Equipment.Equip(equip3, 1);
 
 			Assert.AreEqual(60, unit.Stats[STAT]);
-			Assert.AreEqual(equip1, unit.ItemProperties.GetEquipment(EquipmentType.Armor));
-			Assert.AreEqual(equip2, unit.ItemProperties.GetEquipment(EquipmentType.Accessory, 0));
-			Assert.AreEqual(equip3, unit.ItemProperties.GetEquipment(EquipmentType.Accessory, 1));
+			Assert.AreEqual(equip1, unit.Equipment.GetEquipment(EquipmentType.Armor));
+			Assert.AreEqual(equip2, unit.Equipment.GetEquipment(EquipmentType.Accessory, 0));
+			Assert.AreEqual(equip3, unit.Equipment.GetEquipment(EquipmentType.Accessory, 1));
 		}
 
 		[TestMethod]
 		public void GetEquipmentNull()
 		{
 			IUnit unit = MakeUnit();
-			Assert.IsNull(unit.ItemProperties.GetEquipment(EquipmentType.Armor));
+			Assert.IsNull(unit.Equipment.GetEquipment(EquipmentType.Armor));
 		}
 
 		[TestMethod]
@@ -93,7 +81,7 @@ namespace Davfalcon.Revelator.UnitTests
 			IUnit unit = MakeUnit();
 			IEquipment equip = MakeEquip(EquipmentType.Accessory, 10, 0);
 
-			unit.ItemProperties.EquipSlotIndex(equip, 0);
+			unit.Equipment.EquipSlotIndex(equip, 0);
 		}
 
 		[TestMethod]
@@ -117,6 +105,27 @@ namespace Davfalcon.Revelator.UnitTests
 
 			IEquipment clone = Serializer.DeepClone(equip);
 			Assert.AreEqual(equip.Additions[STAT], clone.Additions[STAT]);
+		}
+
+		[TestMethod]
+		public void EquippedUnitSerialization()
+		{
+			IUnit unit = MakeUnit();
+
+			IEquipment equip1 = MakeEquip(EquipmentType.Armor, 5, 0);
+			IEquipment equip2 = MakeEquip(EquipmentType.Accessory, 10, 0);
+
+			unit.Equipment.Equip(equip1);
+			unit.Equipment.Equip(equip2);
+
+			IUnit clone = Serializer.DeepClone(unit);
+
+			Assert.AreEqual(unit.Stats[STAT], clone.Stats[STAT]);
+
+			IEquipment equip3 = MakeEquip(EquipmentType.Accessory, 0, 100);
+			clone.Equipment.Equip(equip3, 1);
+
+			Assert.AreEqual(60, clone.Stats[STAT]);
 		}
 	}
 }

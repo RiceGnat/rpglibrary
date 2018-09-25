@@ -10,7 +10,7 @@ namespace Davfalcon.Revelator
 		private ILinkedStatResolver statLinker = new LinkedStatsResolverBase();
 		private UnitProperties props;
 
-		public IUnitModifierStack Equipment { get; protected set; }
+		public IUnitEquipmentManager Equipment { get; protected set; }
 		public IUnitModifierStack Buffs { get; protected set; }
 
 		public IUnitCombatProperties CombatProperties { get => props as IUnitCombatProperties; }
@@ -22,7 +22,7 @@ namespace Davfalcon.Revelator
 			Modifiers = new UnitModifierStack();
 
 			// Internal references will be maintained after deserialization
-			Equipment = new UnitModifierStack();
+			Equipment = new UnitEquipmentManager();
 			Buffs = new UnitModifierStack();
 			Modifiers.Add(Equipment);
 			Modifiers.Add(Buffs);
@@ -36,21 +36,22 @@ namespace Davfalcon.Revelator
 		{
 			base.Link();
 			statLinker.Bind(this);
-			props.Bind(this);
+			Equipment.Bind(this);
+			//props.Bind(this);
 		}
 
 		[OnSerializing]
 		private void SerializationPrep(StreamingContext context)
 		{
 			// Equipment will be serialized in properties object
-			Equipment.Clear();
+			//Equipment.Clear();
 		}
 
 		[OnSerialized]
 		private void SerializationRestore(StreamingContext context)
 		{
 			// Restore equipment
-			props.Bind(this);
+			//props.Bind(this);
 		}
 
 

@@ -95,7 +95,7 @@ namespace Davfalcon.Revelator
 		public void Bind(Unit unit)
 		{
 			buffs = unit.Buffs;
-			equipment = unit.Equipment;
+			//equipment = unit.Equipment;
 
 			// Restore unit's equipment to modifier stack
 			for (int i = 0; i < equipmentSlots.Count; i++)

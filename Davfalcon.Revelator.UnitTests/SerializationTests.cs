@@ -74,23 +74,6 @@ namespace Davfalcon.Revelator.UnitTests
 			Buff clone = Serializer.DeepClone(buff);
 			Assert.AreEqual(buff.Multiplications[CombatStats.DEF], clone.Multiplications[CombatStats.DEF]);
 		}
-		
-		[TestMethod]
-		public void EquippedUnitSerialization()
-		{
-			IUnit unit = MakeUnit();
-			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Armor);
-			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Armor);
-
-			IEquipment armor = MakeEquipment();
-			unit.ItemProperties.Equip(armor);
-			armor = MakeEquipment();
-			unit.ItemProperties.Equip(armor, 1);
-
-			IUnit clone = Serializer.DeepClone(unit);
-
-			Assert.AreEqual(unit.Stats[CombatStats.DEF], clone.Stats[CombatStats.DEF]);
-		}
 		/*
 		[TestMethod]
 		public void BuffEventSerialization()
