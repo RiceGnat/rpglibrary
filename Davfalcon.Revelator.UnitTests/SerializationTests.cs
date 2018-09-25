@@ -32,7 +32,7 @@ namespace Davfalcon.Revelator.UnitTests
 		private IUnit MakeUnit()
 			=> new Unit.Builder(StatsResolver.Default, LinkedStatsResolver.Default)
 				.SetMainDetails("Test Unit", "Class")
-				.SetBaseStats(Enum.GetValues(typeof(Attributes)), 10)
+				.SetAllBaseStats<Attributes>(10)
 				.Build();
 
 		private IEquipment MakeEquipment()
@@ -51,18 +51,6 @@ namespace Davfalcon.Revelator.UnitTests
 			Assert.AreEqual(unit.Class, clone.Class);
 			Assert.AreEqual(unit.Level, clone.Level);
 			Assert.AreEqual(unit.Stats[Attributes.STR], clone.Stats[Attributes.STR]);
-		}
-
-		[TestMethod]
-		public void WeaponSerialization()
-		{
-			IWeapon weapon = new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
-				.AddDamageTypes(DamageType.Physical, Element.Fire)
-				.Build();
-
-			IWeapon clone = Serializer.DeepClone(weapon);
-			
-			Assert.AreEqual(weapon.DamageTypes.First(), clone.DamageTypes.First());
 		}
 
 		[TestMethod]

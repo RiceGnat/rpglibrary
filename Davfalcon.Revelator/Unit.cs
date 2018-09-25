@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Davfalcon.Revelator
@@ -8,13 +8,10 @@ namespace Davfalcon.Revelator
 	public class Unit : BasicUnit, IUnit
 	{
 		private ILinkedStatResolver statLinker = new LinkedStatsResolverBase();
-		private UnitProperties props;
 
+		public IDictionary<Enum, int> VolatileStats { get; } = new Dictionary<Enum, int>();
 		public IUnitEquipmentManager Equipment { get; protected set; }
 		public IUnitModifierStack Buffs { get; protected set; }
-
-		public IUnitCombatProperties CombatProperties { get => props as IUnitCombatProperties; }
-		public IUnitItemProperties ItemProperties { get => props as IUnitItemProperties; }
 
 		public override void Initialize()
 		{
@@ -27,8 +24,6 @@ namespace Davfalcon.Revelator
 			Modifiers.Add(Equipment);
 			Modifiers.Add(Buffs);
 
-			props = new UnitProperties();
-
 			Link();
 		}
 
@@ -36,7 +31,7 @@ namespace Davfalcon.Revelator
 		{
 			base.Link();
 			statLinker.Bind(this);
-			Equipment.Bind(this);
+			//Equipment.Bind(this);
 			//props.Bind(this);
 		}
 
@@ -99,18 +94,21 @@ namespace Davfalcon.Revelator
 				return this;
 			}
 
-			public Builder SetBaseStats(IEnumerable stats, int value)
+			public Builder SetBaseStats(IEnumerable<Enum> stats, int value)
 			{
 				foreach (Enum stat in stats)
 				{
-					unit.BaseStats[stat] = value;
+					SetBaseStat(stat, value);
 				}
 				return this;
 			}
 
-			public Builder AddEquipmentSlot(Enum slotType)
+			public Builder SetAllBaseStats<T>(int value)
 			{
-				unit.ItemProperties.AddEquipmentSlot(slotType);
+				foreach (Enum stat in Enum.GetValues(typeof(T)))
+				{
+					SetBaseStat(stat, value);
+				}
 				return this;
 			}
 

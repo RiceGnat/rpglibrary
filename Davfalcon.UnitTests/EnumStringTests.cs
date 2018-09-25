@@ -111,5 +111,23 @@ namespace Davfalcon.UnitTests
 
 			Assert.AreEqual(list[0], listClone[0]);
 		}
+
+		[TestMethod]
+		[ExpectedException(typeof(MemberAccessException))]
+		public void EnumListDeserialization()
+		{
+			List<Enum> list = new List<Enum> { TestEnum.A };
+			List<Enum> listClone = Serializer.DeepClone(list);
+		}
+
+
+		[TestMethod]
+		public void EnumDictionaryDeserialization()
+		{
+			Dictionary<Enum, Enum> dict = new Dictionary<Enum, Enum> { [TestEnum.A] = OtherTestEnum.B };
+			Dictionary<Enum, Enum> clone = Serializer.DeepClone(dict);
+
+			Assert.AreEqual(dict[TestEnum.A], clone[TestEnum.A]);
+		}
 	}
 }

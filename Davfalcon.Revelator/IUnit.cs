@@ -1,9 +1,12 @@
-﻿namespace Davfalcon.Revelator
+﻿using System;
+using System.Collections.Generic;
+
+namespace Davfalcon.Revelator
 {
 	public interface IUnit : Davfalcon.IUnit
 	{
+		IDictionary<Enum, int> VolatileStats { get; }
 		IUnitEquipmentManager Equipment { get; }
-		IUnitCombatProperties CombatProperties { get; }
-		IUnitItemProperties ItemProperties { get; }
+		IUnitModifierStack Buffs { get; }
 	}
 }

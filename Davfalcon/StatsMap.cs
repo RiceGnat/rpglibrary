@@ -9,7 +9,7 @@ namespace Davfalcon
 	[Serializable]
 	public class StatsMap : StatsPrototype, IEditableStats
 	{
-		private Dictionary<EnumString, int> map = new Dictionary<EnumString, int>();
+		private Dictionary<Enum, int> map = new Dictionary<Enum, int>();
 
 		/// <summary>
 		/// Gets a stat.

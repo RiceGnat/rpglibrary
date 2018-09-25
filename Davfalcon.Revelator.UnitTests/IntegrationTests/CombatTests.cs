@@ -45,24 +45,24 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 				.SetBaseStat(CombatStats.HP, 1000)
 				.Build();
 
-			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Weapon);
-			unit.ItemProperties.Equip(new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
+			unit.Equipment.AddEquipmentSlot(EquipmentType.Weapon);
+			unit.Equipment.Equip(new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
 				.SetName(WEAPON_NAME)
 				.SetStatAddition(CombatStats.ATK, 10)
 				.SetDamage(20, Attributes.STR)
 				.AddDamageType(DamageType.Physical)
 				.Build());
 
-			unit.ItemProperties.AddEquipmentSlot(EquipmentType.Weapon);
-			unit.ItemProperties.Equip(new Weapon.Builder(EquipmentType.Weapon, WeaponType.Spear)
+			unit.Equipment.AddEquipmentSlot(EquipmentType.Weapon);
+			unit.Equipment.Equip(new Weapon.Builder(EquipmentType.Weapon, WeaponType.Spear)
 				.SetName(WEAPON_NAME + " 2")
 				.SetDamage(20, Attributes.VIT)
 				.AddDamageType(DamageType.Physical)
 				.AddOnHitEffect("Effect", args =>
 				{
-					int old = args.Owner.CombatProperties.VolatileStats[CombatStats.HP];
-					args.Owner.CombatProperties.VolatileStats[CombatStats.HP] += (args as CombatEffectArgs).DamageDealt.Value;
-					StatChange heal = new StatChange(args.Owner, CombatStats.HP, args.Owner.CombatProperties.VolatileStats[CombatStats.HP] - old);
+					int old = args.Owner.VolatileStats[CombatStats.HP];
+					args.Owner.VolatileStats[CombatStats.HP] += (args as CombatEffectArgs).DamageDealt.Value;
+					StatChange heal = new StatChange(args.Owner, CombatStats.HP, args.Owner.VolatileStats[CombatStats.HP] - old);
 					ActionResult result = new ActionResult(args.Owner, args.Owner, null, null, heal);
 					return EffectResult.FromArgs(args as CombatEffectArgs, new List<ActionResult> { result });
 				})
@@ -74,13 +74,13 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 		{
 			combat.Initialize(unit);
 			combat.Initialize(target);
-			AttackResult result = combat.Attack(unit, target, unit.ItemProperties.GetEquipment(EquipmentType.Weapon) as IWeapon);
+			AttackResult result = combat.Attack(unit, target, unit.Equipment.GetEquipment(EquipmentType.Weapon) as IWeapon);
 
 			Assert.AreEqual(UNIT_NAME, result.Unit);
 			Assert.AreEqual(TARGET_NAME, result.Target);
 			Assert.AreEqual(WEAPON_NAME, result.Weapon);
 			Assert.AreEqual(45, result.DamageDealt.Value);
-			Assert.AreEqual(955, target.CombatProperties.VolatileStats[CombatStats.HP]);
+			Assert.AreEqual(955, target.VolatileStats[CombatStats.HP]);
 		}
 
 		[TestMethod]
@@ -88,16 +88,16 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 		{
 			combat.Initialize(unit);
 			combat.Initialize(target);
-			unit.CombatProperties.VolatileStats[CombatStats.HP] = 50;
-			AttackResult result = combat.Attack(unit, target, unit.ItemProperties.GetEquipment(EquipmentType.Weapon, 1) as IWeapon);
+			unit.VolatileStats[CombatStats.HP] = 50;
+			AttackResult result = combat.Attack(unit, target, unit.Equipment.GetEquipment(EquipmentType.Weapon, 1) as IWeapon);
 
 			Assert.AreEqual(UNIT_NAME, result.Unit);
 			Assert.AreEqual(TARGET_NAME, result.Target);
 			Assert.AreEqual(WEAPON_NAME + " 2", result.Weapon);
 			Assert.AreEqual(45, result.DamageDealt.Value);
-			Assert.AreEqual(955, target.CombatProperties.VolatileStats[CombatStats.HP]);
+			Assert.AreEqual(955, target.VolatileStats[CombatStats.HP]);
 			Assert.IsNotNull(result.OnHitEffects.First());
-			Assert.AreEqual(95, unit.CombatProperties.VolatileStats[CombatStats.HP]);
+			Assert.AreEqual(95, unit.VolatileStats[CombatStats.HP]);
 		}
 	}
 }

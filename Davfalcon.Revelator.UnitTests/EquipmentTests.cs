@@ -13,19 +13,20 @@ namespace Davfalcon.Revelator.UnitTests
 		private const string UNIT_NAME = "UNIT";
 		private const string EQUIP_NAME = "EQUIPMENT";
 
-		private static IUnit MakeUnit()
+		private IUnit unit;
+
+		[TestInitialize]
+		public void TestSetup()
 		{
-			IUnit unit = new Unit.Builder()
+			unit = new Unit.Builder()
 				.SetMainDetails(UNIT_NAME)
-				.SetBaseStats(Enum.GetValues(typeof(Attributes)), 10)
+				.SetAllBaseStats<Attributes>(10)
 				.SetBaseStat(STAT, 15)
 				.Build();
 
 			unit.Equipment.AddEquipmentSlot(EquipmentType.Armor);
 			unit.Equipment.AddEquipmentSlot(EquipmentType.Accessory);
 			unit.Equipment.AddEquipmentSlot(EquipmentType.Accessory);
-
-			return unit;
 		}
 
 		private static IEquipment MakeEquip(EquipmentType slot, int add, int mult)
@@ -36,9 +37,8 @@ namespace Davfalcon.Revelator.UnitTests
 				.Build();
 
 		[TestMethod]
-		public void EquippingSingleEquipment()
+		public void Equip()
 		{
-			IUnit unit = MakeUnit();
 			IEquipment equip = MakeEquip(EquipmentType.Armor, 5, 0);
 
 			unit.Equipment.Equip(equip);
@@ -50,9 +50,8 @@ namespace Davfalcon.Revelator.UnitTests
 		}
 
 		[TestMethod]
-		public void StackingMultipleEquipment()
+		public void EquipMultiple()
 		{
-			IUnit unit = MakeUnit();
 			IEquipment equip1 = MakeEquip(EquipmentType.Armor, 5, 0);
 			IEquipment equip2 = MakeEquip(EquipmentType.Accessory, 10, 0);
 			IEquipment equip3 = MakeEquip(EquipmentType.Accessory, 0, 100);
@@ -70,7 +69,6 @@ namespace Davfalcon.Revelator.UnitTests
 		[TestMethod]
 		public void GetEquipmentNull()
 		{
-			IUnit unit = MakeUnit();
 			Assert.IsNull(unit.Equipment.GetEquipment(EquipmentType.Armor));
 		}
 
@@ -78,7 +76,6 @@ namespace Davfalcon.Revelator.UnitTests
 		[ExpectedException(typeof(ArgumentException), "Equipped to a mismatched slot.")]
 		public void EquipSlotIndexTypeMismatch()
 		{
-			IUnit unit = MakeUnit();
 			IEquipment equip = MakeEquip(EquipmentType.Accessory, 10, 0);
 
 			unit.Equipment.EquipSlotIndex(equip, 0);
@@ -99,6 +96,14 @@ namespace Davfalcon.Revelator.UnitTests
 		}
 
 		[TestMethod]
+		public void GetEquipmentSlots()
+		{
+			Assert.AreEqual(EquipmentType.Armor, unit.Equipment.EquipmentSlots.First());
+			Assert.AreEqual(EquipmentType.Accessory, unit.Equipment.EquipmentSlots.ElementAt(1));
+			Assert.AreEqual(EquipmentType.Accessory, unit.Equipment.EquipmentSlots.ElementAt(2));
+		}
+
+		[TestMethod]
 		public void Serialization()
 		{
 			IEquipment equip = MakeEquip(EquipmentType.Accessory, 10, 0);
@@ -108,10 +113,20 @@ namespace Davfalcon.Revelator.UnitTests
 		}
 
 		[TestMethod]
+		public void WeaponSerialization()
+		{
+			IWeapon weapon = new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
+				.AddDamageTypes(DamageType.Physical, Element.Fire)
+				.Build();
+
+			IWeapon clone = Serializer.DeepClone(weapon);
+
+			Assert.AreEqual(weapon.DamageTypes.First(), clone.DamageTypes.First());
+		}
+
+		[TestMethod]
 		public void EquippedUnitSerialization()
 		{
-			IUnit unit = MakeUnit();
-
 			IEquipment equip1 = MakeEquip(EquipmentType.Armor, 5, 0);
 			IEquipment equip2 = MakeEquip(EquipmentType.Accessory, 10, 0);
 

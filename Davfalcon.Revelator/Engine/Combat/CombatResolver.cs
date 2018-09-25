@@ -56,7 +56,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 		{
 			foreach (Enum stat in config.StatBindings.VolatileStats)
 			{
-				unit.CombatProperties.VolatileStats[stat] += unit.Stats[stat] - prevValues[stat];
+				unit.VolatileStats[stat] += unit.Stats[stat] - prevValues[stat];
 			}
 		}
 
@@ -71,7 +71,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			IBuff b = buff.DeepClone();
 			b.Source = source ?? unit;
 			b.Reset();
-			unit.CombatProperties.Buffs.Add(b);
+			unit.Buffs.Add(b);
 
 			AdjustMaxVolatileStats(unit, currentValues);
 		}
@@ -84,7 +84,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 				currentValues[stat] = unit.Stats[stat];
 			}
 
-			unit.CombatProperties.Buffs.Remove(buff);
+			unit.Buffs.Remove(buff);
 
 			AdjustMaxVolatileStats(unit, currentValues);
 		}
@@ -94,11 +94,11 @@ namespace Davfalcon.Revelator.Engine.Combat
 			// Initialize volatile stats
 			foreach (Enum stat in config.StatBindings.VolatileStats)
 			{
-				unit.CombatProperties.VolatileStats[stat] = unit.Stats[stat];
+				unit.VolatileStats[stat] = unit.Stats[stat];
 			}
 
 			// Apply buffs granted by equipment
-			foreach (IEquipment equip in unit.ItemProperties.Equipment)
+			foreach (IEquipment equip in unit.Equipment.All)
 			{
 				foreach (IBuff buff in equip.GrantedBuffs)
 				{
@@ -110,10 +110,10 @@ namespace Davfalcon.Revelator.Engine.Combat
 		public void Cleanup(IUnit unit)
 		{
 			// Clean up volatile stats
-			unit.CombatProperties.VolatileStats.Clear();
+			unit.VolatileStats.Clear();
 
 			// Clear all buffs/debuffs
-			unit.CombatProperties.Buffs.Clear();
+			unit.Buffs.Clear();
 		}
 
 		public IList<ILogEntry> Upkeep(IUnit unit)
@@ -121,7 +121,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			List<ILogEntry> effects = new List<ILogEntry>();
 			List<IBuff> expired = new List<IBuff>();
 
-			foreach (IBuff buff in unit.CombatProperties.Buffs)
+			foreach (IBuff buff in unit.Buffs)
 			{
 				// Apply repeating effects
 				if (buff.Duration > 0 && buff.Remaining > 0 ||
@@ -208,9 +208,9 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 		public int AdjustVolatileStat(IUnit unit, Enum stat, int change)
 		{
-			int initial = unit.CombatProperties.VolatileStats[stat];
-			unit.CombatProperties.VolatileStats[stat] = (unit.CombatProperties.VolatileStats[stat] + change).Clamp(0, unit.Stats[stat]);
-			return unit.CombatProperties.VolatileStats[stat] - initial;
+			int initial = unit.VolatileStats[stat];
+			unit.VolatileStats[stat] = (unit.VolatileStats[stat] + change).Clamp(0, unit.Stats[stat]);
+			return unit.VolatileStats[stat] - initial;
 		}
 
 		public IEnumerable<EffectResult> ApplyEffects(IEffectSource source, IUnit owner, IUnit target, Damage damage = null)
@@ -252,7 +252,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			IList<ILogEntry>[] effects = new IList<ILogEntry>[n];
 
 			// MP cost (calling layer is responsible for validation)
-			unit.CombatProperties.CurrentMP -= options.AdjustedCost > -1 ? options.AdjustedCost : spell.Cost;
+			unit.CurrentMP -= options.AdjustedCost > -1 ? options.AdjustedCost : spell.Cost;
 
 			for (int i = 0; i < n; i++)
 			{

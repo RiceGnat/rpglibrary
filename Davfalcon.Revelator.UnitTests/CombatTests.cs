@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Davfalcon.Revelator.Engine.Combat;
 using Davfalcon.Revelator.Borger;
+using Davfalcon.Revelator.Engine.Combat;
+using Davfalcon.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Davfalcon.Revelator.UnitTests
@@ -12,7 +12,6 @@ namespace Davfalcon.Revelator.UnitTests
 	{
 		private static IUnit MakeUnit()
 			=> new Unit.Builder()
-				.SetBaseStats(Enum.GetValues(typeof(Attributes)), 10)
 				.SetBaseStat(Attributes.STR, 15)
 				.SetBaseStat(Attributes.VIT, 15)
 				.SetBaseStat(CombatStats.ATK, 20)
@@ -32,8 +31,8 @@ namespace Davfalcon.Revelator.UnitTests
 
 			combat.Initialize(unit);
 
-			Assert.AreEqual(unit.Stats[CombatStats.HP], unit.CombatProperties.VolatileStats[CombatStats.HP]);
-			Assert.AreEqual(unit.Stats[CombatStats.MP], unit.CombatProperties.VolatileStats[CombatStats.MP]);
+			Assert.AreEqual(unit.Stats[CombatStats.HP], unit.VolatileStats[CombatStats.HP]);
+			Assert.AreEqual(unit.Stats[CombatStats.MP], unit.VolatileStats[CombatStats.MP]);
 		}
 
 		[TestMethod]
@@ -124,7 +123,7 @@ namespace Davfalcon.Revelator.UnitTests
 			Damage d = new Damage(10, "", DamageType.Physical);
 			IEnumerable<StatChange> h = combat.ReceiveDamage(unit, d);
 
-			Assert.AreEqual(unit.Stats[CombatStats.HP] - unit.CombatProperties.VolatileStats[CombatStats.HP], -h.First().Value);
+			Assert.AreEqual(unit.Stats[CombatStats.HP] - unit.VolatileStats[CombatStats.HP], -h.First().Value);
 			Assert.AreEqual(unit.Name, h.First().Unit);
 		}
 
@@ -143,6 +142,23 @@ namespace Davfalcon.Revelator.UnitTests
 			combat.ApplyBuff(unit, b);
 
 			Assert.AreEqual(30, unit.Stats[CombatStats.ATK]);
+		}
+
+		[TestMethod]
+		public void SerializeVolatileStats()
+		{
+			ICombatResolver combat = new CombatResolver.Builder()
+				.AddVolatileStat(CombatStats.HP)
+				.AddVolatileStat(CombatStats.MP)
+				.Build();
+			IUnit unit = MakeUnit();
+
+			combat.Initialize(unit);
+
+			IUnit clone = unit.DeepClone();
+
+			Assert.AreEqual(unit.VolatileStats[CombatStats.HP], clone.VolatileStats[CombatStats.HP]);
+			Assert.AreEqual(unit.VolatileStats[CombatStats.MP], clone.VolatileStats[CombatStats.MP]);
 		}
 	}
 }

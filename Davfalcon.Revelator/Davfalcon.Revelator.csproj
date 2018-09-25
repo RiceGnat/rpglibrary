@@ -61,7 +61,6 @@
     <Compile Include="Buff.cs" />
     <Compile Include="ClassProperties.cs" />
     <Compile Include="Engine\Combat\AttackResult.cs" />
-    <Compile Include="Engine\Combat\Battle.cs" />
     <Compile Include="Engine\Combat\Damage.cs" />
     <Compile Include="Engine\Combat\HitCheck.cs" />
     <Compile Include="Engine\Combat\StatChange.cs" />
@@ -77,9 +76,6 @@
     <Compile Include="ISpellItem.cs" />
     <Compile Include="IEffectList.cs" />
     <Compile Include="IEffectSource.cs" />
-    <Compile Include="IUnitCombatProperties.cs" />
-    <Compile Include="IUnitItemProperties.cs" />
-    <Compile Include="IUnitLevelingProperties.cs" />
     <Compile Include="IUsableItem.cs" />
     <Compile Include="SpellItem.cs" />
     <Compile Include="UnitEquipmentManager.cs" />
@@ -94,7 +90,6 @@
     <Compile Include="UnitStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit.cs" />
-    <Compile Include="UnitProperties.cs" />
     <Compile Include="Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
