@@ -22,6 +22,6 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 
 		public override string ToString()
-			=> $"{Unit} loses {Value} HP.";
+			=> $"{Unit} {(Value > 0 ? "gains" : "loses")} {Value} {Stat}.";
 	}
 }

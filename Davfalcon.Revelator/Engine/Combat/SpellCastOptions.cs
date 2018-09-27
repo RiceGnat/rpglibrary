@@ -1,9 +1,19 @@
 ﻿namespace Davfalcon.Revelator.Engine.Combat
 {
-	public struct SpellCastOptions
+	public class SpellCastOptions
 	{
-		public int AdjustedCost { get; private set; }
-		public int DamageMultiplier { get; private set; }
-		public bool NoScaling { get; private set; }
+		public int CostOverride { get; private set; } = -1;
+		public bool ScaleDamage { get; private set;  } = true;
+		public bool UseAttack { get; private set; } = false;
+
+		public class Builder
+		{
+			private SpellCastOptions options;
+
+			public Builder()
+			{
+				options = new 
+			}
+		}
 	}
 }

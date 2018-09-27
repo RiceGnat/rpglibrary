@@ -12,9 +12,6 @@ namespace Davfalcon.Revelator.Engine.Combat
 		{
 			public ICombatOperations Operations { get; set; }
 			public CombatStatBinding StatBindings { get; set; }
-			public Enum SpellAttackType { get; set; }
-			public Enum HPStat { get; set; }
-			public Enum MPStat { get; set; }
 		}
 
 		private class CombatStatBinding
@@ -230,7 +227,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			HitCheck hit = CheckForHit(unit, target);
 			Damage damage = hit.Hit ? CalculateOutgoingDamage(unit, weapon, true, hit.Crit) : Damage.None;
 			IEnumerable<StatChange> losses = hit.Hit ? ReceiveDamage(target, damage) : null;
-			IEnumerable<ILogEntry> effects = hit.Hit ? ApplyEffects(weapon, unit, target, damage) : null;
+			IEnumerable<EffectResult> effects = hit.Hit ? ApplyEffects(weapon, unit, target, damage) : null;
 
 			return new AttackResult(
 				unit,
@@ -243,17 +240,19 @@ namespace Davfalcon.Revelator.Engine.Combat
 			);
 		}
 
-		public SpellResult Cast(IUnit unit, ISpell spell, SpellCastOptions options, params IUnit[] targets)
-		{/*
-			int n = targets.Length;
-			HitCheck[] hit = new HitCheck[n];
-			Damage[] damage = new Damage[n];
-			PointLoss[] hpLost = new PointLoss[n];
-			IList<ILogEntry>[] effects = new IList<ILogEntry>[n];
+		public SpellResult Cast(IUnit unit, ISpell spell, SpellCastOptions options, IEnumerable<IUnit> targets)
+		{
+			// Get cost resource from options
 
-			// MP cost (calling layer is responsible for validation)
-			unit.CurrentMP -= options.AdjustedCost > -1 ? options.AdjustedCost : spell.Cost;
+			List<ActionResult> results = new List<ActionResult>();
+			foreach (IUnit target in targets)
+			{
+				HitCheck hit;
+				Damage damage;
 
+				// 
+
+			}
 			for (int i = 0; i < n; i++)
 			{
 				// Roll hit for attack type spells
@@ -305,7 +304,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 				damage,
 				hpLost,
 				effects
-			);*/
+			);
 			return null;
 		}
 

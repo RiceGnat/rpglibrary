@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace Davfalcon.Revelator.Engine.Combat
 {
@@ -21,15 +19,15 @@ namespace Davfalcon.Revelator.Engine.Combat
 		{ }
 
 		public Damage(int value, string source, params Enum[] types)
+			: this(value, source, types as IEnumerable<Enum>)
+		{ }
+
+		public Damage(int value, string source, IEnumerable<Enum> types)
 		{
-			Types = new ReadOnlyCollection<Enum>(types);
+			Types = types.ToNewReadOnlyCollectionSafe();
 			Value = value;
 			Source = source;
 		}
-
-		public Damage(int value, string source, IEnumerable<Enum> types)
-			: this(value, source, types.ToArray())
-		{ }
 
 		public static Damage None = new Damage(0, "");
 

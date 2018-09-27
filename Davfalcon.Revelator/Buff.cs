@@ -28,10 +28,6 @@ namespace Davfalcon.Revelator
 			public Builder()
 				=> Reset();
 
-			public Builder(IBuff buff)
-				=> buff = (buff ?? throw new ArgumentNullException("buff cannot be null."))
-					as Buff ?? throw new ArgumentException("This builder can only be used with objects of the Buff class.");
-
 			public Builder Reset()
 			{
 				buff = new Buff();

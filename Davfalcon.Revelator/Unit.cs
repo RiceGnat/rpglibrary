@@ -31,24 +31,7 @@ namespace Davfalcon.Revelator
 		{
 			base.Link();
 			statLinker.Bind(this);
-			//Equipment.Bind(this);
-			//props.Bind(this);
 		}
-
-		[OnSerializing]
-		private void SerializationPrep(StreamingContext context)
-		{
-			// Equipment will be serialized in properties object
-			//Equipment.Clear();
-		}
-
-		[OnSerialized]
-		private void SerializationRestore(StreamingContext context)
-		{
-			// Restore equipment
-			//props.Bind(this);
-		}
-
 
 		private Unit(IStatsResolver statsMath, ILinkedStatResolver statLinker)
 			: base(statsMath)
