@@ -66,15 +66,15 @@
     <Compile Include="Engine\Combat\StatChange.cs" />
     <Compile Include="ILinkedStatResolver.cs" />
     <Compile Include="Engine\Combat\SpellCastOptions.cs" />
-    <Compile Include="ILogEntry.cs" />
+    <Compile Include="Engine\Combat\ILogEntry.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="IUnitEquipmentManager.cs" />
     <Compile Include="LinkedStatsResolverBase.cs" />
-    <Compile Include="LogEntry.cs" />
     <Compile Include="ISpellItem.cs" />
     <Compile Include="IEffectList.cs" />
     <Compile Include="IEffectSource.cs" />
     <Compile Include="IUsableItem.cs" />
+    <Compile Include="Engine\Combat\LogEntry.cs" />
     <Compile Include="SpellItem.cs" />
     <Compile Include="UnitEquipmentManager.cs" />
     <Compile Include="UsableItem.cs" />

@@ -1,4 +1,4 @@
-﻿namespace Davfalcon.Revelator
+﻿namespace Davfalcon.Revelator.Engine.Combat
 {
 	public interface ILogEntry
 	{
