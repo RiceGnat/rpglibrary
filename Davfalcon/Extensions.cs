@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Davfalcon.Serialization;
 
 namespace Davfalcon
 {
@@ -38,9 +39,6 @@ namespace Davfalcon
 			}
 			return null;
 		}
-
-		public static EnumString[] ConvertEnumArray(this Enum[] array)
-			=> Array.ConvertAll<Enum, EnumString>(array, e => e);
 
 		public static IReadOnlyCollection<T> ToNewReadOnlyCollectionSafe<T>(this IEnumerable<T> collection)
 			=> (collection == null ? new List<T>() : new List<T>(collection)).AsReadOnly();

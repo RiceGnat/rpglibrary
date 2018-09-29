@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Davfalcon.Collections.Adapters;
 using Davfalcon.Collections.Generic;
+using Davfalcon.Serialization;
 
 namespace Davfalcon.Revelator
 {
@@ -88,7 +89,7 @@ namespace Davfalcon.Revelator
 
 			public Builder AddDamageTypes(params Enum[] types)
 			{
-				build.DamageTypes.AddRange(types.ConvertEnumArray());
+				build.DamageTypes.AddRange(EnumString.ConvertEnumArray(types));
 				return this;
 			}
 

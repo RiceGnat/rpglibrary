@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Davfalcon.Collections.Generic;
+using Davfalcon.Serialization;
 
 namespace Davfalcon.Collections.Adapters
 {
