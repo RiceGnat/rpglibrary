@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Davfalcon.Revelator.Engine.Combat
+namespace Davfalcon.Revelator.Combat
 {
 	[Serializable]
 	public class TargetedUnit

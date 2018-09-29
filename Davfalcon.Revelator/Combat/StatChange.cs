@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Davfalcon.Revelator.Engine.Combat
+namespace Davfalcon.Revelator.Combat
 {
 	[Serializable]
 	public class StatChange : ILogEntry

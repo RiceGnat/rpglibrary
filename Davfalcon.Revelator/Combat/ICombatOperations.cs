@@ -1,4 +1,4 @@
-﻿namespace Davfalcon.Revelator.Engine.Combat
+﻿namespace Davfalcon.Revelator.Combat
 {
 	public interface ICombatOperations : IStatsResolver
 	{

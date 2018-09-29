@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Davfalcon.Revelator.Borger;
-using Davfalcon.Revelator.Engine.Combat;
+using Davfalcon.Revelator.Combat;
 using System.Collections.Generic;
 
 namespace Davfalcon.Revelator.UnitTests.IntegrationTests

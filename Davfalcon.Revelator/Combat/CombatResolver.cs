@@ -4,7 +4,7 @@ using System.Linq;
 using Davfalcon.Randomization;
 using Davfalcon.Serialization;
 
-namespace Davfalcon.Revelator.Engine.Combat
+namespace Davfalcon.Revelator.Combat
 {
 	public class CombatResolver : ICombatResolver
 	{

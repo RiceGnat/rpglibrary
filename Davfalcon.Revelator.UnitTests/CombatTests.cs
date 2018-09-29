@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Davfalcon.Revelator.Borger;
-using Davfalcon.Revelator.Engine.Combat;
+using Davfalcon.Revelator.Combat;
 using Davfalcon.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

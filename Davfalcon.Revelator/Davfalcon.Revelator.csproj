@@ -45,14 +45,14 @@
   <ItemGroup>
     <Compile Include="BuilderBase.cs" />
     <Compile Include="Effect.cs" />
-    <Compile Include="Engine\Combat\ActionResult.cs" />
-    <Compile Include="Engine\Combat\CombatEffectArgs.cs" />
-    <Compile Include="Engine\Combat\TargetedUnit.cs" />
-    <Compile Include="Engine\Combat\CombatResolver.cs" />
-    <Compile Include="Engine\Combat\CombatOperations.cs" />
-    <Compile Include="Engine\Combat\EffectResult.cs" />
-    <Compile Include="Engine\Combat\ICombatResolver.cs" />
-    <Compile Include="Engine\Combat\ICombatOperations.cs" />
+    <Compile Include="Combat\ActionResult.cs" />
+    <Compile Include="Combat\CombatEffectArgs.cs" />
+    <Compile Include="Combat\TargetedUnit.cs" />
+    <Compile Include="Combat\CombatResolver.cs" />
+    <Compile Include="Combat\CombatOperations.cs" />
+    <Compile Include="Combat\EffectResult.cs" />
+    <Compile Include="Combat\ICombatResolver.cs" />
+    <Compile Include="Combat\ICombatOperations.cs" />
     <Compile Include="Borger\LinkedStatsResolver.cs" />
     <Compile Include="Engine\IWeaponRegistry.cs" />
     <Compile Include="Engine\WeaponRegistry.cs" />
@@ -61,12 +61,12 @@
     <Compile Include="EffectArgs.cs" />
     <Compile Include="Buff.cs" />
     <Compile Include="ClassProperties.cs" />
-    <Compile Include="Engine\Combat\Damage.cs" />
-    <Compile Include="Engine\Combat\HitCheck.cs" />
-    <Compile Include="Engine\Combat\StatChange.cs" />
+    <Compile Include="Combat\Damage.cs" />
+    <Compile Include="Combat\HitCheck.cs" />
+    <Compile Include="Combat\StatChange.cs" />
     <Compile Include="ILinkedStatResolver.cs" />
-    <Compile Include="Engine\Combat\SpellCastOptions.cs" />
-    <Compile Include="Engine\Combat\ILogEntry.cs" />
+    <Compile Include="Combat\SpellCastOptions.cs" />
+    <Compile Include="Combat\ILogEntry.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="IUnitEquipmentManager.cs" />
     <Compile Include="LinkedStatsResolverBase.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="IEffectList.cs" />
     <Compile Include="IEffectSource.cs" />
     <Compile Include="IUsableItem.cs" />
-    <Compile Include="Engine\Combat\LogEntry.cs" />
+    <Compile Include="Combat\LogEntry.cs" />
     <Compile Include="SpellItem.cs" />
     <Compile Include="UnitEquipmentManager.cs" />
     <Compile Include="UsableItem.cs" />
@@ -90,10 +90,7 @@
     <Compile Include="Unit.cs" />
     <Compile Include="Weapon.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Engine\Management\" />
-    <Folder Include="Engine\Setup\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Davfalcon\Davfalcon.csproj">
       <Project>{1fcb4578-21b8-4db5-b560-c87beeb7fd2e}</Project>
