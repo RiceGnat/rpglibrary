@@ -244,12 +244,12 @@ namespace Davfalcon.Collections.Generic
 		}
 
 		/// <summary>
-		/// Initializes a new empty <see cref="CircularLinkedList{T}"/>.
+		/// Initializes a new instance of the <see cref="CircularLinkedList{T}"/> class that is empty.
 		/// </summary>
 		public CircularLinkedList() { }
 
 		/// <summary>
-		/// Initializes a new <see cref="CircularLinkedList{T}"/> and adds the specified item to it.
+		/// Initializes a new instance of the <see cref="CircularLinkedList{T}"/> class and adds the specified item to it.
 		/// </summary>
 		/// <param name="item">The item to be added to the list.</param>
 		public CircularLinkedList(T item)
@@ -258,7 +258,7 @@ namespace Davfalcon.Collections.Generic
 		}
 
 		/// <summary>
-		/// Initializes a new <see cref="CircularLinkedList{T}"/> that contains elements copied from the specified collection.
+		/// Initializes a new instance of the <see cref="CircularLinkedList{T}"/> class that contains elements copied from the specified collection.
 		/// </summary>
 		/// <param name="items">The collection whose elements are copied to the new <see cref="CircularLinkedList{T}"/>.</param>
 		public CircularLinkedList(IEnumerable<T> items)
@@ -271,7 +271,7 @@ namespace Davfalcon.Collections.Generic
 		}
 
 		/// <summary>
-		/// Creates a new <see cref="CircularLinkedList{T}"/> that uses the specified <see cref="List{T}"/> object as a base.
+		/// Initializes a new instance of the <see cref="CircularLinkedList{T}"/> class that uses the specified <see cref="List{T}"/> object as a base.
 		/// </summary>
 		/// <param name="list">The <see cref="List{T}"/> to use as a base for the new <see cref="CircularLinkedList{T}"/>.</param>
 		/// <returns>A new <see cref="CircularLinkedList{T}"/> with <paramref name="list"/> as the base.</returns>

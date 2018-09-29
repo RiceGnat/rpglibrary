@@ -26,7 +26,7 @@ namespace Davfalcon
 		private StatsCalculator() { }
 
 		/// <summary>
-		/// Initializes a new <see cref="StatsCalculator"/> that will calculate using the specified stat operands and calculator.
+		/// Initializes a new instance of the <see cref="StatsCalculator"/> class that will calculate using the specified stat operands and calculator.
 		/// </summary>
 		/// <param name="original">The original set of stats to use.</param>
 		/// <param name="additions">A set of values to add to each stat.</param>
@@ -42,7 +42,7 @@ namespace Davfalcon
 		}
 
 		/// <summary>
-		/// Initializes a new <see cref="StatsCalculator"/> that will calculate using the specified stat operands and default calculator.
+		/// Initializes a new instance of the <see cref="StatsCalculator"/> class that will calculate using the specified stat operands and default calculator.
 		/// </summary>
 		/// <param name="original">The original set of stats to use.</param>
 		/// <param name="additions">A set of values to add to each stat.</param>

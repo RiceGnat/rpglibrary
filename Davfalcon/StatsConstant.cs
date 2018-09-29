@@ -7,7 +7,7 @@ namespace Davfalcon
 	/// </summary>
 	public class StatsConstant : StatsPrototype
 	{
-		private int value;
+		private readonly int value;
 
 		/// <summary>
 		/// Gets a stat by string name.
@@ -17,7 +17,7 @@ namespace Davfalcon
 		public override int Get(Enum stat) => value;
 
 		/// <summary>
-		/// Initializes a new <see cref="StatsConstant"/> that returns a constant value for every stat.
+		/// Initializes a new instance of the <see cref="StatsConstant"/> class that returns a constant value for every stat.
 		/// </summary>
 		/// <param name="value">The constant value to return.</param>
 		public StatsConstant(int value) => this.value = value;

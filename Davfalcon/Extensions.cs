@@ -40,6 +40,12 @@ namespace Davfalcon
 			return null;
 		}
 
+		/// <summary>
+		/// Returns a read-only <see cref="IReadOnlyCollection{T}"/> wrapper for the specified collection.
+		/// </summary>
+		/// <typeparam name="T">The type of the elements.</typeparam>
+		/// <param name="collection">The collection to wrap. May be <c>null</c>.</param>
+		/// <returns>An object that acts as a read-only wrapper around the specified collection. If <paramref name="collection"/> is <c>null</c>, returns a wrapper around an empty collection.</returns>
 		public static IReadOnlyCollection<T> ToNewReadOnlyCollectionSafe<T>(this IEnumerable<T> collection)
 			=> (collection == null ? new List<T>() : new List<T>(collection)).AsReadOnly();
 	}

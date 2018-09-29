@@ -11,9 +11,9 @@ namespace Davfalcon
 		private class StatsModifier : IStatsPackage
 		{
 			private IUnit unit;
-			private StatsAggregator additions;
-			private StatsAggregator multiplications;
-			private StatsCalculator final;
+			private readonly StatsAggregator additions;
+			private readonly StatsAggregator multiplications;
+			private readonly StatsCalculator final;
 
 			public IStats Base
 			{
@@ -80,7 +80,7 @@ namespace Davfalcon
 		IStats IStatsModifier.Multiplications => Multiplications;
 
 		/// <summary>
-		/// Initializes a new <see cref="UnitStatsModifier"/> with no values set.
+		/// Initializes a new instance of the <see cref="UnitStatsModifier"/> class.
 		/// </summary>
 		public UnitStatsModifier()
 		{
@@ -88,6 +88,10 @@ namespace Davfalcon
 			Multiplications = new StatsMap();
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UnitStatsModifier"/> class with the specified <see cref="IStatsResolver"/>.
+		/// </summary>
+		/// <param name="calculator">The stat calculation definition.</param>
 		public UnitStatsModifier(IStatsResolver calculator)
 			: this()
 		{

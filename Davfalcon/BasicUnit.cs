@@ -108,12 +108,16 @@ namespace Davfalcon
 		}
 
 		/// <summary>
-		/// Constructs a basic unit with no properties set.
+		/// Initializes a new instance of the <see cref="BasicUnit"/> class with no properties set.
 		/// </summary>
 		public BasicUnit()
 			: this(StatsResolver.Default)
 		{ }
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified <see cref="IStatsResolver"/>.
+		/// </summary>
+		/// <param name="statsResolver">Used to define the seed for aggregating stat multipliers.</param>
 		public BasicUnit(IStatsResolver statsResolver)
 		{
 			this.statsResolver = statsResolver;

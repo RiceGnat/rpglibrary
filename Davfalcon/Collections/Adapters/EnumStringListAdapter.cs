@@ -5,6 +5,9 @@ using Davfalcon.Serialization;
 
 namespace Davfalcon.Collections.Adapters
 {
+	/// <summary>
+	/// An adapter to allow representation of an <see cref="IList{EnumString}"/> interface as an <see cref="IList{Enum}"/> interface.
+	/// </summary>
 	[Serializable]
 	public class EnumStringListAdapter : IList<Enum>
 	{
@@ -63,6 +66,10 @@ namespace Davfalcon.Collections.Adapters
 		void IList<Enum>.RemoveAt(int index)
 			=> list.RemoveAt(index);
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="EnumStringListAdapter"/> class for the specified list.
+		/// </summary>
+		/// <param name="source">The list to be adapted.</param>
 		public EnumStringListAdapter(IList<EnumString> source)
 			=> list = source;
 

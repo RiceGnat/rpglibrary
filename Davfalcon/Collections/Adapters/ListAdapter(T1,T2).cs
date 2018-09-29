@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 namespace Davfalcon.Collections.Adapters
 {
+	/// <summary>
+	/// An adapter to allow representation of one type of <see cref="IList{T}"/> interface as another type of <see cref="IList{T}"/> interface.
+	/// </summary>
+	/// <typeparam name="T1">The original type of the elements.</typeparam>
+	/// <typeparam name="T2">The type to represent the elemetns as instead. <typeparamref name="T1"/> should be able to be cast into <typeparamref name="T2"/>.</typeparam>
 	[Serializable]
 	public class ListAdapter<T1, T2> : IList<T2> where T1 : class where T2 : class
 	{
@@ -51,6 +56,10 @@ namespace Davfalcon.Collections.Adapters
 		void IList<T2>.RemoveAt(int index)
 			=> list.RemoveAt(index);
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ListAdapter{T1, T2}"/> class that wraps the specified list.
+		/// </summary>
+		/// <param name="source">The list to adapt.</param>
 		public ListAdapter(IList<T1> source)
 			=> list = source;
 
