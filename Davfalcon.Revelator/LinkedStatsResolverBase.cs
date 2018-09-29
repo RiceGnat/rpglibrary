@@ -19,6 +19,6 @@ namespace Davfalcon.Revelator
 			return false;
 		}
 
-		public static ILinkedStatResolver Default = new LinkedStatsResolverBase();
+		public static ILinkedStatResolver Default { get; } = new LinkedStatsResolverBase();
 	}
 }

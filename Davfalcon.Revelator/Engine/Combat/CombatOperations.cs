@@ -5,6 +5,6 @@
 		public virtual int CalculateHitChance(int hit, int dodge)
 			=> hit - dodge;
 
-		new public static CombatOperations Default = new CombatOperations();
+		new public static CombatOperations Default { get; } = new CombatOperations();
 	}
 }

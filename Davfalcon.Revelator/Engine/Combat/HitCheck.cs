@@ -26,5 +26,8 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 		public static HitCheck Success = new HitCheck(true);
 		public static HitCheck Miss = new HitCheck(false);
+
+		public static implicit operator bool(HitCheck hitCheck)
+			=> hitCheck.Hit;
 	}
 }

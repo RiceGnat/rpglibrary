@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 namespace Davfalcon.Revelator
 {
@@ -39,9 +38,8 @@ namespace Davfalcon.Revelator
 			this.statLinker = statLinker;
 		}
 
-		public class Builder
+		public class Builder : BuilderBase<Unit, IUnit>
 		{
-			private Unit unit;
 			private readonly IStatsResolver statsMath;
 			private readonly ILinkedStatResolver statLinker;
 
@@ -58,22 +56,22 @@ namespace Davfalcon.Revelator
 
 			public Builder Reset()
 			{
-				unit = new Unit(statsMath, statLinker);
-				unit.Initialize();
+				build = new Unit(statsMath, statLinker);
+				build.Initialize();
 				return this;
 			}
 
 			public Builder SetMainDetails(string name, string className = "", int level = 1)
 			{
-				unit.Name = name;
-				unit.Class = className;
-				unit.Level = level;
+				build.Name = name;
+				build.Class = className;
+				build.Level = level;
 				return this;
 			}
 
 			public Builder SetBaseStat(Enum stat, int value)
 			{
-				unit.BaseStats[stat] = value;
+				build.BaseStats[stat] = value;
 				return this;
 			}
 
@@ -94,9 +92,6 @@ namespace Davfalcon.Revelator
 				}
 				return this;
 			}
-
-			public IUnit Build()
-				=> unit;
 		}
 	}
 }

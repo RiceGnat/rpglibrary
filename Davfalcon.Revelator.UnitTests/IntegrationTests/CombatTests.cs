@@ -63,8 +63,8 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 					int old = args.Owner.VolatileStats[CombatStats.HP];
 					args.Owner.VolatileStats[CombatStats.HP] += (args as CombatEffectArgs).DamageDealt.Value;
 					StatChange heal = new StatChange(args.Owner, CombatStats.HP, args.Owner.VolatileStats[CombatStats.HP] - old);
-					ActionResult result = new ActionResult(args.Owner, args.Owner, null, null, heal);
-					return EffectResult.FromArgs(args as CombatEffectArgs, new List<ActionResult> { result });
+					TargetedUnit result = new TargetedUnit(args.Owner, null, null, heal);
+					EffectResult.SetArgsResult(args as CombatEffectArgs, new List<TargetedUnit> { result });
 				})
 				.Build(), 1);
 		}
@@ -74,12 +74,12 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 		{
 			combat.Initialize(unit);
 			combat.Initialize(target);
-			AttackResult result = combat.Attack(unit, target, unit.Equipment.GetEquipment(EquipmentType.Weapon) as IWeapon);
+			ActionResult result = combat.Attack(unit, target, unit.Equipment.GetEquipment(EquipmentType.Weapon) as IWeapon);
 
-			Assert.AreEqual(UNIT_NAME, result.Unit);
-			Assert.AreEqual(TARGET_NAME, result.Target);
-			Assert.AreEqual(WEAPON_NAME, result.Weapon);
-			Assert.AreEqual(45, result.DamageDealt.Value);
+			Assert.AreEqual(UNIT_NAME, result.Unit.Name);
+			Assert.AreEqual(TARGET_NAME, result.Targets.First().Target.Name);
+			Assert.AreEqual(WEAPON_NAME, result.Weapon.Name);
+			Assert.AreEqual(45, result.Targets.First().DamageDealt.Value);
 			Assert.AreEqual(955, target.VolatileStats[CombatStats.HP]);
 		}
 
@@ -89,14 +89,14 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 			combat.Initialize(unit);
 			combat.Initialize(target);
 			unit.VolatileStats[CombatStats.HP] = 50;
-			AttackResult result = combat.Attack(unit, target, unit.Equipment.GetEquipment(EquipmentType.Weapon, 1) as IWeapon);
+			ActionResult result = combat.Attack(unit, target, unit.Equipment.GetEquipment(EquipmentType.Weapon, 1) as IWeapon);
 
-			Assert.AreEqual(UNIT_NAME, result.Unit);
-			Assert.AreEqual(TARGET_NAME, result.Target);
-			Assert.AreEqual(WEAPON_NAME + " 2", result.Weapon);
-			Assert.AreEqual(45, result.DamageDealt.Value);
+			Assert.AreEqual(UNIT_NAME, result.Unit.Name);
+			Assert.AreEqual(TARGET_NAME, result.Targets.First().Target.Name);
+			Assert.AreEqual(WEAPON_NAME + " 2", result.Weapon.Name);
+			Assert.AreEqual(45, result.Targets.First().DamageDealt.Value);
 			Assert.AreEqual(955, target.VolatileStats[CombatStats.HP]);
-			Assert.IsNotNull(result.OnHitEffects.First());
+			Assert.IsNotNull(result.Targets.First().Effects.First());
 			Assert.AreEqual(95, unit.VolatileStats[CombatStats.HP]);
 		}
 	}

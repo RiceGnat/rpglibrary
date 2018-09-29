@@ -58,7 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LinkedStatsTests.cs" />
     <Compile Include="SerializationTests.cs" />
-    <Compile Include="EffectTest.cs" />
     <Compile Include="IntegrationTests\CombatTests.cs" />
   </ItemGroup>
   <ItemGroup>

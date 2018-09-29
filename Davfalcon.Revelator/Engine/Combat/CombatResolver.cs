@@ -49,6 +49,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 		private Config config;
 
+		#region Operations
 		private void AdjustMaxVolatileStats(IUnit unit, IDictionary<Enum, int> prevValues)
 		{
 			foreach (Enum stat in config.StatBindings.VolatileStats)
@@ -111,35 +112,6 @@ namespace Davfalcon.Revelator.Engine.Combat
 
 			// Clear all buffs/debuffs
 			unit.Buffs.Clear();
-		}
-
-		public IList<ILogEntry> Upkeep(IUnit unit)
-		{
-			List<ILogEntry> effects = new List<ILogEntry>();
-			List<IBuff> expired = new List<IBuff>();
-
-			foreach (IBuff buff in unit.Buffs)
-			{
-				// Apply repeating effects
-				if (buff.Duration > 0 && buff.Remaining > 0 ||
-					buff.Duration == 0)
-					effects.AddRange(ApplyEffects(buff, buff.Source, unit));
-
-				// Tick buff timers
-				buff.Tick();
-
-				// Record expired buffs (cannot remove during enumeration)
-				if (buff.Duration > 0 && buff.Remaining == 0)
-					expired.Add(buff);
-			}
-
-			// Remove expired buffs
-			foreach (IBuff buff in expired)
-			{
-				RemoveBuff(unit, buff);
-			}
-
-			return effects;
 		}
 
 		public HitCheck CheckForHit(IUnit unit, IUnit target)
@@ -217,123 +189,128 @@ namespace Davfalcon.Revelator.Engine.Combat
 			{
 				CombatEffectArgs args = new CombatEffectArgs(source, owner, target, this, damage);
 				effect.Resolve(args);
-				list.Add(args.Result);
+				if (args.Result != null) list.Add(args.Result);
 			}
 			return list;
 		}
+		#endregion
 
-		public AttackResult Attack(IUnit unit, IUnit target, IWeapon weapon)
+		#region Actions
+		public IEnumerable<EffectResult> Upkeep(IUnit unit)
+		{
+			List<EffectResult> effects = new List<EffectResult>();
+			List<IBuff> expired = new List<IBuff>();
+
+			foreach (IBuff buff in unit.Buffs)
+			{
+				// Apply repeating effects
+				if (buff.Duration > 0 && buff.Remaining > 0 ||
+					buff.Duration == 0)
+					effects.AddRange(ApplyEffects(buff, buff.Source, unit));
+
+				// Tick buff timers
+				buff.Tick();
+
+				// Record expired buffs (cannot remove during enumeration)
+				if (buff.Duration > 0 && buff.Remaining == 0)
+					expired.Add(buff);
+			}
+
+			// Remove expired buffs
+			foreach (IBuff buff in expired)
+			{
+				RemoveBuff(unit, buff);
+			}
+
+			return effects;
+		}
+
+		public ActionResult Attack(IUnit unit, IUnit target, IWeapon weapon)
 		{
 			HitCheck hit = CheckForHit(unit, target);
 			Damage damage = hit.Hit ? CalculateOutgoingDamage(unit, weapon, true, hit.Crit) : Damage.None;
-			IEnumerable<StatChange> losses = hit.Hit ? ReceiveDamage(target, damage) : null;
+			IEnumerable<StatChange> statChanges = hit.Hit ? ReceiveDamage(target, damage) : null;
 			IEnumerable<EffectResult> effects = hit.Hit ? ApplyEffects(weapon, unit, target, damage) : null;
 
-			return new AttackResult(
-				unit,
-				target,
-				weapon,
-				hit,
-				damage,
-				losses,
-				effects
+			return new ActionResult(
+				unit.DeepClone(),
+				weapon.DeepClone(),
+				new TargetedUnit(target.DeepClone(), hit, damage, statChanges, null, effects)
 			);
 		}
 
-		public SpellResult Cast(IUnit unit, ISpell spell, SpellCastOptions options, IEnumerable<IUnit> targets)
+		public ActionResult Cast(IUnit unit, ISpell spell, IEnumerable<IUnit> targets, SpellCastOptions options)
 		{
 			// Get cost resource from options
 
-			List<ActionResult> results = new List<ActionResult>();
+			List<TargetedUnit> results = new List<TargetedUnit>();
 			foreach (IUnit target in targets)
 			{
 				HitCheck hit;
-				Damage damage;
+				Damage damage = Damage.None;
+				List<StatChange> statChanges = new List<StatChange>();
+				List<IBuff> buffs = new List<IBuff>();
+				List<EffectResult> effects = new List<EffectResult>();
 
-				// 
-
-			}
-			for (int i = 0; i < n; i++)
-			{
-				// Roll hit for attack type spells
-				if (config.SpellAttackType != null && spell.TargetType == config.SpellAttackType)
+				// Roll attack if applicable
+				if (options.UseAttack)
 				{
-					hit[i] = CheckForHit(unit, targets[i]);
-					if (!hit[i].Hit) continue;
+					hit = CheckForHit(unit, target);
 				}
-				else
-				{
-					hit[i] = HitCheck.Success;
-				}
+				else hit = HitCheck.Success;
 
-				List<ILogEntry> effectsList = new List<ILogEntry>();
-
-				// Damage dealing spells
-				if (spell.BaseDamage > 0)
+				if (hit)
 				{
-					damage[i] = CalculateOutgoingDamage(unit, spell, !options.NoScaling, hit[i].Crit);
-					hpLost[i] = ReceiveDamage(targets[i], damage[i]);
-				}
+					// Deal damage
+					if (spell.BaseDamage > 0)
+					{
+						damage = CalculateOutgoingDamage(unit, spell, options.ScaleDamage, hit.Crit);
+						statChanges.AddRange(ReceiveDamage(target, damage));
+					}
 
-				// Apply buffs/debuffs
-				foreach (IBuff buff in spell.GrantedBuffs)
-				{
-					ApplyBuff(targets[i], buff, String.Format("{0}'s {1}", unit.Name, spell.Name));
-					effectsList.Add(new LogEntry(string.Format("{0} is affected by {1}.", targets[i].Name, buff.Name)));
+					foreach (IBuff buff in spell.GrantedBuffs)
+					{
+						ApplyBuff(target, buff, unit);
+						buffs.Add(buff.DeepClone());
+					}
+
+					effects.AddRange(ApplyEffects(spell, unit, target, damage));
 				}
 
-				// Healing spells
-				if (spell.BaseHeal > 0)
-				{
-					// Need to genericize scaling for heals
-					int healValue = ChangeHP(targets[i], spell.BaseHeal);
-					effectsList.Add(new LogEntry(string.Format("{0} is healed for {1} HP.", targets[i].Name, healValue)));
-				}
-
-				// Apply other effects
-				effectsList.AddRange(ApplyEffects(spell, targets[i], unit, hpLost[i] != null ? hpLost[i].Value : 0));
-
-				effects[i] = effectsList;
+				results.Add(new TargetedUnit(target, hit, damage, statChanges, buffs, effects));
 			}
 
-			return new SpellAction(
-				unit,
-				spell,
-				targets,
-				hit,
-				damage,
-				hpLost,
-				effects
-			);
-			return null;
+			return new ActionResult(
+				unit.DeepClone(),spell, results);
 		}
 
-		public SpellResult Cast(IUnit unit, ISpell spell, params IUnit[] targets)
-			=> Cast(unit, spell, new SpellCastOptions(), targets);
+		public ActionResult Cast(IUnit unit, ISpell spell, params IUnit[] targets)
+			=> Cast(unit, spell, targets, new SpellCastOptions());
 
 		public IList<ILogEntry> UseItem(IUnit unit, IUsableItem item, params IUnit[] targets)
 		{
-			List<ILogEntry> effects = new List<ILogEntry>();
-			effects.Add(new LogEntry(string.Format("{0} uses {1}.", unit.Name, item.Name)));
-			foreach (IUnit target in targets)
-			{
-				effects.AddRange(ApplyEffects(item, unit, target));
-			}
-			return effects;
+			throw new NotImplementedException();
+			//List<ILogEntry> effects = new List<ILogEntry>();
+			//effects.Add(new LogEntry(string.Format("{0} uses {1}.", unit.Name, item.Name)));
+			//foreach (IUnit target in targets)
+			//{
+			//	effects.AddRange(ApplyEffects(item, unit, target));
+			//}
+			//return effects;
 		}
 
 		public IList<ILogEntry> UseItem(IUnit unit, ISpellItem item, params IUnit[] targets)
 		{
-			List<ILogEntry> effects = new List<ILogEntry>();
-			effects.AddRange(UseItem(unit, (IUsableItem)item, targets));
-			effects.Add(Cast(unit, item.Spell, targets));
-			return effects;
+			throw new NotImplementedException();
+			//List<ILogEntry> effects = new List<ILogEntry>();
+			//effects.AddRange(UseItem(unit, (IUsableItem)item, targets));
+			//effects.Add(Cast(unit, item.Spell, targets));
+			//return effects;
 		}
+		#endregion
 
 		private CombatResolver(Config config)
 			=> this.config = config;
-
-		public static ICombatResolver Default = new Builder().Build();
 
 		public class Builder
 		{
@@ -403,5 +380,7 @@ namespace Davfalcon.Revelator.Engine.Combat
 			public ICombatResolver Build()
 				=> new CombatResolver(config);
 		}
+
+		public static ICombatResolver Default { get; } = new Builder().Build();
 	}
 }

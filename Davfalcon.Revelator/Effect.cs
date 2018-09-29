@@ -2,7 +2,6 @@
 
 namespace Davfalcon.Revelator
 {
-	// Incomplete placeholder
 	[Serializable]
 	public class Effect : IEffect
 	{

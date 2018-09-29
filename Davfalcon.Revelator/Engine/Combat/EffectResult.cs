@@ -8,18 +8,22 @@ namespace Davfalcon.Revelator.Engine.Combat
 	{
 		public string Owner { get; }
 		public string Source { get; }
-		public IEnumerable<ActionResult> UnitsAffected { get; }
-		public IEnumerable<EffectResult> ChildEffects { get; }
+		public string Message { get; }
+		public IEnumerable<TargetedUnit> UnitsAffected { get; }
 
-		public EffectResult(IUnit owner, IEffectSource source, IEnumerable<ActionResult> unitsAffected, IEnumerable<EffectResult> childEffects = null)
+		public EffectResult(IUnit owner, IEffectSource source, IEnumerable<TargetedUnit> unitsAffected)
 		{
 			Owner = owner.Name;
 			Source = source.Name;
 			UnitsAffected = unitsAffected.ToNewReadOnlyCollectionSafe();
-			ChildEffects = childEffects.ToNewReadOnlyCollectionSafe();
 		}
 
-		public static EffectResult FromArgs(CombatEffectArgs args, IEnumerable<ActionResult> unitsAffected, IEnumerable<EffectResult> childEffects = null)
-			=> args.Result = new EffectResult(args.Owner, args.Source, unitsAffected, childEffects);
+		public EffectResult(string message)
+		{
+			Message = message;
+		}
+
+		public static EffectResult SetArgsResult(CombatEffectArgs args, IEnumerable<TargetedUnit> unitsAffected)
+			=> args.Result = new EffectResult(args.Owner, args.Source, unitsAffected);
 	}
 }

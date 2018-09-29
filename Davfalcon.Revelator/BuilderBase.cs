@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Davfalcon.Revelator
+﻿namespace Davfalcon.Revelator
 {
-	internal abstract class BuilderBase
+	public abstract class BuilderBase<T, TOut> where T : TOut
 	{
+		protected T build;
+
+		public virtual TOut Build()
+			=> build;
+	}
+
+	public abstract class BuilderBase<T> : BuilderBase<T, T>
+	{
+
 	}
 }

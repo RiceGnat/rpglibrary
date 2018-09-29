@@ -45,8 +45,9 @@
   <ItemGroup>
     <Compile Include="BuilderBase.cs" />
     <Compile Include="Effect.cs" />
-    <Compile Include="Engine\Combat\CombatEffectArgs.cs" />
     <Compile Include="Engine\Combat\ActionResult.cs" />
+    <Compile Include="Engine\Combat\CombatEffectArgs.cs" />
+    <Compile Include="Engine\Combat\TargetedUnit.cs" />
     <Compile Include="Engine\Combat\CombatResolver.cs" />
     <Compile Include="Engine\Combat\CombatOperations.cs" />
     <Compile Include="Engine\Combat\EffectResult.cs" />
@@ -60,12 +61,10 @@
     <Compile Include="EffectArgs.cs" />
     <Compile Include="Buff.cs" />
     <Compile Include="ClassProperties.cs" />
-    <Compile Include="Engine\Combat\AttackResult.cs" />
     <Compile Include="Engine\Combat\Damage.cs" />
     <Compile Include="Engine\Combat\HitCheck.cs" />
     <Compile Include="Engine\Combat\StatChange.cs" />
     <Compile Include="ILinkedStatResolver.cs" />
-    <Compile Include="Engine\Combat\SpellResult.cs" />
     <Compile Include="Engine\Combat\SpellCastOptions.cs" />
     <Compile Include="ILogEntry.cs" />
     <Compile Include="IUnit.cs" />

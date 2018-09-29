@@ -12,10 +12,9 @@ namespace Davfalcon.Revelator
 		public ManagedList<IBuff> GrantedBuffs { get; } = new ManagedList<IBuff>();
 		IEnumerable<IBuff> IEquipment.GrantedBuffs => GrantedBuffs.AsReadOnly();
 
-		public class Builder
+		public class Builder : BuilderBase<Equipment, IEquipment>
 		{
-			protected Equipment equipment;
-			protected readonly Enum slot;
+			private readonly Enum slot;
 
 			public Builder(Enum slot)
 			{
@@ -25,7 +24,7 @@ namespace Davfalcon.Revelator
 
 			public Builder Reset()
 			{
-				equipment = new Equipment()
+				build = new Equipment()
 				{
 					SlotType = slot
 				};
@@ -34,30 +33,27 @@ namespace Davfalcon.Revelator
 
 			public Builder SetName(string name)
 			{
-				equipment.Name = name;
+				build.Name = name;
 				return this;
 			}
 
 			public Builder SetStatAddition(Enum stat, int value)
 			{
-				equipment.Additions[stat] = value;
+				build.Additions[stat] = value;
 				return this;
 			}
 
 			public Builder SetStatMultiplier(Enum stat, int value)
 			{
-				equipment.Multiplications[stat] = value;
+				build.Multiplications[stat] = value;
 				return this;
 			}
 
 			public Builder AddBuff(IBuff buff)
 			{
-				equipment.GrantedBuffs.Add(buff);
+				build.GrantedBuffs.Add(buff);
 				return this;
 			}
-
-			public IEquipment Build()
-				=> equipment;
 		}
 	}
 }

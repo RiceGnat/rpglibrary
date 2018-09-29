@@ -4,25 +4,31 @@ using System.Collections.Generic;
 namespace Davfalcon.Revelator.Engine.Combat
 {
 	[Serializable]
-	public class ActionResult : ILogEntry
+	public class ActionResult
 	{
-		public string Unit { get; }
-		public string Target { get; }
-		public HitCheck Hit { get; }
-		public Damage DamageDealt { get; }
-		public IEnumerable<StatChange> StatChanges { get; }
+		public IUnit Unit { get; }
+		public IWeapon Weapon { get; }
+		public ISpell Spell { get; }
+		public IEnumerable<TargetedUnit> Targets { get; }
 
-		public ActionResult(IUnit unit, IUnit target, HitCheck hit, Damage damageDealt, IEnumerable<StatChange> statChanges = null)
+		public ActionResult(IUnit unit, IWeapon weapon, ISpell spell, IEnumerable<TargetedUnit> targets)
 		{
-			Unit = unit.Name;
-			Target = target.Name;
-			Hit = hit;
-			DamageDealt = damageDealt;
-			StatChanges = statChanges.ToNewReadOnlyCollectionSafe();
+			Unit = unit;
+			Weapon = weapon;
+			Spell = spell;
+			Targets = targets.ToNewReadOnlyCollectionSafe();
 		}
 
-		public ActionResult(IUnit unit, IUnit target, HitCheck hit, Damage damageDealt, StatChange statChange)
-			: this(unit, target, hit, damageDealt, new List<StatChange> { statChange })
+		public ActionResult(IUnit unit, IWeapon weapon, ISpell spell, params TargetedUnit[] targets)
+			: this(unit, weapon, spell, targets as IEnumerable<TargetedUnit>)
+		{ }
+
+		public ActionResult(IUnit attacker, IWeapon weapon, TargetedUnit target)
+			: this(attacker, weapon, null, target)
+		{ }
+
+		public ActionResult(IUnit caster, ISpell spell, IEnumerable<TargetedUnit> targets)
+			: this(caster, null, spell, targets)
 		{ }
 	}
 }

@@ -57,6 +57,6 @@ namespace Davfalcon.Revelator.Borger
 			return found;
 		}
 
-		new public static ILinkedStatResolver Default = new LinkedStatsResolver();
+		new public static ILinkedStatResolver Default { get; } = new LinkedStatsResolver();
 	}
 }

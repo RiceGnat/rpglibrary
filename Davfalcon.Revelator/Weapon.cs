@@ -26,25 +26,21 @@ namespace Davfalcon.Revelator
 		public ManagedList<IEffect> Effects { get; } = new ManagedList<IEffect>();
 		IEnumerable<IEffect> IEffectSource.Effects => Effects.AsReadOnly();
 
-		new public class Builder : Equipment.Builder
+		new public class Builder : BuilderBase<Weapon, IWeapon>
 		{
-			private Weapon Weapon
-			{
-				get => equipment as Weapon;
-				set => equipment = value;
-			}
+			private readonly Enum slot;
 			private readonly Enum type;
 
 			public Builder(Enum equipmentSlot, Enum type)
-				: base(equipmentSlot)
 			{
+				this.slot = equipmentSlot;
 				this.type = type;
 				Reset();
 			}
 
-			new public Builder Reset()
+			public Builder Reset()
 			{
-				Weapon = new Weapon()
+				build = new Weapon()
 				{
 					SlotType = slot,
 					WeaponType = type,
@@ -53,54 +49,63 @@ namespace Davfalcon.Revelator
 				return this;
 			}
 
-			new public Builder SetName(string name)
-				=> base.SetName(name) as Builder;
+			public Builder SetName(string name)
+			{
+				build.Name = name;
+				return this;
+			}
 
-			new public Builder SetStatAddition(Enum stat, int value)
-				=> base.SetStatAddition(stat, value) as Builder;
+			public Builder SetStatAddition(Enum stat, int value)
+			{
+				build.Additions[stat] = value;
+				return this;
+			}
 
-			new public Builder SetStatMultiplier(Enum stat, int value)
-				=> base.SetStatAddition(stat, value) as Builder;
+			public Builder SetStatMultiplier(Enum stat, int value)
+			{
+				build.Multiplications[stat] = value;
+				return this;
+			}
 
-			new public Builder AddBuff(IBuff buff)
-				=> base.AddBuff(buff) as Builder;
+			public Builder AddBuff(IBuff buff)
+			{
+				build.GrantedBuffs.Add(buff);
+				return this;
+			}
 
 			public Builder SetDamage(int baseDamage, Enum bonusDamageStat = null)
 			{
-				Weapon.BaseDamage = baseDamage;
-				Weapon.BonusDamageStat = bonusDamageStat;
+				build.BaseDamage = baseDamage;
+				build.BonusDamageStat = bonusDamageStat;
 				return this;
 			}
 
 			public Builder AddDamageType(Enum type)
 			{
-				Weapon.DamageTypes.Add(type);
+				build.DamageTypes.Add(type);
 				return this;
 			}
 
 			public Builder AddDamageTypes(params Enum[] types)
 			{
-				Weapon.DamageTypes.AddRange(types.ConvertEnumArray());
+				build.DamageTypes.AddRange(types.ConvertEnumArray());
 				return this;
 			}
 
 			public Builder SetCritMultiplier(int crit)
 			{
-				Weapon.CritMultiplier = crit;
+				build.CritMultiplier = crit;
 				return this;
 			}
 
 			public Builder AddOnHitEffect(IEffect effect)
 			{
-				Weapon.Effects.Add(effect);
+				build.Effects.Add(effect);
 				return this;
 			}
 
 			public Builder AddOnHitEffect(string name, EffectResolver resolver)
 				=> AddOnHitEffect(new Effect(name, resolver));
-
-			new public IWeapon Build()
-				=> Weapon;
 		}
 	}
 }

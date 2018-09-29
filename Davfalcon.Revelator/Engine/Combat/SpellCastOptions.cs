@@ -6,13 +6,14 @@
 		public bool ScaleDamage { get; private set;  } = true;
 		public bool UseAttack { get; private set; } = false;
 
-		public class Builder
-		{
-			private SpellCastOptions options;
+		public static SpellCastOptions Default { get; }
 
-			public Builder()
+		public class Builder : BuilderBase<SpellCastOptions>
+		{
+			public Builder SetCost(int cost)
 			{
-				options = new 
+				build.CostOverride = cost;
+				return this;
 			}
 		}
 	}
