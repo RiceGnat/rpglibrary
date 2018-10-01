@@ -10,10 +10,7 @@ namespace Davfalcon.Serialization
 	public sealed class EnumString
 	{
 		private readonly string str;
-		private readonly string type;
-
-		[NonSerialized]
-		private Type t;
+		private readonly Type type;
 
 		/// <summary>
 		/// Create a new <see cref="EnumString"/> from the specified enum value.
@@ -22,14 +19,7 @@ namespace Davfalcon.Serialization
 		public EnumString(Enum e)
 		{
 			str = e.ToString();
-			t = e.GetType();
-			type = t.ToString();
-		}
-
-		[OnDeserialized]
-		private void Rebind(StreamingContext context)
-		{
-			t = type.GetEnumType();
+			type = e.GetType();
 		}
 
 		/// <summary>
@@ -39,7 +29,7 @@ namespace Davfalcon.Serialization
 		/// <returns><c>true</c> if the specified object is equal to the current object; otherwise, <c>false</c>.</returns>
 		public override bool Equals(object obj)
 			=> str.Equals(obj.ToString()) &&
-			!(obj is Enum && !type.Equals(obj.GetType().ToString())) &&
+			!(obj is Enum && !type.Equals(obj.GetType())) &&
 			!(obj is EnumString && !type.Equals((obj as EnumString).type));
 
 		/// <summary>
@@ -68,7 +58,7 @@ namespace Davfalcon.Serialization
 		/// </summary>
 		/// <param name="es">The <see cref="EnumString"/> to convert.</param>
 		public static implicit operator Enum(EnumString es)
-			=> (Enum)Enum.Parse(es.t, es.str);
+			=> (Enum)Enum.Parse(es.type, es.str);
 
 		/// <summary>
 		/// Converts an <see cref="EnumString"/> to its string representation.
