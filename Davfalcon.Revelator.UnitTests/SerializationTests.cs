@@ -30,7 +30,7 @@ namespace Davfalcon.Revelator.UnitTests
 		}
 		*/
 		private IUnit MakeUnit()
-			=> new Unit.Builder(StatsResolver.Default, LinkedStatsResolver.Default)
+			=> new Unit.Builder(StatsOperations.Default, LinkedStatsResolver.Default)
 				.SetMainDetails("Test Unit", "Class")
 				.SetAllBaseStats<Attributes>(10)
 				.Build();
@@ -57,10 +57,10 @@ namespace Davfalcon.Revelator.UnitTests
 		public void BuffSerialization()
 		{
 			Buff buff = new Buff();
-			buff.Multiplications[CombatStats.DEF] = 10;
+			buff.Multipliers[CombatStats.DEF] = 10;
 
 			Buff clone = Serializer.DeepClone(buff);
-			Assert.AreEqual(buff.Multiplications[CombatStats.DEF], clone.Multiplications[CombatStats.DEF]);
+			Assert.AreEqual(buff.Multipliers[CombatStats.DEF], clone.Multipliers[CombatStats.DEF]);
 		}
 		/*
 		[TestMethod]

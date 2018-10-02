@@ -32,31 +32,31 @@ namespace Davfalcon.Revelator
 			statLinker.Bind(this);
 		}
 
-		private Unit(IMathOperations statsMath, ILinkedStatResolver statLinker)
-			: base(statsMath)
+		private Unit(IStatsOperations statsOperations, ILinkedStatResolver statLinker)
+			: base(statsOperations)
 		{
 			this.statLinker = statLinker;
 		}
 
 		public class Builder : BuilderBase<Unit, IUnit>
 		{
-			private readonly IMathOperations statsMath;
+			private readonly IStatsOperations statsOperations;
 			private readonly ILinkedStatResolver statLinker;
 
 			public Builder() :
-				this(StatsResolver.Default, LinkedStatsResolverBase.Default)
+				this(StatsOperations.Default, LinkedStatsResolverBase.Default)
 			{ }
 
-			public Builder(IMathOperations statsMath, ILinkedStatResolver statLinker)
+			public Builder(IStatsOperations statsOperations, ILinkedStatResolver statLinker)
 			{
-				this.statsMath = statsMath;
+				this.statsOperations = statsOperations;
 				this.statLinker = statLinker;
 				Reset();
 			}
 
 			public Builder Reset()
 			{
-				build = new Unit(statsMath, statLinker);
+				build = new Unit(statsOperations, statLinker);
 				build.Initialize();
 				return this;
 			}

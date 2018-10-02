@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Davfalcon.Collections.Generic
 {
+	[Serializable]
 	public sealed class EmptyEnumerable<T> : IEnumerable<T>
 	{
 		private static readonly DummyEnumerator dummy = new DummyEnumerator();

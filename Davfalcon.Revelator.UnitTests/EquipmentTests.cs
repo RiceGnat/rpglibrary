@@ -3,6 +3,8 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Davfalcon.Revelator.Borger;
 using Davfalcon.Serialization;
+using Davfalcon.Nodes;
+using System.Diagnostics;
 
 namespace Davfalcon.Revelator.UnitTests
 {

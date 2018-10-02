@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Specifies operations used to calculate stats.
 	/// </summary>
-	public interface IMathOperations : IAggregator
+	public interface IStatsOperations : IAggregator
 	{
 		/// <summary>
 		/// Scales a value by another value. Used to define how multiplicative modifiers are applied.
@@ -26,7 +26,7 @@
 		/// </summary>
 		/// <param name="a">Value to be added.</param>
 		/// <param name="b">Value to be added.</param>
-		/// <param name="m">Multiplication factor.</param>
+		/// <param name="m">Multiplier factor.</param>
 		int Calculate(int a, int b, int m);
 	}
 }

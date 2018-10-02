@@ -6,7 +6,7 @@ namespace Davfalcon
 	/// Defines default stat operations.
 	/// </summary>
 	[Serializable]
-	public class StatsResolver : IMathOperations
+	public class StatsOperations : IStatsOperations
 	{
 		/// <summary>
 		/// Defines the seed value for aggregating multipliers. Should be 0 for additive and 1 for multiplicative stacking.
@@ -50,9 +50,11 @@ namespace Davfalcon
 		public virtual int Calculate(int a, int b, int m)
 			=> Scale(a + b, m);
 
+		protected StatsOperations() { }
+
 		/// <summary>
-		/// A singleton instance of the default <see cref="StatsResolver"/> definition.
+		/// A singleton instance of the default <see cref="StatsOperations"/> definition.
 		/// </summary>
-		public static IMathOperations Default = new StatsResolver();
+		public static IStatsOperations Default = new StatsOperations();
 	}
 }

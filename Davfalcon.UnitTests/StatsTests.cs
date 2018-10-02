@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Davfalcon.Stats;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Davfalcon.UnitTests.TestConstants;
 
 namespace Davfalcon.UnitTests
@@ -30,7 +31,7 @@ namespace Davfalcon.UnitTests
 			int expected = (STAT_VALUE + STAT_VALUE) * (int)(1 + STAT_MULT / 100f);
 
 			Assert.AreEqual(expected, stats[STAT_NAME]);
-			Assert.AreEqual(expected, StatsResolver.Default.Calculate(STAT_VALUE, STAT_VALUE, STAT_MULT));
+			Assert.AreEqual(expected, StatsOperations.Default.Calculate(STAT_VALUE, STAT_VALUE, STAT_MULT));
 		}
 	}
 }

@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Exposes properties, events, and functions for dynamic modifiers such as buffs and debuffs.
 	/// </summary>
-	public interface ITimedModifier : IUnitModifier
+	public interface ITimedModifier : IStatsModifier
 	{
 		/// <summary>
 		/// Gets the total duration of the modifier.

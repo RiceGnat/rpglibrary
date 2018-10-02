@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace Davfalcon
+namespace Davfalcon.Stats
 {
 	/// <summary>
 	/// Aggregates two sets of stats.
 	/// </summary>
 	public class StatsAggregator : StatsPrototype
 	{
-		private readonly IMathOperations calculator;
+		private readonly IAggregator aggregator;
 
 		private readonly IStats a;
 		private readonly IStats b;
@@ -19,7 +19,7 @@ namespace Davfalcon
 		/// <returns></returns>
 		public override int Get(Enum stat)
 		{
-			return calculator.Aggregate(a[stat], b[stat]);
+			return aggregator.Aggregate(a[stat], b[stat]);
 		}
 
 		private StatsAggregator() { }
@@ -29,22 +29,22 @@ namespace Davfalcon
 		/// </summary>
 		/// <param name="a">The first set of stats to aggregate.</param>
 		/// <param name="b">The second set of stats to aggregate.</param>
-		/// <param name="calculator">The <see cref="IMathOperations"/> interface that defines the aggregation function to use. If set to <c>null</c>, uses <see cref="StatsResolver.Default"/>.</param>
-		public StatsAggregator(IStats a, IStats b, IMathOperations calculator)
+		/// <param name="aggregator">The <see cref="IAggregator"/> interface that defines the aggregation function to use.</param>
+		public StatsAggregator(IStats a, IStats b, IAggregator aggregator)
 		{
 			this.a = a;
 			this.b = b;
 
-			this.calculator = calculator ?? StatsResolver.Default;
+			this.aggregator = aggregator;
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="StatsAggregator"/> class using the aggregation function specified by the default <see cref="StatsResolver"/> implementation.
+		/// Initializes a new instance of the <see cref="StatsAggregator"/> class using the aggregation function specified by the default <see cref="StatsOperations"/> implementation.
 		/// </summary>
 		/// <param name="a">The first set of stats to aggregate.</param>
 		/// <param name="b">The second set of stats to aggregate.</param>
 		public StatsAggregator(IStats a, IStats b)
-			: this(a, b, null)
+			: this(a, b, StatsOperations.Default)
 		{ }
 	}
 }

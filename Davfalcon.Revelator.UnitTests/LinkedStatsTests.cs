@@ -10,7 +10,7 @@ namespace Davfalcon.Revelator.UnitTests
 
 		[TestInitialize]
 		public void MakeUnit()
-			=> unit = new Unit.Builder(StatsResolver.Default, LinkedStatsResolver.Default)
+			=> unit = new Unit.Builder(StatsOperations.Default, LinkedStatsResolver.Default)
 				.SetBaseStat(Attributes.STR, 15)
 				.SetBaseStat(Attributes.VIT, 12)
 				.SetBaseStat(Attributes.AGI, 8)

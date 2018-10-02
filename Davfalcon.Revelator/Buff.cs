@@ -21,6 +21,9 @@ namespace Davfalcon.Revelator
 		public ManagedList<IEffect> Effects { get; } = new ManagedList<IEffect>();
 		IEnumerable<IEffect> IEffectSource.Effects => Effects.AsReadOnly();
 
+		protected override IStatsPackage GetStatsResolver()
+			=> GetStatsResolver<IBuff>(this);
+
 		public class Builder
 		{
 			protected Buff buff;
@@ -60,7 +63,7 @@ namespace Davfalcon.Revelator
 
 			public Builder SetStatMultiplier(Enum stat, int value)
 			{
-				buff.Multiplications[stat] = value;
+				buff.Multipliers[stat] = value;
 				return this;
 			}
 

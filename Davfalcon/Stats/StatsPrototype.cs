@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Davfalcon
+namespace Davfalcon.Stats
 {
 	/// <summary>
 	/// Abstract base class for <see cref="IStats"/>.

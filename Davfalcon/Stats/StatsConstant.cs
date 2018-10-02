@@ -1,10 +1,11 @@
 ﻿using System;
 
-namespace Davfalcon
+namespace Davfalcon.Stats
 {
 	/// <summary>
 	/// Returns a constant value for every stat.
 	/// </summary>
+	[Serializable]
 	public class StatsConstant : StatsPrototype
 	{
 		private readonly int value;

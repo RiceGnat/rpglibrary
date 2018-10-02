@@ -1,4 +1,5 @@
 ﻿using System;
+using Davfalcon.Stats;
 
 namespace Davfalcon.Revelator
 {

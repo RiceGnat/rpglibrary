@@ -13,6 +13,6 @@
 		/// <summary>
 		/// Gets the multipliers that this item will apply to the unit's stats.
 		/// </summary>
-		IStats Multiplications { get; }
+		IStats Multipliers { get; }
 	}
 }

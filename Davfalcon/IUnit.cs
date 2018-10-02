@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Exposes basic properties of a unit.
 	/// </summary>
-	public interface IUnit : INameable
+	public interface IUnit : INameable, IStatsHolder
 	{
 		/// <summary>
 		/// Gets the unit's name.
@@ -19,16 +19,6 @@
 		/// Gets the unit's level.
 		/// </summary>
 		int Level { get; }
-
-		/// <summary>
-		/// Gets the unit's stats.
-        /// </summary>
-        IStats Stats { get; }
-
-        /// <summary>
-        /// Gets a breakdown of the unit's stats.
-        /// </summary>
-		IStatsPackage StatsDetails { get; }
 
 		/// <summary>
 		/// Gets the modifiers attached to the unit.

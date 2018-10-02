@@ -1,4 +1,6 @@
 ﻿using System;
+using Davfalcon.Nodes;
+using Davfalcon.Stats;
 
 namespace Davfalcon
 {
@@ -8,50 +10,62 @@ namespace Davfalcon
 	[Serializable]
 	public class UnitStatsModifier : UnitModifier, IEditableStatsModifier, IStatsModifier, IUnit
 	{
-		private class StatsModifier : IStatsPackage
+		private class StatsResolver<T> : IStatsPackage where T : IStatsModifier
 		{
-			private IUnit unit;
-			private readonly StatsAggregator additions;
-			private readonly StatsAggregator multiplications;
-			private readonly StatsCalculator final;
+			private readonly T modifier;
+			private readonly IStatsOperations operations;
 
-			public IStats Base
-			{
-				get { return unit.StatsDetails.Base; }
-			}
+			private IStatsPackage TargetDetails => modifier.Target.StatsDetails;
 
-			public IStats Additions
-			{
-				get { return additions; }
-			}
+			public IStats Base => TargetDetails.Base;
+			public IStats Additions { get; }
+			public IStats Multipliers { get; }
+			public IStats Final { get; }
 
-			public IStats Multiplications
-			{
-				get { return multiplications; }
-			}
+			public INode GetBaseStatNode(Enum stat)
+				=> TargetDetails.GetBaseStatNode(stat);
 
-			public IStats Final
-			{
-				get { return final; }
-			}
+			public IAggregatorNode GetAdditionsNode(Enum stat)
+				=> modifier.Additions[stat] != 0
+					? TargetDetails.GetAdditionsNode(stat).Merge(StatNode<T>.CopyStatsFrom(modifier, modifier.Additions, stat))
+					: TargetDetails.GetAdditionsNode(stat);
 
-			public StatsModifier(IUnit unit, IStats additions, IStats multiplications, IMathOperations calculator)
+			public IAggregatorNode GetMultipliersNode(Enum stat)
+				=> modifier.Multipliers[stat] != operations.AggregateSeed
+					? TargetDetails.GetMultipliersNode(stat).Merge(StatNode<T>.CopyStatsFrom(modifier, modifier.Multipliers, stat))
+					: TargetDetails.GetMultipliersNode(stat);
+
+			public INode GetStatNode(Enum stat)
+				=> new ResolverNode($"{stat} ({modifier.Target.Name})",
+					GetBaseStatNode(stat),
+					GetAdditionsNode(stat),
+					GetMultipliersNode(stat),
+					operations);
+
+			public StatsResolver(T modifier, IStatsOperations operations)
 			{
-				this.unit = unit;
-				
+				this.modifier = modifier;
+				this.operations = operations;
+
 				// Always use default aggregator for addition (sum)
-				this.additions = new StatsAggregator(unit.StatsDetails.Additions, additions);
-				this.multiplications = new StatsAggregator(unit.StatsDetails.Multiplications, multiplications, calculator);
+				Additions = new StatsAggregator(TargetDetails.Additions, modifier.Additions);
+				Multipliers = new StatsAggregator(TargetDetails.Multipliers, modifier.Multipliers, operations);
 
 				// The final calculation will use the defined formula (or default if not specified)
-				final = new StatsCalculator(Base, Additions, Multiplications, calculator);
+				Final = new StatsCalculator(Base, Additions, Multipliers, operations);
 			}
 		}
 
 		[NonSerialized]
-		private StatsModifier statsModifier;
+		private IStatsPackage statsResolver;
 
-		private readonly IMathOperations calculator;
+		private readonly IStatsOperations operations;
+
+		protected virtual IStatsPackage GetStatsResolver()
+			=> GetStatsResolver<IStatsModifier>(this);
+
+		protected IStatsPackage GetStatsResolver<T>(T modifier) where T : IStatsModifier
+			=> new StatsResolver<T>(modifier, operations);
 
 		/// <summary>
 		/// Gets or sets the values to be added to each stat.
@@ -61,7 +75,7 @@ namespace Davfalcon
 		/// <summary>
 		/// Gets or sets the values to be multiplied with each stat.
 		/// </summary>
-		public IEditableStats Multiplications { get; set; }
+		public IEditableStats Multipliers { get; set; }
 
 		/// <summary>
 		/// Binds the modifier to an <see cref="IUnit"/>.
@@ -70,32 +84,31 @@ namespace Davfalcon
 		public override void Bind(IUnit target)
 		{
 			base.Bind(target);
-			statsModifier = new StatsModifier(Target, Additions, Multiplications, calculator);
+			statsResolver = GetStatsResolver();
 		}
 
-		IStats IUnit.Stats => statsModifier.Final;
-		IStatsPackage IUnit.StatsDetails => statsModifier;
+		IStats IStatsHolder.Stats => statsResolver.Final;
+		IStatsPackage IStatsHolder.StatsDetails => statsResolver;
 
 		IStats IStatsModifier.Additions => Additions;
-		IStats IStatsModifier.Multiplications => Multiplications;
+		IStats IStatsModifier.Multipliers => Multipliers;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UnitStatsModifier"/> class.
 		/// </summary>
 		public UnitStatsModifier()
-		{
-			Additions = new StatsMap();
-			Multiplications = new StatsMap();
-		}
+			: this(StatsOperations.Default)
+		{ }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="UnitStatsModifier"/> class with the specified <see cref="IMathOperations"/>.
+		/// Initializes a new instance of the <see cref="UnitStatsModifier"/> class with the specified <see cref="IStatsOperations"/>.
 		/// </summary>
-		/// <param name="calculator">The stat calculation definition.</param>
-		public UnitStatsModifier(IMathOperations calculator)
-			: this()
+		/// <param name="operations">The stat operations definition.</param>
+		public UnitStatsModifier(IStatsOperations operations)
 		{
-			this.calculator = calculator;
+			Additions = new StatsMap();
+			Multipliers = new StatsMap();
+			this.operations = operations;
 		}
 	}
 }

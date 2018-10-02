@@ -12,22 +12,34 @@ namespace Davfalcon.Revelator
 		public ManagedList<IBuff> GrantedBuffs { get; } = new ManagedList<IBuff>();
 		IEnumerable<IBuff> IEquipment.GrantedBuffs => GrantedBuffs.AsReadOnly();
 
+		protected override IStatsPackage GetStatsResolver()
+			=> GetStatsResolver<IEquipment>(this);
+
+		protected Equipment(Enum slot, IStatsOperations operations)
+			: base(operations)
+		{
+			SlotType = slot;
+		}
+
 		public class Builder : BuilderBase<Equipment, IEquipment>
 		{
 			private readonly Enum slot;
+			private readonly IStatsOperations operations;
 
 			public Builder(Enum slot)
+				: this(slot, StatsOperations.Default)
+			{ }
+
+			public Builder(Enum slot, IStatsOperations operations)
 			{
 				this.slot = slot;
+				this.operations = operations;
 				Reset();
 			}
 
 			public Builder Reset()
 			{
-				build = new Equipment()
-				{
-					SlotType = slot
-				};
+				build = new Equipment(slot, operations);
 				return this;
 			}
 
@@ -45,7 +57,7 @@ namespace Davfalcon.Revelator
 
 			public Builder SetStatMultiplier(Enum stat, int value)
 			{
-				build.Multiplications[stat] = value;
+				build.Multipliers[stat] = value;
 				return this;
 			}
 

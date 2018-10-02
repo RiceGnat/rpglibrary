@@ -101,7 +101,7 @@ namespace Davfalcon.Revelator.Unity.Editor
 		}
 
 		public static void RenderStatModifiers(IEditableStatsModifier modifier, ref bool expanded)
-			=> RenderStatColumns("Additions", modifier.Additions, "Multiplications", modifier.Multiplications, ref expanded);
+			=> RenderStatColumns("Additions", modifier.Additions, "Multipliers", modifier.Multipliers, ref expanded);
 
 		public static void RenderEquipmentTypes(string label, IUnitItemProperties equipProps, ref bool expanded)
 		{

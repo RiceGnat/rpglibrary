@@ -67,13 +67,14 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 					EffectResult.SetArgsResult(args as CombatEffectArgs, new List<TargetedUnit> { result });
 				})
 				.Build(), 1);
+
+			combat.Initialize(unit);
+			combat.Initialize(target);
 		}
 
 		[TestMethod]
 		public void Attack()
 		{
-			combat.Initialize(unit);
-			combat.Initialize(target);
 			ActionResult result = combat.Attack(unit, target, unit.Equipment.GetEquipment(EquipmentType.Weapon) as IWeapon);
 
 			Assert.AreEqual(UNIT_NAME, result.Unit.Name);
@@ -86,8 +87,6 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 		[TestMethod]
 		public void AttackWithEffects()
 		{
-			combat.Initialize(unit);
-			combat.Initialize(target);
 			unit.VolatileStats[CombatStats.HP] = 50;
 			ActionResult result = combat.Attack(unit, target, unit.Equipment.GetEquipment(EquipmentType.Weapon, 1) as IWeapon);
 

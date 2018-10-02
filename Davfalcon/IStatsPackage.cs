@@ -1,4 +1,7 @@
-﻿namespace Davfalcon
+﻿using System;
+using Davfalcon.Nodes;
+
+namespace Davfalcon
 {
 	/// <summary>
 	/// Shows different views of a unit's stats. Includes base stats, modifiers, and stats after modifiers are applied.
@@ -23,6 +26,11 @@
 		/// <summary>
 		/// Gets the total multiplicative modifiers.
 		/// </summary>
-		IStats Multiplications { get; }
+		IStats Multipliers { get; }
+
+		INode GetBaseStatNode(Enum stat);
+		IAggregatorNode GetAdditionsNode(Enum stat);
+		IAggregatorNode GetMultipliersNode(Enum stat);
+		INode GetStatNode(Enum stat);
 	}
 }

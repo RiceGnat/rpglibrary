@@ -13,6 +13,6 @@
 		/// <summary>
 		/// Gets the multipliers that this item will apply to the unit's stats in an editable format.
 		/// </summary>
-		IEditableStats Multiplications { get; }
+		IEditableStats Multipliers { get; }
 	}
 }

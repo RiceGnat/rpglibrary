@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Davfalcon
+namespace Davfalcon.Stats
 {
 	/// <summary>
 	/// Implements data structure for stat lookup.

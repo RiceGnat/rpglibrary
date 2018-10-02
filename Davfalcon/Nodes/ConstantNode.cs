@@ -1,31 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using Davfalcon.Collections.Generic;
 
 namespace Davfalcon.Nodes
 {
 	[Serializable]
-	public struct ConstantNode : IMathNode
+	public class ConstantNode : NodeEnumerableBase, INode
 	{
-		public int Value { get; }
-		public object Source { get; }
-		public Type SourceType => typeof(int);
 		public string Name { get; }
-		public IEnumerable<IMathNode> Children { get; }
+		public int Value { get; }
 
-		public ConstantNode(int value, string name)
+		public ConstantNode(string name, int value)
 		{
-			Value = value;
 			Name = name;
-			Source = value;
-			Children = new EmptyEnumerable<IMathNode>();
+			Value = value;
 		}
 
 		public ConstantNode(int value)
-			: this(value, "")
+			: this("", value)
 		{ }
 
 		public static ConstantNode One { get; } = new ConstantNode(1);
 		public static ConstantNode Zero { get; } = new ConstantNode(0);
+
+		public override string ToString()
+			=> $"Constant: {Value} {Name}";
 	}
 }

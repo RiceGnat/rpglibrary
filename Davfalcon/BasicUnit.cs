@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using Davfalcon.Nodes;
+using Davfalcon.Stats;
 
 namespace Davfalcon
 {
@@ -13,25 +15,15 @@ namespace Davfalcon
 		{
 			private BasicUnit unit;
 
-			public IStats Base
-			{
-				get { return unit.BaseStats; }
-			}
+			public IStats Base => unit.BaseStats;
+			public IStats Additions => StatsConstant.Zero;
+			public IStats Multipliers => new StatsConstant(unit.aggregator.AggregateSeed);
+			public IStats Final => unit.Modifiers.Stats;
 
-			public IStats Additions
-			{
-				get { return StatsConstant.Zero; }
-			}
-
-			public IStats Multiplications
-			{
-				get { return new StatsConstant(unit.statsResolver.AggregateSeed); }
-			}
-
-			public IStats Final
-			{
-				get { return unit.Modifiers.Stats; }
-			}
+			public INode GetBaseStatNode(Enum stat) => StatNode<IUnit>.CopyStatsFrom(unit, unit.BaseStats, stat);
+			public IAggregatorNode GetAdditionsNode(Enum stat) => new AggregatorNode($"{stat} additions ({unit.Name})", null);
+			public IAggregatorNode GetMultipliersNode(Enum stat) => new AggregatorNode($"{stat} multipliers ({unit.Name})", null, unit.aggregator);
+			public INode GetStatNode(Enum stat) => unit.ShortCircuit ? GetBaseStatNode(stat) : unit.Modifiers.StatsDetails.GetStatNode(stat);
 
 			public BaseStatsRouter(BasicUnit unit)
 			{
@@ -42,7 +34,7 @@ namespace Davfalcon
 		[NonSerialized]
 		private BaseStatsRouter statsRouter;
 
-		private readonly IMathOperations statsResolver;
+		private readonly IAggregator aggregator;
 
 		/// <summary>
 		/// Gets or sets the unit's name.
@@ -62,12 +54,12 @@ namespace Davfalcon
 		/// <summary>
 		/// Gets a representation of the unit's stats.
 		/// </summary>
-		public virtual IStats Stats { get { return Modifiers.StatsDetails == StatsDetails ? StatsDetails.Base : StatsDetails.Final; } }
+		public virtual IStats Stats => ShortCircuit ? StatsDetails.Base : StatsDetails.Final;
 
 		/// <summary>
 		/// Gets a detailed breakdown of the unit's stats.
 		/// </summary>
-		public virtual IStatsPackage StatsDetails { get { return statsRouter; } }
+		public virtual IStatsPackage StatsDetails => statsRouter;
 
 		/// <summary>
 		/// Gets an editable version of the unit's base stats.
@@ -78,6 +70,8 @@ namespace Davfalcon
 		/// Gets the unit's modifiers.
 		/// </summary>
 		public IUnitModifierStack Modifiers { get; protected set; }
+
+		protected bool ShortCircuit => Modifiers.StatsDetails == StatsDetails;
 
 		/// <summary>
 		/// Perform initial setup.
@@ -111,16 +105,16 @@ namespace Davfalcon
 		/// Initializes a new instance of the <see cref="BasicUnit"/> class with no properties set.
 		/// </summary>
 		public BasicUnit()
-			: this(StatsResolver.Default)
+			: this(StatsOperations.Default)
 		{ }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified <see cref="IMathOperations"/>.
+		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified <see cref="IAggregator"/>.
 		/// </summary>
-		/// <param name="statsResolver">Used to define the seed for aggregating stat multipliers.</param>
-		public BasicUnit(IMathOperations statsResolver)
+		/// <param name="aggregator">Used to define the seed for aggregating stat multipliers.</param>
+		public BasicUnit(IAggregator aggregator)
 		{
-			this.statsResolver = statsResolver;
+			this.aggregator = aggregator;
 		}
 	}
 }

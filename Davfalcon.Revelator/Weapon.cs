@@ -9,17 +9,11 @@ namespace Davfalcon.Revelator
 	[Serializable]
 	public class Weapon : Equipment, IWeapon
 	{
-		private string owner;
-		public string Owner
-		{
-			get => owner ?? InterfaceUnit.Name;
-			set => owner = value;
-		}
 
 		public Enum WeaponType { get; set; }
 		public int BaseDamage { get; set; }
 		public Enum BonusDamageStat { get; set; }
-		public int CritMultiplier { get; set; }
+		public int CritMultiplier { get; set; } = 1;
 
 		public ManagedEnumStringList DamageTypes { get; } = new ManagedEnumStringList();
 		IEnumerable<Enum> IDamageSource.DamageTypes => DamageTypes.AsReadOnly();
@@ -27,26 +21,43 @@ namespace Davfalcon.Revelator
 		public ManagedList<IEffect> Effects { get; } = new ManagedList<IEffect>();
 		IEnumerable<IEffect> IEffectSource.Effects => Effects.AsReadOnly();
 
+		private string owner;
+		public string Owner
+		{
+			get => owner ?? InterfaceUnit.Name;
+			set => owner = value;
+		}
+
+		protected override IStatsPackage GetStatsResolver()
+			=> GetStatsResolver<IWeapon>(this);
+
+		protected Weapon(Enum equipmentSlot, Enum weaponType, IStatsOperations operations)
+			: base(equipmentSlot, operations)
+		{
+			WeaponType = weaponType;
+		}
+
 		new public class Builder : BuilderBase<Weapon, IWeapon>
 		{
 			private readonly Enum slot;
 			private readonly Enum type;
+			private readonly IStatsOperations operations;
 
-			public Builder(Enum equipmentSlot, Enum type)
+			public Builder(Enum equipmentSlot, Enum weaponType)
+				: this(equipmentSlot, weaponType, StatsOperations.Default)
+			{ }
+
+			public Builder(Enum equipmentSlot, Enum weaponType, IStatsOperations operations)
 			{
-				this.slot = equipmentSlot;
-				this.type = type;
+				slot = equipmentSlot;
+				type = weaponType;
+				this.operations = operations;
 				Reset();
 			}
 
 			public Builder Reset()
 			{
-				build = new Weapon()
-				{
-					SlotType = slot,
-					WeaponType = type,
-					CritMultiplier = 1
-				};
+				build = new Weapon(slot, type, operations);
 				return this;
 			}
 
@@ -64,7 +75,7 @@ namespace Davfalcon.Revelator
 
 			public Builder SetStatMultiplier(Enum stat, int value)
 			{
-				build.Multiplications[stat] = value;
+				build.Multipliers[stat] = value;
 				return this;
 			}
 

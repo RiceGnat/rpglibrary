@@ -45,8 +45,8 @@ namespace Davfalcon
 		string IUnit.Name => InterfaceUnit.Name;
 		string IUnit.Class => InterfaceUnit.Class;
 		int IUnit.Level => InterfaceUnit.Level;
-		IStats IUnit.Stats => InterfaceUnit.Stats;
-		IStatsPackage IUnit.StatsDetails => InterfaceUnit.StatsDetails;
+		IStats IStatsHolder.Stats => InterfaceUnit.Stats;
+		IStatsPackage IStatsHolder.StatsDetails => InterfaceUnit.StatsDetails;
 		IUnitModifierStack IUnit.Modifiers => InterfaceUnit.Modifiers;
 		#endregion
 	}

@@ -23,7 +23,7 @@ namespace Davfalcon.UnitTests
 			UnitStatsModifier modifier = new UnitStatsModifier();
 
 			modifier.Additions[STAT_NAME] = 10;
-			modifier.Multiplications[STAT_NAME] = 20;
+			modifier.Multipliers[STAT_NAME] = 20;
 
 			unit.Modifiers.Add(modifier);
 
@@ -32,7 +32,7 @@ namespace Davfalcon.UnitTests
 			modifier = new UnitStatsModifier();
 
 			modifier.Additions[STAT_NAME] = 5;
-			modifier.Multiplications[STAT_NAME] = 80;
+			modifier.Multipliers[STAT_NAME] = 80;
 
 			unit.Modifiers.Add(modifier);
 
@@ -43,10 +43,34 @@ namespace Davfalcon.UnitTests
 		}
 
 		[TestMethod]
+		public void RemoveModifier()
+		{
+			UnitStatsModifier modifier1 = new UnitStatsModifier();
+			UnitStatsModifier modifier2 = new UnitStatsModifier();
+			UnitStatsModifier modifier3 = new UnitStatsModifier();
+
+			modifier1.Additions[STAT_NAME] = 1;
+			modifier2.Additions[STAT_NAME] = 2;
+			modifier3.Additions[STAT_NAME] = 3;
+
+			unit.Modifiers.Add(modifier1);
+			unit.Modifiers.Add(modifier2);
+			unit.Modifiers.Add(modifier3);
+
+			Assert.AreEqual(16, unit.Stats[STAT_NAME]);
+
+			unit.Modifiers.Remove(modifier2);
+
+			Assert.AreEqual(14, unit.Stats[STAT_NAME]);
+		}
+
+		[TestMethod]
 		public void TimedModifier()
 		{
-			TimedModifier modifier = new TimedModifier();
-			modifier.Duration = 1;
+			TimedModifier modifier = new TimedModifier
+			{
+				Duration = 1
+			};
 			modifier.Reset();
 			Assert.AreEqual(modifier.Duration, modifier.Remaining);
 			modifier.Tick();
