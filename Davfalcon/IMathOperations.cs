@@ -3,21 +3,8 @@
 	/// <summary>
 	/// Specifies operations used to calculate stats.
 	/// </summary>
-	public interface IStatsResolver
+	public interface IMathOperations : IAggregator
 	{
-		/// <summary>
-		/// Gets the seed value for the aggregation function.
-		/// </summary>
-		int AggregateSeed { get; }
-
-		/// <summary>
-		/// Aggregation function for multiplicative values.
-		/// </summary>
-		/// <param name="a">The accumulated value.</param>
-		/// <param name="b">The value be added to the accumulator.</param>
-		/// <returns>The new accumulated value.</returns>
-		int Aggregate(int a, int b);
-
 		/// <summary>
 		/// Scales a value by another value. Used to define how multiplicative modifiers are applied.
 		/// </summary>

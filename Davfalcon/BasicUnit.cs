@@ -42,7 +42,7 @@ namespace Davfalcon
 		[NonSerialized]
 		private BaseStatsRouter statsRouter;
 
-		private readonly IStatsResolver statsResolver;
+		private readonly IMathOperations statsResolver;
 
 		/// <summary>
 		/// Gets or sets the unit's name.
@@ -115,10 +115,10 @@ namespace Davfalcon
 		{ }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified <see cref="IStatsResolver"/>.
+		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified <see cref="IMathOperations"/>.
 		/// </summary>
 		/// <param name="statsResolver">Used to define the seed for aggregating stat multipliers.</param>
-		public BasicUnit(IStatsResolver statsResolver)
+		public BasicUnit(IMathOperations statsResolver)
 		{
 			this.statsResolver = statsResolver;
 		}

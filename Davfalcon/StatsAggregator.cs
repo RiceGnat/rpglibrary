@@ -7,7 +7,7 @@ namespace Davfalcon
 	/// </summary>
 	public class StatsAggregator : StatsPrototype
 	{
-		private readonly IStatsResolver calculator;
+		private readonly IMathOperations calculator;
 
 		private readonly IStats a;
 		private readonly IStats b;
@@ -29,8 +29,8 @@ namespace Davfalcon
 		/// </summary>
 		/// <param name="a">The first set of stats to aggregate.</param>
 		/// <param name="b">The second set of stats to aggregate.</param>
-		/// <param name="calculator">The <see cref="IStatsResolver"/> interface that defines the aggregation function to use. If set to <c>null</c>, uses <see cref="StatsResolver.Default"/>.</param>
-		public StatsAggregator(IStats a, IStats b, IStatsResolver calculator)
+		/// <param name="calculator">The <see cref="IMathOperations"/> interface that defines the aggregation function to use. If set to <c>null</c>, uses <see cref="StatsResolver.Default"/>.</param>
+		public StatsAggregator(IStats a, IStats b, IMathOperations calculator)
 		{
 			this.a = a;
 			this.b = b;

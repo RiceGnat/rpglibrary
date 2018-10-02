@@ -55,6 +55,7 @@
     <Compile Include="EnumStringTests.cs" />
     <Compile Include="ManagedListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="NodeTests.cs" />
     <Compile Include="StatsTests.cs" />
     <Compile Include="TestConstants.cs" />
     <Compile Include="UnitModifierTests.cs" />

@@ -7,7 +7,7 @@ namespace Davfalcon
 	/// </summary>
 	public class StatsCalculator : StatsPrototype
 	{
-		private readonly IStatsResolver calculator;
+		private readonly IMathOperations calculator;
 
 		private readonly IStats original;
 		private readonly IStats additions;
@@ -32,7 +32,7 @@ namespace Davfalcon
 		/// <param name="additions">A set of values to add to each stat.</param>
 		/// <param name="multiplications">A set of values to multiply each stat.</param>
 		/// <param name="calculator">An object that specifies the calculation formula to use. If null, the default formula will be used.</param>
-		public StatsCalculator(IStats original, IStats additions, IStats multiplications, IStatsResolver calculator)
+		public StatsCalculator(IStats original, IStats additions, IStats multiplications, IMathOperations calculator)
 		{
 			this.original = original;
 			this.additions = additions;

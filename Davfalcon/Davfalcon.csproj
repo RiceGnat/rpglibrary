@@ -48,6 +48,7 @@
     <Compile Include="Collections\Adapters\ManagedEnumStringList.cs" />
     <Compile Include="BasicUnit.cs" />
     <Compile Include="Collections\Generic\CircularLinkedList%28T%29.cs" />
+    <Compile Include="Collections\Generic\EmptyEnumerable%28T%29.cs" />
     <Compile Include="Collections\Generic\ICircularLinkedList%28T%29.cs" />
     <Compile Include="Collections\Generic\ISelfRegistry%28T%29.cs" />
     <Compile Include="Collections\Generic\IRegistry%28T%29.cs" />
@@ -56,13 +57,19 @@
     <Compile Include="Collections\Generic\PrototypeCloner%28T%29.cs" />
     <Compile Include="Collections\Generic\SelfRegisteredPrototypeCloner%28T%29.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="IAggregator.cs" />
     <Compile Include="IDescribable.cs" />
     <Compile Include="IEditableDescription.cs" />
     <Compile Include="IEditableName.cs" />
     <Compile Include="IEditableStatsModifier.cs" />
+    <Compile Include="IMathNode.cs" />
     <Compile Include="INameable.cs" />
     <Compile Include="IStatsModifier.cs" />
     <Compile Include="MathExtensions.cs" />
+    <Compile Include="Nodes\AggregateNode.cs" />
+    <Compile Include="Nodes\ConstantNode.cs" />
+    <Compile Include="Nodes\ResolverNode.cs" />
+    <Compile Include="Nodes\StatNode.cs" />
     <Compile Include="Randomization\CenterWeightedChecker.cs" />
     <Compile Include="Randomization\ISuccessCheck.cs" />
     <Compile Include="Randomization\RandomBase.cs" />
@@ -75,7 +82,7 @@
     <Compile Include="ITimedModifier.cs" />
     <Compile Include="IEditableStats.cs" />
     <Compile Include="IStats.cs" />
-    <Compile Include="IStatsResolver.cs" />
+    <Compile Include="IMathOperations.cs" />
     <Compile Include="IStatsPackage.cs" />
     <Compile Include="IItem.cs" />
     <Compile Include="IUnit.cs" />
@@ -91,7 +98,9 @@
     <Compile Include="UnitModifierStack.cs" />
     <Compile Include="UnitStatsModifier.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Stats\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

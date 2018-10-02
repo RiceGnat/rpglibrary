@@ -32,7 +32,7 @@ namespace Davfalcon.Revelator
 			statLinker.Bind(this);
 		}
 
-		private Unit(IStatsResolver statsMath, ILinkedStatResolver statLinker)
+		private Unit(IMathOperations statsMath, ILinkedStatResolver statLinker)
 			: base(statsMath)
 		{
 			this.statLinker = statLinker;
@@ -40,14 +40,14 @@ namespace Davfalcon.Revelator
 
 		public class Builder : BuilderBase<Unit, IUnit>
 		{
-			private readonly IStatsResolver statsMath;
+			private readonly IMathOperations statsMath;
 			private readonly ILinkedStatResolver statLinker;
 
 			public Builder() :
 				this(StatsResolver.Default, LinkedStatsResolverBase.Default)
 			{ }
 
-			public Builder(IStatsResolver statsMath, ILinkedStatResolver statLinker)
+			public Builder(IMathOperations statsMath, ILinkedStatResolver statLinker)
 			{
 				this.statsMath = statsMath;
 				this.statLinker = statLinker;
