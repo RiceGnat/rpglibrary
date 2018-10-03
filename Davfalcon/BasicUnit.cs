@@ -20,7 +20,7 @@ namespace Davfalcon
 			public IStats Multipliers => new StatsConstant(unit.aggregator.AggregateSeed);
 			public IStats Final => unit.Modifiers.Stats;
 
-			public INode GetBaseStatNode(Enum stat) => StatNode<IUnit>.CopyStatsFrom(unit, unit.BaseStats, stat);
+			public INode GetBaseStatNode(Enum stat) => StatNode<IUnit>.From(unit, unit.BaseStats, stat);
 			public IAggregatorNode GetAdditionsNode(Enum stat) => new AggregatorNode($"{stat} additions ({unit.Name})", null);
 			public IAggregatorNode GetMultipliersNode(Enum stat) => new AggregatorNode($"{stat} multipliers ({unit.Name})", null, unit.aggregator);
 			public INode GetStatNode(Enum stat) => unit.ShortCircuit ? GetBaseStatNode(stat) : unit.Modifiers.StatsDetails.GetStatNode(stat);

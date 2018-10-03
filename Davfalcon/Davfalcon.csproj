@@ -72,6 +72,7 @@
     <Compile Include="Nodes\ConstantNode.cs" />
     <Compile Include="Nodes\IAggregatorNode.cs" />
     <Compile Include="Nodes\IResolverNode.cs" />
+    <Compile Include="Nodes\IStatNode.cs" />
     <Compile Include="Nodes\IStatNode%28T%29.cs" />
     <Compile Include="Nodes\NodeEnumerableBase.cs" />
     <Compile Include="Nodes\ResolverNode.cs" />

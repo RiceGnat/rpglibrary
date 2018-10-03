@@ -2,7 +2,8 @@
 {
 	public interface ICombatOperations : IStatsOperations
 	{
-		int CalculateHitChance(int hit, int avoid);
-		int ScaleDamage(int baseValue, int scalar);
+		int CalculateHitChance(int hit, int dodge);
+		int CalculateCritChance(int crit, int dodge);
+		int CalculateCritDamage(int critMultiplier, int damage);
 	}
 }

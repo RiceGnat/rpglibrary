@@ -27,12 +27,12 @@ namespace Davfalcon
 
 			public IAggregatorNode GetAdditionsNode(Enum stat)
 				=> modifier.Additions[stat] != 0
-					? TargetDetails.GetAdditionsNode(stat).Merge(StatNode<T>.CopyStatsFrom(modifier, modifier.Additions, stat))
+					? TargetDetails.GetAdditionsNode(stat).Merge(StatNode<T>.From(modifier, modifier.Additions, stat))
 					: TargetDetails.GetAdditionsNode(stat);
 
 			public IAggregatorNode GetMultipliersNode(Enum stat)
 				=> modifier.Multipliers[stat] != operations.AggregateSeed
-					? TargetDetails.GetMultipliersNode(stat).Merge(StatNode<T>.CopyStatsFrom(modifier, modifier.Multipliers, stat))
+					? TargetDetails.GetMultipliersNode(stat).Merge(StatNode<T>.From(modifier, modifier.Multipliers, stat))
 					: TargetDetails.GetMultipliersNode(stat);
 
 			public INode GetStatNode(Enum stat)

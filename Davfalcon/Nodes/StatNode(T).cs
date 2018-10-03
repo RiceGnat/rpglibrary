@@ -30,14 +30,11 @@ namespace Davfalcon.Nodes
 			Source = source;
 		}
 
-		public static StatNode<TSource> CopyStatsFrom<TSource>(TSource source, IStats stats, Enum stat) where TSource : INameable
-			=> new StatNode<TSource>(source.DeepClone(), stats.DeepClone(), stat);
+		public static StatNode<TSource> From<TSource>(TSource source, IStats stats, Enum stat) where TSource : INameable
+			=> new StatNode<TSource>(source, stats, stat);
 
-		public static StatNode<TSource> CopyStatsFrom<TSource>(TSource source, Enum stat) where TSource : IStatsHolder, INameable
-		{
-			TSource clone = source.DeepClone();
-			return new StatNode<TSource>(clone, clone.Stats, stat);
-		}
+		public static StatNode<TSource> From<TSource>(TSource source, Enum stat) where TSource : IStatsHolder, INameable
+			=> new StatNode<TSource>(source, source.Stats, stat);
 
 		public override string ToString()
 			=> $"Stat: {Value} {Stat} ({Name})";
