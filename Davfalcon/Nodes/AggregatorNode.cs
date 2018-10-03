@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Davfalcon.Nodes
 {
 	public class AggregatorNode : NodeEnumerableBase, IAggregatorNode
 	{
-		private IAggregator aggregator;
+		private readonly IAggregator aggregator;
 
 		public string Name { get; }
-		public int Value => Nodes?.Select(node => node.Value).Aggregate(aggregator.AggregateSeed, aggregator.Aggregate) ?? aggregator.AggregateSeed;
+		public int Value { get; }
 
 		public IEnumerable<INode> Nodes { get; }
 
@@ -19,6 +17,7 @@ namespace Davfalcon.Nodes
 			this.aggregator = aggregator;
 			Name = name;
 			Nodes = values.ToNewReadOnlyCollectionSafe();
+			Value = Nodes?.Select(node => node.Value).Aggregate(aggregator.AggregateSeed, aggregator.Aggregate) ?? aggregator.AggregateSeed;
 		}
 
 		public AggregatorNode(string name, IEnumerable<INode> values)

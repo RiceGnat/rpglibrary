@@ -8,7 +8,7 @@ namespace Davfalcon.Nodes
 		private readonly INode[] nodes = new INode[3];
 
 		public string Name { get; }
-		public int Value => resolver.Calculate(Base.Value, Addend.Value, Multiplier.Value);
+		public int Value { get; }
 
 		public INode Base => nodes[0];
 		public INode Addend => nodes[1];
@@ -21,6 +21,8 @@ namespace Davfalcon.Nodes
 			nodes[0] = baseValue;
 			nodes[1] = addend;
 			nodes[2] = multiplier;
+
+			Value = resolver.Calculate(Base.Value, Addend.Value, Multiplier.Value);
 		}
 
 		public override string ToString()
