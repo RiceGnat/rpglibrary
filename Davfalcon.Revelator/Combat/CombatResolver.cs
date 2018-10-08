@@ -52,6 +52,13 @@ namespace Davfalcon.Revelator.Combat
 		private Config config;
 		#endregion
 
+		#region Nodes
+		private class DamageNode : NodeEnumerableBase, IDamageNode
+		{
+
+		}
+		#endregion
+
 		#region Unit operations
 		private void AdjustMaxVolatileStats(IUnit unit, IDictionary<Enum, int> prevValues)
 		{

@@ -5,17 +5,16 @@ using Davfalcon.Nodes;
 
 namespace Davfalcon.Revelator.Combat
 {
-	public class DamageNode : NodeEnumerableBase, IResolverNode
+	public class DamageNode : NodeEnumerableBase, IDamageNode
 	{
 		private readonly IStatsOperations resolver;
 		private readonly IList<INode> nodes = new List<INode>(3);
 
 		public string Name => Source.Name;
-		public int Value { get; }
+		public int Value => resolver.Calculate(Base.Value, Addend?.Value ?? 0, Multiplier?.Value ?? resolver.AggregateSeed);
 
 		public IUnit Unit { get; }
 		public IDamageSource Source { get; }
-		public IEnumerable<Enum> ScalingStats { get; }
 		public INode Base { get; }
 		public INode Addend { get; }
 		public INode Multiplier { get; }
@@ -26,30 +25,28 @@ namespace Davfalcon.Revelator.Combat
 
 			Unit = unit;
 			Source = source;
-			ScalingStats = scalingStats.ToNewReadOnlyCollectionSafe();
+			scalingStats = scalingStats.ToNewReadOnlyCollectionSafe();
 
 			Base = new ConstantNode("Base damage", Source.BaseDamage);
 			Addend = Source.BonusDamageStat != null ? Unit.StatsDetails.GetStatNode(Source.BonusDamageStat) : null;
 
-			if (ScalingStats.Count() > 1)
+			if (scalingStats.Count() > 1)
 			{
 				List<INode> nodes = new List<INode>();
-				foreach (Enum stat in ScalingStats)
+				foreach (Enum stat in scalingStats)
 				{
 					nodes.Add(Unit.StatsDetails.GetStatNode(stat));
 				}
 				Multiplier = new AggregatorNode("Damage scaling", nodes, resolver);
 			}
-			else if (ScalingStats.Count() == 1)
+			else if (scalingStats.Count() == 1)
 			{
-				Multiplier = Unit.StatsDetails.GetStatNode(ScalingStats.First());
+				Multiplier = Unit.StatsDetails.GetStatNode(scalingStats.First());
 			}
 
 			nodes.Add(Base);
 			if (Addend != null) nodes.Add(Addend);
 			if (Multiplier != null) nodes.Add(Multiplier);
-
-			Value = resolver.Calculate(Base.Value, Addend?.Value ?? 0, Multiplier?.Value ?? resolver.AggregateSeed);
 		}
 
 		public override string ToString()
