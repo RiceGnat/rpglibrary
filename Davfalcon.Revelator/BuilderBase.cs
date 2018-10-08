@@ -1,6 +1,6 @@
 ﻿namespace Davfalcon.Revelator
 {
-	public abstract class BuilderBase<T, TOut> where T : TOut
+	public abstract class BuilderBase<T, TOut> : IBuilder<TOut> where T : TOut
 	{
 		protected T build;
 

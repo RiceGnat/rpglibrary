@@ -330,10 +330,11 @@ namespace Davfalcon.Revelator.Combat
 		}
 		#endregion
 
+		#region Builder
 		private CombatResolver(Config config)
 			=> this.config = config;
 
-		public class Builder
+		public class Builder : IBuilder<ICombatResolver>
 		{
 			private Config config;
 			private CombatStatBinding statBindings;
@@ -409,5 +410,6 @@ namespace Davfalcon.Revelator.Combat
 		}
 
 		public static ICombatResolver Default { get; } = new Builder().Build();
+		#endregion
 	}
 }
