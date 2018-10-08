@@ -7,7 +7,7 @@ using Davfalcon.Serialization;
 
 namespace Davfalcon.Revelator.Combat
 {
-	public class CombatResolver : ICombatResolver, ICombatNodeFactory
+	public class CombatResolver : ICombatResolver, ICombatNodeResolver
 	{
 		#region Config
 		private class Config
@@ -334,7 +334,7 @@ namespace Davfalcon.Revelator.Combat
 		private CombatResolver(Config config)
 			=> this.config = config;
 
-		public class Builder : IBuilder<ICombatResolver>
+		public class Builder : IBuilder<ICombatResolver>, IBuilder<ICombatNodeResolver>
 		{
 			private Config config;
 			private CombatStatBinding statBindings;
@@ -405,8 +405,11 @@ namespace Davfalcon.Revelator.Combat
 			public ICombatResolver Build()
 				=> BuildResolver();
 
-			public ICombatNodeFactory BuildNodeFactory()
+			public ICombatNodeResolver BuildNodeResolver()
 				=> BuildResolver();
+
+			ICombatNodeResolver IBuilder<ICombatNodeResolver>.Build()
+				=> BuildNodeResolver();
 		}
 
 		public static ICombatResolver Default { get; } = new Builder().Build();
