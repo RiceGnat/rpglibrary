@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Davfalcon.Nodes
 {
@@ -7,16 +8,13 @@ namespace Davfalcon.Nodes
 		private readonly IStatsOperations resolver;
 		private readonly INode[] nodes = new INode[3];
 
-		public string Name { get; }
-		public int Value { get; }
-
 		public INode Base => nodes[0];
 		public INode Addend => nodes[1];
 		public INode Multiplier => nodes[2];
 
 		public ResolverNode(string name, INode baseValue, INode addend, INode multiplier, IStatsOperations resolver)
 		{
-			this.resolver = resolver;
+			this.resolver = resolver ?? throw new ArgumentNullException();
 			Name = name;
 			nodes[0] = baseValue;
 			nodes[1] = addend;
@@ -25,10 +23,9 @@ namespace Davfalcon.Nodes
 			Value = resolver.Calculate(Base.Value, Addend.Value, Multiplier.Value);
 		}
 
-		public override string ToString()
-			=> $"Resolver: {Value} {Name}";
-
 		protected override IEnumerator<INode> GetEnumerator()
 			=> (nodes as IEnumerable<INode>).GetEnumerator();
+
+		protected override string GetTypeName() => "Resolver";
 	}
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Davfalcon.Nodes;
 using Davfalcon.Randomization;
 using Davfalcon.Serialization;
 
@@ -50,13 +49,8 @@ namespace Davfalcon.Revelator.Combat
 		}
 
 		private Config config;
-		#endregion
 
-		#region Nodes
-		private class DamageNode : NodeEnumerableBase, IDamageNode
-		{
-
-		}
+		public ICombatOperations Operations => config.Operations;
 		#endregion
 
 		#region Unit operations
@@ -150,6 +144,9 @@ namespace Davfalcon.Revelator.Combat
 			return new HitCheck(threshold, hit, critThreshold, crit);
 		}
 
+		public IEnumerable<Enum> GetDamageScalingStats(IDamageSource source)
+			=> GetDamageScalingStats(source.DamageTypes);
+
 		public IEnumerable<Enum> GetDamageScalingStats(IEnumerable<Enum> damageTypes)
 			=> damageTypes
 				.Where(type => config.StatBindings?.GetDamageScalingStat(type) != null)
@@ -166,6 +163,9 @@ namespace Davfalcon.Revelator.Combat
 				unit,
 				source.DamageTypes
 			);
+
+		public IEnumerable<Enum> GetDamageDefendingStats(IDamageSource source)
+			=> GetDamageDefendingStats(source.DamageTypes);
 
 		public IEnumerable<Enum> GetDamageDefendingStats(IEnumerable<Enum> damageTypes)
 			=> damageTypes
@@ -202,6 +202,32 @@ namespace Davfalcon.Revelator.Combat
 			return losses;
 		}
 
+		public IEnumerable<StatChange> ApplyDamage(IDefenseNode damage)
+		{
+			IUnit unit = damage.Defender;
+			IEnumerable<Enum> types = damage.IncomingDamage.Source.DamageTypes;
+			int value = damage.Value;
+
+			// Get targeted resource points and apply damage pool in order
+			List<StatChange> losses = new List<StatChange>();
+			foreach (Enum stat in config.StatBindings.ResolveDamageResource(types))
+			{
+				// Apply up to the remaining number of points in the stat
+				int actual = AdjustVolatileStat(unit, stat, -value);
+
+				// Log the loss
+				losses.Add(new StatChange(unit, stat, actual));
+
+				// Subtract from remaining damage pool
+				value += actual;
+
+				// Break if all damage is applied
+				if (value <= 0)
+					break;
+			}
+			return losses;
+		}
+
 		public IEnumerable<EffectResult> ApplyEffects(IEffectSource source, IUnit owner, IUnit target, Damage damage = null)
 		{
 			List<EffectResult> list = new List<EffectResult>();
@@ -216,11 +242,11 @@ namespace Davfalcon.Revelator.Combat
 		#endregion
 
 		#region Nodes
-		public INode GetDamageNode(IUnit unit, IDamageSource source)
-			=> new DamageNode(source, unit, GetDamageScalingStats(source.DamageTypes), config.Operations);
+		public IDamageNode GetDamageNode(IUnit unit, IDamageSource source)
+			=> new DamageNode(source, unit, this);
 
-		public INode GetDefenseNode(IUnit defender, INode damage, IEnumerable<Enum> damageTypes)
-			=> new DefenderNode(defender, damage, GetDamageDefendingStats(damageTypes), config.Operations);
+		public IDefenseNode GetDefenseNode(IUnit defender, IDamageNode damage)
+			=> new DefenseNode(defender, damage, this);
 		#endregion
 
 		#region Actions

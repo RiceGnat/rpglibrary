@@ -45,9 +45,10 @@
   <ItemGroup>
     <Compile Include="BuilderBase.cs" />
     <Compile Include="Combat\DamageNode.cs" />
-    <Compile Include="Combat\DefenderNode.cs" />
+    <Compile Include="Combat\DefenseNode.cs" />
     <Compile Include="Combat\ICombatNodeResolver.cs" />
     <Compile Include="Combat\IDamageNode.cs" />
+    <Compile Include="Combat\IDefenseNode.cs" />
     <Compile Include="Effect.cs" />
     <Compile Include="Combat\ActionResult.cs" />
     <Compile Include="Combat\CombatEffectArgs.cs" />

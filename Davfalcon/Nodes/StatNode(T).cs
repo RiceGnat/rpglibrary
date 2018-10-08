@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Davfalcon.Collections.Generic;
-using Davfalcon.Serialization;
 
 namespace Davfalcon.Nodes
 {
@@ -10,8 +7,6 @@ namespace Davfalcon.Nodes
 		private readonly string name;
 		private readonly IStats stats;
 
-		public string Name => Source?.Name ?? name;
-		public int Value => stats?[Stat] ?? 0;
 		public Enum Stat { get; }
 		public T Source { get; }
 
@@ -26,17 +21,19 @@ namespace Davfalcon.Nodes
 			name = null;
 			this.stats = stats;
 
-			Stat = stat;
+			Stat = stat ?? throw new ArgumentNullException();
 			Source = source;
+
+			Name = $"{Source?.Name ?? name} {Stat}";
+			Value = stats?[Stat] ?? 0;
 		}
+		
+		protected override string GetTypeName() => "Stat";
 
 		public static StatNode<TSource> From<TSource>(TSource source, IStats stats, Enum stat) where TSource : INameable
 			=> new StatNode<TSource>(source, stats, stat);
 
 		public static StatNode<TSource> From<TSource>(TSource source, Enum stat) where TSource : IStatsHolder, INameable
 			=> new StatNode<TSource>(source, source.Stats, stat);
-
-		public override string ToString()
-			=> $"Stat: {Value} {Stat} ({Name})";
 	}
 }

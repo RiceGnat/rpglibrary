@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Davfalcon.Nodes
@@ -7,16 +8,14 @@ namespace Davfalcon.Nodes
 	{
 		private readonly IAggregator aggregator;
 
-		public string Name { get; }
-		public int Value { get; }
-
 		public IEnumerable<INode> Nodes { get; }
 
 		public AggregatorNode(string name, IEnumerable<INode> values, IAggregator aggregator)
 		{
-			this.aggregator = aggregator;
+			this.aggregator = aggregator ?? throw new ArgumentNullException();
 			Name = name;
 			Nodes = values.ToNewReadOnlyCollectionSafe();
+
 			Value = Nodes?.Select(node => node.Value).Aggregate(aggregator.AggregateSeed, aggregator.Aggregate) ?? aggregator.AggregateSeed;
 		}
 
@@ -30,10 +29,9 @@ namespace Davfalcon.Nodes
 		public IAggregatorNode Merge(IAggregatorNode node)
 			=> new AggregatorNode(Name, Nodes.Union(node.Nodes), aggregator);
 
-		public override string ToString()
-			=> $"Aggregator: {Value} {Name}";
-
 		protected override IEnumerator<INode> GetEnumerator()
 			=> Nodes.GetEnumerator();
+
+		protected override string GetTypeName() => "Aggregator";
 	}
 }

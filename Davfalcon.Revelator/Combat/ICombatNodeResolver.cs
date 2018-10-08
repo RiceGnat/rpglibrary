@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Davfalcon.Nodes;
+﻿using System.Collections.Generic;
 
 namespace Davfalcon.Revelator.Combat
 {
 	public interface ICombatNodeResolver : ICombatResolver
 	{
-		INode GetDamageNode(IUnit unit, IDamageSource source);
-		INode GetDefenseNode(IUnit defender, INode damage, IEnumerable<Enum> damageTypes);
+		IDamageNode GetDamageNode(IUnit unit, IDamageSource source);
+		IDefenseNode GetDefenseNode(IUnit defender, IDamageNode damage);
+		IEnumerable<StatChange> ApplyDamage(IDefenseNode damage);
 	}
 }

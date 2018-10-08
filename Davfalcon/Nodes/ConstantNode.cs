@@ -3,11 +3,8 @@
 namespace Davfalcon.Nodes
 {
 	[Serializable]
-	public class ConstantNode : NodeEnumerableBase, INode
+	public class ConstantNode : NodeEnumerableBase
 	{
-		public string Name { get; }
-		public int Value { get; }
-
 		public ConstantNode(string name, int value)
 		{
 			Name = name;
@@ -18,10 +15,9 @@ namespace Davfalcon.Nodes
 			: this("", value)
 		{ }
 
+		protected override string GetTypeName() => "Constant";
+
 		public static ConstantNode One { get; } = new ConstantNode(1);
 		public static ConstantNode Zero { get; } = new ConstantNode(0);
-
-		public override string ToString()
-			=> $"Constant: {Value} {Name}";
 	}
 }

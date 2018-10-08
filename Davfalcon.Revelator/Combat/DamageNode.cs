@@ -5,13 +5,9 @@ using Davfalcon.Nodes;
 
 namespace Davfalcon.Revelator.Combat
 {
-	public class DamageNode : NodeEnumerableBase, IDamageNode
+	internal class DamageNode : NodeEnumerableBase, IDamageNode
 	{
-		private readonly IStatsOperations resolver;
 		private readonly IList<INode> nodes = new List<INode>(3);
-
-		public string Name => Source.Name;
-		public int Value => resolver.Calculate(Base.Value, Addend?.Value ?? 0, Multiplier?.Value ?? resolver.AggregateSeed);
 
 		public IUnit Unit { get; }
 		public IDamageSource Source { get; }
@@ -19,13 +15,14 @@ namespace Davfalcon.Revelator.Combat
 		public INode Addend { get; }
 		public INode Multiplier { get; }
 
-		public DamageNode(IDamageSource source, IUnit unit, IEnumerable<Enum> scalingStats, IStatsOperations resolver)
+		public DamageNode(IDamageSource source, IUnit unit, ICombatResolver resolver)
 		{
-			this.resolver = resolver;
+			ICombatOperations operations = resolver?.Operations ?? throw new ArgumentNullException();
 
-			Unit = unit;
-			Source = source;
-			scalingStats = scalingStats.ToNewReadOnlyCollectionSafe();
+			Unit = unit ?? throw new ArgumentNullException();
+			Source = source ?? throw new ArgumentNullException();
+
+			IEnumerable<Enum> scalingStats = resolver.GetDamageScalingStats(source.DamageTypes);
 
 			Base = new ConstantNode("Base damage", Source.BaseDamage);
 			Addend = Source.BonusDamageStat != null ? Unit.StatsDetails.GetStatNode(Source.BonusDamageStat) : null;
@@ -37,7 +34,7 @@ namespace Davfalcon.Revelator.Combat
 				{
 					nodes.Add(Unit.StatsDetails.GetStatNode(stat));
 				}
-				Multiplier = new AggregatorNode("Damage scaling", nodes, resolver);
+				Multiplier = new AggregatorNode("Damage scaling", nodes, operations);
 			}
 			else if (scalingStats.Count() == 1)
 			{
@@ -47,12 +44,14 @@ namespace Davfalcon.Revelator.Combat
 			nodes.Add(Base);
 			if (Addend != null) nodes.Add(Addend);
 			if (Multiplier != null) nodes.Add(Multiplier);
-		}
 
-		public override string ToString()
-			=> $"Damage: {Value} {String.Join(" ", Source.DamageTypes)} from {Name} ({Unit.Name})";
+			Name = $"{Source.Name} ({Unit.Name}) {String.Join(" ", Source.DamageTypes.Select(type => $"[{type}]"))}";
+			Value = operations.Calculate(Base.Value, Addend?.Value ?? 0, Multiplier?.Value ?? operations.AggregateSeed);
+		}
 
 		protected override IEnumerator<INode> GetEnumerator()
 			=> (nodes as IEnumerable<INode>).GetEnumerator();
+		
+		protected override string GetTypeName() => "Damage";
 	}
 }
