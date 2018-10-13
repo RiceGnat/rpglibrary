@@ -8,13 +8,10 @@ namespace Davfalcon.UnitTests
 	{
 		private BasicUnit CreateTestUnit()
 		{
-			BasicUnit unit = new BasicUnit
-			{
-				Name = NAME,
-				Class = CLASS,
-				Level = LEVEL
-			};
-			unit.Initialize();
+			BasicUnit unit = BasicUnit.Create();
+			unit.Name = NAME;
+			unit.Class = CLASS;
+			unit.Level = LEVEL;
 			return unit;
 		}
 

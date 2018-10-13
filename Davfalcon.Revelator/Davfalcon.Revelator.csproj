@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuilderBase.cs" />
     <Compile Include="Combat\DamageNode.cs" />
     <Compile Include="Combat\DefenseNode.cs" />
     <Compile Include="Combat\ICombatNodeResolver.cs" />

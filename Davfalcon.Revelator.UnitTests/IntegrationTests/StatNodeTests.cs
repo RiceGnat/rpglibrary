@@ -70,8 +70,8 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 
 		private class DamageCalculationNode : NodeEnumerableBase, INode
 		{
-			public int Value => StatsOperations.Default.ScaleInverse(nodes[1].Value, nodes[2].Value);
-			public string Name => "Attack";
+			public override int Value => StatsOperations.Default.ScaleInverse(nodes[1].Value, nodes[2].Value);
+			public override string Name => "Attack";
 
 			private IUnit unit;
 			private IUnit target;

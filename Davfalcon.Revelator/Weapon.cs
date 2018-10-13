@@ -9,7 +9,6 @@ namespace Davfalcon.Revelator
 	[Serializable]
 	public class Weapon : Equipment, IWeapon
 	{
-
 		public Enum WeaponType { get; set; }
 		public int BaseDamage { get; set; }
 		public Enum BonusDamageStat { get; set; }
@@ -37,83 +36,56 @@ namespace Davfalcon.Revelator
 			WeaponType = weaponType;
 		}
 
-		new public class Builder : BuilderBase<Weapon, IWeapon>
+		new public class Builder : EquipmentBuilder<Weapon, IWeapon, Builder>
 		{
-			private readonly Enum slot;
 			private readonly Enum type;
-			private readonly IStatsOperations operations;
 
 			public Builder(Enum equipmentSlot, Enum weaponType)
 				: this(equipmentSlot, weaponType, StatsOperations.Default)
 			{ }
 
 			public Builder(Enum equipmentSlot, Enum weaponType, IStatsOperations operations)
+				: base(equipmentSlot, operations)
 			{
-				slot = equipmentSlot;
 				type = weaponType;
-				this.operations = operations;
 				Reset();
 			}
 
-			public Builder Reset()
+			public override Builder Reset()
 			{
 				build = new Weapon(slot, type, operations);
-				return this;
-			}
-
-			public Builder SetName(string name)
-			{
-				build.Name = name;
-				return this;
-			}
-
-			public Builder SetStatAddition(Enum stat, int value)
-			{
-				build.Additions[stat] = value;
-				return this;
-			}
-
-			public Builder SetStatMultiplier(Enum stat, int value)
-			{
-				build.Multipliers[stat] = value;
-				return this;
-			}
-
-			public Builder AddBuff(IBuff buff)
-			{
-				build.GrantedBuffs.Add(buff);
-				return this;
+				return Builder;
 			}
 
 			public Builder SetDamage(int baseDamage, Enum bonusDamageStat = null)
 			{
 				build.BaseDamage = baseDamage;
 				build.BonusDamageStat = bonusDamageStat;
-				return this;
+				return Builder;
 			}
 
 			public Builder AddDamageType(Enum type)
 			{
 				build.DamageTypes.Add(type);
-				return this;
+				return Builder;
 			}
 
 			public Builder AddDamageTypes(params Enum[] types)
 			{
 				build.DamageTypes.AddRange(EnumString.ConvertEnumArray(types));
-				return this;
+				return Builder;
 			}
 
 			public Builder SetCritMultiplier(int crit)
 			{
 				build.CritMultiplier = crit;
-				return this;
+				return Builder;
 			}
 
 			public Builder AddOnHitEffect(IEffect effect)
 			{
 				build.Effects.Add(effect);
-				return this;
+				return Builder;
 			}
 
 			public Builder AddOnHitEffect(string name, EffectResolver resolver)

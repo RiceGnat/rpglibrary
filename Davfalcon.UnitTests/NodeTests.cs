@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Davfalcon.Nodes;
-using Davfalcon.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Davfalcon.UnitTests.TestConstants;
 
@@ -14,9 +13,8 @@ namespace Davfalcon.UnitTests
 		[TestInitialize]
 		public void GenerateUnit()
 		{
-			BasicUnit unit = new BasicUnit();
+			BasicUnit unit = BasicUnit.Create();
 			unit.Name = "Test unit";
-			unit.Initialize();
 			unit.BaseStats[STAT_NAME] = 10;
 			this.unit = unit;
 		}

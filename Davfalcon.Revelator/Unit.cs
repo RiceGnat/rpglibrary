@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Davfalcon.Builders;
 
 namespace Davfalcon.Revelator
 {
@@ -12,20 +13,6 @@ namespace Davfalcon.Revelator
 		public IUnitEquipmentManager Equipment { get; protected set; }
 		public IUnitModifierStack Buffs { get; protected set; }
 
-		public override void Initialize()
-		{
-			BaseStats = new UnitStats(statLinker);
-			Modifiers = new UnitModifierStack();
-
-			// Internal references will be maintained after deserialization
-			Equipment = new UnitEquipmentManager();
-			Buffs = new UnitModifierStack();
-			Modifiers.Add(Equipment);
-			Modifiers.Add(Buffs);
-
-			Link();
-		}
-
 		protected override void Link()
 		{
 			base.Link();
@@ -33,12 +20,17 @@ namespace Davfalcon.Revelator
 		}
 
 		private Unit(IStatsOperations statsOperations, ILinkedStatResolver statLinker)
-			: base(statsOperations)
+			: base(new UnitStats(statLinker), statsOperations)
 		{
 			this.statLinker = statLinker;
+
+			Equipment = new UnitEquipmentManager();
+			Buffs = new UnitModifierStack();
+			Modifiers.Add(Equipment);
+			Modifiers.Add(Buffs);
 		}
 
-		public class Builder : BuilderBase<Unit, IUnit>
+		public class Builder : BuilderBase<Unit, IUnit, Builder>
 		{
 			private readonly IStatsOperations statsOperations;
 			private readonly ILinkedStatResolver statLinker;
@@ -54,11 +46,11 @@ namespace Davfalcon.Revelator
 				Reset();
 			}
 
-			public Builder Reset()
+			public override Builder Reset()
 			{
 				build = new Unit(statsOperations, statLinker);
-				build.Initialize();
-				return this;
+				build.Link();
+				return Builder;
 			}
 
 			public Builder SetMainDetails(string name, string className = "", int level = 1)
@@ -66,13 +58,13 @@ namespace Davfalcon.Revelator
 				build.Name = name;
 				build.Class = className;
 				build.Level = level;
-				return this;
+				return Builder;
 			}
 
 			public Builder SetBaseStat(Enum stat, int value)
 			{
 				build.BaseStats[stat] = value;
-				return this;
+				return Builder;
 			}
 
 			public Builder SetBaseStats(IEnumerable<Enum> stats, int value)
@@ -81,7 +73,7 @@ namespace Davfalcon.Revelator
 				{
 					SetBaseStat(stat, value);
 				}
-				return this;
+				return Builder;
 			}
 
 			public Builder SetAllBaseStats<T>(int value)
@@ -90,7 +82,7 @@ namespace Davfalcon.Revelator
 				{
 					SetBaseStat(stat, value);
 				}
-				return this;
+				return Builder;
 			}
 		}
 	}
