@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Davfalcon.Collections.Adapters;
 using Davfalcon.Collections.Generic;
 
@@ -70,6 +71,9 @@ namespace Davfalcon.Revelator
 
 			return IndexHasEquipment(index) ? equippedSlots[index] : null;
 		}
+
+		public IEnumerable<IEquipment> GetAllEquipmentForSlot(Enum slot)
+			=> equippedSlots.Where(equip => equip?.SlotType == slot);
 
 		public void Equip(IEquipment equipment) => Equip(equipment, 0);
 		public void Equip(IEquipment equipment, int offset) => EquipSlotIndex(equipment, GetSlotIndex(equipment.SlotType, offset));
