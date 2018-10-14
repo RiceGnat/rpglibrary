@@ -30,31 +30,28 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 		[TestInitialize]
 		public void TestSetup()
 		{
-			unit = new Unit.Builder()
+			unit = Unit.Build(b => b
 				.SetMainDetails(UNIT_NAME)
 				.SetBaseStat(Attributes.STR, 15)
 				.SetBaseStat(Attributes.VIT, 15)
 				.SetBaseStat(CombatStats.ATK, 20)
 				.SetBaseStat(CombatStats.DEF, 20)
 				.SetBaseStat(CombatStats.HP, 100)
-				.SetBaseStat(CombatStats.MP, 100)
-				.Build();
+				.SetBaseStat(CombatStats.MP, 100));
 
-			target = new Unit.Builder()
+			target = Unit.Build(b => b
 				.SetMainDetails(TARGET_NAME)
-				.SetBaseStat(CombatStats.HP, 1000)
-				.Build();
+				.SetBaseStat(CombatStats.HP, 1000));
 
 			unit.Equipment.AddEquipmentSlot(EquipmentType.Weapon);
-			unit.Equipment.Equip(new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
+			unit.Equipment.Equip(Weapon.Build(EquipmentType.Weapon, WeaponType.Sword, b => b
 				.SetName(WEAPON_NAME)
 				.SetStatAddition(CombatStats.ATK, 10)
 				.SetDamage(20, Attributes.STR)
-				.AddDamageType(DamageType.Physical)
-				.Build());
+				.AddDamageType(DamageType.Physical)));
 
 			unit.Equipment.AddEquipmentSlot(EquipmentType.Weapon);
-			unit.Equipment.Equip(new Weapon.Builder(EquipmentType.Weapon, WeaponType.Spear)
+			unit.Equipment.Equip(Weapon.Build(EquipmentType.Weapon, WeaponType.Spear, b => b
 				.SetName(WEAPON_NAME + " 2")
 				.SetDamage(20, Attributes.VIT)
 				.AddDamageType(DamageType.Physical)
@@ -65,8 +62,7 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 					StatChange heal = new StatChange(args.Owner, CombatStats.HP, args.Owner.VolatileStats[CombatStats.HP] - old);
 					TargetedUnit result = new TargetedUnit(args.Owner, null, null, heal);
 					EffectResult.SetArgsResult(args as CombatEffectArgs, new List<TargetedUnit> { result });
-				})
-				.Build(), 1);
+				})), 1);
 
 			combat.Initialize(unit);
 			combat.Initialize(target);

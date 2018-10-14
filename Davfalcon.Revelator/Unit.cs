@@ -30,16 +30,18 @@ namespace Davfalcon.Revelator
 			Modifiers.Add(Buffs);
 		}
 
+		public static IUnit Build(Func<Builder, IBuilder<IUnit>> builderFunc)
+			=> Build(StatsOperations.Default, LinkedStatsResolverBase.Default, builderFunc);
+
+		public static IUnit Build(IStatsOperations statsOperations, ILinkedStatResolver statLinker, Func<Builder, IBuilder<IUnit>> builderFunc)
+			=> builderFunc(new Builder(statsOperations, statLinker)).Build();
+
 		public class Builder : BuilderBase<Unit, IUnit, Builder>
 		{
 			private readonly IStatsOperations statsOperations;
 			private readonly ILinkedStatResolver statLinker;
 
-			public Builder() :
-				this(StatsOperations.Default, LinkedStatsResolverBase.Default)
-			{ }
-
-			public Builder(IStatsOperations statsOperations, ILinkedStatResolver statLinker)
+			internal Builder(IStatsOperations statsOperations, ILinkedStatResolver statLinker)
 			{
 				this.statsOperations = statsOperations;
 				this.statLinker = statLinker;

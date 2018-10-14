@@ -20,11 +20,10 @@ namespace Davfalcon.Revelator.UnitTests
 		[TestInitialize]
 		public void TestSetup()
 		{
-			unit = new Unit.Builder()
+			unit = Unit.Build(b => b
 				.SetMainDetails(UNIT_NAME)
 				.SetAllBaseStats<Attributes>(10)
-				.SetBaseStat(STAT, 15)
-				.Build();
+				.SetBaseStat(STAT, 15));
 
 			unit.Equipment.AddEquipmentSlot(EquipmentType.Armor);
 			unit.Equipment.AddEquipmentSlot(EquipmentType.Accessory);
@@ -32,11 +31,10 @@ namespace Davfalcon.Revelator.UnitTests
 		}
 
 		private static IEquipment MakeEquip(EquipmentType slot, int add, int mult)
-			=> new Equipment.Builder(slot)
+			=> Equipment.Build(slot, b => b
 				.SetName(EQUIP_NAME)
 				.SetStatAddition(STAT, add)
-				.SetStatMultiplier(STAT, mult)
-				.Build();
+				.SetStatMultiplier(STAT, mult));
 
 		[TestMethod]
 		public void Equip()
@@ -86,11 +84,10 @@ namespace Davfalcon.Revelator.UnitTests
 		[TestMethod]
 		public void GrantedBuffs()
 		{
-			IEquipment equip = new Equipment.Builder(EquipmentType.Armor)
+			IEquipment equip = Equipment.Build(EquipmentType.Armor, b => b
 				.AddBuff(new Buff.Builder().SetName("test1").Build())
 				.AddBuff(new Buff.Builder().SetName("test2").Build())
-				.AddBuff(new Buff.Builder().SetName("test3").Build())
-				.Build();
+				.AddBuff(new Buff.Builder().SetName("test3").Build()));
 
 			Assert.AreEqual("test1", equip.GrantedBuffs.First().Name);
 			Assert.AreEqual("test2", equip.GrantedBuffs.ElementAt(1).Name);
@@ -117,9 +114,8 @@ namespace Davfalcon.Revelator.UnitTests
 		[TestMethod]
 		public void WeaponSerialization()
 		{
-			IWeapon weapon = new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
-				.AddDamageTypes(DamageType.Physical, Element.Fire)
-				.Build();
+			IWeapon weapon = Weapon.Build(EquipmentType.Weapon, WeaponType.Sword, b => b
+				.AddDamageTypes(DamageType.Physical, Element.Fire));
 
 			IWeapon clone = Serializer.DeepClone(weapon);
 

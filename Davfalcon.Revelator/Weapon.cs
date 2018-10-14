@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Davfalcon.Builders;
 using Davfalcon.Collections.Adapters;
 using Davfalcon.Collections.Generic;
 using Davfalcon.Serialization;
@@ -36,15 +37,17 @@ namespace Davfalcon.Revelator
 			WeaponType = weaponType;
 		}
 
+		public static IWeapon Build(Enum equipmentSlot, Enum weaponType, Func<Builder, IBuilder<IWeapon>> builderFunc)
+			=> Build(equipmentSlot, weaponType, StatsOperations.Default, builderFunc);
+
+		public static IWeapon Build(Enum equipmentSlot, Enum weaponType, IStatsOperations operations, Func<Builder, IBuilder<IWeapon>> builderFunc)
+			=> builderFunc(new Builder(equipmentSlot, weaponType, operations)).Build();
+
 		new public class Builder : EquipmentBuilder<Weapon, IWeapon, Builder>
 		{
 			private readonly Enum type;
 
-			public Builder(Enum equipmentSlot, Enum weaponType)
-				: this(equipmentSlot, weaponType, StatsOperations.Default)
-			{ }
-
-			public Builder(Enum equipmentSlot, Enum weaponType, IStatsOperations operations)
+			internal Builder(Enum equipmentSlot, Enum weaponType, IStatsOperations operations)
 				: base(equipmentSlot, operations)
 			{
 				type = weaponType;

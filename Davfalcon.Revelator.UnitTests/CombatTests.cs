@@ -11,14 +11,13 @@ namespace Davfalcon.Revelator.UnitTests
 	public class CombatTests
 	{
 		private static IUnit MakeUnit()
-			=> new Unit.Builder()
+			=> Unit.Build(b => b
 				.SetBaseStat(Attributes.STR, 15)
 				.SetBaseStat(Attributes.VIT, 15)
 				.SetBaseStat(CombatStats.ATK, 20)
 				.SetBaseStat(CombatStats.DEF, 20)
 				.SetBaseStat(CombatStats.HP, 100)
-				.SetBaseStat(CombatStats.MP, 100)
-				.Build();
+				.SetBaseStat(CombatStats.MP, 100));
 
 		[TestMethod]
 		public void InitializeVolatileStats()
@@ -41,9 +40,8 @@ namespace Davfalcon.Revelator.UnitTests
 			ICombatResolver combat = CombatResolver.Default;
 			IUnit unit = MakeUnit();
 
-			IWeapon weapon = new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
-				.SetDamage(5)
-				.Build();
+			IWeapon weapon = Weapon.Build(EquipmentType.Weapon, WeaponType.Sword, b => b
+				.SetDamage(5));
 
 			Damage d = combat.CalculateOutgoingDamage(unit, weapon);
 
@@ -57,9 +55,8 @@ namespace Davfalcon.Revelator.UnitTests
 			ICombatResolver combat = CombatResolver.Default;
 			IUnit unit = MakeUnit();
 
-			IWeapon weapon = new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
-				.SetDamage(5, Attributes.STR)
-				.Build();
+			IWeapon weapon = Weapon.Build(EquipmentType.Weapon, WeaponType.Sword, b => b
+				.SetDamage(5, Attributes.STR));
 
 			Damage d = combat.CalculateOutgoingDamage(unit, weapon);
 
@@ -75,10 +72,9 @@ namespace Davfalcon.Revelator.UnitTests
 				.Build();
 			IUnit unit = MakeUnit();
 
-			IWeapon weapon = new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
+			IWeapon weapon = Weapon.Build(EquipmentType.Weapon, WeaponType.Sword, b => b
 				.SetDamage(5, Attributes.STR)
-				.AddDamageType(DamageType.Physical)
-				.Build();
+				.AddDamageType(DamageType.Physical));
 
 			Damage d = combat.CalculateOutgoingDamage(unit, weapon);
 

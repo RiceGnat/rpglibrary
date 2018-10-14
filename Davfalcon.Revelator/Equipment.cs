@@ -22,6 +22,12 @@ namespace Davfalcon.Revelator
 			SlotType = slot;
 		}
 
+		public static IEquipment Build(Enum slot, Func<Builder, IBuilder<IEquipment>> builderFunc)
+			=> Build(slot, StatsOperations.Default, builderFunc);
+
+		public static IEquipment Build(Enum slot, IStatsOperations operations, Func<Builder, IBuilder<IEquipment>> builderFunc)
+			=> builderFunc(new Builder(slot, operations)).Build();
+
 		public abstract class EquipmentBuilder<TEquipment, TInterface, TBuilder> : BuilderBase<TEquipment, TInterface, TBuilder>
 			where TEquipment : Equipment, TInterface
 			where TInterface : IEquipment
@@ -64,11 +70,7 @@ namespace Davfalcon.Revelator
 
 		public class Builder : EquipmentBuilder<Equipment, IEquipment, Builder>
 		{
-			public Builder(Enum slot)
-				: this(slot, StatsOperations.Default)
-			{ }
-
-			public Builder(Enum slot, IStatsOperations operations)
+			internal Builder(Enum slot, IStatsOperations operations)
 				: base(slot, operations)
 			{
 				Reset();
