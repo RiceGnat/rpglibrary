@@ -12,6 +12,7 @@ namespace Davfalcon.Revelator
 		void RemoveEquipmentSlotIndex(int index);
 		IEquipment GetEquipment(Enum slot);
 		IEquipment GetEquipment(Enum slotType, int offset);
+		IEnumerable<IEquipment> GetAllEquipmentForSlot(Enum slot);
 		void Equip(IEquipment equipment);
 		void Equip(IEquipment equipment, int offset);
 		void EquipSlotIndex(IEquipment equipment, int index);
