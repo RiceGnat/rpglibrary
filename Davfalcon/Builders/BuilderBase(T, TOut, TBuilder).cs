@@ -1,4 +1,6 @@
-﻿namespace Davfalcon.Builders
+﻿using System;
+
+namespace Davfalcon.Builders
 {
 	/// <summary>
 	/// Base class for implementing extendable builders.
@@ -10,9 +12,21 @@
 		where T : TOut
 		where TBuilder : BuilderBase<T, TOut, TBuilder>
 	{
-		protected T build;
+		private T build;
 
 		protected TBuilder Builder => (TBuilder)this;
+		
+		protected TBuilder Reset(T build)
+		{
+			this.build = build;
+			return Builder;
+		}
+
+		protected TBuilder Self(Action<T> func)
+		{
+			func(build);
+			return Builder;
+		}
 
 		/// <summary>
 		/// Resets the builder to its initial state.

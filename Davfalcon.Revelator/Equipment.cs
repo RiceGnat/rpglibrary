@@ -38,49 +38,22 @@ namespace Davfalcon.Revelator
 			
 			protected EquipmentBuilder(Enum slot, IStatsOperations operations)
 			{
-
 				this.slot = slot;
 				this.operations = operations;
 			}
 
-			public TBuilder SetName(string name)
-			{
-				build.Name = name;
-				return Builder;
-			}
-
-			public TBuilder SetStatAddition(Enum stat, int value)
-			{
-				build.Additions[stat] = value;
-				return Builder;
-			}
-
-			public TBuilder SetStatMultiplier(Enum stat, int value)
-			{
-				build.Multipliers[stat] = value;
-				return Builder;
-			}
-
-			public TBuilder AddBuff(IBuff buff)
-			{
-				build.GrantedBuffs.Add(buff);
-				return Builder;
-			}
+			public TBuilder SetName(string name) => Self(e => e.Name = name);
+			public TBuilder SetStatAddition(Enum stat, int value) => Self(e => e.Additions[stat] = value);
+			public TBuilder SetStatMultiplier(Enum stat, int value) => Self(e => e.Multipliers[stat] = value);
+			public TBuilder AddBuff(IBuff buff) => Self(e => e.GrantedBuffs.Add(buff));
 		}
 
 		public class Builder : EquipmentBuilder<Equipment, IEquipment, Builder>
 		{
 			internal Builder(Enum slot, IStatsOperations operations)
-				: base(slot, operations)
-			{
-				Reset();
-			}
+				: base(slot, operations) => Reset();
 
-			public override Builder Reset()
-			{
-				build = new Equipment(slot, operations);
-				return Builder;
-			}
+			public override Builder Reset() => Reset(new Equipment(slot, operations));
 		}
 	}
 }

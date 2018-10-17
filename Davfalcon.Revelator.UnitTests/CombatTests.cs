@@ -56,7 +56,8 @@ namespace Davfalcon.Revelator.UnitTests
 			IUnit unit = MakeUnit();
 
 			IWeapon weapon = Weapon.Build(EquipmentType.Weapon, WeaponType.Sword, b => b
-				.SetDamage(5, Attributes.STR));
+				.SetDamage(5)
+				.SetBonusDamageStat(Attributes.STR));
 
 			Damage d = combat.CalculateOutgoingDamage(unit, weapon);
 
@@ -73,7 +74,8 @@ namespace Davfalcon.Revelator.UnitTests
 			IUnit unit = MakeUnit();
 
 			IWeapon weapon = Weapon.Build(EquipmentType.Weapon, WeaponType.Sword, b => b
-				.SetDamage(5, Attributes.STR)
+				.SetDamage(5)
+				.SetBonusDamageStat(Attributes.STR)
 				.AddDamageType(DamageType.Physical));
 
 			Damage d = combat.CalculateOutgoingDamage(unit, weapon);

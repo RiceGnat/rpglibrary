@@ -54,45 +54,15 @@ namespace Davfalcon.Revelator
 				Reset();
 			}
 
-			public override Builder Reset()
-			{
-				build = new Weapon(slot, type, operations);
-				return Builder;
-			}
+			public override Builder Reset() => Reset(new Weapon(slot, type, operations));
 
-			public Builder SetDamage(int baseDamage, Enum bonusDamageStat = null)
-			{
-				build.BaseDamage = baseDamage;
-				build.BonusDamageStat = bonusDamageStat;
-				return Builder;
-			}
-
-			public Builder AddDamageType(Enum type)
-			{
-				build.DamageTypes.Add(type);
-				return Builder;
-			}
-
-			public Builder AddDamageTypes(params Enum[] types)
-			{
-				build.DamageTypes.AddRange(EnumString.ConvertEnumArray(types));
-				return Builder;
-			}
-
-			public Builder SetCritMultiplier(int crit)
-			{
-				build.CritMultiplier = crit;
-				return Builder;
-			}
-
-			public Builder AddOnHitEffect(IEffect effect)
-			{
-				build.Effects.Add(effect);
-				return Builder;
-			}
-
-			public Builder AddOnHitEffect(string name, EffectResolver resolver)
-				=> AddOnHitEffect(new Effect(name, resolver));
+			public Builder SetDamage(int baseDamage) => Self(w => w.BaseDamage = baseDamage);
+			public Builder SetBonusDamageStat(Enum stat) => Self(w => w.BonusDamageStat = stat);
+			public Builder AddDamageType(Enum type) => Self(w => w.DamageTypes.Add(type));
+			public Builder AddDamageTypes(params Enum[] types) => Self(w => w.DamageTypes.AddRange(EnumString.ConvertEnumArray(types)));
+			public Builder SetCritMultiplier(int crit) => Self(w => w.CritMultiplier = crit);
+			public Builder AddOnHitEffect(IEffect effect) => Self(w => w.Effects.Add(effect));
+			public Builder AddOnHitEffect(string name, EffectResolver resolver) => AddOnHitEffect(new Effect(name, resolver));
 		}
 	}
 }

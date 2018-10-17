@@ -47,13 +47,15 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 			unit.Equipment.Equip(Weapon.Build(EquipmentType.Weapon, WeaponType.Sword, b => b
 				.SetName(WEAPON_NAME)
 				.SetStatAddition(CombatStats.ATK, 10)
-				.SetDamage(20, Attributes.STR)
+				.SetDamage(20)
+				.SetBonusDamageStat(Attributes.STR)
 				.AddDamageType(DamageType.Physical)));
 
 			unit.Equipment.AddEquipmentSlot(EquipmentType.Weapon);
 			unit.Equipment.Equip(Weapon.Build(EquipmentType.Weapon, WeaponType.Spear, b => b
 				.SetName(WEAPON_NAME + " 2")
-				.SetDamage(20, Attributes.VIT)
+				.SetDamage(20)
+				.SetBonusDamageStat(Attributes.VIT)
 				.AddDamageType(DamageType.Physical)
 				.AddOnHitEffect("Effect", args =>
 				{

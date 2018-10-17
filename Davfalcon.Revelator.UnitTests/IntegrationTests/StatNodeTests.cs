@@ -39,7 +39,8 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 			unit.Equipment.Equip(Weapon.Build(EquipmentType.Weapon, WeaponType.Sword, b => b
 				.SetName("Weapon")
 				.SetStatAddition(STAT, 20)
-				.SetDamage(20, STAT)
+				.SetDamage(20)
+				.SetBonusDamageStat(STAT)
 				.AddDamageType(DamageType.Physical)));
 
 			unit.Equipment.AddEquipmentSlot(EquipmentType.Armor);

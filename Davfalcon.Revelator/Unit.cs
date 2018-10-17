@@ -50,24 +50,19 @@ namespace Davfalcon.Revelator
 
 			public override Builder Reset()
 			{
-				build = new Unit(statsOperations, statLinker);
-				build.Link();
-				return Builder;
+				Unit unit = new Unit(statsOperations, statLinker);
+				unit.Link();
+				return Reset(unit);
 			}
 
-			public Builder SetMainDetails(string name, string className = "", int level = 1)
+			public Builder SetMainDetails(string name, string className = "", int level = 1) => Self(unit =>
 			{
-				build.Name = name;
-				build.Class = className;
-				build.Level = level;
-				return Builder;
-			}
+				unit.Name = name;
+				unit.Class = className;
+				unit.Level = level;
+			});
 
-			public Builder SetBaseStat(Enum stat, int value)
-			{
-				build.BaseStats[stat] = value;
-				return Builder;
-			}
+			public Builder SetBaseStat(Enum stat, int value) => Self(unit => unit.BaseStats[stat] = value);
 
 			public Builder SetBaseStats(IEnumerable<Enum> stats, int value)
 			{

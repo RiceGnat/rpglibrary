@@ -12,17 +12,9 @@ namespace Davfalcon.Revelator.Combat
 
 		public class Builder : BuilderBase<SpellCastOptions, Builder>
 		{
-			public override Builder Reset()
-			{
-				build = new SpellCastOptions();
-				return Builder;
-			}
+			public override Builder Reset() => Reset(new SpellCastOptions());
 
-			public Builder SetCost(int cost)
-			{
-				build.CostOverride = cost;
-				return Builder;
-			}
+			public Builder SetCost(int cost) => Self(o => o.CostOverride = cost);
 		}
 	}
 }
