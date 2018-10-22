@@ -81,6 +81,9 @@ namespace Davfalcon.Revelator
 				}
 				return Builder;
 			}
+
+			public Builder AddEquipmentSlot(Enum slot) => Self(unit => unit.Equipment.AddEquipmentSlot(slot));
+			public Builder AddEquipment(IEquipment equipment) => Self(unit => unit.Equipment.Equip(equipment));
 		}
 	}
 }
