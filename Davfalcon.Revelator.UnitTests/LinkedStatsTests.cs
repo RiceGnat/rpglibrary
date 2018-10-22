@@ -10,13 +10,12 @@ namespace Davfalcon.Revelator.UnitTests
 
 		[TestInitialize]
 		public void MakeUnit()
-			=> unit = new Unit.Builder(StatsOperations.Default, LinkedStatsResolver.Default)
+			=> unit = Unit.Build(StatsOperations.Default, LinkedStatsResolver.Default, b => b
 				.SetBaseStat(Attributes.STR, 15)
 				.SetBaseStat(Attributes.VIT, 12)
 				.SetBaseStat(Attributes.AGI, 8)
 				.SetBaseStat(Attributes.INT, 14)
-				.SetBaseStat(Attributes.WIS, 10)
-				.Build();
+				.SetBaseStat(Attributes.WIS, 10));
 
 		[TestMethod]
 		public void HP()

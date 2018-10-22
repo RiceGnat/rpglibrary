@@ -1,4 +1,6 @@
-﻿namespace Davfalcon.Revelator.Combat
+﻿using Davfalcon.Builders;
+
+namespace Davfalcon.Revelator.Combat
 {
 	public class SpellCastOptions
 	{
@@ -8,13 +10,11 @@
 
 		public static SpellCastOptions Default { get; }
 
-		public class Builder : BuilderBase<SpellCastOptions>
+		public class Builder : BuilderBase<SpellCastOptions, Builder>
 		{
-			public Builder SetCost(int cost)
-			{
-				build.CostOverride = cost;
-				return this;
-			}
+			public override Builder Reset() => Reset(new SpellCastOptions());
+
+			public Builder SetCost(int cost) => Self(o => o.CostOverride = cost);
 		}
 	}
 }

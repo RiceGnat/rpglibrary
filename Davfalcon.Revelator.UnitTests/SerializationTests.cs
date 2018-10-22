@@ -30,17 +30,15 @@ namespace Davfalcon.Revelator.UnitTests
 		}
 		*/
 		private IUnit MakeUnit()
-			=> new Unit.Builder(StatsOperations.Default, LinkedStatsResolver.Default)
+			=> Unit.Build(StatsOperations.Default, LinkedStatsResolver.Default, b => b
 				.SetMainDetails("Test Unit", "Class")
-				.SetAllBaseStats<Attributes>(10)
-				.Build();
+				.SetAllBaseStats<Attributes>(10));
 
 		private IEquipment MakeEquipment()
-			=> new Equipment.Builder(EquipmentType.Armor)
+			=> Equipment.Build(EquipmentType.Armor, b => b
 				.SetName("Test Armor")
-				.SetStatAddition(CombatStats.DEF, 3)
-				.Build();
-		
+				.SetStatAddition(CombatStats.DEF, 3));
+
 		[TestMethod]
 		public void UnitSerialization()
 		{

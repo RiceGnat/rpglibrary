@@ -31,37 +31,33 @@ namespace Davfalcon.Revelator.UnitTests.IntegrationTests
 		[TestInitialize]
 		public void TestSetup()
 		{
-			unit = new Unit.Builder()
+			unit = Unit.Build(b => b
 				.SetMainDetails(UNIT_NAME)
-				.SetBaseStat(STAT, 15)
-				.Build();
+				.SetBaseStat(STAT, 15));
 
 			unit.Equipment.AddEquipmentSlot(EquipmentType.Weapon);
-			unit.Equipment.Equip(new Weapon.Builder(EquipmentType.Weapon, WeaponType.Sword)
+			unit.Equipment.Equip(Weapon.Build(EquipmentType.Weapon, WeaponType.Sword, b => b
 				.SetName("Weapon")
 				.SetStatAddition(STAT, 20)
-				.SetDamage(20, STAT)
-				.AddDamageType(DamageType.Physical)
-				.Build());
+				.SetDamage(20)
+				.SetBonusDamageStat(STAT)
+				.AddDamageType(DamageType.Physical)));
 
 			unit.Equipment.AddEquipmentSlot(EquipmentType.Armor);
-			unit.Equipment.Equip(new Equipment.Builder(EquipmentType.Armor)
+			unit.Equipment.Equip(Equipment.Build(EquipmentType.Armor, b => b
 				.SetName("Armor")
-				.SetStatAddition(STAT, 5)
-				.Build());
+				.SetStatAddition(STAT, 5)));
 
 			unit.Equipment.AddEquipmentSlot(EquipmentType.Accessory);
-			unit.Equipment.Equip(new Equipment.Builder(EquipmentType.Accessory)
+			unit.Equipment.Equip(Equipment.Build(EquipmentType.Accessory, b => b
 				.SetName("Accessory")
 				.SetStatAddition(STAT, 5)
-				.SetStatMultiplier(STAT, 20)
-				.Build());
+				.SetStatMultiplier(STAT, 20)));
 
-			target = new Unit.Builder()
+			target = Unit.Build(b => b
 				.SetMainDetails(TARGET_NAME)
 				.SetBaseStat(CombatStats.DEF, 20)
-				.SetBaseStat(CombatStats.HP, 1000)
-				.Build();
+				.SetBaseStat(CombatStats.HP, 1000));
 
 
 			combat.Initialize(unit);

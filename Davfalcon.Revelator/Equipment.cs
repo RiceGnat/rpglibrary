@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Davfalcon.Builders;
 using Davfalcon.Collections.Generic;
 
 namespace Davfalcon.Revelator
@@ -21,51 +22,38 @@ namespace Davfalcon.Revelator
 			SlotType = slot;
 		}
 
-		public class Builder : BuilderBase<Equipment, IEquipment>
+		public static IEquipment Build(Enum slot, Func<Builder, IBuilder<IEquipment>> builderFunc)
+			=> Build(slot, StatsOperations.Default, builderFunc);
+
+		public static IEquipment Build(Enum slot, IStatsOperations operations, Func<Builder, IBuilder<IEquipment>> builderFunc)
+			=> builderFunc(new Builder(slot, operations)).Build();
+
+		public abstract class EquipmentBuilder<TEquipment, TInterface, TBuilder> : BuilderBase<TEquipment, TInterface, TBuilder>
+			where TEquipment : Equipment, TInterface
+			where TInterface : IEquipment
+			where TBuilder : EquipmentBuilder<TEquipment, TInterface, TBuilder>
 		{
-			private readonly Enum slot;
-			private readonly IStatsOperations operations;
-
-			public Builder(Enum slot)
-				: this(slot, StatsOperations.Default)
-			{ }
-
-			public Builder(Enum slot, IStatsOperations operations)
+			protected readonly Enum slot;
+			protected readonly IStatsOperations operations;
+			
+			protected EquipmentBuilder(Enum slot, IStatsOperations operations)
 			{
 				this.slot = slot;
 				this.operations = operations;
-				Reset();
 			}
 
-			public Builder Reset()
-			{
-				build = new Equipment(slot, operations);
-				return this;
-			}
+			public TBuilder SetName(string name) => Self(e => e.Name = name);
+			public TBuilder SetStatAddition(Enum stat, int value) => Self(e => e.Additions[stat] = value);
+			public TBuilder SetStatMultiplier(Enum stat, int value) => Self(e => e.Multipliers[stat] = value);
+			public TBuilder AddBuff(IBuff buff) => Self(e => e.GrantedBuffs.Add(buff));
+		}
 
-			public Builder SetName(string name)
-			{
-				build.Name = name;
-				return this;
-			}
+		public class Builder : EquipmentBuilder<Equipment, IEquipment, Builder>
+		{
+			internal Builder(Enum slot, IStatsOperations operations)
+				: base(slot, operations) => Reset();
 
-			public Builder SetStatAddition(Enum stat, int value)
-			{
-				build.Additions[stat] = value;
-				return this;
-			}
-
-			public Builder SetStatMultiplier(Enum stat, int value)
-			{
-				build.Multipliers[stat] = value;
-				return this;
-			}
-
-			public Builder AddBuff(IBuff buff)
-			{
-				build.GrantedBuffs.Add(buff);
-				return this;
-			}
+			public override Builder Reset() => Reset(new Equipment(slot, operations));
 		}
 	}
 }

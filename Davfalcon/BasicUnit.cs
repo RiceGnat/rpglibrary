@@ -74,16 +74,6 @@ namespace Davfalcon
 		protected bool ShortCircuit => Modifiers.StatsDetails == StatsDetails;
 
 		/// <summary>
-		/// Perform initial setup.
-		/// </summary>
-		public virtual void Initialize()
-		{
-			BaseStats = new StatsMap();
-			Modifiers = new UnitModifierStack();
-			Link();
-		}
-
-		/// <summary>
 		/// Set internal object references
 		/// </summary>
 		protected virtual void Link()
@@ -100,21 +90,38 @@ namespace Davfalcon
 			// Reset object references after deserialization
 			Link();
 		}
+		
+		protected BasicUnit(IEditableStats baseStats, IAggregator aggregator)
+		{
+			this.aggregator = aggregator;
+			BaseStats = baseStats;
+
+			Modifiers = new UnitModifierStack();
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BasicUnit"/> class with no properties set.
 		/// </summary>
-		public BasicUnit()
-			: this(StatsOperations.Default)
-		{ }
+		public static BasicUnit Create()
+			=> Create(StatsOperations.Default);
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified <see cref="IAggregator"/>.
 		/// </summary>
-		/// <param name="aggregator">Used to define the seed for aggregating stat multipliers.</param>
-		public BasicUnit(IAggregator aggregator)
+		/// <param name="aggregator">The <see cref="IAggregator"/> that defines the seed for aggregating stat multipliers.</param>
+		public static BasicUnit Create(IAggregator aggregator)
+			=> Create(new StatsMap(), aggregator);
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified <see cref="IEditableStats"/> base stats and <see cref="IAggregator"/>.
+		/// </summary>
+		/// <param name="baseStats">The unit's base stats.</param>
+		/// <param name="aggregator">The <see cref="IAggregator"/> that defines the seed for aggregating stat multipliers.</param>
+		public static BasicUnit Create(IEditableStats baseStats, IAggregator aggregator)
 		{
-			this.aggregator = aggregator;
+			BasicUnit unit = new BasicUnit(baseStats, aggregator);
+			unit.Link();
+			return unit;
 		}
 	}
 }

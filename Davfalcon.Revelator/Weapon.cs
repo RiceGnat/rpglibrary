@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Davfalcon.Builders;
 using Davfalcon.Collections.Adapters;
 using Davfalcon.Collections.Generic;
 using Davfalcon.Serialization;
@@ -9,7 +10,6 @@ namespace Davfalcon.Revelator
 	[Serializable]
 	public class Weapon : Equipment, IWeapon
 	{
-
 		public Enum WeaponType { get; set; }
 		public int BaseDamage { get; set; }
 		public Enum BonusDamageStat { get; set; }
@@ -37,87 +37,32 @@ namespace Davfalcon.Revelator
 			WeaponType = weaponType;
 		}
 
-		new public class Builder : BuilderBase<Weapon, IWeapon>
+		public static IWeapon Build(Enum equipmentSlot, Enum weaponType, Func<Builder, IBuilder<IWeapon>> builderFunc)
+			=> Build(equipmentSlot, weaponType, StatsOperations.Default, builderFunc);
+
+		public static IWeapon Build(Enum equipmentSlot, Enum weaponType, IStatsOperations operations, Func<Builder, IBuilder<IWeapon>> builderFunc)
+			=> builderFunc(new Builder(equipmentSlot, weaponType, operations)).Build();
+
+		new public class Builder : EquipmentBuilder<Weapon, IWeapon, Builder>
 		{
-			private readonly Enum slot;
 			private readonly Enum type;
-			private readonly IStatsOperations operations;
 
-			public Builder(Enum equipmentSlot, Enum weaponType)
-				: this(equipmentSlot, weaponType, StatsOperations.Default)
-			{ }
-
-			public Builder(Enum equipmentSlot, Enum weaponType, IStatsOperations operations)
+			internal Builder(Enum equipmentSlot, Enum weaponType, IStatsOperations operations)
+				: base(equipmentSlot, operations)
 			{
-				slot = equipmentSlot;
 				type = weaponType;
-				this.operations = operations;
 				Reset();
 			}
 
-			public Builder Reset()
-			{
-				build = new Weapon(slot, type, operations);
-				return this;
-			}
+			public override Builder Reset() => Reset(new Weapon(slot, type, operations));
 
-			public Builder SetName(string name)
-			{
-				build.Name = name;
-				return this;
-			}
-
-			public Builder SetStatAddition(Enum stat, int value)
-			{
-				build.Additions[stat] = value;
-				return this;
-			}
-
-			public Builder SetStatMultiplier(Enum stat, int value)
-			{
-				build.Multipliers[stat] = value;
-				return this;
-			}
-
-			public Builder AddBuff(IBuff buff)
-			{
-				build.GrantedBuffs.Add(buff);
-				return this;
-			}
-
-			public Builder SetDamage(int baseDamage, Enum bonusDamageStat = null)
-			{
-				build.BaseDamage = baseDamage;
-				build.BonusDamageStat = bonusDamageStat;
-				return this;
-			}
-
-			public Builder AddDamageType(Enum type)
-			{
-				build.DamageTypes.Add(type);
-				return this;
-			}
-
-			public Builder AddDamageTypes(params Enum[] types)
-			{
-				build.DamageTypes.AddRange(EnumString.ConvertEnumArray(types));
-				return this;
-			}
-
-			public Builder SetCritMultiplier(int crit)
-			{
-				build.CritMultiplier = crit;
-				return this;
-			}
-
-			public Builder AddOnHitEffect(IEffect effect)
-			{
-				build.Effects.Add(effect);
-				return this;
-			}
-
-			public Builder AddOnHitEffect(string name, EffectResolver resolver)
-				=> AddOnHitEffect(new Effect(name, resolver));
+			public Builder SetDamage(int baseDamage) => Self(w => w.BaseDamage = baseDamage);
+			public Builder SetBonusDamageStat(Enum stat) => Self(w => w.BonusDamageStat = stat);
+			public Builder AddDamageType(Enum type) => Self(w => w.DamageTypes.Add(type));
+			public Builder AddDamageTypes(params Enum[] types) => Self(w => w.DamageTypes.AddRange(EnumString.ConvertEnumArray(types)));
+			public Builder SetCritMultiplier(int crit) => Self(w => w.CritMultiplier = crit);
+			public Builder AddOnHitEffect(IEffect effect) => Self(w => w.Effects.Add(effect));
+			public Builder AddOnHitEffect(string name, EffectResolver resolver) => AddOnHitEffect(new Effect(name, resolver));
 		}
 	}
 }

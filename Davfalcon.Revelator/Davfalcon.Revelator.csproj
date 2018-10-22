@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuilderBase.cs" />
     <Compile Include="Combat\DamageNode.cs" />
     <Compile Include="Combat\DefenseNode.cs" />
     <Compile Include="Combat\ICombatNodeResolver.cs" />
@@ -61,7 +60,6 @@
     <Compile Include="Borger\LinkedStatsResolver.cs" />
     <Compile Include="Engine\IWeaponRegistry.cs" />
     <Compile Include="Engine\WeaponRegistry.cs" />
-    <Compile Include="IBuilder%28T%29.cs" />
     <Compile Include="IDamageSource.cs" />
     <Compile Include="IEffect.cs" />
     <Compile Include="EffectArgs.cs" />
