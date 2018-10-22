@@ -73,7 +73,7 @@ namespace Davfalcon.Revelator
 		}
 
 		public IEnumerable<IEquipment> GetAllEquipmentForSlot(Enum slot)
-			=> equippedSlots.Where(equip => equip?.SlotType == slot);
+			=> equippedSlots.Where(equip => equip?.SlotType.Equals(slot) ?? false);
 
 		public void Equip(IEquipment equipment) => Equip(equipment, 0);
 		public void Equip(IEquipment equipment, int offset) => EquipSlotIndex(equipment, GetSlotIndex(equipment.SlotType, offset));
