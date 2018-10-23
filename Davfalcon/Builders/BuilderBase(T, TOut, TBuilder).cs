@@ -12,6 +12,8 @@ namespace Davfalcon.Builders
 		where T : TOut
 		where TBuilder : BuilderBase<T, TOut, TBuilder>
 	{
+		public delegate IBuilder<TOut> Func(TBuilder builder);
+
 		private T build;
 
 		protected TBuilder Builder => (TBuilder)this;
