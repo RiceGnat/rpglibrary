@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace Davfalcon.Revelator
+﻿namespace Davfalcon.Revelator
 {
 	public interface IBuff : ITimedModifier, IEffectSource
 	{
 		bool IsDebuff { get; }
-		IUnit Source { get; set; }
+		IUnit Owner { get; set; }
 	}
 }

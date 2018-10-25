@@ -9,13 +9,12 @@ namespace Davfalcon.Revelator
 	{
 		[NonSerialized]
 		private IUnit source;
-		public IUnit Source
+		public IUnit Owner
 		{
 			get => source;
 			set => source = value;
 		}
 
-		public string Owner { get; set; }
 		public bool IsDebuff { get; set; }
 
 		public ManagedList<IEffect> Effects { get; } = new ManagedList<IEffect>();

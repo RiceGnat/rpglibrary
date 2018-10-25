@@ -62,7 +62,6 @@ namespace Davfalcon.Revelator
 			public Builder AddDamageTypes(params Enum[] types) => Self(w => w.DamageTypes.AddRange(EnumString.ConvertEnumArray(types)));
 			public Builder SetCritMultiplier(int crit) => Self(w => w.CritMultiplier = crit);
 			public Builder AddOnHitEffect(IEffect effect) => Self(w => w.Effects.Add(effect));
-			public Builder AddOnHitEffect(string name, EffectResolver resolver) => AddOnHitEffect(new Effect(name, resolver));
 		}
 	}
 }
