@@ -37,10 +37,6 @@ namespace Davfalcon
 		/// <param name="target">The <see cref="IUnit"/> to bind the modifier to.</param>
 		public virtual void Bind(IUnit target) => this.target = target;
 
-		// Resolve Name property ambiguity
-		string IUnitModifier.Name => Name;
-		string INameable.Name => Name;
-
 		#region IUnit implementation
 		string IUnit.Name => InterfaceUnit.Name;
 		string IUnit.Class => InterfaceUnit.Class;
