@@ -71,10 +71,9 @@ namespace Davfalcon.Revelator.Combat
 				currentValues[stat] = unit.Stats[stat];
 			}
 
-			IBuff b = buff.DeepClone();
-			b.Owner = source ?? unit;
-			b.Reset();
-			unit.Buffs.Add(b);
+			buff.Owner = source ?? unit;
+			buff.Reset();
+			unit.Buffs.Add(buff);
 
 			AdjustMaxVolatileStats(unit, currentValues);
 		}
@@ -112,7 +111,7 @@ namespace Davfalcon.Revelator.Combat
 			{
 				foreach (IBuff buff in equip.GrantedBuffs)
 				{
-					ApplyBuff(unit, buff, unit);
+					ApplyBuff(unit, buff.DeepClone(), unit);
 				}
 			}
 		}
