@@ -6,7 +6,7 @@ namespace Davfalcon
 	/// <summary>
 	/// Shows different views of a unit's stats. Includes base stats, modifiers, and stats after modifiers are applied.
 	/// </summary>
-	public interface IStatsPackage
+	public interface IStatsDetails
 	{
 		/// <summary>
 		/// Gets the stats after modifiers are applied.

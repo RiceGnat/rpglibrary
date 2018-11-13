@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Represents an object that modifies a unit's stats.
 	/// </summary>
-	public interface IStatsModifier : IUnitModifier
+	public interface IStatsModifier<T> : IModifier<T> where T : IStatsContainer
 	{
 		/// <summary>
 		/// Gets the values that this item will add to the unit's stats.

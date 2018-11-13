@@ -1,6 +1,6 @@
 ﻿namespace Davfalcon
 {
-	public interface IStatsHolder
+	public interface IStatsContainer
 	{
 		/// <summary>
 		/// Gets the unit's stats.
@@ -10,6 +10,6 @@
 		/// <summary>
 		/// Gets a breakdown of the unit's stats.
 		/// </summary>
-		IStatsPackage StatsDetails { get; }
+		IStatsDetails StatsDetails { get; }
 	}
 }

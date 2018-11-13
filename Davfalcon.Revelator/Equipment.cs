@@ -13,7 +13,7 @@ namespace Davfalcon.Revelator
 		public ManagedList<IBuff> GrantedBuffs { get; } = new ManagedList<IBuff>();
 		IEnumerable<IBuff> IEquipment.GrantedBuffs => GrantedBuffs.AsReadOnly();
 
-		protected override IStatsPackage GetStatsResolver()
+		protected override IStatsDetails GetStatsResolver()
 			=> GetStatsResolver<IEquipment>(this);
 
 		protected Equipment(Enum slot, IStatsOperations operations)

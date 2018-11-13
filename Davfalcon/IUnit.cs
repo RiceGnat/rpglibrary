@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Exposes basic properties of a unit.
 	/// </summary>
-	public interface IUnit : INameable, IStatsHolder
+	public interface IUnit : INameable, IStatsContainer
 	{
 		/// <summary>
 		/// Gets the unit's name.
@@ -23,6 +23,6 @@
 		/// <summary>
 		/// Gets the modifiers attached to the unit.
 		/// </summary>
-		IUnitModifierStack Modifiers { get; }
+		IModifierCollection<IUnit> Modifiers { get; }
 	}
 }

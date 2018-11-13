@@ -28,7 +28,7 @@ namespace Davfalcon.Revelator
 			set => owner = value;
 		}
 
-		protected override IStatsPackage GetStatsResolver()
+		protected override IStatsDetails GetStatsResolver()
 			=> GetStatsResolver<IWeapon>(this);
 
 		protected Weapon(Enum equipmentSlot, Enum weaponType, IStatsOperations operations)

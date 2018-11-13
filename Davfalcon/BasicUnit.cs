@@ -11,24 +11,21 @@ namespace Davfalcon
 	[Serializable]
 	public class BasicUnit : IUnit, IEditableName
 	{
-		private class BaseStatsRouter : IStatsPackage
+		private class BaseStatsRouter : IStatsDetails
 		{
 			private BasicUnit unit;
 
 			public IStats Base => unit.BaseStats;
 			public IStats Additions => StatsConstant.Zero;
 			public IStats Multipliers => new StatsConstant(unit.aggregator.AggregateSeed);
-			public IStats Final => unit.Modifiers.Stats;
+			public IStats Final => unit.Modifiers.AsTargetInterface.Stats;
 
 			public INode GetBaseStatNode(Enum stat) => StatNode<IUnit>.From(unit, unit.BaseStats, stat);
 			public IAggregatorNode GetAdditionsNode(Enum stat) => new AggregatorNode($"{stat} additions ({unit.Name})", null);
 			public IAggregatorNode GetMultipliersNode(Enum stat) => new AggregatorNode($"{stat} multipliers ({unit.Name})", null, unit.aggregator);
-			public INode GetStatNode(Enum stat) => unit.ShortCircuit ? GetBaseStatNode(stat) : unit.Modifiers.StatsDetails.GetStatNode(stat);
+			public INode GetStatNode(Enum stat) => unit.ShortCircuit ? GetBaseStatNode(stat) : unit.Modifiers.AsTargetInterface.StatsDetails.GetStatNode(stat);
 
-			public BaseStatsRouter(BasicUnit unit)
-			{
-				this.unit = unit;
-			}
+			public BaseStatsRouter(BasicUnit unit) => this.unit = unit;
 		}
 
 		[NonSerialized]
@@ -59,7 +56,7 @@ namespace Davfalcon
 		/// <summary>
 		/// Gets a detailed breakdown of the unit's stats.
 		/// </summary>
-		public virtual IStatsPackage StatsDetails => statsRouter;
+		public virtual IStatsDetails StatsDetails => statsRouter;
 
 		/// <summary>
 		/// Gets an editable version of the unit's base stats.
@@ -69,9 +66,9 @@ namespace Davfalcon
 		/// <summary>
 		/// Gets the unit's modifiers.
 		/// </summary>
-		public IUnitModifierStack Modifiers { get; protected set; }
+		public IModifierCollection<IUnit> Modifiers { get; protected set; }
 
-		protected bool ShortCircuit => Modifiers.StatsDetails == StatsDetails;
+		protected bool ShortCircuit => Modifiers.AsTargetInterface.StatsDetails == StatsDetails;
 
 		/// <summary>
 		/// Set internal object references
@@ -96,7 +93,7 @@ namespace Davfalcon
 			this.aggregator = aggregator;
 			BaseStats = baseStats;
 
-			Modifiers = new UnitModifierStack();
+			Modifiers = new ModifierCollection<IUnit>();
 		}
 
 		/// <summary>

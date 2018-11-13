@@ -62,20 +62,5 @@ namespace Davfalcon.UnitTests
 
 			Assert.AreEqual(14, unit.Stats[STAT_NAME]);
 		}
-
-		[TestMethod]
-		public void TimedModifier()
-		{
-			TimedModifier modifier = new TimedModifier
-			{
-				Duration = 1
-			};
-			modifier.Reset();
-			Assert.AreEqual(modifier.Duration, modifier.Remaining);
-			modifier.Tick();
-			Assert.AreEqual(0, modifier.Remaining);
-			modifier.Tick();
-			Assert.AreEqual(0, modifier.Remaining);
-		}
 	}
 }

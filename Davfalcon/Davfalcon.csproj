@@ -63,12 +63,16 @@
     <Compile Include="IDescribable.cs" />
     <Compile Include="IEditableDescription.cs" />
     <Compile Include="IEditableName.cs" />
-    <Compile Include="IEditableStatsModifier.cs" />
+    <Compile Include="IEditableStatsModifier%28T%29.cs" />
+    <Compile Include="IModifier%28T%29.cs" />
+    <Compile Include="IModifierCollection%28T%29.cs" />
+    <Compile Include="Modifier%28T%29.cs" />
+    <Compile Include="ModifierCollection%28T%29.cs" />
     <Compile Include="Nodes\Extensions.cs" />
     <Compile Include="Nodes\INode.cs" />
     <Compile Include="INameable.cs" />
-    <Compile Include="IStatsHolder.cs" />
-    <Compile Include="IStatsModifier.cs" />
+    <Compile Include="IStatsContainer.cs" />
+    <Compile Include="IStatsModifier%28T%29.cs" />
     <Compile Include="MathExtensions.cs" />
     <Compile Include="Nodes\AggregatorNode.cs" />
     <Compile Include="Nodes\ConstantNode.cs" />
@@ -87,24 +91,20 @@
     <Compile Include="Stats\StatsAggregator.cs" />
     <Compile Include="StatsOperations.cs" />
     <Compile Include="Serialization\EnumString.cs" />
-    <Compile Include="TimedModifier.cs" />
-    <Compile Include="ITimedModifier.cs" />
     <Compile Include="IEditableStats.cs" />
     <Compile Include="IStats.cs" />
     <Compile Include="IStatsOperations.cs" />
-    <Compile Include="IStatsPackage.cs" />
+    <Compile Include="IStatsDetails.cs" />
     <Compile Include="IItem.cs" />
     <Compile Include="IUnit.cs" />
-    <Compile Include="IUnitModifier.cs" />
-    <Compile Include="IUnitModifierStack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\Serializer.cs" />
     <Compile Include="Stats\StatsCalculator.cs" />
     <Compile Include="Stats\StatsConstant.cs" />
     <Compile Include="Stats\StatsPrototype.cs" />
     <Compile Include="Stats\StatsMap.cs" />
-    <Compile Include="UnitModifier.cs" />
-    <Compile Include="UnitModifierStack.cs" />
+    <Compile Include="UnitModifier%28T%29.cs" />
+    <Compile Include="UnitStatsModifier%28T%29.cs" />
     <Compile Include="UnitStatsModifier.cs" />
   </ItemGroup>
   <ItemGroup />

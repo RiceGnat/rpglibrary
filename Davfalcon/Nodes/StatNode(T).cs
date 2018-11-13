@@ -33,7 +33,7 @@ namespace Davfalcon.Nodes
 		public static StatNode<TSource> From<TSource>(TSource source, IStats stats, Enum stat) where TSource : INameable
 			=> new StatNode<TSource>(source, stats, stat);
 
-		public static StatNode<TSource> From<TSource>(TSource source, Enum stat) where TSource : IStatsHolder, INameable
+		public static StatNode<TSource> From<TSource>(TSource source, Enum stat) where TSource : IStatsContainer, INameable
 			=> new StatNode<TSource>(source, source.Stats, stat);
 	}
 }

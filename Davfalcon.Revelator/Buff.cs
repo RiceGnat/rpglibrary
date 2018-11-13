@@ -20,7 +20,7 @@ namespace Davfalcon.Revelator
 		public ManagedList<IEffect> Effects { get; } = new ManagedList<IEffect>();
 		IEnumerable<IEffect> IEffectSource.Effects => Effects.AsReadOnly();
 
-		protected override IStatsPackage GetStatsResolver()
+		protected override IStatsDetails GetStatsResolver()
 			=> GetStatsResolver<IBuff>(this);
 
 		public class Builder
