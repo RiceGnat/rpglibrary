@@ -1,6 +1,5 @@
 ﻿using System;
 using Davfalcon.Nodes;
-using Davfalcon.Stats;
 
 namespace Davfalcon
 {

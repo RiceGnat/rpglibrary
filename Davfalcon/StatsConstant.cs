@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Davfalcon.Stats
+namespace Davfalcon
 {
 	/// <summary>
 	/// Returns a constant value for every stat.

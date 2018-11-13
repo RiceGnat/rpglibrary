@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Davfalcon.Stats
+namespace Davfalcon
 {
 	/// <summary>
 	/// Performs math across a set of stats.

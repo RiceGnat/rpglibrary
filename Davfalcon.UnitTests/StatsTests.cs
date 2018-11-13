@@ -1,5 +1,4 @@
-﻿using Davfalcon.Stats;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Davfalcon.UnitTests.TestConstants;
 
 namespace Davfalcon.UnitTests

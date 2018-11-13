@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using Davfalcon.Nodes;
-using Davfalcon.Stats;
 
 namespace Davfalcon
 {
