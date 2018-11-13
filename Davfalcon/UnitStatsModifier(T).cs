@@ -13,10 +13,10 @@ namespace Davfalcon
 		private class StatsResolver : IStatsDetails
 		{
 			private readonly UnitStatsModifier<T> modifier;
-			private readonly IStatsOperations operations;
 
 			private IStatsDetails TargetDetails => modifier.Target.StatsDetails;
 
+			public IStatsOperations Operations => TargetDetails.Operations;
 			public IStats Base => TargetDetails.Base;
 			public IStats Additions { get; }
 			public IStats Multipliers { get; }
@@ -31,7 +31,7 @@ namespace Davfalcon
 					: TargetDetails.GetAdditionsNode(stat);
 
 			public IAggregatorNode GetMultipliersNode(Enum stat)
-				=> modifier.Multipliers[stat] != operations.AggregateSeed
+				=> modifier.Multipliers[stat] != Operations.AggregateSeed
 					? TargetDetails.GetMultipliersNode(stat).Merge(StatNode<T>.From(modifier, modifier.Multipliers, stat))
 					: TargetDetails.GetMultipliersNode(stat);
 
@@ -40,26 +40,23 @@ namespace Davfalcon
 					GetBaseStatNode(stat),
 					GetAdditionsNode(stat),
 					GetMultipliersNode(stat),
-					operations);
+					Operations);
 
-			public StatsResolver(UnitStatsModifier<T> modifier, IStatsOperations operations)
+			public StatsResolver(UnitStatsModifier<T> modifier)
 			{
 				this.modifier = modifier;
-				this.operations = operations;
 
 				// Always use default aggregator for addition (sum)
 				Additions = new StatsAggregator(TargetDetails.Additions, modifier.Additions);
-				Multipliers = new StatsAggregator(TargetDetails.Multipliers, modifier.Multipliers, operations);
 
-				// The final calculation will use the defined formula (or default if not specified)
-				Final = new StatsCalculator(Base, Additions, Multipliers, operations);
+				// Multiplier aggregation and the final calculation will use the formulas defined by the unit
+				Multipliers = new StatsAggregator(TargetDetails.Multipliers, modifier.Multipliers, Operations);
+				Final = new StatsCalculator(Base, Additions, Multipliers, Operations);
 			}
 		}
 
 		[NonSerialized]
 		private IStatsDetails statsResolver;
-
-		private readonly IStatsOperations operations;
 
 		/// <summary>
 		/// Gets or sets the values to be added to each stat.
@@ -81,25 +78,15 @@ namespace Davfalcon
 		public override void Bind(T target)
 		{
 			base.Bind(target);
-			statsResolver = new StatsResolver(this, operations);
+			statsResolver = new StatsResolver(this);
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="UnitStatsModifier"/> class.
-		/// </summary>
+		/// Initializes a new instance of the <see cref="UnitModifier{T}"/> class.
 		public UnitStatsModifier()
-			: this(StatsOperations.Default)
-		{ }
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UnitStatsModifier"/> class with the specified <see cref="IStatsOperations"/>.
-		/// </summary>
-		/// <param name="operations">The stat operations definition.</param>
-		public UnitStatsModifier(IStatsOperations operations)
 		{
 			Additions = new StatsMap();
 			Multipliers = new StatsMap();
-			this.operations = operations;
 		}
 	}
 }

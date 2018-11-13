@@ -8,6 +8,8 @@ namespace Davfalcon
 	/// </summary>
 	public interface IStatsDetails
 	{
+		IStatsOperations Operations { get; }
+
 		/// <summary>
 		/// Gets the stats after modifiers are applied.
 		/// </summary>

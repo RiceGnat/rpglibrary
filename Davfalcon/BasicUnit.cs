@@ -15,14 +15,16 @@ namespace Davfalcon
 		{
 			private BasicUnit unit;
 
+			public IStatsOperations Operations => unit.operations;
+
 			public IStats Base => unit.BaseStats;
 			public IStats Additions => StatsConstant.Zero;
-			public IStats Multipliers => new StatsConstant(unit.aggregator.AggregateSeed);
+			public IStats Multipliers => new StatsConstant(unit.operations.AggregateSeed);
 			public IStats Final => unit.Modifiers.AsTargetInterface.Stats;
 
 			public INode GetBaseStatNode(Enum stat) => StatNode<IUnit>.From(unit, unit.BaseStats, stat);
 			public IAggregatorNode GetAdditionsNode(Enum stat) => new AggregatorNode($"{stat} additions ({unit.Name})", null);
-			public IAggregatorNode GetMultipliersNode(Enum stat) => new AggregatorNode($"{stat} multipliers ({unit.Name})", null, unit.aggregator);
+			public IAggregatorNode GetMultipliersNode(Enum stat) => new AggregatorNode($"{stat} multipliers ({unit.Name})", null, unit.operations);
 			public INode GetStatNode(Enum stat) => unit.ShortCircuit ? GetBaseStatNode(stat) : unit.Modifiers.AsTargetInterface.StatsDetails.GetStatNode(stat);
 
 			public BaseStatsRouter(BasicUnit unit) => this.unit = unit;
@@ -31,7 +33,7 @@ namespace Davfalcon
 		[NonSerialized]
 		private BaseStatsRouter statsRouter;
 
-		private readonly IAggregator aggregator;
+		private readonly IStatsOperations operations;
 
 		/// <summary>
 		/// Gets or sets the unit's name.
@@ -88,9 +90,9 @@ namespace Davfalcon
 			Link();
 		}
 		
-		protected BasicUnit(IEditableStats baseStats, IAggregator aggregator)
+		protected BasicUnit(IEditableStats baseStats, IStatsOperations operations)
 		{
-			this.aggregator = aggregator;
+			this.operations = operations;
 			BaseStats = baseStats;
 
 			Modifiers = new ModifierCollection<IUnit>();
@@ -103,20 +105,20 @@ namespace Davfalcon
 			=> Create(StatsOperations.Default);
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified <see cref="IAggregator"/>.
+		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified <see cref="IStatsOperations"/> instance.
 		/// </summary>
-		/// <param name="aggregator">The <see cref="IAggregator"/> that defines the seed for aggregating stat multipliers.</param>
-		public static BasicUnit Create(IAggregator aggregator)
-			=> Create(new StatsMap(), aggregator);
+		/// <param name="aggregator">The <see cref="IStatsOperations"/> instance that defines stat calculations that the unit will use.</param>
+		public static BasicUnit Create(IStatsOperations operations)
+			=> Create(new StatsMap(), operations);
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified <see cref="IEditableStats"/> base stats and <see cref="IAggregator"/>.
+		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified base stats and <see cref="IStatsOperations"/> instance.
 		/// </summary>
 		/// <param name="baseStats">The unit's base stats.</param>
-		/// <param name="aggregator">The <see cref="IAggregator"/> that defines the seed for aggregating stat multipliers.</param>
-		public static BasicUnit Create(IEditableStats baseStats, IAggregator aggregator)
+		/// <param name="aggregator">The <see cref="IStatsOperations"/> instance that defines stat calculations that the unit will use.</param>
+		public static BasicUnit Create(IEditableStats baseStats, IStatsOperations operations)
 		{
-			BasicUnit unit = new BasicUnit(baseStats, aggregator);
+			BasicUnit unit = new BasicUnit(baseStats, operations);
 			unit.Link();
 			return unit;
 		}
