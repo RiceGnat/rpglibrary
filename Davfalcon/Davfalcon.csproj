@@ -44,12 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicUnit.cs" />
     <Compile Include="Builders\BuilderBase%28T, TBuilder%29.cs" />
     <Compile Include="Builders\BuilderBase%28T, TOut, TBuilder%29.cs" />
     <Compile Include="Builders\IBuilder%28T%29.cs" />
     <Compile Include="Collections\Adapters\EnumStringListAdapter.cs" />
     <Compile Include="Collections\Adapters\ManagedEnumStringList.cs" />
-    <Compile Include="BasicUnit.cs" />
     <Compile Include="Collections\Generic\CircularLinkedList%28T%29.cs" />
     <Compile Include="Collections\Generic\ICircularLinkedList%28T%29.cs" />
     <Compile Include="Collections\Generic\ISelfRegistry%28T%29.cs" />

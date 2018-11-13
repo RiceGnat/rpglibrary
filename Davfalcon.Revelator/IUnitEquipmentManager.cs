@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Davfalcon.Revelator
 {
-	public interface IUnitEquipmentManager : IUnitModifier
+	public interface IUnitEquipmentManager : IModifier<IUnit>
 	{
 		IEnumerable<Enum> EquipmentSlots { get; }
 		IEnumerable<IEquipment> All { get; }

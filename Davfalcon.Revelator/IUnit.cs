@@ -7,6 +7,6 @@ namespace Davfalcon.Revelator
 	{
 		IDictionary<Enum, int> VolatileStats { get; }
 		IUnitEquipmentManager Equipment { get; }
-		IUnitModifierStack Buffs { get; }
+		IModifierCollection<IUnit> Buffs { get; }
 	}
 }

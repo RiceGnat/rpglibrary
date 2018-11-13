@@ -6,21 +6,12 @@ using Davfalcon.Collections.Generic;
 namespace Davfalcon.Revelator
 {
 	[Serializable]
-	public class Equipment : UnitStatsModifier, IEquipment
+	public class Equipment<T> : UnitStatsModifier<T>, IEquipment<T> where T : IUnit
 	{
 		public Enum SlotType { get; set; }
 
 		public ManagedList<IBuff> GrantedBuffs { get; } = new ManagedList<IBuff>();
-		IEnumerable<IBuff> IEquipment.GrantedBuffs => GrantedBuffs.AsReadOnly();
-
-		protected override IStatsDetails GetStatsResolver()
-			=> GetStatsResolver<IEquipment>(this);
-
-		protected Equipment(Enum slot, IStatsOperations operations)
-			: base(operations)
-		{
-			SlotType = slot;
-		}
+		IEnumerable<IBuff> IEquipment<T>.GrantedBuffs => GrantedBuffs.AsReadOnly();
 
 		public static IEquipment Build(Enum slot, Func<Builder, IBuilder<IEquipment>> builderFunc)
 			=> Build(slot, StatsOperations.Default, builderFunc);
@@ -35,7 +26,7 @@ namespace Davfalcon.Revelator
 		{
 			protected readonly Enum slot;
 			protected readonly IStatsOperations operations;
-			
+
 			protected EquipmentBuilder(Enum slot, IStatsOperations operations)
 			{
 				this.slot = slot;

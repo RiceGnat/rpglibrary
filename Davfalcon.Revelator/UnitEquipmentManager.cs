@@ -7,10 +7,10 @@ using Davfalcon.Collections.Generic;
 namespace Davfalcon.Revelator
 {
 	[Serializable]
-	public class UnitEquipmentManager : UnitModifier, IUnitEquipmentManager
+	public class UnitEquipmentManager : UnitModifier<IUnit>, IUnitEquipmentManager
 	{
-		private Davfalcon.IUnit last;
-		protected override Davfalcon.IUnit InterfaceUnit => last;
+		private IUnit last;
+		protected override IUnit InterfaceUnit => last;
 
 		private ManagedEnumStringList equipmentSlots = new ManagedEnumStringList();
 		private ManagedList<IEquipment> equippedSlots = new ManagedList<IEquipment>();
