@@ -6,11 +6,6 @@
 	public interface IUnit : INameable, IStatsContainer
 	{
 		/// <summary>
-		/// Gets the unit's name.
-		/// </summary>
-		new string Name { get; }
-		
-		/// <summary>
 		/// Gets the unit's class.
 		/// </summary>
 		string Class { get; }

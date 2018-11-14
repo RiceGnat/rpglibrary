@@ -52,6 +52,7 @@
     <Compile Include="Combat\ICombatResolver.cs" />
     <Compile Include="Combat\ICombatOperations.cs" />
     <Compile Include="Borger\LinkedStatsResolver.cs" />
+    <Compile Include="Equipment%28T%29.cs" />
     <Compile Include="IDamageSource.cs" />
     <Compile Include="IEffect.cs" />
     <Compile Include="Buff.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Combat\LogEntry.cs" />
     <Compile Include="SpellItem.cs" />
     <Compile Include="UnitEquipmentManager.cs" />
+    <Compile Include="UnitStatsModifier.cs" />
     <Compile Include="UsableItem.cs" />
     <Compile Include="Borger\Enums.cs" />
     <Compile Include="Equipment.cs" />

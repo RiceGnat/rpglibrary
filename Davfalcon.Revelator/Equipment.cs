@@ -6,31 +6,27 @@ using Davfalcon.Collections.Generic;
 namespace Davfalcon.Revelator
 {
 	[Serializable]
-	public class Equipment<T> : UnitStatsModifier<T>, IEquipment<T> where T : IUnit
+	public class Equipment : Equipment<IUnit>
 	{
-		public Enum SlotType { get; set; }
+		protected override IUnit InterfaceUnit { get; }
 
-		public ManagedList<IBuff> GrantedBuffs { get; } = new ManagedList<IBuff>();
-		IEnumerable<IBuff> IEquipment<T>.GrantedBuffs => GrantedBuffs.AsReadOnly();
+		protected Equipment(Enum slot) : base(slot) {
+		}
 
-		public static IEquipment Build(Enum slot, Func<Builder, IBuilder<IEquipment>> builderFunc)
-			=> Build(slot, StatsOperations.Default, builderFunc);
-
-		public static IEquipment Build(Enum slot, IStatsOperations operations, Func<Builder, IBuilder<IEquipment>> builderFunc)
-			=> builderFunc(new Builder(slot, operations)).Build();
+		public static IEquipment<IUnit> Build(Enum slot, Func<Builder, IBuilder<IEquipment<IUnit>>> builderFunc)
+			=> builderFunc(new Builder(slot)).Build();
 
 		public abstract class EquipmentBuilder<TEquipment, TInterface, TBuilder> : BuilderBase<TEquipment, TInterface, TBuilder>
 			where TEquipment : Equipment, TInterface
-			where TInterface : IEquipment
+			where TInterface : IEquipment<IUnit>
 			where TBuilder : EquipmentBuilder<TEquipment, TInterface, TBuilder>
 		{
 			protected readonly Enum slot;
 			protected readonly IStatsOperations operations;
 
-			protected EquipmentBuilder(Enum slot, IStatsOperations operations)
+			protected EquipmentBuilder(Enum slot)
 			{
 				this.slot = slot;
-				this.operations = operations;
 			}
 
 			public TBuilder SetName(string name) => Self(e => e.Name = name);
@@ -39,12 +35,12 @@ namespace Davfalcon.Revelator
 			public TBuilder AddBuff(IBuff buff) => Self(e => e.GrantedBuffs.Add(buff));
 		}
 
-		public class Builder : EquipmentBuilder<Equipment, IEquipment, Builder>
+		public class Builder : EquipmentBuilder<Equipment, IEquipment<IUnit>, Builder>
 		{
-			internal Builder(Enum slot, IStatsOperations operations)
-				: base(slot, operations) => Reset();
+			internal Builder(Enum slot)
+				: base(slot) => Reset();
 
-			public override Builder Reset() => Reset(new Equipment(slot, operations));
+			public override Builder Reset() => Reset(new Equipment(slot));
 		}
 	}
 }

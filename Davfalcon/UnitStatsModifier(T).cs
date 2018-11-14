@@ -7,11 +7,11 @@ namespace Davfalcon
 	/// Modify a unit's stats.
 	/// </summary>
 	[Serializable]
-	public abstract class UnitStatsModifier<T> : UnitModifier<T>, IEditableStatsModifier<T>, IStatsModifier<T>, IUnit where T : IUnit
+	public abstract class UnitStatsModifier<T> : UnitModifier<T>, IEditableStatsModifier<T>, IStatsModifier<T> where T : IUnit
 	{
 		private class StatsResolver : IStatsDetails
 		{
-			private readonly UnitStatsModifier<T> modifier;
+			private readonly UnitStatsModifier<IUnit> modifier;
 
 			private IStatsDetails TargetDetails => modifier.Target.StatsDetails;
 
@@ -41,7 +41,7 @@ namespace Davfalcon
 					GetMultipliersNode(stat),
 					Operations);
 
-			public StatsResolver(UnitStatsModifier<T> modifier)
+			public StatsResolver(UnitStatsModifier<IUnit> modifier)
 			{
 				this.modifier = modifier;
 
@@ -54,8 +54,18 @@ namespace Davfalcon
 			}
 		}
 
-		[NonSerialized]
-		private IStatsDetails statsResolver;
+		protected class StatsDecorator : Decorator, IUnit
+		{
+			private readonly IStatsDetails statsResolver;
+
+			IStats IStatsContainer.Stats => statsResolver.Final;
+			IStatsDetails IStatsContainer.StatsDetails => statsResolver;
+
+			public StatsDecorator(UnitStatsModifier<IUnit> modifier) : base(modifier)
+			{
+				statsResolver = new StatsResolver(modifier);
+			}
+		}
 
 		/// <summary>
 		/// Gets or sets the values to be added to each stat.
@@ -70,18 +80,13 @@ namespace Davfalcon
 		IStats IStatsModifier<T>.Additions => Additions;
 		IStats IStatsModifier<T>.Multipliers => Multipliers;
 
-
-		IStats IStatsContainer.Stats => statsResolver.Final;
-		IStatsDetails IStatsContainer.StatsDetails => statsResolver;
-
 		public override void Bind(T target)
 		{
 			base.Bind(target);
-			statsResolver = new StatsResolver(this);
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="UnitModifier{T}"/> class.
+		/// Initializes a new instance of the <see cref="UnitStatsModifier{T}"/> class.
 		public UnitStatsModifier()
 		{
 			Additions = new StatsMap();
