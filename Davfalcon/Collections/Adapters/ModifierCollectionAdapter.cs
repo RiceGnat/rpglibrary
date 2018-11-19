@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Davfalcon.Revelator
+namespace Davfalcon.Collections.Adapters
 {
-	public class UnitStatsModifier
+	class ModifierCollectionAdapter
 	{
 	}
 }

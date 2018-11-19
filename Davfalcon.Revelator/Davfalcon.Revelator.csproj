@@ -70,10 +70,9 @@
     <Compile Include="Combat\LogEntry.cs" />
     <Compile Include="SpellItem.cs" />
     <Compile Include="UnitEquipmentManager.cs" />
-    <Compile Include="UnitStatsModifier.cs" />
+    <Compile Include="UnitModifierBase.cs" />
     <Compile Include="UsableItem.cs" />
     <Compile Include="Borger\Enums.cs" />
-    <Compile Include="Equipment.cs" />
     <Compile Include="IBuff.cs" />
     <Compile Include="IEquipment.cs" />
     <Compile Include="ISpell.cs" />

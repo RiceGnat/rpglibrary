@@ -50,6 +50,7 @@
     <Compile Include="Builders\IBuilder%28T%29.cs" />
     <Compile Include="Collections\Adapters\EnumStringListAdapter.cs" />
     <Compile Include="Collections\Adapters\ManagedEnumStringList.cs" />
+    <Compile Include="Collections\Adapters\ModifierCollectionAdapter.cs" />
     <Compile Include="Collections\Generic\CircularLinkedList%28T%29.cs" />
     <Compile Include="Collections\Generic\ICircularLinkedList%28T%29.cs" />
     <Compile Include="Collections\Generic\ISelfRegistry%28T%29.cs" />
@@ -103,8 +104,7 @@
     <Compile Include="StatsConstant.cs" />
     <Compile Include="StatsPrototype.cs" />
     <Compile Include="StatsMap.cs" />
-    <Compile Include="UnitModifier%28T%29.cs" />
-    <Compile Include="UnitStatsModifier%28T%29.cs" />
+    <Compile Include="UnitModifier.cs" />
     <Compile Include="UnitStatsModifier.cs" />
   </ItemGroup>
   <ItemGroup />

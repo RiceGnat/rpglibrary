@@ -8,4 +8,6 @@ namespace Davfalcon.Revelator
 		Enum SlotType { get; }
 		IEnumerable<IBuff> GrantedBuffs { get; }
 	}
+
+	public interface IEquipment : IEquipment<IUnit> { }
 }

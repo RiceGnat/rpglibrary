@@ -28,33 +28,27 @@ namespace Davfalcon.Revelator
 			set => owner = value;
 		}
 
-		protected override IStatsDetails GetStatsResolver()
-			=> GetStatsResolver<IWeapon>(this);
-
-		protected Weapon(Enum equipmentSlot, Enum weaponType, IStatsOperations operations)
-			: base(equipmentSlot, operations)
+		protected Weapon(Enum equipmentSlot, Enum weaponType)
+			: base(equipmentSlot)
 		{
 			WeaponType = weaponType;
 		}
 
 		public static IWeapon Build(Enum equipmentSlot, Enum weaponType, Func<Builder, IBuilder<IWeapon>> builderFunc)
-			=> Build(equipmentSlot, weaponType, StatsOperations.Default, builderFunc);
+			=> builderFunc(new Builder(equipmentSlot, weaponType)).Build();
 
-		public static IWeapon Build(Enum equipmentSlot, Enum weaponType, IStatsOperations operations, Func<Builder, IBuilder<IWeapon>> builderFunc)
-			=> builderFunc(new Builder(equipmentSlot, weaponType, operations)).Build();
-
-		new public class Builder : EquipmentBuilder<Weapon, IWeapon, Builder>
+		new public class Builder : EquipmentBuilderBase<Weapon, IWeapon, Builder>
 		{
 			private readonly Enum type;
 
-			internal Builder(Enum equipmentSlot, Enum weaponType, IStatsOperations operations)
-				: base(equipmentSlot, operations)
+			internal Builder(Enum equipmentSlot, Enum weaponType)
+				: base(equipmentSlot)
 			{
 				type = weaponType;
 				Reset();
 			}
 
-			public override Builder Reset() => Reset(new Weapon(slot, type, operations));
+			public override Builder Reset() => Reset(new Weapon(slot, type));
 
 			public Builder SetDamage(int baseDamage) => Self(w => w.BaseDamage = baseDamage);
 			public Builder SetBonusDamageStat(Enum stat) => Self(w => w.BonusDamageStat = stat);

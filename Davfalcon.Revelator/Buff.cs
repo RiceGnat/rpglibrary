@@ -5,7 +5,7 @@ using Davfalcon.Collections.Generic;
 namespace Davfalcon.Revelator
 {
 	[Serializable]
-	public class Buff : TimedModifier, IBuff
+	public class Buff : UnitStatsModifier<IUnit>, IBuff
 	{
 		[NonSerialized]
 		private IUnit source;
@@ -18,10 +18,24 @@ namespace Davfalcon.Revelator
 		public bool IsDebuff { get; set; }
 
 		public ManagedList<IEffect> Effects { get; } = new ManagedList<IEffect>();
+		public int Duration { get; private set; }
+		public int Remaining { get; private set; }
+		protected override IUnit InterfaceUnit => base.InterfaceUnit;
+
 		IEnumerable<IEffect> IEffectSource.Effects => Effects.AsReadOnly();
 
-		protected override IStatsDetails GetStatsResolver()
-			=> GetStatsResolver<IBuff>(this);
+		public void Reset()
+		{
+			Remaining = Duration;
+		}
+
+		public void Tick()
+		{
+			if (Duration > 0 && Remaining > 0)
+			{
+				Remaining--;
+			}
+		}
 
 		public class Builder
 		{

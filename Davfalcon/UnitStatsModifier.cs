@@ -1,14 +1,90 @@
 ﻿using System;
+using Davfalcon.Nodes;
 
 namespace Davfalcon
 {
-	public class UnitStatsModifier : UnitStatsModifier<IUnit>
+	/// <summary>
+	/// Modify a unit's stats.
+	/// </summary>
+	[Serializable]
+	public abstract class UnitStatsModifier<T> : UnitModifier<T>, IEditableStatsModifier<T>, IStatsModifier<T>, IUnit where T : IUnit
 	{
-		protected override IUnit InterfaceUnit { get; }
+		private class StatsResolver : IStatsDetails
+		{
+			private readonly UnitStatsModifier<T> modifier;
 
+			private IStatsDetails TargetDetails => modifier.Target.StatsDetails;
+
+			public IStatsOperations Operations => TargetDetails.Operations;
+			public IStats Base => TargetDetails.Base;
+			public IStats Additions { get; }
+			public IStats Multipliers { get; }
+			public IStats Final { get; }
+
+			public INode GetBaseStatNode(Enum stat)
+				=> TargetDetails.GetBaseStatNode(stat);
+
+			public IAggregatorNode GetAdditionsNode(Enum stat)
+				=> modifier.Additions[stat] != 0
+					? TargetDetails.GetAdditionsNode(stat).Merge(StatNode<T>.From(modifier, modifier.Additions, stat))
+					: TargetDetails.GetAdditionsNode(stat);
+
+			public IAggregatorNode GetMultipliersNode(Enum stat)
+				=> modifier.Multipliers[stat] != Operations.AggregateSeed
+					? TargetDetails.GetMultipliersNode(stat).Merge(StatNode<T>.From(modifier, modifier.Multipliers, stat))
+					: TargetDetails.GetMultipliersNode(stat);
+
+			public INode GetStatNode(Enum stat)
+				=> new ResolverNode($"{stat} ({modifier.Target.Name})",
+					GetBaseStatNode(stat),
+					GetAdditionsNode(stat),
+					GetMultipliersNode(stat),
+					Operations);
+
+			public StatsResolver(UnitStatsModifier<T> modifier)
+			{
+				this.modifier = modifier;
+
+				// Always use default aggregator for addition (sum)
+				Additions = new StatsAggregator(TargetDetails.Additions, modifier.Additions);
+
+				// Multiplier aggregation and the final calculation will use the formulas defined by the unit
+				Multipliers = new StatsAggregator(TargetDetails.Multipliers, modifier.Multipliers, Operations);
+				Final = new StatsCalculator(Base, Additions, Multipliers, Operations);
+			}
+		}
+
+		private readonly IStatsDetails statsResolver;
+
+		IStats IStatsContainer.Stats => statsResolver.Final;
+		IStatsDetails IStatsContainer.StatsDetails => statsResolver;
+		
+		/// <summary>
+		/// Gets or sets the values to be added to each stat.
+		/// </summary>
+		public IEditableStats Additions { get; set; }
+
+		/// <summary>
+		/// Gets or sets the values to be multiplied with each stat.
+		/// </summary>
+		public IEditableStats Multipliers { get; set; }
+
+		IStats IStatsModifier<T>.Additions => Additions;
+		IStats IStatsModifier<T>.Multipliers => Multipliers;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UnitStatsModifier{T}"/> class.
 		public UnitStatsModifier()
 		{
-			InterfaceUnit = new Decorator(this);
+			Additions = new StatsMap();
+			Multipliers = new StatsMap();
+
+			statsResolver = new StatsResolver(this);
 		}
+	}
+
+	internal class UnitStatsModifier : UnitStatsModifier<IUnit>
+	{
+		protected override IUnit GetAsTargetInterface() => this;
 	}
 }

@@ -6,16 +6,16 @@ namespace Davfalcon.Revelator
 	public interface IUnitEquipmentManager : IModifier<IUnit>
 	{
 		IEnumerable<Enum> EquipmentSlots { get; }
-		IEnumerable<IEquipment> All { get; }
+		IEnumerable<IEquipment<IUnit>> All { get; }
 
 		void AddEquipmentSlot(Enum slotType);
 		void RemoveEquipmentSlotIndex(int index);
-		IEquipment GetEquipment(Enum slot);
-		IEquipment GetEquipment(Enum slotType, int offset);
-		IEnumerable<IEquipment> GetAllEquipmentForSlot(Enum slot);
-		void Equip(IEquipment equipment);
-		void Equip(IEquipment equipment, int offset);
-		void EquipSlotIndex(IEquipment equipment, int index);
+		IEquipment<IUnit> GetEquipment(Enum slot);
+		IEquipment<IUnit> GetEquipment(Enum slotType, int offset);
+		IEnumerable<IEquipment<IUnit>> GetAllEquipmentForSlot(Enum slot);
+		void Equip(IEquipment<IUnit> equipment);
+		void Equip(IEquipment<IUnit> equipment, int offset);
+		void EquipSlotIndex(IEquipment<IUnit> equipment, int index);
 		void UnequipSlot(Enum slot);
 		void UnequipSlot(Enum slotType, int offset);
 		void UnequipSlotIndex(int index);

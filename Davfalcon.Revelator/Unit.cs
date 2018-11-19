@@ -10,6 +10,7 @@ namespace Davfalcon.Revelator
 		private ILinkedStatResolver statLinker = new LinkedStatsResolverBase();
 
 		public IDictionary<Enum, int> VolatileStats { get; } = new Dictionary<Enum, int>();
+		new public IModifierCollection<IUnit> Modifiers => base.Modifiers as IModifierCollection<IUnit>;
 		public IUnitEquipmentManager Equipment { get; protected set; }
 		public IModifierCollection<IUnit> Buffs { get; protected set; }
 
@@ -26,8 +27,8 @@ namespace Davfalcon.Revelator
 
 			Equipment = new UnitEquipmentManager();
 			Buffs = new ModifierCollection<IUnit>();
-			Modifiers.Add(Equipment as IModifier<Davfalcon.IUnit>);
-			Modifiers.Add(Buffs as IModifier<Davfalcon.IUnit>);
+			Modifiers.Add(Equipment);
+			Modifiers.Add(Buffs);
 		}
 
 		public static IUnit Build(Func<Builder, IBuilder<IUnit>> builderFunc)
@@ -83,7 +84,7 @@ namespace Davfalcon.Revelator
 			}
 
 			public Builder AddEquipmentSlot(Enum slot) => Self(unit => unit.Equipment.AddEquipmentSlot(slot));
-			public Builder AddEquipment(IEquipment equipment) => Self(unit => unit.Equipment.Equip(equipment));
+			public Builder AddEquipment(IEquipment<IUnit> equipment) => Self(unit => unit.Equipment.Equip(equipment));
 		}
 	}
 }
