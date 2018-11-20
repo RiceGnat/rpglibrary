@@ -54,7 +54,8 @@ namespace Davfalcon
 			}
 		}
 
-		private readonly IStatsDetails statsResolver;
+		[NonSerialized]
+		private IStatsDetails statsResolver;
 
 		IStats IStatsContainer.Stats => statsResolver.Final;
 		IStatsDetails IStatsContainer.StatsDetails => statsResolver;
@@ -72,14 +73,18 @@ namespace Davfalcon
 		IStats IStatsModifier<T>.Additions => Additions;
 		IStats IStatsModifier<T>.Multipliers => Multipliers;
 
+		public override void Bind(T target)
+		{
+			base.Bind(target);
+			statsResolver = new StatsResolver(this);
+		}
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UnitStatsModifier{T}"/> class.
 		public UnitStatsModifier()
 		{
 			Additions = new StatsMap();
 			Multipliers = new StatsMap();
-
-			statsResolver = new StatsResolver(this);
 		}
 	}
 
