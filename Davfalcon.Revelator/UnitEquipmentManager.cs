@@ -7,20 +7,21 @@ using Davfalcon.Collections.Generic;
 namespace Davfalcon.Revelator
 {
 	[Serializable]
-	public class UnitEquipmentManager : UnitModifier<IUnit>, IUnitEquipmentManager
+	public class UnitEquipmentManager<T> : UnitModifier<T>, IUnitEquipmentManager<T> where T : IUnit
 	{
-		private IUnit last;
-		protected override IUnit InterfaceUnit => last;
+		private T last;
+
+		protected override T GetAsTargetInterface() => last;
 
 		private ManagedEnumStringList equipmentSlots = new ManagedEnumStringList();
-		private ManagedList<IEquipment<IUnit>> equippedSlots = new ManagedList<IEquipment<IUnit>>();
+		private ManagedList<IEquipment<T>> equippedSlots = new ManagedList<IEquipment<T>>();
 
 		public IEnumerable<Enum> EquipmentSlots { get => equipmentSlots.AsReadOnly(); }
-		public IEnumerable<IEquipment<IUnit>> All { get => equippedSlots.AsReadOnly(); }
+		public IEnumerable<IEquipment<T>> All { get => equippedSlots.AsReadOnly(); }
 
 		private void BindEquipment()
 		{
-			IUnit last = Target;
+			T last = Target;
 			for (int i = 0; i < equippedSlots.Count; i++)
 			{
 				if (equippedSlots[i] == null)
@@ -32,7 +33,7 @@ namespace Davfalcon.Revelator
 			this.last = last;
 		}
 
-		public override void Bind(IUnit target)
+		public override void Bind(T target)
 		{
 			base.Bind(target);
 			BindEquipment();
@@ -64,20 +65,20 @@ namespace Davfalcon.Revelator
 			BindEquipment();
 		}
 
-		public IEquipment<IUnit> GetEquipment(Enum slot) => GetEquipment(slot, 0);
-		public IEquipment<IUnit> GetEquipment(Enum slotType, int offset)
+		public IEquipment<T> GetEquipment(Enum slot) => GetEquipment(slot, 0);
+		public IEquipment<T> GetEquipment(Enum slotType, int offset)
 		{
 			int index = GetSlotIndex(slotType, offset);
 
 			return IndexHasEquipment(index) ? equippedSlots[index] : null;
 		}
 
-		public IEnumerable<IEquipment<IUnit>> GetAllEquipmentForSlot(Enum slot)
+		public IEnumerable<IEquipment<T>> GetAllEquipmentForSlot(Enum slot)
 			=> equippedSlots.Where(equip => equip?.SlotType.Equals(slot) ?? false);
 
-		public void Equip(IEquipment<IUnit> equipment) => Equip(equipment, 0);
-		public void Equip(IEquipment<IUnit> equipment, int offset) => EquipSlotIndex(equipment, GetSlotIndex(equipment.SlotType, offset));
-		public void EquipSlotIndex(IEquipment<IUnit> equipment, int index)
+		public void Equip(IEquipment<T> equipment) => Equip(equipment, 0);
+		public void Equip(IEquipment<T> equipment, int offset) => EquipSlotIndex(equipment, GetSlotIndex(equipment.SlotType, offset));
+		public void EquipSlotIndex(IEquipment<T> equipment, int index)
 		{
 			if (index < 0)
 				throw new ArgumentOutOfRangeException($"Index {index} does not exist.");

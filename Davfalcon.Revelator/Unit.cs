@@ -11,7 +11,7 @@ namespace Davfalcon.Revelator
 
 		public IDictionary<Enum, int> VolatileStats { get; } = new Dictionary<Enum, int>();
 		new public IModifierCollection<IUnit> Modifiers => base.Modifiers as IModifierCollection<IUnit>;
-		public IUnitEquipmentManager Equipment { get; protected set; }
+		public IUnitEquipmentManager<IUnit> Equipment { get; protected set; }
 		public IModifierCollection<IUnit> Buffs { get; protected set; }
 
 		protected override void Link()
@@ -25,7 +25,7 @@ namespace Davfalcon.Revelator
 		{
 			this.statLinker = statLinker;
 
-			Equipment = new UnitEquipmentManager();
+			Equipment = new UnitEquipmentManager<IUnit>();
 			Buffs = new ModifierCollection<IUnit>();
 			Modifiers.Add(Equipment);
 			Modifiers.Add(Buffs);

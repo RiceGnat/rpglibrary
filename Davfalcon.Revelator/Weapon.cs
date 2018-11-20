@@ -8,7 +8,7 @@ using Davfalcon.Serialization;
 namespace Davfalcon.Revelator
 {
 	[Serializable]
-	public class Weapon : Equipment, IWeapon
+	public abstract class Weapon<T> : Equipment<T>, IWeapon<T> where T : IUnit
 	{
 		public Enum WeaponType { get; set; }
 		public int BaseDamage { get; set; }
@@ -24,7 +24,7 @@ namespace Davfalcon.Revelator
 		private string owner;
 		public string Owner
 		{
-			get => owner ?? InterfaceUnit.Name;
+			get => owner ?? AsTargetInterface.Name;
 			set => owner = value;
 		}
 
@@ -33,11 +33,19 @@ namespace Davfalcon.Revelator
 		{
 			WeaponType = weaponType;
 		}
+	}
+
+	[Serializable]
+	public class Weapon : Weapon<IUnit>, IWeapon
+	{
+		protected override IUnit GetAsTargetInterface() => this;
+
+		protected Weapon(Enum equipmentSlot, Enum weaponType) : base(equipmentSlot, weaponType) { }
 
 		public static IWeapon Build(Enum equipmentSlot, Enum weaponType, Func<Builder, IBuilder<IWeapon>> builderFunc)
 			=> builderFunc(new Builder(equipmentSlot, weaponType)).Build();
 
-		new public class Builder : EquipmentBuilderBase<Weapon, IWeapon, Builder>
+		public class Builder : EquipmentBuilderBase<Weapon, IWeapon, Builder>
 		{
 			private readonly Enum type;
 

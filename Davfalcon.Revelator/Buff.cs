@@ -5,7 +5,7 @@ using Davfalcon.Collections.Generic;
 namespace Davfalcon.Revelator
 {
 	[Serializable]
-	public class Buff : UnitStatsModifier<IUnit>, IBuff
+	public abstract class Buff<T> : UnitModifierBase<T>, IBuff<T> where T : IUnit
 	{
 		[NonSerialized]
 		private IUnit source;
@@ -15,12 +15,11 @@ namespace Davfalcon.Revelator
 			set => source = value;
 		}
 
-		public bool IsDebuff { get; set; }
+		public bool IsDebuff { get; protected set; }
 
 		public ManagedList<IEffect> Effects { get; } = new ManagedList<IEffect>();
-		public int Duration { get; private set; }
-		public int Remaining { get; private set; }
-		protected override IUnit InterfaceUnit => base.InterfaceUnit;
+		public int Duration { get; protected set; }
+		public int Remaining { get; protected set; }
 
 		IEnumerable<IEffect> IEffectSource.Effects => Effects.AsReadOnly();
 
@@ -29,13 +28,22 @@ namespace Davfalcon.Revelator
 			Remaining = Duration;
 		}
 
-		public void Tick()
+		public bool Tick()
 		{
 			if (Duration > 0 && Remaining > 0)
 			{
 				Remaining--;
 			}
+
+			return Duration == 0 || Remaining > 0;
 		}
+
+	}
+
+	[Serializable]
+	public class Buff : Buff<IUnit>, IBuff
+	{
+		protected override IUnit GetAsTargetInterface() => this;
 
 		public class Builder
 		{

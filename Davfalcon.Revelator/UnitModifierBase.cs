@@ -8,7 +8,7 @@ namespace Davfalcon.Revelator
 	{
 		IDictionary<Enum, int> IUnit.VolatileStats => Target.VolatileStats;
 		IModifierCollection<IUnit> IUnit.Modifiers => Target.Modifiers;
-		IUnitEquipmentManager IUnit.Equipment => Target.Equipment;
+		IUnitEquipmentManager<IUnit> IUnit.Equipment => Target.Equipment;
 		IModifierCollection<IUnit> IUnit.Buffs => Target.Buffs;
 	}
 }
