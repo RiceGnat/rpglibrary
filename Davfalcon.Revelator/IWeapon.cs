@@ -7,5 +7,5 @@ namespace Davfalcon.Revelator
 		Enum WeaponType { get; }
 	}
 
-	public interface IWeapon : IWeapon<IUnit> { }
+	public interface IWeapon : IWeapon<IUnit>, IEquipment { }
 }

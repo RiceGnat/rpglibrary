@@ -43,8 +43,6 @@ namespace Davfalcon.Revelator
 	[Serializable]
 	public class Buff : Buff<IUnit>, IBuff
 	{
-		protected override IUnit GetAsTargetInterface() => this;
-
 		public class Builder
 		{
 			protected Buff buff;

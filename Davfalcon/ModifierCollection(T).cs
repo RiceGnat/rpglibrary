@@ -8,11 +8,11 @@ namespace Davfalcon
 	/// Manages a collection of modifiers. Can function as a single modifier.
 	/// </summary>
 	[Serializable]
-	public class ModifierCollection<T> : Modifier<T>, IModifierCollection<T>
+	public abstract class ModifierCollection<T> : Modifier<T>, IModifierCollection<T>
 	{
 		private List<IModifier<T>> stack = new List<IModifier<T>>();
 
-		public override T AsTargetInterface => stack.Count > 0 ? stack[stack.Count - 1].AsTargetInterface : Target;
+		protected virtual T Interface => stack.Count > 0 ? (T)stack[stack.Count - 1] : Target;
 
 		public override void Bind(T target)
 		{
@@ -41,7 +41,7 @@ namespace Davfalcon
 
 		public void Add(IModifier<T> item)
 		{
-			item.Bind(AsTargetInterface);
+			item.Bind(Interface);
 			stack.Add(item);
 		}
 

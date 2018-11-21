@@ -59,7 +59,7 @@ namespace Davfalcon.Revelator.Combat
 		{
 			foreach (Enum stat in config.StatBindings.VolatileStats)
 			{
-				unit.VolatileStats[stat] += unit.Stats[stat] - prevValues[stat];
+				AdjustMaxVolatileStat(unit, stat, prevValues[stat]);
 			}
 		}
 
@@ -91,6 +91,13 @@ namespace Davfalcon.Revelator.Combat
 			AdjustMaxVolatileStats(unit, currentValues);
 		}
 
+		public int AdjustMaxVolatileStat(IUnit unit, Enum stat, int previousValue)
+		{
+			int change = unit.Stats[stat] - previousValue;
+			unit.VolatileStats[stat] += change;
+			return change;
+		}
+
 		public int AdjustVolatileStat(IUnit unit, Enum stat, int change)
 		{
 			int initial = unit.VolatileStats[stat];
@@ -113,32 +120,6 @@ namespace Davfalcon.Revelator.Combat
 				{
 					ApplyBuff(unit, buff.DeepClone(), unit);
 				}
-			}
-		}
-
-		public void Upkeep(IUnit unit)
-		{
-			List<IBuff> expired = new List<IBuff>();
-
-			foreach (IBuff buff in unit.Buffs)
-			{
-				// Apply repeating effects
-				if (buff.Duration > 0 && buff.Remaining > 0 ||
-					buff.Duration == 0)
-					ApplyEffects(buff, buff.Owner, unit);
-
-				// Tick buff timers
-				buff.Tick();
-
-				// Record expired buffs (cannot remove during enumeration)
-				if (buff.Duration > 0 && buff.Remaining == 0)
-					expired.Add(buff);
-			}
-
-			// Remove expired buffs
-			foreach (IBuff buff in expired)
-			{
-				RemoveBuff(unit, buff);
 			}
 		}
 

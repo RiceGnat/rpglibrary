@@ -7,11 +7,11 @@ using Davfalcon.Collections.Generic;
 namespace Davfalcon.Revelator
 {
 	[Serializable]
-	public class UnitEquipmentManager<T> : UnitModifier<T>, IUnitEquipmentManager<T> where T : IUnit
+	public class UnitEquipmentManager<T> : UnitModifierCollection<T>, IUnitEquipmentManager<T> where T : IUnit
 	{
 		private T last;
 
-		protected override T GetAsTargetInterface() => last;
+		protected override T Interface => last;
 
 		private ManagedEnumStringList equipmentSlots = new ManagedEnumStringList();
 		private ManagedList<IEquipment<T>> equippedSlots = new ManagedList<IEquipment<T>>();
@@ -28,7 +28,7 @@ namespace Davfalcon.Revelator
 					continue;
 				if (last != null)
 					equippedSlots[i].Bind(last);
-				last = equippedSlots[i].AsTargetInterface;
+				last = (T)equippedSlots[i];
 			}
 			this.last = last;
 		}

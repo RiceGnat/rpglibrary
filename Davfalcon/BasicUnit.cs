@@ -34,7 +34,8 @@ namespace Davfalcon
 		{
 			private readonly IUnit unit;
 
-			public IUnit InterfaceUnit => unit.Modifiers.AsTargetInterface;
+			public IUnit InterfaceUnit => (IUnit)unit.Modifiers;
+
 			public string Name => InterfaceUnit.Name;
 			public string Class => InterfaceUnit.Class;
 			public int Level => InterfaceUnit.Level;
@@ -85,6 +86,12 @@ namespace Davfalcon
 		/// </summary>
 		public IModifierCollection<IUnit> Modifiers { get; protected set; }
 
+		protected virtual void Initialize()
+		{
+			Modifiers = new UnitModifierCollection<IUnit>();
+			Link();
+		}
+
 		/// <summary>
 		/// Set internal object references
 		/// </summary>
@@ -107,8 +114,6 @@ namespace Davfalcon
 		{
 			this.operations = operations;
 			BaseStats = baseStats;
-
-			Modifiers = new ModifierCollection<IUnit>();
 		}
 
 		/// <summary>
@@ -117,7 +122,7 @@ namespace Davfalcon
 		public static IUnit Create(Func<BasicUnit, IUnit> func)
 		{
 			BasicUnit unit = new BasicUnit(new StatsMap(), StatsOperations.Default);
-			unit.Link();
+			unit.Initialize();
 			return new Wrapper(func(unit));
 		}
 	}

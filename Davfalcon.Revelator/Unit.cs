@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Davfalcon.Builders;
+using Davfalcon.Collections.Adapters;
 
 namespace Davfalcon.Revelator
 {
@@ -23,9 +24,21 @@ namespace Davfalcon.Revelator
 		private ILinkedStatResolver statLinker = new LinkedStatsResolverBase();
 
 		public IDictionary<Enum, int> VolatileStats { get; } = new Dictionary<Enum, int>();
-		new public IModifierCollection<IUnit> Modifiers => base.Modifiers as IModifierCollection<IUnit>;
+		new public IModifierCollection<IUnit> Modifiers { get; protected set; }
 		public IUnitEquipmentManager<IUnit> Equipment { get; protected set; }
 		public IModifierCollection<IUnit> Buffs { get; protected set; }
+
+		protected override void Initialize()
+		{
+			UnitModifierCollection<IUnit> modifiers = new UnitModifierCollection<IUnit>();
+			Modifiers = modifiers;
+			base.Modifiers = modifiers;
+			Equipment = new UnitEquipmentManager<IUnit>();
+			Buffs = new UnitModifierCollection<IUnit>();
+			Modifiers.Add(Equipment);
+			Modifiers.Add(Buffs);
+			Link();
+		}
 
 		protected override void Link()
 		{
@@ -37,11 +50,6 @@ namespace Davfalcon.Revelator
 			: base(new UnitStats(statLinker), statsOperations)
 		{
 			this.statLinker = statLinker;
-
-			Equipment = new UnitEquipmentManager<IUnit>();
-			Buffs = new ModifierCollection<IUnit>();
-			Modifiers.Add(Equipment);
-			Modifiers.Add(Buffs);
 		}
 
 		public static IUnit Build(Func<Builder, IBuilder<IUnit>> builderFunc)
@@ -65,7 +73,7 @@ namespace Davfalcon.Revelator
 			public override Builder Reset()
 			{
 				Unit unit = new Unit(statsOperations, statLinker);
-				unit.Link();
+				unit.Initialize();
 				return Reset(unit);
 			}
 

@@ -8,8 +8,8 @@ namespace Davfalcon.Revelator.Combat
 		ICombatOperations Operations { get; }
 
 		void Initialize(IUnit unit);
-		void Upkeep(IUnit unit);
 		void Cleanup(IUnit unit);
+		int AdjustMaxVolatileStat(IUnit unit, Enum stat, int previousValue);
 		int AdjustVolatileStat(IUnit unit, Enum stat, int change);
 		void ApplyBuff(IUnit unit, IBuff buff, IUnit source = null);
 		void RemoveBuff(IUnit unit, IBuff buff);

@@ -40,14 +40,12 @@ namespace Davfalcon.Revelator
 	[Serializable]
 	public class Equipment : Equipment<IUnit>, IEquipment
 	{
-		protected override IUnit GetAsTargetInterface() => this;
-
 		protected Equipment(Enum slot) : base(slot) { }
 
-		public static IEquipment<IUnit> Build(Enum slot, Func<Builder, IBuilder<IEquipment<IUnit>>> builderFunc)
+		public static IEquipment Build(Enum slot, Func<Builder, IBuilder<IEquipment>> builderFunc)
 			=> builderFunc(new Builder(slot)).Build();
 
-		public class Builder : EquipmentBuilderBase<Equipment, IEquipment<IUnit>, Builder>
+		public class Builder : EquipmentBuilderBase<Equipment, IEquipment, Builder>
 		{
 			internal Builder(Enum slot)
 				: base(slot) => Reset();

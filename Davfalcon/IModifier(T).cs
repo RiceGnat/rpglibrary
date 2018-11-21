@@ -2,7 +2,6 @@
 {
 	public interface IModifier<T> : IDescribable
 	{
-		T AsTargetInterface { get; }
 		T Target { get; }
 
 		void Bind(T target);

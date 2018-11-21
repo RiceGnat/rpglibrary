@@ -21,13 +21,6 @@ namespace Davfalcon.Revelator
 		public ManagedList<IEffect> Effects { get; } = new ManagedList<IEffect>();
 		IEnumerable<IEffect> IEffectSource.Effects => Effects.AsReadOnly();
 
-		private string owner;
-		public string Owner
-		{
-			get => owner ?? AsTargetInterface.Name;
-			set => owner = value;
-		}
-
 		protected Weapon(Enum equipmentSlot, Enum weaponType)
 			: base(equipmentSlot)
 		{
@@ -38,8 +31,6 @@ namespace Davfalcon.Revelator
 	[Serializable]
 	public class Weapon : Weapon<IUnit>, IWeapon
 	{
-		protected override IUnit GetAsTargetInterface() => this;
-
 		protected Weapon(Enum equipmentSlot, Enum weaponType) : base(equipmentSlot, weaponType) { }
 
 		public static IWeapon Build(Enum equipmentSlot, Enum weaponType, Func<Builder, IBuilder<IWeapon>> builderFunc)

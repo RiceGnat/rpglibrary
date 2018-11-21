@@ -88,8 +88,5 @@ namespace Davfalcon
 		}
 	}
 
-	internal class UnitStatsModifier : UnitStatsModifier<IUnit>
-	{
-		protected override IUnit GetAsTargetInterface() => this;
-	}
+	internal class UnitStatsModifier : UnitStatsModifier<IUnit> { }
 }
