@@ -28,7 +28,7 @@ namespace Davfalcon.Revelator
 		public IUnitEquipmentManager<IUnit> Equipment { get; protected set; }
 		public IModifierCollection<IUnit> Buffs { get; protected set; }
 
-		protected override void Initialize()
+		protected override void Setup()
 		{
 			UnitModifierCollection<IUnit> modifiers = new UnitModifierCollection<IUnit>();
 			Modifiers = modifiers;
@@ -37,7 +37,6 @@ namespace Davfalcon.Revelator
 			Buffs = new UnitModifierCollection<IUnit>();
 			Modifiers.Add(Equipment);
 			Modifiers.Add(Buffs);
-			Link();
 		}
 
 		protected override void Link()

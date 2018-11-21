@@ -86,10 +86,15 @@ namespace Davfalcon
 		/// </summary>
 		public IModifierCollection<IUnit> Modifiers { get; protected set; }
 
-		protected virtual void Initialize()
+		protected void Initialize()
+		{
+			Setup();
+			Link();
+		}
+
+		protected virtual void Setup()
 		{
 			Modifiers = new UnitModifierCollection<IUnit>();
-			Link();
 		}
 
 		/// <summary>
