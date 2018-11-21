@@ -11,9 +11,11 @@ namespace Davfalcon.UnitTests
 		[TestInitialize]
 		public void GenerateUnit()
 		{
-			BasicUnit unit = BasicUnit.Create();
-			unit.BaseStats[STAT_NAME] = 10;
-			this.unit = unit;
+			this.unit = BasicUnit.Create(u =>
+			{
+				u.BaseStats[STAT_NAME] = 10;
+				return u;
+			});
 		}
 
 		[TestMethod]

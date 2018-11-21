@@ -19,14 +19,30 @@ namespace Davfalcon
 			public IStats Base => unit.BaseStats;
 			public IStats Additions => StatsConstant.Zero;
 			public IStats Multipliers => new StatsConstant(unit.operations.AggregateSeed);
-			public IStats Final => unit.Modifiers.AsTargetInterface.Stats;
+			public IStats Final => Base;
 
 			public INode GetBaseStatNode(Enum stat) => StatNode<IUnit>.From(unit, unit.BaseStats, stat);
 			public IAggregatorNode GetAdditionsNode(Enum stat) => new AggregatorNode($"{stat} additions ({unit.Name})", null);
 			public IAggregatorNode GetMultipliersNode(Enum stat) => new AggregatorNode($"{stat} multipliers ({unit.Name})", null, unit.operations);
-			public INode GetStatNode(Enum stat) => unit.ShortCircuit ? GetBaseStatNode(stat) : unit.Modifiers.AsTargetInterface.StatsDetails.GetStatNode(stat);
+			public INode GetStatNode(Enum stat) => GetBaseStatNode(stat);
 
 			public BaseStatsRouter(BasicUnit unit) => this.unit = unit;
+		}
+
+		[Serializable]
+		protected class Wrapper : IUnit
+		{
+			private readonly IUnit unit;
+
+			public IUnit InterfaceUnit => unit.Modifiers.AsTargetInterface;
+			public string Name => InterfaceUnit.Name;
+			public string Class => InterfaceUnit.Class;
+			public int Level => InterfaceUnit.Level;
+			public IModifierCollection<IUnit> Modifiers => InterfaceUnit.Modifiers;
+			public IStats Stats => InterfaceUnit.Stats;
+			public IStatsDetails StatsDetails => InterfaceUnit.StatsDetails;
+
+			public Wrapper(IUnit unit) => this.unit = unit;
 		}
 
 		[NonSerialized]
@@ -52,7 +68,7 @@ namespace Davfalcon
 		/// <summary>
 		/// Gets a representation of the unit's stats.
 		/// </summary>
-		public virtual IStats Stats => ShortCircuit ? StatsDetails.Base : StatsDetails.Final;
+		public virtual IStats Stats => StatsDetails.Final;
 
 		/// <summary>
 		/// Gets a detailed breakdown of the unit's stats.
@@ -68,8 +84,6 @@ namespace Davfalcon
 		/// Gets the unit's modifiers.
 		/// </summary>
 		public IModifierCollection<IUnit> Modifiers { get; protected set; }
-
-		protected bool ShortCircuit => Modifiers.AsTargetInterface.StatsDetails == StatsDetails;
 
 		/// <summary>
 		/// Set internal object references
@@ -88,7 +102,7 @@ namespace Davfalcon
 			// Reset object references after deserialization
 			Link();
 		}
-		
+
 		protected BasicUnit(IEditableStats baseStats, IStatsOperations operations)
 		{
 			this.operations = operations;
@@ -100,26 +114,11 @@ namespace Davfalcon
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BasicUnit"/> class with no properties set.
 		/// </summary>
-		public static BasicUnit Create()
-			=> Create(StatsOperations.Default);
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified <see cref="IStatsOperations"/> instance.
-		/// </summary>
-		/// <param name="aggregator">The <see cref="IStatsOperations"/> instance that defines stat calculations that the unit will use.</param>
-		public static BasicUnit Create(IStatsOperations operations)
-			=> Create(new StatsMap(), operations);
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="BasicUnit"/> class with the specified base stats and <see cref="IStatsOperations"/> instance.
-		/// </summary>
-		/// <param name="baseStats">The unit's base stats.</param>
-		/// <param name="aggregator">The <see cref="IStatsOperations"/> instance that defines stat calculations that the unit will use.</param>
-		public static BasicUnit Create(IEditableStats baseStats, IStatsOperations operations)
+		public static IUnit Create(Func<BasicUnit, IUnit> func)
 		{
-			BasicUnit unit = new BasicUnit(baseStats, operations);
+			BasicUnit unit = new BasicUnit(new StatsMap(), StatsOperations.Default);
 			unit.Link();
-			return unit;
+			return new Wrapper(func(unit));
 		}
 	}
 }

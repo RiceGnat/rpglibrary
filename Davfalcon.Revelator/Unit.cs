@@ -7,6 +7,19 @@ namespace Davfalcon.Revelator
 	[Serializable]
 	public class Unit : BasicUnit, IUnit
 	{
+		[Serializable]
+		new protected class Wrapper : BasicUnit.Wrapper, IUnit
+		{
+			new public IUnit InterfaceUnit => base.InterfaceUnit as IUnit;
+
+			public IDictionary<Enum, int> VolatileStats => InterfaceUnit.VolatileStats;
+			public IUnitEquipmentManager<IUnit> Equipment => InterfaceUnit.Equipment;
+			public IModifierCollection<IUnit> Buffs => InterfaceUnit.Buffs;
+			IModifierCollection<IUnit> IUnit.Modifiers => InterfaceUnit.Modifiers;
+
+			public Wrapper(Davfalcon.IUnit unit) : base(unit) { }
+		}
+
 		private ILinkedStatResolver statLinker = new LinkedStatsResolverBase();
 
 		public IDictionary<Enum, int> VolatileStats { get; } = new Dictionary<Enum, int>();
@@ -85,6 +98,9 @@ namespace Davfalcon.Revelator
 
 			public Builder AddEquipmentSlot(Enum slot) => Self(unit => unit.Equipment.AddEquipmentSlot(slot));
 			public Builder AddEquipment(IEquipment<IUnit> equipment) => Self(unit => unit.Equipment.Equip(equipment));
+
+			public override IUnit Build()
+				=> new Wrapper(base.Build());
 		}
 	}
 }

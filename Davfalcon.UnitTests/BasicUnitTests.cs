@@ -6,19 +6,17 @@ namespace Davfalcon.UnitTests
 	[TestClass]
 	public class BasicUnitTests
 	{
-		private BasicUnit CreateTestUnit()
-		{
-			BasicUnit unit = BasicUnit.Create();
-			unit.Name = NAME;
-			unit.Class = CLASS;
-			unit.Level = LEVEL;
-			return unit;
-		}
 
 		[TestMethod]
 		public void Interface()
 		{
-			IUnit unit = CreateTestUnit();
+			IUnit unit = BasicUnit.Create(u =>
+			{
+				u.Name = NAME;
+				u.Class = CLASS;
+				u.Level = LEVEL;
+				return u;
+			});
 
 			Assert.AreEqual(NAME, unit.Name);
 			Assert.AreEqual(CLASS, unit.Class);
@@ -29,8 +27,11 @@ namespace Davfalcon.UnitTests
 		[TestMethod]
 		public void Stats()
 		{
-			BasicUnit unit = CreateTestUnit();
-			unit.BaseStats.Set(STAT_NAME, STAT_VALUE);
+			IUnit unit = BasicUnit.Create(u =>
+			{
+				u.BaseStats.Set(STAT_NAME, STAT_VALUE);
+				return u;
+			});
 
 			Assert.AreEqual(STAT_VALUE, unit.Stats[STAT_NAME]);
 			Assert.AreEqual(STAT_VALUE, unit.StatsDetails.Base[STAT_NAME]);
