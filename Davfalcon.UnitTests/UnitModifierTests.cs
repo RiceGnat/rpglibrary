@@ -11,15 +11,32 @@ namespace Davfalcon.UnitTests
 		[TestInitialize]
 		public void GenerateUnit()
 		{
-			this.unit = BasicUnit.Create(u =>
+			this.unit = BasicUnit.Build(u =>
 			{
 				u.BaseStats[STAT_NAME] = 10;
 				return u;
 			});
 		}
 
+		[DataTestMethod]
+		[DataRow(10, 0, 20)]
+		[DataRow(0, 20, 12)]
+		[DataRow(10, 20, 24)]
+		public void UnitStatsModifier(int add, int mult, int expected)
+		{
+			UnitStatsModifier modifier = new UnitStatsModifier();
+
+			modifier.Additions[STAT_NAME] = add;
+			modifier.Multipliers[STAT_NAME] = mult;
+
+			unit.Modifiers.Add(modifier);
+
+			Assert.AreEqual(expected, unit.Stats[STAT_NAME]);
+			Assert.AreEqual(10, unit.StatsDetails.Base[STAT_NAME]);
+		}
+
 		[TestMethod]
-		public void UnitStatsModifier()
+		public void MultiplerModifiers()
 		{
 			UnitStatsModifier modifier = new UnitStatsModifier();
 

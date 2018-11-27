@@ -124,7 +124,7 @@ namespace Davfalcon
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BasicUnit"/> class with no properties set.
 		/// </summary>
-		public static IUnit Create(Func<BasicUnit, IUnit> func)
+		public static IUnit Build(Func<BasicUnit, IUnit> func)
 		{
 			BasicUnit unit = new BasicUnit(new StatsMap(), StatsOperations.Default);
 			unit.Initialize();

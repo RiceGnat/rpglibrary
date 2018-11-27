@@ -10,7 +10,7 @@ namespace Davfalcon.UnitTests
 		[TestMethod]
 		public void Interface()
 		{
-			IUnit unit = BasicUnit.Create(u =>
+			IUnit unit = BasicUnit.Build(u =>
 			{
 				u.Name = NAME;
 				u.Class = CLASS;
@@ -27,7 +27,7 @@ namespace Davfalcon.UnitTests
 		[TestMethod]
 		public void Stats()
 		{
-			IUnit unit = BasicUnit.Create(u =>
+			IUnit unit = BasicUnit.Build(u =>
 			{
 				u.BaseStats.Set(STAT_NAME, STAT_VALUE);
 				return u;
