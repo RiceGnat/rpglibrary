@@ -41,6 +41,7 @@ namespace Davfalcon
 
 		public void Add(IModifier<T> item)
 		{
+			if (!(item is T)) throw new NotSupportedException(nameof(item));
 			item.Bind(Interface);
 			stack.Add(item);
 		}
