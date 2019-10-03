@@ -1,9 +1,9 @@
 ﻿namespace Davfalcon
 {
-	/// <summary>
-	/// Exposes basic properties of a unit.
-	/// </summary>
-	public interface IUnit : INameable
+    /// <summary>
+    /// Exposes basic properties of a unit.
+    /// </summary>
+    public interface IUnit : INameable
 	{
 		/// <summary>
 		/// Gets the unit's name.
@@ -33,6 +33,6 @@
 		/// <summary>
 		/// Gets the modifiers attached to the unit.
 		/// </summary>
-		IUnitModifierStack Modifiers { get; }
+		IModifierStack<IUnit> Modifiers { get; }
 	}
 }

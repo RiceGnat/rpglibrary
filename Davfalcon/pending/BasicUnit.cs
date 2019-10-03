@@ -30,7 +30,7 @@ namespace Davfalcon
 
 			public IStats Final
 			{
-				get { return unit.Modifiers.Stats; }
+				get { return unit.Modifiers.AsModified().Stats; }
 			}
 
 			public BaseStatsRouter(BasicUnit unit)
@@ -60,7 +60,7 @@ namespace Davfalcon
 		/// <summary>
 		/// Gets a representation of the unit's stats.
 		/// </summary>
-		public virtual IStats Stats { get { return Modifiers.StatsDetails == StatsDetails ? StatsDetails.Base : StatsDetails.Final; } }
+		public virtual IStats Stats { get { return Modifiers.AsModified().StatsDetails == StatsDetails ? StatsDetails.Base : StatsDetails.Final; } }
 
 		/// <summary>
 		/// Gets a detailed breakdown of the unit's stats.
@@ -75,7 +75,7 @@ namespace Davfalcon
 		/// <summary>
 		/// Gets the unit's modifiers.
 		/// </summary>
-		public IUnitModifierStack Modifiers { get; protected set; }
+		public IModifierStack<IUnit> Modifiers { get; protected set; }
 
 		/// <summary>
 		/// Perform initial setup.
@@ -83,7 +83,7 @@ namespace Davfalcon
 		protected virtual void Initialize()
 		{
 			BaseStats = new StatsMap();
-			Modifiers = new UnitModifierStack();
+			Modifiers = new ModifierStack<IUnit>();
 		}
 
 		/// <summary>

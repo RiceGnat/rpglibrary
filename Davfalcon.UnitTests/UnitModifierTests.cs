@@ -1,57 +1,68 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static Davfalcon.UnitTests.TestConstants;
 
 namespace Davfalcon.UnitTests
 {
-	[TestClass]
+    [TestClass]
 	public class UnitModifierTests
 	{
-		private IUnit unit;
+        private const string UNIT_NAME = "TestUnit";
+        private const string MODIFIER_NAME = "TestModifier";
+        private const int UNIT_LEVEL = 1;
 
-		[TestInitialize]
+        private IUnit unit;
+        private IModifier<IUnit> modifier;
+
+        private class TestUnit : IUnit
+        {
+            public string Name { get; }
+            public int Level => UNIT_LEVEL;
+
+            #region Not implemented
+            string IUnit.Class => throw new System.NotImplementedException();
+            IStats IUnit.Stats => throw new System.NotImplementedException();
+            IStatsPackage IUnit.StatsDetails => throw new System.NotImplementedException();
+            IModifierStack<IUnit> IUnit.Modifiers => throw new System.NotImplementedException();
+            #endregion
+
+            public TestUnit(string name)
+            {
+                Name = name;
+            }
+        }
+
+        private class TestModifier : UnitModifier, IUnit
+        {
+            int IUnit.Level => Target.Level + 1;
+
+            public TestModifier(string name)
+            {
+                Name = name;
+            }
+        }
+
+        [TestInitialize]
 		public void GenerateUnit()
 		{
-			BasicUnit unit = new BasicUnit();
-			unit.BaseStats[STAT_NAME] = 10;
-			this.unit = unit;
-		}
+            unit = new TestUnit(UNIT_NAME);
+            modifier = new TestModifier(MODIFIER_NAME);
+            modifier.Bind(unit);
+        }
 
-		[TestMethod]
-		public void UnitStatsModifier()
-		{
-			UnitStatsModifier modifier = new UnitStatsModifier();
+        [TestMethod]
+        public void NameResolution()
+        {
+            INameable nameable = modifier;
 
-			modifier.Additions[STAT_NAME] = 10;
-			modifier.Multiplications[STAT_NAME] = 20;
+            Assert.AreEqual(UNIT_NAME, unit.Name);
+            Assert.AreEqual(MODIFIER_NAME, modifier.Name);
+            Assert.AreEqual(MODIFIER_NAME, nameable.Name);
+        }
 
-			unit.Modifiers.Add(modifier);
-
-			Assert.AreEqual(24, unit.Stats[STAT_NAME]);
-
-			modifier = new UnitStatsModifier();
-
-			modifier.Additions[STAT_NAME] = 5;
-			modifier.Multiplications[STAT_NAME] = 80;
-
-			unit.Modifiers.Add(modifier);
-
-			Assert.AreEqual(50, unit.Stats[STAT_NAME]);
-
-			Assert.AreEqual(unit.Stats[STAT_NAME], unit.StatsDetails.Final[STAT_NAME]);
-			Assert.AreEqual(10, unit.StatsDetails.Base[STAT_NAME]);
-		}
-
-		[TestMethod]
-		public void TimedModifier()
-		{
-			TimedModifier modifier = new TimedModifier();
-			modifier.Duration = 1;
-			modifier.Reset();
-			Assert.AreEqual(modifier.Duration, modifier.Remaining);
-			modifier.Tick();
-			Assert.AreEqual(0, modifier.Remaining);
-			modifier.Tick();
-			Assert.AreEqual(0, modifier.Remaining);
-		}
+        [TestMethod]
+        public void PropertyModification()
+        {
+            Assert.AreEqual(UNIT_LEVEL, unit.Level);
+            Assert.AreEqual(UNIT_LEVEL + 1, modifier.AsModified().Level);
+        }
 	}
 }
