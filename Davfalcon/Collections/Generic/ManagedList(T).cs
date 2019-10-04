@@ -10,17 +10,17 @@ namespace Davfalcon.Collections.Generic
 	[Serializable]
 	public class ManagedList<T> : List<T>
 	{
+		[NonSerialized]
+		private IList<T> readOnly;
+
 		/// <summary>
 		/// Gets the read-only collection wrapper for the <see cref="List{T}"/>.
 		/// </summary>
-		public IList<T> ReadOnly { get; protected set; }
-
-		/// <summary>
-		/// Initializes a new <see cref="ManagedList{T}"/>. Equivalent to <see cref="List{T}"/> constructor.
-		/// </summary>
-		public ManagedList()
+		new public IList<T> AsReadOnly()
 		{
-			ReadOnly = AsReadOnly();
+			if (readOnly == null)
+				readOnly = base.AsReadOnly();
+			return readOnly;
 		}
 	}
 }

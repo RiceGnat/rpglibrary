@@ -7,7 +7,7 @@ namespace Davfalcon.Randomization
 	/// </summary>
 	public class SuccessChecker : RandomBase, ISuccessCheck
 	{
-		private double threshold;
+		private readonly double threshold;
 
 		/// <summary>
 		/// Generates a new random value.
@@ -28,7 +28,7 @@ namespace Davfalcon.Randomization
 		}
 
 		/// <summary>
-		/// Initializes a new <see cref="SuccessChecker"/> with a specified threshold.
+		/// Initializes a new instance of the <see cref="SuccessChecker"/> class with a specified threshold.
 		/// </summary>
 		/// <param name="threshold">The threshold to use.</param>
 		public SuccessChecker(double threshold)

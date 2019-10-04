@@ -197,7 +197,7 @@ namespace Davfalcon.Collections.Generic
 
 		IEnumerator<T> IEnumerable<T>.GetEnumerator()
 		{
-			return new CLLEnumerator(this);
+			return GetEnumerator();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
@@ -244,12 +244,12 @@ namespace Davfalcon.Collections.Generic
 		}
 
 		/// <summary>
-		/// Initializes a new empty <see cref="CircularLinkedList{T}"/>.
+		/// Initializes a new instance of the <see cref="CircularLinkedList{T}"/> class that is empty.
 		/// </summary>
 		public CircularLinkedList() { }
 
 		/// <summary>
-		/// Initializes a new <see cref="CircularLinkedList{T}"/> and adds the specified item to it.
+		/// Initializes a new instance of the <see cref="CircularLinkedList{T}"/> class and adds the specified item to it.
 		/// </summary>
 		/// <param name="item">The item to be added to the list.</param>
 		public CircularLinkedList(T item)
@@ -258,7 +258,7 @@ namespace Davfalcon.Collections.Generic
 		}
 
 		/// <summary>
-		/// Initializes a new <see cref="CircularLinkedList{T}"/> that contains elements copied from the specified collection.
+		/// Initializes a new instance of the <see cref="CircularLinkedList{T}"/> class that contains elements copied from the specified collection.
 		/// </summary>
 		/// <param name="items">The collection whose elements are copied to the new <see cref="CircularLinkedList{T}"/>.</param>
 		public CircularLinkedList(IEnumerable<T> items)
@@ -271,41 +271,30 @@ namespace Davfalcon.Collections.Generic
 		}
 
 		/// <summary>
-		/// Creates a new <see cref="CircularLinkedList{T}"/> that uses the specified <see cref="List{T}"/> object as a base.
+		/// Initializes a new instance of the <see cref="CircularLinkedList{T}"/> class that uses the specified <see cref="List{T}"/> object as a base.
 		/// </summary>
 		/// <param name="list">The <see cref="List{T}"/> to use as a base for the new <see cref="CircularLinkedList{T}"/>.</param>
 		/// <returns>A new <see cref="CircularLinkedList{T}"/> with <paramref name="list"/> as the base.</returns>
 		public static CircularLinkedList<T> WrapList(List<T> list)
 		{
-			CircularLinkedList<T> cll = new CircularLinkedList<T>();
-			cll.list = list;
+			CircularLinkedList<T> cll = new CircularLinkedList<T> { list = list };
 			return cll;
 		}
 
-		/// <summary>
-		/// Enumerates the elements of a <see cref="CircularLinkedList{T}"/>.
-		/// </summary>
-		public class CLLEnumerator : IEnumerator<T>
+		private class CLLEnumerator : IEnumerator<T>
 		{
 			private CircularLinkedList<T> list;
 			private int curIndex;
 
-			/// <summary>
-			/// Creates a new <see cref="CLLEnumerator"/> for the specified <see cref="CircularLinkedList{T}"/>.
-			/// </summary>
-			/// <param name="list">The <see cref="CircularLinkedList{T}"/> to be enumerated by the new <see cref="CLLEnumerator"/>.</param>
 			public CLLEnumerator(CircularLinkedList<T> list)
 			{
 				this.list = list;
 				Reset();
 			}
 
-			/// <summary>
-			/// Gets the element at the current position of the enumerator.
-			/// </summary>
 			public T Current
 			{
-				get { return curIndex < 0 ? default(T) : list[curIndex]; }
+				get { return curIndex < 0 ? default : list[curIndex]; }
 			}
 
 			void IDisposable.Dispose() { }
@@ -315,19 +304,12 @@ namespace Davfalcon.Collections.Generic
 				get { return Current; }
 			}
 
-			/// <summary>
-			/// Advances the enumerator to the next element of the <see cref="CircularLinkedList{T}"/>.
-			/// </summary>
-			/// <returns></returns>
 			public bool MoveNext()
 			{
 				curIndex++;
 				return curIndex < list.Count;
 			}
 
-			/// <summary>
-			/// Sets the enumerator to its initial position, which is before the current head of the list.
-			/// </summary>
 			public void Reset()
 			{
 				curIndex = -1;
