@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Davfalcon.UnitTests
 {
@@ -15,10 +16,7 @@ namespace Davfalcon.UnitTests
             public IModifierStack<IUnit> Modifiers { get; } = new ModifierStack<IUnit>();
 
             #region Not implemented
-            int IUnit.Level => throw new System.NotImplementedException();
-            string IUnit.Class => throw new System.NotImplementedException();
-            IStats IUnit.Stats => throw new System.NotImplementedException();
-            IStatsPackage IUnit.StatsDetails => throw new System.NotImplementedException();
+            IStatsProperties IUnitTemplate<IUnit>.Stats => throw new NotImplementedException();
             #endregion
 
             public TestUnit()
@@ -27,11 +25,11 @@ namespace Davfalcon.UnitTests
             }
         }
 
-        private class TestModifier : UnitModifier, IUnit
+        private class TestModifier : UnitModifier<IUnit>, IUnit
         {
             private readonly string suffix;
-
-            string IUnit.Name => Target.Name + suffix;
+            public override IUnit AsModified() => this;
+            string IUnitTemplate<IUnit>.Name => Target.Name + suffix;
 
             public TestModifier(string suffix)
             {
@@ -40,7 +38,7 @@ namespace Davfalcon.UnitTests
         }
 
         [TestInitialize]
-        public void GenerateUnit()
+        public void Setup()
         {
             unit = new TestUnit();
         }

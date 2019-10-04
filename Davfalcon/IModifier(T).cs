@@ -1,26 +1,26 @@
 ﻿namespace Davfalcon
 {
     /// <summary>
-    /// Represents an object that modifies another object.
+    /// Represents an object that modifies an entity.
     /// </summary>
-    /// <typeparam name="T">The type of object that the modifier affects.</typeparam>
-    public interface IModifier<T> : IDescribable
+    /// <typeparam name="T">The type of entity that the modifier affects.</typeparam>
+    public interface IModifier<T>
     {
         /// <summary>
-        /// Gets the object being modified.
+        /// Gets the entity being modified.
         /// </summary>
         T Target { get; }
 
         /// <summary>
-        /// Binds the modifier to a new target.
+        /// Binds the modifier to a new entity.
         /// </summary>
-        /// <param name="target">The new object to bind to.</param>
+        /// <param name="target">The new entity to bind to.</param>
         void Bind(T target);
 
         /// <summary>
-        /// Gets a representation of the modified object.
+        /// Gets a representation of the modified entity.
         /// </summary>
-        /// <returns>A representation of the modified object.</returns>
+        /// <returns>A representation of the modified entity.</returns>
         T AsModified();
     }
 }

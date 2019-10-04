@@ -42,22 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="temp\BasicUnit.cs" />
+    <Compile Include="IStats.cs" />
+    <Compile Include="IStatsCalculator.cs" />
+    <Compile Include="IStatsProperties.cs" />
+    <Compile Include="IUnitTemplate%28T%29.cs" />
     <Compile Include="Collections\CircularLinkedList%28T%29.cs" />
     <Compile Include="Collections\ICircularLinkedList%28T%29.cs" />
-    <Compile Include="Collections\ISelfRegistry%28T%29.cs" />
     <Compile Include="Collections\IRegistry%28T%29.cs" />
     <Compile Include="Collections\ManagedList%28T%29.cs" />
     <Compile Include="Collections\PrototypeCloner%28T%29.cs" />
-    <Compile Include="Collections\SelfRegisteredPrototypeCloner%28T%29.cs" />
-    <Compile Include="IDescribable.cs" />
-    <Compile Include="temp\IEditableDescription.cs" />
-    <Compile Include="temp\IEditableName.cs" />
-    <Compile Include="temp\IEditableStatsModifier.cs" />
     <Compile Include="IModifier%28T%29.cs" />
-    <Compile Include="INameable.cs" />
-    <Compile Include="temp\IStatsModifier.cs" />
-    <Compile Include="temp\MathExtensions.cs" />
+    <Compile Include="MathExtensions.cs" />
     <Compile Include="Modifier%28T%29.cs" />
     <Compile Include="ModifierStack%28T%29.cs" />
     <Compile Include="Randomization\CenterWeightedChecker.cs" />
@@ -65,23 +60,17 @@
     <Compile Include="Randomization\RandomBase.cs" />
     <Compile Include="Randomization\RandomInteger.cs" />
     <Compile Include="Randomization\SuccessChecker.cs" />
-    <Compile Include="temp\TimedModifier.cs" />
-    <Compile Include="temp\ITimedModifier.cs" />
-    <Compile Include="temp\IEditableStats.cs" />
-    <Compile Include="temp\IStats.cs" />
-    <Compile Include="temp\IStatsCalculator.cs" />
-    <Compile Include="temp\IStatsPackage.cs" />
-    <Compile Include="temp\IItem.cs" />
+    <Compile Include="IEditableStats.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="IModifierStack%28T%29.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\Serializer.cs" />
-    <Compile Include="temp\StatsMath.cs" />
-    <Compile Include="temp\StatsConstant.cs" />
-    <Compile Include="temp\StatsPrototype.cs" />
-    <Compile Include="temp\StatsMap.cs" />
-    <Compile Include="UnitModifier.cs" />
-    <Compile Include="temp\UnitStatsModifier.cs" />
+    <Compile Include="StatsConstant.cs" />
+    <Compile Include="StatsMap.cs" />
+    <Compile Include="StatsMath.cs" />
+    <Compile Include="StatsPrototype.cs" />
+    <Compile Include="UnitModifier%28T%29.cs" />
+    <Compile Include="UnitTemplate%28T%29.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
