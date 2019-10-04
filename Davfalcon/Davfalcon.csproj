@@ -46,11 +46,11 @@
     <Compile Include="IStatsCalculator.cs" />
     <Compile Include="IStatsProperties.cs" />
     <Compile Include="IUnitTemplate%28T%29.cs" />
-    <Compile Include="Collections\CircularLinkedList%28T%29.cs" />
-    <Compile Include="Collections\ICircularLinkedList%28T%29.cs" />
-    <Compile Include="Collections\IRegistry%28T%29.cs" />
-    <Compile Include="Collections\ManagedList%28T%29.cs" />
-    <Compile Include="Collections\PrototypeCloner%28T%29.cs" />
+    <Compile Include="Collections\Generic\CircularLinkedList%28T%29.cs" />
+    <Compile Include="Collections\Generic\ICircularLinkedList%28T%29.cs" />
+    <Compile Include="Collections\Generic\IRegistry%28T%29.cs" />
+    <Compile Include="Collections\Generic\ManagedList%28T%29.cs" />
+    <Compile Include="Collections\Generic\PrototypeCloner%28T%29.cs" />
     <Compile Include="IModifier%28T%29.cs" />
     <Compile Include="MathExtensions.cs" />
     <Compile Include="Modifier%28T%29.cs" />
