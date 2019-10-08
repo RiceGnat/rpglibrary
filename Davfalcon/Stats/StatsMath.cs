@@ -1,4 +1,4 @@
-﻿namespace Davfalcon
+﻿namespace Davfalcon.Stats
 {
 	/// <summary>
 	/// Performs math across a set of stats.

@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Davfalcon.UnitTests
+namespace Davfalcon
 {
     [TestClass]
     public class UnitTemplateTests

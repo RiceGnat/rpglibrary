@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace Davfalcon
+﻿namespace Davfalcon
 {
     /// <summary>
     /// Exposes basic properties of a unit.
     /// </summary>
-    public interface IUnitTemplate<T>
+    public interface IUnitTemplate<TUnit>
     {
         /// <summary>
         /// Gets the unit's name.
@@ -20,6 +18,6 @@ namespace Davfalcon
         /// <summary>
         /// Gets the modifiers attached to the unit.
         /// </summary>
-        IModifierStack<T> Modifiers { get; }
+        IModifierStack<TUnit> Modifiers { get; }
     }
 }

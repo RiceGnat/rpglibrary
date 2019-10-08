@@ -1,9 +1,8 @@
-﻿using Davfalcon.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Davfalcon.UnitTests
+namespace Davfalcon.Collections.Generic
 {
-	[TestClass]
+    [TestClass]
 	public class ManagedListTests
 	{
 		[TestMethod]

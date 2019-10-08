@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Davfalcon.Serialization;
 
-namespace Davfalcon.UnitTests
+namespace Davfalcon.Serialization
 {
-	[TestClass]
+    [TestClass]
 	public class EnumStringTests
 	{
 		private enum TestEnum

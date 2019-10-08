@@ -7,7 +7,7 @@
     <ProjectGuid>{1019C09A-ACB3-4212-9372-4E28E628B46F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Davfalcon.UnitTests</RootNamespace>
+    <RootNamespace>Davfalcon</RootNamespace>
     <AssemblyName>Davfalcon.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -50,9 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\AdapterTests.cs" />
-    <Compile Include="Collections\EnumStringTests.cs" />
+    <Compile Include="Nodes\AggregatorNodeTests.cs" />
+    <Compile Include="Serialization\EnumStringTests.cs" />
     <Compile Include="Collections\ManagedListTests.cs" />
     <Compile Include="ModifierStackTests.cs" />
+    <Compile Include="Nodes\ValueNodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestConstants.cs" />
     <Compile Include="UnitModifierTests.cs" />

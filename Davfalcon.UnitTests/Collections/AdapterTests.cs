@@ -1,10 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Davfalcon.Collections.Adapters;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Davfalcon.UnitTests
+namespace Davfalcon.Collections.Adapters
 {
-	[TestClass]
+    [TestClass]
 	public class AdapterTests
 	{
 		private enum TestEnum { A, B }

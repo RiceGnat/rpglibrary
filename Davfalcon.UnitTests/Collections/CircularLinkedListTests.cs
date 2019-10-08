@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Davfalcon.Collections.Generic;
 
-namespace Davfalcon.UnitTests
+namespace Davfalcon.Collections.Generic
 {
-	[TestClass]
+    [TestClass]
 	public class CircularLinkedListTests
 	{
 		private CircularLinkedList<int> list;

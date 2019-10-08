@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Davfalcon
+namespace Davfalcon.Stats
 {
 	/// <summary>
 	/// Implements data structure for stat lookup.
 	/// </summary>
 	[Serializable]
-	public class StatsMap : StatsPrototype, IEditableStats
+	public class StatsMap : StatsPrototype, IStatsEditable
 	{
 		private Dictionary<string, int> map = new Dictionary<string, int>();
 
@@ -23,8 +23,8 @@ namespace Davfalcon
 		/// </summary>
 		/// <param name="stat">The name of the stat.</param>
 		/// <param name="value">The value of the stat.</param>
-		/// <returns>This <see cref="IEditableStats"/> instance. Used for chaining methods.</returns>
-		public IEditableStats Set(string stat, int value)
+		/// <returns>This <see cref="IStatsEditable"/> instance. Used for chaining methods.</returns>
+		public IStatsEditable Set(string stat, int value)
 		{
 			int old = Get(stat);
 			map[stat] = value;
@@ -36,8 +36,8 @@ namespace Davfalcon
 		/// </summary>
 		/// <param name="stat">The name of the stat.</param>
 		/// <param name="value">The value of the stat.</param>
-		/// <returns>This <see cref="IEditableStats"/> instance. Used for chaining methods.</returns>
-		public IEditableStats Set(Enum stat, int value) => Set(stat.ToString(), value);
+		/// <returns>This <see cref="IStatsEditable"/> instance. Used for chaining methods.</returns>
+		public IStatsEditable Set(Enum stat, int value) => Set(stat.ToString(), value);
 
 		/// <summary>
 		/// Gets or sets a stat by string name.

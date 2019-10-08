@@ -1,6 +1,6 @@
-﻿namespace Davfalcon.UnitTests
+﻿namespace Davfalcon
 {
-	static class TestConstants
+    static class TestConstants
 	{
 		public const string NAME = "Test unit";
 		public const string CLASS = "Test class";

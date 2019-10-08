@@ -1,4 +1,4 @@
-﻿namespace Davfalcon
+﻿namespace Davfalcon.Stats
 {
 	/// <summary>
 	/// Specifies a formula to use to calculate stats

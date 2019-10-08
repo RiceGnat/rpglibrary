@@ -1,4 +1,4 @@
-﻿namespace Davfalcon
+﻿namespace Davfalcon.Stats
 {
 	/// <summary>
 	/// Returns a constant value for every stat.
