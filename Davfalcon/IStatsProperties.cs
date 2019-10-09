@@ -8,6 +8,5 @@ namespace Davfalcon
         IStats Base { get; }
 
         IStatNode GetStatNode(Enum stat);
-        IStatNode GetStatNode(string stat);
     }
 }

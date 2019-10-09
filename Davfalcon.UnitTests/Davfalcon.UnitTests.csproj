@@ -50,13 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\AdapterTests.cs" />
+    <Compile Include="UnitStatsModifierTests.cs" />
     <Compile Include="Nodes\AggregatorNodeTests.cs" />
+    <Compile Include="Stats\StatNodeTests.cs" />
     <Compile Include="Serialization\EnumStringTests.cs" />
     <Compile Include="Collections\ManagedListTests.cs" />
     <Compile Include="ModifierStackTests.cs" />
     <Compile Include="Nodes\ValueNodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestConstants.cs" />
+    <Compile Include="Stats\StatsTests.cs" />
     <Compile Include="UnitModifierTests.cs" />
     <Compile Include="Collections\CircularLinkedListTests.cs" />
     <Compile Include="UnitTemplateTests.cs" />

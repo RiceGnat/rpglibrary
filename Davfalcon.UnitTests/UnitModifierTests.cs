@@ -29,8 +29,8 @@ namespace Davfalcon
 
         private class TestModifier : UnitModifier<IUnit>, IUnit
         {
+            protected override IUnit Self => this;
             string IUnitTemplate<IUnit>.Name => MODIFIED_UNIT_NAME;
-            public override IUnit AsModified() => this;
         }
 
         [TestInitialize]

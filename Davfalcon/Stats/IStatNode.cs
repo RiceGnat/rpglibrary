@@ -1,4 +1,5 @@
-﻿using Davfalcon.Nodes;
+﻿using System;
+using Davfalcon.Nodes;
 
 namespace Davfalcon.Stats
 {
@@ -6,7 +7,6 @@ namespace Davfalcon.Stats
     {
         string Name { get; }
         int Base { get; }
-        INode<int> Additions { get; }
-        INode<int> Multipliers { get; }
+        INode<int> GetModification(Enum type);
     }
 }

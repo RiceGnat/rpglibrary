@@ -7,8 +7,9 @@ namespace Davfalcon
     /// <summary>
     /// Implements basic unit functionality.
     /// </summary>
+    /// <typeparam name="TUnit">The interface used by the unit's implementation.</typeparam>
     [Serializable]
-    public abstract class UnitTemplate<TUnit> : IUnitTemplate<TUnit> where TUnit : IUnit
+    public abstract class UnitTemplate<TUnit> : IUnitTemplate<TUnit> where TUnit : IUnitTemplate<TUnit>
     {
         protected interface IUnitStats : IStatsEditable, IStatsProperties { }
 
@@ -16,12 +17,7 @@ namespace Davfalcon
         {
             public IStats Base => this;
 
-            public IStatNode GetStatNode(Enum stat) => GetStatNode(stat.ToString());
-
-            public IStatNode GetStatNode(string stat)
-            {
-                throw new NotImplementedException();
-            }
+            public IStatNode GetStatNode(Enum stat) => new StatNode(stat.ToString(), this[stat]);
         }
 
         public string Name { get; set; }
