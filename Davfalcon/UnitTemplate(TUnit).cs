@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Davfalcon.Stats;
 
@@ -13,33 +14,45 @@ namespace Davfalcon
     {
         protected interface IUnitStats : IStatsEditable, IStatsProperties { }
 
+		[Serializable]
         protected class UnitStats : StatsMap, IUnitStats
         {
+			private readonly UnitTemplate<TUnit> unit;
+
             public IStats Base => this;
 
-            public IStatNode GetStatNode(Enum stat) => new StatNode(stat.ToString(), this[stat]);
+            public IStatNode GetStatNode(Enum stat) => new StatNode(stat.ToString(), Base[stat]);
+
+			public override int Get(Enum stat)
+				=> unit.StatDependencies.ContainsKey(stat) ? unit.StatDependencies[stat](unit.Modifiers.AsModified().Stats) : base.Get(stat);
+
+			public UnitStats(UnitTemplate<TUnit> unit)
+			{
+				this.unit = unit;
+			}
         }
+
+		private IUnitStats stats;
 
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public IStatsEditable BaseStats { get; private set; }
-        public IStatsProperties Stats { get; private set; }
+		public IStatsEditable BaseStats => stats;
+		public IStatsProperties Stats => stats;
+
+		public IDictionary<Enum, Func<IStatsProperties, int>> StatDependencies { get; } = new Dictionary<Enum, Func<IStatsProperties, int>>();
 
         public IModifierStack<TUnit> Modifiers { get; private set; }
 
         protected abstract TUnit Self { get; }
 
-        protected virtual IUnitStats InitializeUnitStats() => new UnitStats();
+        protected virtual IUnitStats InitializeUnitStats() => new UnitStats(this);
 
         protected virtual IModifierStack<TUnit> InitializeModifierStack() => new ModifierStack<TUnit>();
 
         protected virtual void Setup()
         {
-            IUnitStats stats = InitializeUnitStats();
-            BaseStats = stats;
-            Stats = stats;
-
+            stats = InitializeUnitStats();
             Modifiers = InitializeModifierStack();
         }
 
