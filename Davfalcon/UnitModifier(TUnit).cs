@@ -9,8 +9,15 @@ namespace Davfalcon
     [Serializable]
 	public abstract class UnitModifier<TUnit> : Modifier<TUnit>, IUnitTemplate<TUnit> where TUnit : IUnitTemplate<TUnit>
     {
+        /// <summary>
+        /// Should be implemented by concrete classes to return <c>this</c>.
+        /// </summary>
         protected abstract TUnit Self { get; }
 
+        /// <summary>
+        /// Returns a representation of the modified unit.
+        /// </summary>
+        /// <returns>A representation of the modified unit.</returns>
         public override TUnit AsModified() => Self;
 
         // Default passthrough behavior

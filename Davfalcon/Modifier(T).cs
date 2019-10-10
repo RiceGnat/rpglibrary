@@ -26,7 +26,7 @@ namespace Davfalcon
         }
 
         /// <summary>
-        /// Gets a representation of the modified object.
+        /// Returns a representation of the modified object.
         /// </summary>
         /// <returns>A representation of the modified object.</returns>
         public abstract T AsModified();

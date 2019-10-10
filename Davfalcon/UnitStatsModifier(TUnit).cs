@@ -32,7 +32,7 @@ namespace Davfalcon
             public override int Get(Enum stat) => GetStatNode(stat).Value;
         }
 
-        private UnitStatsProxy statsProxy;
+        private readonly UnitStatsProxy statsProxy;
 
         public IDictionary<Enum, IStatsEditable> StatModifications { get; } = new Dictionary<Enum, IStatsEditable>();
 

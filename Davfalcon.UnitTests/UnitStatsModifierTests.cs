@@ -29,6 +29,7 @@ namespace Davfalcon
             protected override IUnit Self => this;
 
             protected override Func<int, int, int> GetAggregator(Enum type) => (a, b) => a + b;
+
             protected override int GetAggregatorSeed(Enum type)
             {
                 switch (type)
@@ -76,7 +77,7 @@ namespace Davfalcon
         }
 
 		[TestMethod]
-		public void DependentStatModification()
+		public void DerivedStatModification()
 		{
 			TestUnit unit = new TestUnit(INITIAL_VALUE);
 			unit.StatDerivations[TestStats.StatB] = stats => stats[TestStats.StatA] * 2;

@@ -72,7 +72,7 @@ namespace Davfalcon
             Link();
         }
 
-        protected UnitTemplate()
+        public UnitTemplate()
         {
             Setup();
             Link();
