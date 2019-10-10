@@ -38,9 +38,9 @@ namespace Davfalcon
 		private IUnitStats stats;
 
         public string Name { get; set; }
-        public string Description { get; set; }
 
 		public IStatsEditable BaseStats => stats;
+
 		public IStatsProperties Stats => stats;
 
 		public IDictionary<Enum, Func<IStatsProperties, int>> StatDerivations { get; } = new Dictionary<Enum, Func<IStatsProperties, int>>();

@@ -26,7 +26,7 @@ namespace Davfalcon
 
         private class TestModifier : UnitStatsModifier<IUnit>, IUnit
         {
-            protected override IUnit Self => this;
+            protected override IUnit SelfAsUnit => this;
 
             protected override Func<int, int, int> GetAggregator(Enum type) => (a, b) => a + b;
 

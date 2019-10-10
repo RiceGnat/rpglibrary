@@ -28,7 +28,7 @@ namespace Davfalcon
         private class TestModifier : UnitModifier<IUnit>, IUnit
         {
             private readonly string suffix;
-            protected override IUnit Self => this;
+            protected override IUnit SelfAsUnit => this;
             string IUnitTemplate<IUnit>.Name => Target.Name + suffix;
 
             public TestModifier(string suffix)

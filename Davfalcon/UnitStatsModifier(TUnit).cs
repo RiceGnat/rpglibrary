@@ -42,10 +42,6 @@ namespace Davfalcon
 
         public IStats GetStatModifications(Enum type) => StatModifications[type];
 
-        protected abstract int Resolver(int baseValue, IDictionary<Enum, int> modifications);
-        protected abstract Func<int, int, int> GetAggregator(Enum type);
-        protected abstract int GetAggregatorSeed(Enum type);
-
         protected virtual IStatNode GetStatNode(Enum stat)
         {
             IStatNode targetStatNode = Target.Stats.GetStatNode(stat);
@@ -70,6 +66,12 @@ namespace Davfalcon
         protected IStats GetBaseStats() => Target.Stats.Base;
 
         protected int GetModificationBaseStat(Enum stat) => Target.Stats.GetModificationBase(stat);
+
+        protected abstract int Resolver(int baseValue, IDictionary<Enum, int> modifications);
+
+        protected abstract Func<int, int, int> GetAggregator(Enum type);
+
+        protected abstract int GetAggregatorSeed(Enum type);
 
         public override void Bind(TUnit target)
         {

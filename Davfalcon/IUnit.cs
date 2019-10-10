@@ -3,7 +3,5 @@
     /// <summary>
     /// Represents a unit.
     /// </summary>
-    public interface IUnit : IUnitTemplate<IUnit>
-    {
-    }
+    public interface IUnit : IUnitTemplate<IUnit> { }
 }

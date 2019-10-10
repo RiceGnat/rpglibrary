@@ -27,7 +27,7 @@ namespace Davfalcon
         [Serializable]
         private class TestModifier : UnitModifier<IUnit>, IUnit
         {
-            protected override IUnit Self => this;
+            protected override IUnit SelfAsUnit => this;
         }
 
         [TestInitialize]

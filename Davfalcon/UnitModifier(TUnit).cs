@@ -12,13 +12,13 @@ namespace Davfalcon
         /// <summary>
         /// Should be implemented by concrete classes to return <c>this</c>.
         /// </summary>
-        protected abstract TUnit Self { get; }
+        protected abstract TUnit SelfAsUnit { get; }
 
         /// <summary>
         /// Returns a representation of the modified unit.
         /// </summary>
         /// <returns>A representation of the modified unit.</returns>
-        public override TUnit AsModified() => Self;
+        public override TUnit AsModified() => SelfAsUnit;
 
         // Default passthrough behavior
         string IUnitTemplate<TUnit>.Name => Target.Name;
