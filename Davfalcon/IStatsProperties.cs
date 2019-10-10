@@ -13,6 +13,8 @@ namespace Davfalcon
 		/// </summary>
         IStats Base { get; }
 
+        int GetModificationBase(Enum stat);
+
 		/// <summary>
 		/// Returns an object containing detailed stat information.
 		/// </summary>

@@ -9,6 +9,11 @@ namespace Davfalcon.Nodes
         private readonly Func<T, T, T> func;
 
         public AggregatorNode(IEnumerable<INode<T>> nodes, Func<T, T, T> func)
+            : this(nodes, func, default)
+        {
+        }
+
+        public AggregatorNode(IEnumerable<INode<T>> nodes, Func<T, T, T> func, T seed)
         {
             this.func = func ?? throw new ArgumentNullException();
             if (nodes == null) throw new ArgumentNullException();
@@ -16,13 +21,7 @@ namespace Davfalcon.Nodes
             Nodes = nodes.ToList();
             Value = nodes
                 .Select(node => node.Value)
-                .Aggregate(func);
+                .Aggregate(seed, func);
         }
-
-        public static INode<T> Append(IEnumerable<INode<T>> nodes, INode<T> node, Func<T, T, T> func)
-            => new AggregatorNode<T>(nodes.Append(node), func);
-
-        public static INode<T> Union(IEnumerable<INode<T>> nodes, IEnumerable<INode<T>> otherNodes, Func<T, T, T> func)
-            => new AggregatorNode<T>(nodes.Union(otherNodes), func);
     }
 }

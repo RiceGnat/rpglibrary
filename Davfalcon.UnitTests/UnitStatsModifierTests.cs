@@ -29,18 +29,24 @@ namespace Davfalcon
             protected override IUnit Self => this;
 
             protected override Func<int, int, int> GetAggregator(Enum type) => (a, b) => a + b;
+            protected override int GetAggregatorSeed(Enum type)
+            {
+                switch (type)
+                {
+                    case ModType.Multiply: return 1;
+                    default: return 0;
+                }
+            }
 
             protected override int Resolver(int baseValue, IDictionary<Enum, int> modifications)
                 => modifications[ModType.Add] + baseValue * modifications[ModType.Multiply];
             
-            public TestModifier(int add, int multiply)
+            public TestModifier(TestStats stat, int add, int multiply)
             {
                 AddStatModificationType(ModType.Add);
                 AddStatModificationType(ModType.Multiply);
-                StatModifications[ModType.Add][TestStats.StatA] = add;
-                StatModifications[ModType.Multiply][TestStats.StatA] = multiply;
-				StatModifications[ModType.Add][TestStats.StatB] = add;
-				StatModifications[ModType.Multiply][TestStats.StatB] = multiply;
+                StatModifications[ModType.Add][stat] = add;
+                StatModifications[ModType.Multiply][stat] = multiply;
 			}
         }
 
@@ -53,31 +59,39 @@ namespace Davfalcon
         [TestMethod]
         public void StatModification()
         {
-            unit.Modifiers.Add(new TestModifier(1, 2));
+            unit.Modifiers.Add(new TestModifier(TestStats.StatA, 1, 2));
 
             Assert.AreEqual(INITIAL_VALUE, unit.Modifiers.AsModified().Stats.Base[TestStats.StatA]);
-            Assert.AreEqual(INITIAL_VALUE * 2 + 1, unit.Modifiers.AsModified().Stats[TestStats.StatA]);
+            Assert.AreEqual(INITIAL_VALUE * 3 + 1, unit.Modifiers.AsModified().Stats[TestStats.StatA]);
         }
 
         [TestMethod]
         public void ResolutionOrder()
         {
-            unit.Modifiers.Add(new TestModifier(1, 2));
-            unit.Modifiers.Add(new TestModifier(0, 3));
+            unit.Modifiers.Add(new TestModifier(TestStats.StatA, 1, 2));
+            unit.Modifiers.Add(new TestModifier(TestStats.StatA, 0, 3));
 
             Assert.AreEqual(INITIAL_VALUE, unit.Modifiers.AsModified().Stats.Base[TestStats.StatA]);
-            Assert.AreEqual(INITIAL_VALUE * (2 + 3) + 1, unit.Modifiers.AsModified().Stats[TestStats.StatA]);
+            Assert.AreEqual(INITIAL_VALUE * (1 + 2 + 3) + 1, unit.Modifiers.AsModified().Stats[TestStats.StatA]);
         }
 
 		[TestMethod]
 		public void DependentStatModification()
 		{
 			TestUnit unit = new TestUnit(INITIAL_VALUE);
-			unit.StatDependencies[TestStats.StatB] = stats => stats[TestStats.StatA] * 2;
-			unit.Modifiers.Add(new TestModifier(1, 2));
+			unit.StatDerivations[TestStats.StatB] = stats => stats[TestStats.StatA] * 2;
+            TestModifier modA = new TestModifier(TestStats.StatA, 1, 2);
+            TestModifier modB = new TestModifier(TestStats.StatB, 3, 1);
 
-			Assert.AreEqual(INITIAL_VALUE * 2, unit.Stats.Base[TestStats.StatB]);
-			Assert.AreEqual((INITIAL_VALUE * 2 + 1) * 2 * 2 + 1, unit.Modifiers.AsModified().Stats[TestStats.StatB]);
-		}
+            unit.Modifiers.Add(modA);
+            unit.Modifiers.Add(modB);
+
+            Assert.AreEqual(INITIAL_VALUE, unit.Stats.Base[TestStats.StatA]);
+            Assert.AreEqual(INITIAL_VALUE * 2, unit.Stats.Base[TestStats.StatB]);
+            Assert.AreEqual(INITIAL_VALUE * 3 + 1, modA.AsModified().Stats[TestStats.StatA]);
+            Assert.AreEqual((INITIAL_VALUE * 3 + 1) * 2, modA.AsModified().Stats[TestStats.StatB]);
+            Assert.AreEqual(INITIAL_VALUE * 3 + 1, modB.AsModified().Stats[TestStats.StatA]);
+            Assert.AreEqual((INITIAL_VALUE * 3 + 1) * 2 * 2 + 3, modB.AsModified().Stats[TestStats.StatB]);
+        }
     }
 }

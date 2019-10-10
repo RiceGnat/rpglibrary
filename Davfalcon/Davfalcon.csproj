@@ -49,6 +49,7 @@
     <Compile Include="IStats.cs" />
     <Compile Include="IStatsModifier%28T%29.cs" />
     <Compile Include="Nodes\AggregatorNode%28T%29.cs" />
+    <Compile Include="Nodes\CollectionNode%28T%29.cs" />
     <Compile Include="Nodes\Extensions.cs" />
     <Compile Include="Nodes\NodeBase.cs" />
     <Compile Include="Nodes\ValueNode.cs" />

@@ -40,36 +40,26 @@ namespace Davfalcon.Nodes
         }
 
         [TestMethod]
-        public void Append()
-        {
-            INode<int> newNode = AggregatorNode<int>.Append(node, new ValueNode<int>(4), add);
-            Console.WriteLine(newNode.Graph());
-            Assert.AreEqual(10, newNode.Value);
-            Assert.AreEqual(4, newNode.Count());
-        }
-
-        [TestMethod]
-        public void Union()
-        {
-            INode<int> newNode = AggregatorNode<int>.Union(node, new[] {
-                new ValueNode<int>(4),
-                new ValueNode<int>(5)
-            }, add);
-            Console.WriteLine(newNode.Graph());
-            Assert.AreEqual(15, newNode.Value);
-            Assert.AreEqual(5, newNode.Count());
-        }
-
-        [TestMethod]
         public void Nesting()
         {
-            INode<int> newNode = AggregatorNode<int>.Append(node, new AggregatorNode<int>(new[] {
+            INode<int> newNode = new AggregatorNode<int>(node.Append(new AggregatorNode<int>(new[] {
                 new ValueNode<int>(4),
                 new ValueNode<int>(5)
-            }, add), add);
+            }, add)), add);
             Console.WriteLine(newNode.Graph());
             Assert.AreEqual(15, newNode.Value);
             Assert.AreEqual(4, newNode.Count());
+        }
+
+        [TestMethod]
+        public void Seed()
+        {
+            INode<int> node = new AggregatorNode<int>(new[] {
+                new ValueNode<int>(0),
+                new ValueNode<int>(0)
+            }, add, 1);
+
+            Assert.AreEqual(1, node.Value);
         }
     }
 }

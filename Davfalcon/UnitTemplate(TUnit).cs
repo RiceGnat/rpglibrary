@@ -24,9 +24,12 @@ namespace Davfalcon
             public IStatNode GetStatNode(Enum stat) => new StatNode(stat.ToString(), Base[stat]);
 
 			public override int Get(Enum stat)
-				=> unit.StatDependencies.ContainsKey(stat) ? unit.StatDependencies[stat](unit.Modifiers.AsModified().Stats) : base.Get(stat);
+				=> unit.StatDerivations.ContainsKey(stat) ? unit.StatDerivations[stat](this) : base.Get(stat);
 
-			public UnitStats(UnitTemplate<TUnit> unit)
+            public int GetModificationBase(Enum stat)
+                => unit.StatDerivations.ContainsKey(stat) ? unit.StatDerivations[stat](unit.Modifiers.AsModified().Stats) : base.Get(stat);
+
+            public UnitStats(UnitTemplate<TUnit> unit)
 			{
 				this.unit = unit;
 			}
@@ -40,7 +43,7 @@ namespace Davfalcon
 		public IStatsEditable BaseStats => stats;
 		public IStatsProperties Stats => stats;
 
-		public IDictionary<Enum, Func<IStatsProperties, int>> StatDependencies { get; } = new Dictionary<Enum, Func<IStatsProperties, int>>();
+		public IDictionary<Enum, Func<IStatsProperties, int>> StatDerivations { get; } = new Dictionary<Enum, Func<IStatsProperties, int>>();
 
         public IModifierStack<TUnit> Modifiers { get; private set; }
 
