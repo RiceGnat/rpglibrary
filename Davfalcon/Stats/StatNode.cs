@@ -13,12 +13,12 @@ namespace Davfalcon.Stats
         public int Base { get; }
         public INode<int> GetModification(Enum type) => mods != null && mods.ContainsKey(type) ? mods[type] : null;
 
-        public StatNode(string name, int baseValue, Func<int, IDictionary<Enum, int>, int> resolver, IDictionary<Enum, INode<int>> modifications)
+        public StatNode(string name, int baseValue, Func<int, IReadOnlyDictionary<Enum, int>, int> resolver, IReadOnlyDictionary<Enum, INode<int>> modifications)
         {
             Name = name;
             Base = baseValue;
 
-            mods = new Dictionary<Enum, INode<int>>(modifications);
+            mods = modifications.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
             Nodes = mods.Values;
             Value = resolver(baseValue, mods.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Value));

@@ -39,7 +39,7 @@ namespace Davfalcon
                 }
             }
 
-            protected override int Resolver(int baseValue, IDictionary<Enum, int> modifications)
+            protected override int Resolver(int baseValue, IReadOnlyDictionary<Enum, int> modifications)
                 => modifications[ModType.Add] + baseValue * modifications[ModType.Multiply];
             
             public TestModifier(TestStats stat, int add, int multiply)

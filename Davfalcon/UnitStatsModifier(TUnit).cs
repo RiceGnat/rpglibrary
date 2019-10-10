@@ -67,7 +67,7 @@ namespace Davfalcon
 
         protected int GetModificationBaseStat(Enum stat) => Target.Stats.GetModificationBase(stat);
 
-        protected abstract int Resolver(int baseValue, IDictionary<Enum, int> modifications);
+        protected abstract int Resolver(int baseValue, IReadOnlyDictionary<Enum, int> modifications);
 
         protected abstract Func<int, int, int> GetAggregator(Enum type);
 

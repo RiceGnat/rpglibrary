@@ -9,7 +9,7 @@ namespace Davfalcon.Revelator
 
         protected override int GetAggregatorSeed(Enum type) => 0;
 
-        protected override int Resolver(int baseValue, IDictionary<Enum, int> modifications)
+        protected override int Resolver(int baseValue, IReadOnlyDictionary<Enum, int> modifications)
             => (modifications[StatModType.Additive] + baseValue).Scale(modifications[StatModType.Scaling]);
     }
 }
