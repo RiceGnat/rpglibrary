@@ -46,9 +46,11 @@
     <Compile Include="Equipment%28TUnit, TEquipSlots%29.cs" />
     <Compile Include="IEquipment%28TUnit, TEquipSlots%29.cs" />
     <Compile Include="IUnit.cs" />
+    <Compile Include="IUnitEquipmentManager.cs" />
     <Compile Include="IUnitTemplate%28TUnit%29.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit.cs" />
+    <Compile Include="UnitEquipmentManager.cs" />
     <Compile Include="UnitStatsModifier%28TUnit%29.cs" />
     <Compile Include="UnitTemplate%28TUnit%29.cs" />
   </ItemGroup>
