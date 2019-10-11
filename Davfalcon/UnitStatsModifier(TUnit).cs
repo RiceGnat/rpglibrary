@@ -67,11 +67,11 @@ namespace Davfalcon
 
 		protected int GetModificationBaseStat(Enum stat) => Target.Stats.GetModificationBase(stat);
 
-		protected abstract int Resolver(int baseValue, IReadOnlyDictionary<Enum, int> modifications);
+		protected Func<int, IReadOnlyDictionary<Enum, int>, int> Resolver { get; set; }
 
-		protected abstract Func<int, int, int> GetAggregator(Enum type);
+		protected Func<Enum, Func<int, int, int>> GetAggregator { get; set; }
 
-		protected abstract int GetAggregatorSeed(Enum type);
+		protected Func<Enum, int> GetAggregatorSeed { get; set; }
 
 		public override void Bind(TUnit target)
 		{

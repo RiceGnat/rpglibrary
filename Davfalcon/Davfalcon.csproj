@@ -46,8 +46,13 @@
     <Compile Include="Collections\Adapters\EnumStringListAdapter.cs" />
     <Compile Include="Collections\Adapters\ListAdapter%28T1,T2%29.cs" />
     <Compile Include="Collections\Adapters\ManagedEnumStringList.cs" />
+    <Compile Include="Equipment\Equipment%28TUnit, TEquipSlots%29.cs" />
+    <Compile Include="Equipment\IEquipment%28TUnit, TEquipSlots%29.cs" />
+    <Compile Include="Equipment\IUnitEquipmentManager.cs" />
+    <Compile Include="Equipment\UnitEquipmentManager.cs" />
     <Compile Include="IStats.cs" />
     <Compile Include="IStatsModifier%28T%29.cs" />
+    <Compile Include="IUnitComponent%28TUnit%29.cs" />
     <Compile Include="Nodes\AggregatorNode%28T%29.cs" />
     <Compile Include="Nodes\CollectionNode%28T%29.cs" />
     <Compile Include="Nodes\Extensions.cs" />

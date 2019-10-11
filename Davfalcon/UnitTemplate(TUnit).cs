@@ -36,6 +36,7 @@ namespace Davfalcon
 		}
 
 		private IUnitStats stats;
+		private readonly Dictionary<Enum, IUnitComponent<TUnit>> components = new Dictionary<Enum, IUnitComponent<TUnit>>();
 
 		public string Name { get; set; }
 
@@ -55,13 +56,12 @@ namespace Davfalcon
 
 		public void AddComponent(Enum id, IUnitComponent<TUnit> component)
 		{
-			throw new NotImplementedException();
+			components.Add(id, component);
+			component.Initialize(Self);
 		}
 
-		public TComponent GetComponent<TComponent>(Enum id) where TComponent : IUnitComponent<TUnit>
-		{
-			throw new NotImplementedException();
-		}
+		public TComponent GetComponent<TComponent>(Enum id) where TComponent : class, IUnitComponent<TUnit>
+			=> components[id] as TComponent;
 
 		protected virtual void Setup()
 		{
