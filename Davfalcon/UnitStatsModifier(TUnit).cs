@@ -6,81 +6,81 @@ using Davfalcon.Stats;
 
 namespace Davfalcon
 {
-    /// <summary>
-    /// Abstract base stats for modifiers affecting unit stats.
-    /// </summary>
-    /// <typeparam name="TUnit">The interface used by the unit's implementation.</typeparam>
-    [Serializable]
-    public abstract class UnitStatsModifier<TUnit> : UnitModifier<TUnit>, IStatsModifier<TUnit>, IUnitTemplate<TUnit> where TUnit : IUnitTemplate<TUnit>
-    {
-        [Serializable]
-        private class UnitStatsProxy : StatsPrototype, IStatsProperties
-        {
-            private readonly UnitStatsModifier<TUnit> modifier;
+	/// <summary>
+	/// Abstract base stats for modifiers affecting unit stats.
+	/// </summary>
+	/// <typeparam name="TUnit">The interface used by the unit's implementation.</typeparam>
+	[Serializable]
+	public abstract class UnitStatsModifier<TUnit> : UnitModifier<TUnit>, IStatsModifier<TUnit>, IUnitTemplate<TUnit> where TUnit : IUnitTemplate<TUnit>
+	{
+		[Serializable]
+		private class UnitStatsProxy : StatsPrototype, IStatsProperties
+		{
+			private readonly UnitStatsModifier<TUnit> modifier;
 
-            public UnitStatsProxy(UnitStatsModifier<TUnit> modifier)
-            {
-                this.modifier = modifier;
-            }
+			public UnitStatsProxy(UnitStatsModifier<TUnit> modifier)
+			{
+				this.modifier = modifier;
+			}
 
-            public IStats Base => modifier.GetBaseStats();
+			public IStats Base => modifier.GetBaseStats();
 
-            public int GetModificationBase(Enum stat) => modifier.GetModificationBaseStat(stat);
+			public int GetModificationBase(Enum stat) => modifier.GetModificationBaseStat(stat);
 
-            public IStatNode GetStatNode(Enum stat) => modifier.GetStatNode(stat);
+			public IStatNode GetStatNode(Enum stat) => modifier.GetStatNode(stat);
 
-            public override int Get(Enum stat) => GetStatNode(stat).Value;
-        }
+			public override int Get(Enum stat) => GetStatNode(stat).Value;
+		}
 
-        private readonly UnitStatsProxy statsProxy;
+		private readonly UnitStatsProxy statsProxy;
 
-        public IDictionary<Enum, IStatsEditable> StatModifications { get; } = new Dictionary<Enum, IStatsEditable>();
+		public IDictionary<Enum, IStatsEditable> StatModifications { get; } = new Dictionary<Enum, IStatsEditable>();
 
-        IStatsProperties IUnitTemplate<TUnit>.Stats => statsProxy;
+		IStatsProperties IUnitTemplate<TUnit>.Stats => statsProxy;
 
-        public void AddStatModificationType(Enum type) => StatModifications.Add(type, new StatsMap());
+		public void AddStatModificationType(Enum type) => StatModifications.Add(type, new StatsMap());
 
-        public IStats GetStatModifications(Enum type) => StatModifications[type];
+		public IStats GetStatModifications(Enum type) => StatModifications[type];
 
-        protected virtual IStatNode GetStatNode(Enum stat)
-        {
-            IStatNode targetStatNode = Target.Stats.GetStatNode(stat);
-            return new StatNode(stat.ToString(), GetModificationBaseStat(stat), Resolver,
-                StatModifications.ToDictionary(kvp => kvp.Key, kvp =>
-                {
-                    INode<int> prev = targetStatNode.GetModification(kvp.Key);
+		protected virtual IStatNode GetStatNode(Enum stat)
+		{
+			IStatNode targetStatNode = Target.Stats.GetStatNode(stat);
+			return new StatNode(stat.ToString(), GetModificationBaseStat(stat), Resolver,
+				StatModifications.ToDictionary(kvp => kvp.Key, kvp =>
+				{
+					INode<int> prev = targetStatNode.GetModification(kvp.Key);
 
-                    List<INode<int>> mods = new List<INode<int>>();
-                    if (prev != null)
-                    {
-                        mods.AddRange(prev);
-                    }
+					List<INode<int>> mods = new List<INode<int>>();
+					if (prev != null)
+					{
+						mods.AddRange(prev);
+					}
 
-                    mods.Add(new ValueNode<int>(kvp.Value[stat]));
+					mods.Add(new ValueNode<int>(kvp.Value[stat]));
 
-                    return new AggregatorNode<int>(mods, GetAggregator(kvp.Key), GetAggregatorSeed(kvp.Key)) as INode<int>;
-                })
-            );
-        }
+					return new AggregatorNode<int>(mods, GetAggregator(kvp.Key), GetAggregatorSeed(kvp.Key)) as INode<int>;
+				})
+			);
+		}
 
-        protected IStats GetBaseStats() => Target.Stats.Base;
+		protected IStats GetBaseStats() => Target.Stats.Base;
 
-        protected int GetModificationBaseStat(Enum stat) => Target.Stats.GetModificationBase(stat);
+		protected int GetModificationBaseStat(Enum stat) => Target.Stats.GetModificationBase(stat);
 
-        protected abstract int Resolver(int baseValue, IReadOnlyDictionary<Enum, int> modifications);
+		protected abstract int Resolver(int baseValue, IReadOnlyDictionary<Enum, int> modifications);
 
-        protected abstract Func<int, int, int> GetAggregator(Enum type);
+		protected abstract Func<int, int, int> GetAggregator(Enum type);
 
-        protected abstract int GetAggregatorSeed(Enum type);
+		protected abstract int GetAggregatorSeed(Enum type);
 
-        public override void Bind(TUnit target)
-        {
-            base.Bind(target);
-        }
+		public override void Bind(TUnit target)
+		{
+			base.Bind(target);
+		}
 
-        public UnitStatsModifier()
-        {
-            statsProxy = new UnitStatsProxy(this);
-        }
-    }
+		public UnitStatsModifier()
+		{
+			statsProxy = new UnitStatsProxy(this);
+		}
+	}
 }

@@ -5,39 +5,39 @@ using Davfalcon.Stats;
 
 namespace Davfalcon
 {
-    /// <summary>
-    /// Implements basic unit functionality.
-    /// </summary>
-    /// <typeparam name="TUnit">The interface used by the unit's implementation.</typeparam>
-    [Serializable]
-    public abstract class UnitTemplate<TUnit> : IUnitTemplate<TUnit> where TUnit : IUnitTemplate<TUnit>
-    {
-        protected interface IUnitStats : IStatsEditable, IStatsProperties { }
+	/// <summary>
+	/// Implements basic unit functionality.
+	/// </summary>
+	/// <typeparam name="TUnit">The interface used by the unit's implementation.</typeparam>
+	[Serializable]
+	public abstract class UnitTemplate<TUnit> : IUnitTemplate<TUnit> where TUnit : IUnitTemplate<TUnit>
+	{
+		protected interface IUnitStats : IStatsEditable, IStatsProperties { }
 
 		[Serializable]
-        protected class UnitStats : StatsMap, IUnitStats
-        {
+		protected class UnitStats : StatsMap, IUnitStats
+		{
 			private readonly UnitTemplate<TUnit> unit;
 
-            public IStats Base => this;
+			public IStats Base => this;
 
-            public IStatNode GetStatNode(Enum stat) => new StatNode(stat.ToString(), Base[stat]);
+			public IStatNode GetStatNode(Enum stat) => new StatNode(stat.ToString(), Base[stat]);
 
 			public override int Get(Enum stat)
 				=> unit.StatDerivations.ContainsKey(stat) ? unit.StatDerivations[stat](this) : base.Get(stat);
 
-            public int GetModificationBase(Enum stat)
-                => unit.StatDerivations.ContainsKey(stat) ? unit.StatDerivations[stat](unit.Modifiers.AsModified().Stats) : base.Get(stat);
+			public int GetModificationBase(Enum stat)
+				=> unit.StatDerivations.ContainsKey(stat) ? unit.StatDerivations[stat](unit.Modifiers.AsModified().Stats) : base.Get(stat);
 
-            public UnitStats(UnitTemplate<TUnit> unit)
+			public UnitStats(UnitTemplate<TUnit> unit)
 			{
 				this.unit = unit;
 			}
-        }
+		}
 
 		private IUnitStats stats;
 
-        public string Name { get; set; }
+		public string Name { get; set; }
 
 		public IStatsEditable BaseStats => stats;
 
@@ -45,37 +45,47 @@ namespace Davfalcon
 
 		public IDictionary<Enum, Func<IStatsProperties, int>> StatDerivations { get; } = new Dictionary<Enum, Func<IStatsProperties, int>>();
 
-        public IModifierStack<TUnit> Modifiers { get; private set; }
+		public IModifierStack<TUnit> Modifiers { get; private set; }
 
-        protected abstract TUnit Self { get; }
+		protected abstract TUnit Self { get; }
 
-        protected virtual IUnitStats InitializeUnitStats() => new UnitStats(this);
+		protected virtual IUnitStats InitializeUnitStats() => new UnitStats(this);
 
-        protected virtual IModifierStack<TUnit> InitializeModifierStack() => new ModifierStack<TUnit>();
+		protected virtual IModifierStack<TUnit> InitializeModifierStack() => new ModifierStack<TUnit>();
 
-        protected virtual void Setup()
-        {
-            stats = InitializeUnitStats();
-            Modifiers = InitializeModifierStack();
-        }
+		public void AddComponent(Enum id, IUnitComponent<TUnit> component)
+		{
+			throw new NotImplementedException();
+		}
 
-        protected virtual void Link()
-        {
-            // This will initiate the modifier rebinding calls
-            Modifiers.Bind(Self);
-        }
+		public TComponent GetComponent<TComponent>(Enum id) where TComponent : IUnitComponent<TUnit>
+		{
+			throw new NotImplementedException();
+		}
 
-        [OnDeserialized]
-        private void Rebind(StreamingContext context)
-        {
-            // Reset object references after deserialization
-            Link();
-        }
+		protected virtual void Setup()
+		{
+			stats = InitializeUnitStats();
+			Modifiers = InitializeModifierStack();
+		}
 
-        public UnitTemplate()
-        {
-            Setup();
-            Link();
-        }
-    }
+		protected virtual void Link()
+		{
+			// This will initiate the modifier rebinding calls
+			Modifiers.Bind(Self);
+		}
+
+		[OnDeserialized]
+		private void Rebind(StreamingContext context)
+		{
+			// Reset object references after deserialization
+			Link();
+		}
+
+		public UnitTemplate()
+		{
+			Setup();
+			Link();
+		}
+	}
 }
