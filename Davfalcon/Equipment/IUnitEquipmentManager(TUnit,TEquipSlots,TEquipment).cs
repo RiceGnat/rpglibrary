@@ -8,7 +8,7 @@ namespace Davfalcon.Equipment
 		where TEquipmentType : Enum
 		where TEquipment : IEquipment<TUnit, TEquipmentType>
 	{
-		IEnumerable<TEquipmentType> EquipmentSlots { get; }
+		TEquipmentType[] EquipmentSlots { get; }
 
 		void AddEquipmentSlot(TEquipmentType type);
 		TEquipment GetEquipmentOfType(TEquipmentType type);

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Davfalcon.Equipment
 {
@@ -66,9 +65,9 @@ namespace Davfalcon.Equipment
 			GetEquipmentManager().AddEquipmentSlot(EquipmentType.TypeA);
 			GetEquipmentManager().AddEquipmentSlot(EquipmentType.TypeB);
 
-			Assert.AreEqual(EquipmentType.TypeA, GetEquipmentManager().EquipmentSlots.ElementAt(0));
-			Assert.AreEqual(EquipmentType.TypeA, GetEquipmentManager().EquipmentSlots.ElementAt(1));
-			Assert.AreEqual(EquipmentType.TypeB, GetEquipmentManager().EquipmentSlots.ElementAt(2));
+			Assert.AreEqual(EquipmentType.TypeA, GetEquipmentManager().EquipmentSlots[0]);
+			Assert.AreEqual(EquipmentType.TypeA, GetEquipmentManager().EquipmentSlots[1]);
+			Assert.AreEqual(EquipmentType.TypeB, GetEquipmentManager().EquipmentSlots[2]);
 		}
 
 		[TestMethod]

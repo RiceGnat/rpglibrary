@@ -1,9 +1,6 @@
-﻿using System;
-
-namespace Davfalcon.Buffs
+﻿namespace Davfalcon.Buffs
 {
-	public interface IBuffTemplate<TBuff, TUnit, TEvent> : IStatsModifier<TUnit>
-		where TBuff : IBuffTemplate<TBuff, TUnit, TEvent>
+	public interface IBuff<TUnit> : IStatsModifier<TUnit>
 		where TUnit : IUnitTemplate<TUnit>
 	{
 		string Name { get; }
@@ -13,7 +10,5 @@ namespace Davfalcon.Buffs
 		int Duration { get; }
 
 		int Remaining { get; }
-
-		event Action<TBuff, TUnit, TEvent> BuffEvent;
 	}
 }

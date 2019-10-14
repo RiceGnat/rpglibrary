@@ -38,9 +38,7 @@ namespace Davfalcon.Equipment
 		private readonly IModifierStack<TUnit> stack = new ModifierStack<TUnit>();
 		private readonly List<EquipmentSlot> slots = new List<EquipmentSlot>();
 
-		public override TUnit AsModified() => stack.Count > 0 ? stack[stack.Count - 1].AsModified() : Target;
-
-		public IEnumerable<TEquipmentType> EquipmentSlots => slots.Select(slot => slot.Type);
+		public TEquipmentType[] EquipmentSlots => slots.Select(slot => slot.Type).ToArray();
 
 		public void AddEquipmentSlot(TEquipmentType type)
 		{
@@ -80,6 +78,8 @@ namespace Davfalcon.Equipment
 		private IList<EquipmentSlot> GetAllSlotsMatchingTypeOf(TEquipment equipment) => GetAllSlotsOfType(equipment.EquipmentType);
 
 		void IUnitComponent<TUnit>.Initialize(TUnit unit) => unit.Modifiers.Add(this);
+
+		public override TUnit AsModified() => stack.Count > 0 ? stack[stack.Count - 1].AsModified() : Target;
 
 		public override void Bind(TUnit target)
 		{

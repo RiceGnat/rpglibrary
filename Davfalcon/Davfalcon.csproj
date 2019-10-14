@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Buffs\Buff.cs" />
     <Compile Include="Buffs\IBuff.cs" />
+    <Compile Include="Buffs\IUnitBuffManager.cs" />
+    <Compile Include="Buffs\UnitBuffManager.cs" />
     <Compile Include="Collections\Adapters\EnumStringListAdapter.cs" />
     <Compile Include="Collections\Adapters\ListAdapter%28T1,T2%29.cs" />
     <Compile Include="Collections\Adapters\ManagedEnumStringList.cs" />
