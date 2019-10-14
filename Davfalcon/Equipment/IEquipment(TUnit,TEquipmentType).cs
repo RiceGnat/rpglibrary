@@ -3,7 +3,7 @@
 namespace Davfalcon.Equipment
 {
 	public interface IEquipment<TUnit, TEquipmentType> : IStatsModifier<TUnit>
-		where TUnit : IUnitTemplate<TUnit>
+		where TUnit : class, IUnitTemplate<TUnit>
 		where TEquipmentType : Enum
 	{
 		string Name { get; }

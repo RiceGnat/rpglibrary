@@ -6,7 +6,7 @@ namespace Davfalcon
 	/// Generic abstract base class for modifiers.
 	/// </summary>
 	[Serializable]
-	public abstract class Modifier<T> : IModifier<T>
+	public abstract class Modifier<T> : IModifier<T> where T : class
 	{
 		[NonSerialized]
 		private T target;

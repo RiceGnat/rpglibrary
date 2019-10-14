@@ -1,7 +1,7 @@
 ﻿namespace Davfalcon.Buffs
 {
-	public interface IUnitBuffManager<TUnit, TBuff> : IModifier<TUnit>
-		where TUnit : IUnitTemplate<TUnit>
+	public interface IUnitBuffManager<TUnit, TBuff> : IModifier<TUnit>, IUnitComponent<TUnit>
+		where TUnit : class, IUnitTemplate<TUnit>
 		where TBuff : IBuff<TUnit>
 	{
 		TBuff[] GetAllBuffs();

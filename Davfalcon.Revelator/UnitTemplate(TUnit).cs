@@ -1,6 +1,11 @@
-﻿namespace Davfalcon.Revelator
+﻿using System;
+
+namespace Davfalcon.Revelator
 {
-    public abstract class UnitTemplate<TUnit> : Davfalcon.UnitTemplate<TUnit>, IUnitTemplate<TUnit> where TUnit : IUnitTemplate<TUnit>
+	[Serializable]
+    public abstract class UnitTemplate<TUnit> : Davfalcon.UnitTemplate<TUnit>, IUnitTemplate<TUnit>
+		where TUnit : class, IUnitTemplate<TUnit>
     {
+		// Add new properties here
     }
 }

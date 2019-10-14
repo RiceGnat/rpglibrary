@@ -8,13 +8,13 @@ namespace Davfalcon.Equipment
 	public class UnitEquipmentManager<TUnit, TEquipmentType, TEquipment> : Modifier<TUnit>,
 		IUnitEquipmentManager<TUnit, TEquipmentType, TEquipment>,
 		IUnitComponent<TUnit>
-		where TUnit : IUnitTemplate<TUnit>
+		where TUnit : class, IUnitTemplate<TUnit>
 		where TEquipmentType : Enum
 		where TEquipment : class, IEquipment<TUnit, TEquipmentType>
 	{
 		// use a modifier stack to hold a single equipment per slot
 		// takes advantage of the modifier stack's passthrough behavior
-		private class EquipmentSlot
+		protected class EquipmentSlot
 		{
 			public TEquipmentType Type { get; }
 			public IModifierStack<TUnit> Modifiers { get; } = new ModifierStack<TUnit>();
@@ -57,29 +57,36 @@ namespace Davfalcon.Equipment
 
 		public void Equip(TEquipment equipment) => Equip(equipment, 0);
 
-		public void Equip(TEquipment equipment, int offset) => GetAllSlotsMatchingTypeOf(equipment)[offset].Set(equipment);
+		public void Equip(TEquipment equipment, int offset) => SetSlotEquipment(GetAllSlotsMatchingTypeOf(equipment)[offset], equipment);
 
-		public void EquipToSlotIndex(int index, TEquipment equipment)
-		{
-			if (!slots[index].Type.Equals(equipment.EquipmentType))
-				throw new InvalidOperationException($"Equipment type {equipment.EquipmentType} does not match slot type {slots[index].Type}");
-
-			slots[index].Set(equipment);
-		}
+		public void EquipToSlotAt(int index, TEquipment equipment) => SetSlotEquipment(slots[index], equipment);
 
 		public void UnequipSlot(TEquipmentType slotType) => UnequipSlot(slotType, 0);
 
-		public void UnequipSlot(TEquipmentType slotType, int offset) => GetAllSlotsOfType(slotType)[offset].Unset();
+		public void UnequipSlot(TEquipmentType slotType, int offset) => UnsetSlot(GetAllSlotsOfType(slotType)[offset]);
 
-		public void UnequipSlotIndex(int index) => slots[index].Unset();
+		public void UnequipSlotAt(int index) => UnsetSlot(slots[index]);
+
+		protected virtual void SetSlotEquipment(EquipmentSlot slot, TEquipment equipment)
+		{
+			if (!slot.Type.Equals(equipment.EquipmentType))
+				throw new InvalidOperationException($"Equipment type {equipment.EquipmentType} does not match slot type {slot.Type}");
+
+			slot.Set(equipment);
+		}
+
+		protected virtual void UnsetSlot(EquipmentSlot slot)
+		{
+			slot.Unset();
+		}
 
 		private IList<EquipmentSlot> GetAllSlotsOfType(TEquipmentType type) => slots.FindAll(slot => slot.Type.Equals(type));
 
 		private IList<EquipmentSlot> GetAllSlotsMatchingTypeOf(TEquipment equipment) => GetAllSlotsOfType(equipment.EquipmentType);
 
-		void IUnitComponent<TUnit>.Initialize(TUnit unit) => unit.Modifiers.Add(this);
+		public virtual void Initialize(TUnit unit) => unit.Modifiers.Add(this);
 
-		public override TUnit AsModified() => stack.Count > 0 ? stack[stack.Count - 1].AsModified() : Target;
+		public override TUnit AsModified() => stack.LastOrDefault()?.AsModified() ?? Target;
 
 		public override void Bind(TUnit target)
 		{

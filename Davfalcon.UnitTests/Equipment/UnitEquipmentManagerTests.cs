@@ -102,7 +102,7 @@ namespace Davfalcon.Equipment
 			GetEquipmentManager().AddEquipmentSlot(EquipmentType.TypeA);
 
 			IEquipment equipment = new TestEquipment(5);
-			GetEquipmentManager().EquipToSlotIndex(2, equipment);
+			GetEquipmentManager().EquipToSlotAt(2, equipment);
 
 			Assert.AreEqual(15, unit.Modifiers.AsModified().Stats[TestStats.Default]);
 			Assert.IsNull(GetEquipmentManager().GetEquipmentOfType(EquipmentType.TypeA, 0));

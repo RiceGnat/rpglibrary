@@ -43,17 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Buffs\Buff.cs" />
-    <Compile Include="Buffs\IBuff.cs" />
-    <Compile Include="Buffs\IUnitBuffManager.cs" />
-    <Compile Include="Buffs\UnitBuffManager.cs" />
+    <Compile Include="Buffs\Buff%28TUnit%29.cs" />
+    <Compile Include="Buffs\IBuff%28TUnit%29.cs" />
+    <Compile Include="Buffs\IUnitBuffManager%28TUnit,TBuff%29.cs" />
+    <Compile Include="Buffs\UnitBuffManager%28TUnit,TBuff%29.cs" />
+    <Compile Include="CollectionExtensions.cs" />
     <Compile Include="Collections\Adapters\EnumStringListAdapter.cs" />
     <Compile Include="Collections\Adapters\ListAdapter%28T1,T2%29.cs" />
     <Compile Include="Collections\Adapters\ManagedEnumStringList.cs" />
-    <Compile Include="Equipment\Equipment%28TUnit,TEquipSlots%29.cs" />
-    <Compile Include="Equipment\IEquipment%28TUnit,TEquipSlots%29.cs" />
-    <Compile Include="Equipment\IUnitEquipmentManager%28TUnit,TEquipSlots,TEquipment%29.cs" />
-    <Compile Include="Equipment\UnitEquipmentManager%28TUnit,TEquipSlots,TEquipment%29.cs" />
+    <Compile Include="Equipment\CompoundEquipment%28TUnit,TEquipmentType%29.cs" />
+    <Compile Include="Equipment\Equipment%28TUnit,TEquipmentType%29.cs" />
+    <Compile Include="Equipment\IEquipment%28TUnit,TEquipmentType%29.cs" />
+    <Compile Include="Equipment\IUnitEquipmentManager%28TUnit,TEquipmentType,TEquipment%29.cs" />
+    <Compile Include="Equipment\UnitEquipmentManager%28TUnit,TEquipmentType,TEquipment%29.cs" />
     <Compile Include="IStats.cs" />
     <Compile Include="IStatsModifier%28T%29.cs" />
     <Compile Include="IUnitComponent%28TUnit%29.cs" />

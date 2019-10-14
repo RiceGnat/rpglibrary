@@ -11,17 +11,13 @@ namespace Davfalcon
 	/// </summary>
 	/// <typeparam name="TUnit">The interface used by the unit's implementation.</typeparam>
 	[Serializable]
-	public abstract class UnitStatsModifier<TUnit> : UnitModifier<TUnit>, IStatsModifier<TUnit>, IUnitTemplate<TUnit> where TUnit : IUnitTemplate<TUnit>
+	public abstract class UnitStatsModifier<TUnit> : UnitModifier<TUnit>, IStatsModifier<TUnit>, IUnitTemplate<TUnit>
+		where TUnit : class, IUnitTemplate<TUnit>
 	{
 		[Serializable]
 		private class UnitStatsProxy : StatsPrototype, IStatsProperties
 		{
 			private readonly UnitStatsModifier<TUnit> modifier;
-
-			public UnitStatsProxy(UnitStatsModifier<TUnit> modifier)
-			{
-				this.modifier = modifier;
-			}
 
 			public IStats Base => modifier.GetBaseStats();
 
@@ -30,6 +26,11 @@ namespace Davfalcon
 			public IStatNode GetStatNode(Enum stat) => modifier.GetStatNode(stat);
 
 			public override int Get(Enum stat) => GetStatNode(stat).Value;
+
+			public UnitStatsProxy(UnitStatsModifier<TUnit> modifier)
+			{
+				this.modifier = modifier;
+			}
 		}
 
 		private readonly UnitStatsProxy statsProxy;

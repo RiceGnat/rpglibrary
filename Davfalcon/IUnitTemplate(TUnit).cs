@@ -6,7 +6,7 @@ namespace Davfalcon
 	/// Exposes basic properties of a unit.
 	/// </summary>
 	/// <typeparam name="TUnit">The interface used by the unit's implementation.</typeparam>
-	public interface IUnitTemplate<TUnit> where TUnit : IUnitTemplate<TUnit>
+	public interface IUnitTemplate<TUnit> where TUnit : class, IUnitTemplate<TUnit>
 	{
 		/// <summary>
 		/// Gets the unit's name.

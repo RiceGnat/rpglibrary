@@ -4,7 +4,7 @@
 	/// Represents an object that modifies an entity.
 	/// </summary>
 	/// <typeparam name="T">The type of entity that the modifier affects.</typeparam>
-	public interface IModifier<T>
+	public interface IModifier<T> where T : class
 	{
 		/// <summary>
 		/// Gets the entity being modified.

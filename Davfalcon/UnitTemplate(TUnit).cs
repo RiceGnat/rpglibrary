@@ -10,7 +10,7 @@ namespace Davfalcon
 	/// </summary>
 	/// <typeparam name="TUnit">The interface used by the unit's implementation.</typeparam>
 	[Serializable]
-	public abstract class UnitTemplate<TUnit> : IUnitTemplate<TUnit> where TUnit : IUnitTemplate<TUnit>
+	public abstract class UnitTemplate<TUnit> : IUnitTemplate<TUnit> where TUnit : class, IUnitTemplate<TUnit>
 	{
 		protected interface IUnitStats : IStatsEditable, IStatsProperties { }
 

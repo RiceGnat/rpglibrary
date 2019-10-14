@@ -7,14 +7,14 @@ namespace Davfalcon
 	/// A collection of modifiers that can be treated as a single modifier.
 	/// </summary>
 	[Serializable]
-	public class ModifierStack<T> : Modifier<T>, IModifierStack<T>
+	public class ModifierStack<T> : Modifier<T>, IModifierStack<T> where T : class
 	{
 		private readonly List<IModifier<T>> stack = new List<IModifier<T>>();
 
 		/// <summary>
 		/// Gets a representation of the modified object with all modifiers applied.
 		/// </summary>
-		public override T AsModified() => stack.Count > 0 ? stack[stack.Count - 1].AsModified() : Target;
+		public override T AsModified() => stack.LastOrDefault()?.AsModified() ?? Target;
 
 		/// <summary>
 		/// Gets the number of modifiers in the stack.
