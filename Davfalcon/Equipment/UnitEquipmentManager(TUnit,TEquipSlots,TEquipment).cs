@@ -5,7 +5,7 @@ using System.Linq;
 namespace Davfalcon.Equipment
 {
 	[Serializable]
-	public abstract class UnitEquipmentManager<TUnit, TEquipmentType, TEquipment> : Modifier<TUnit>,
+	public class UnitEquipmentManager<TUnit, TEquipmentType, TEquipment> : Modifier<TUnit>,
 		IUnitEquipmentManager<TUnit, TEquipmentType, TEquipment>,
 		IUnitComponent<TUnit>
 		where TUnit : IUnitTemplate<TUnit>
@@ -37,6 +37,8 @@ namespace Davfalcon.Equipment
 
 		private readonly IModifierStack<TUnit> stack = new ModifierStack<TUnit>();
 		private readonly List<EquipmentSlot> slots = new List<EquipmentSlot>();
+
+		public override TUnit AsModified() => stack.Count > 0 ? stack[stack.Count - 1].AsModified() : Target;
 
 		public IEnumerable<TEquipmentType> EquipmentSlots => slots.Select(slot => slot.Type);
 

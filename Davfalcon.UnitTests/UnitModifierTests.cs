@@ -19,13 +19,14 @@ namespace Davfalcon
             #region Not implemented
             IStatsProperties IUnitTemplate<IUnit>.Stats => throw new NotImplementedException();
             IModifierStack<IUnit> IUnitTemplate<IUnit>.Modifiers => throw new NotImplementedException();
-            #endregion
+			TComponent IUnitTemplate<IUnit>.GetComponent<TComponent>(Enum id) => throw new NotImplementedException();
+			#endregion
 
-            public TestUnit(string name)
+			public TestUnit(string name)
             {
                 Name = name;
             }
-        }
+		}
 
         private class TestModifier : UnitModifier<IUnit>, IUnit
         {

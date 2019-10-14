@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\AdapterTests.cs" />
+    <Compile Include="Equipment\UnitEquipmentManagerTests.cs" />
     <Compile Include="UnitStatsModifierTests.cs" />
     <Compile Include="Nodes\AggregatorNodeTests.cs" />
     <Compile Include="Stats\StatNodeTests.cs" />

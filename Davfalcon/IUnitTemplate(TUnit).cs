@@ -1,4 +1,6 @@
-﻿namespace Davfalcon
+﻿using System;
+
+namespace Davfalcon
 {
 	/// <summary>
 	/// Exposes basic properties of a unit.
@@ -20,5 +22,13 @@
 		/// Gets the modifiers attached to the unit.
 		/// </summary>
 		IModifierStack<TUnit> Modifiers { get; }
+
+		/// <summary>
+		/// Gets the specified unit component.
+		/// </summary>
+		/// <typeparam name="TComponent">The type of the returned component.</typeparam>
+		/// <param name="id">The enum identifier for the component.</param>
+		/// <returns>The specified component.</returns>
+		TComponent GetComponent<TComponent>(Enum id) where TComponent : class, IUnitComponent<TUnit>;
 	}
 }

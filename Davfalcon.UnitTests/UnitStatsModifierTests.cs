@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Davfalcon
 {
-    [TestClass]
+	[TestClass]
     public class UnitStatsModifierTests
     {
         private enum TestStats { StatA, StatB }

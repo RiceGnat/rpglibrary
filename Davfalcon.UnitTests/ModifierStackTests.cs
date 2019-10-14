@@ -17,9 +17,10 @@ namespace Davfalcon
 
             #region Not implemented
             IStatsProperties IUnitTemplate<IUnit>.Stats => throw new NotImplementedException();
-            #endregion
+			TComponent IUnitTemplate<IUnit>.GetComponent<TComponent>(Enum id) => throw new NotImplementedException();
+			#endregion
 
-            public TestUnit()
+			public TestUnit()
             {
                 Modifiers.Bind(this);
             }

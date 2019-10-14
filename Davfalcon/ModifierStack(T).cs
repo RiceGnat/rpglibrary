@@ -9,7 +9,7 @@ namespace Davfalcon
 	[Serializable]
 	public class ModifierStack<T> : Modifier<T>, IModifierStack<T>
 	{
-		private List<IModifier<T>> stack = new List<IModifier<T>>();
+		private readonly List<IModifier<T>> stack = new List<IModifier<T>>();
 
 		/// <summary>
 		/// Gets a representation of the modified object with all modifiers applied.

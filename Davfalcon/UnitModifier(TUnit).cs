@@ -24,5 +24,6 @@ namespace Davfalcon
 		string IUnitTemplate<TUnit>.Name => Target.Name;
 		IStatsProperties IUnitTemplate<TUnit>.Stats => Target.Stats;
 		IModifierStack<TUnit> IUnitTemplate<TUnit>.Modifiers => Target.Modifiers;
+		TComponent IUnitTemplate<TUnit>.GetComponent<TComponent>(Enum id) => Target.GetComponent<TComponent>(id);
 	}
 }
