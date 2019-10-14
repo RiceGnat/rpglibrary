@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface IUnit
    ">
-    <meta name="generator" content="docfx 2.39.2.0">
+    <meta name="generator" content="docfx 2.45.1.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -73,203 +73,31 @@
   
   <h1 id="Davfalcon_IUnit" data-uid="Davfalcon.IUnit" class="text-break">Interface IUnit
   </h1>
-  <div class="markdown level0 summary"><p>Exposes basic properties of a unit.</p>
+  <div class="markdown level0 summary"><p>Represents a unit.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Davfalcon.IUnitTemplate-1.html#Davfalcon_IUnitTemplate_1_Name">IUnitTemplate&lt;IUnit&gt;.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="Davfalcon.IUnitTemplate-1.html#Davfalcon_IUnitTemplate_1_Stats">IUnitTemplate&lt;IUnit&gt;.Stats</a>
+    </div>
+    <div>
+      <a class="xref" href="Davfalcon.IUnitTemplate-1.html#Davfalcon_IUnitTemplate_1_Modifiers">IUnitTemplate&lt;IUnit&gt;.Modifiers</a>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Davfalcon.html">Davfalcon</a></h6>
   <h6><strong>Assembly</strong>: Davfalcon.dll</h6>
   <h5 id="Davfalcon_IUnit_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IUnit : INameable</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IUnit : IUnitTemplate&lt;IUnit&gt;</code></pre>
   </div>
-  <h3 id="properties">Properties
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/RiceGnat/rpglibrary/new/master/apiSpec/new?filename=Davfalcon_IUnit_Class.md&amp;value=---%0Auid%3A%20Davfalcon.IUnit.Class%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/RiceGnat/rpglibrary/blob/master/Davfalcon/IUnit.cs/#L16">View Source</a>
-  </span>
-  <a id="Davfalcon_IUnit_Class_" data-uid="Davfalcon.IUnit.Class*"></a>
-  <h4 id="Davfalcon_IUnit_Class" data-uid="Davfalcon.IUnit.Class">Class</h4>
-  <div class="markdown level1 summary"><p>Gets the unit&apos;s class.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string Class { get; }</code></pre>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Davfalcon.Serialization.Serializer.html#Davfalcon_Serialization_Serializer_DeepClone__1___0_">Serializer.DeepClone&lt;T&gt;(T)</a>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/RiceGnat/rpglibrary/new/master/apiSpec/new?filename=Davfalcon_IUnit_Level.md&amp;value=---%0Auid%3A%20Davfalcon.IUnit.Level%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/RiceGnat/rpglibrary/blob/master/Davfalcon/IUnit.cs/#L21">View Source</a>
-  </span>
-  <a id="Davfalcon_IUnit_Level_" data-uid="Davfalcon.IUnit.Level*"></a>
-  <h4 id="Davfalcon_IUnit_Level" data-uid="Davfalcon.IUnit.Level">Level</h4>
-  <div class="markdown level1 summary"><p>Gets the unit&apos;s level.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">int Level { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/RiceGnat/rpglibrary/new/master/apiSpec/new?filename=Davfalcon_IUnit_Modifiers.md&amp;value=---%0Auid%3A%20Davfalcon.IUnit.Modifiers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/RiceGnat/rpglibrary/blob/master/Davfalcon/IUnit.cs/#L36">View Source</a>
-  </span>
-  <a id="Davfalcon_IUnit_Modifiers_" data-uid="Davfalcon.IUnit.Modifiers*"></a>
-  <h4 id="Davfalcon_IUnit_Modifiers" data-uid="Davfalcon.IUnit.Modifiers">Modifiers</h4>
-  <div class="markdown level1 summary"><p>Gets the modifiers attached to the unit.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IUnitModifierStack Modifiers { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Davfalcon.IUnitModifierStack.html">IUnitModifierStack</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/RiceGnat/rpglibrary/new/master/apiSpec/new?filename=Davfalcon_IUnit_Name.md&amp;value=---%0Auid%3A%20Davfalcon.IUnit.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/RiceGnat/rpglibrary/blob/master/Davfalcon/IUnit.cs/#L11">View Source</a>
-  </span>
-  <a id="Davfalcon_IUnit_Name_" data-uid="Davfalcon.IUnit.Name*"></a>
-  <h4 id="Davfalcon_IUnit_Name" data-uid="Davfalcon.IUnit.Name">Name</h4>
-  <div class="markdown level1 summary"><p>Gets the unit&apos;s name.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">string Name { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/RiceGnat/rpglibrary/new/master/apiSpec/new?filename=Davfalcon_IUnit_Stats.md&amp;value=---%0Auid%3A%20Davfalcon.IUnit.Stats%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/RiceGnat/rpglibrary/blob/master/Davfalcon/IUnit.cs/#L26">View Source</a>
-  </span>
-  <a id="Davfalcon_IUnit_Stats_" data-uid="Davfalcon.IUnit.Stats*"></a>
-  <h4 id="Davfalcon_IUnit_Stats" data-uid="Davfalcon.IUnit.Stats">Stats</h4>
-  <div class="markdown level1 summary"><p>Gets the unit&apos;s stats.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IStats Stats { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Davfalcon.IStats.html">IStats</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/RiceGnat/rpglibrary/new/master/apiSpec/new?filename=Davfalcon_IUnit_StatsDetails.md&amp;value=---%0Auid%3A%20Davfalcon.IUnit.StatsDetails%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/RiceGnat/rpglibrary/blob/master/Davfalcon/IUnit.cs/#L31">View Source</a>
-  </span>
-  <a id="Davfalcon_IUnit_StatsDetails_" data-uid="Davfalcon.IUnit.StatsDetails*"></a>
-  <h4 id="Davfalcon_IUnit_StatsDetails" data-uid="Davfalcon.IUnit.StatsDetails">StatsDetails</h4>
-  <div class="markdown level1 summary"><p>Gets a breakdown of the unit&apos;s stats.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IStatsPackage StatsDetails { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Davfalcon.IStatsPackage.html">IStatsPackage</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
 </article>
           </div>
           
@@ -278,10 +106,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/RiceGnat/rpglibrary/new/master/apiSpec/new?filename=Davfalcon_IUnit.md&amp;value=---%0Auid%3A%20Davfalcon.IUnit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_IUnit.md&amp;value=---%0Auid%3A%20Davfalcon.IUnit%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/RiceGnat/rpglibrary/blob/master/Davfalcon/IUnit.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/IUnit.cs/#L6" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

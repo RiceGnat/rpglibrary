@@ -39,7 +39,7 @@ namespace Davfalcon
 		/// <summary>
 		/// Binds the stack to an object.
 		/// </summary>
-		/// <param name="target">The <see cref="T"/> to bind the stack to.</param>
+		/// <param name="target">The entity to bind the stack to.</param>
 		public override void Bind(T target)
 		{
 			// Set target

@@ -5,23 +5,11 @@
   "files": [
     {
       "type": "Toc",
-      "source_relative_path": "api/Unity/toc.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/toc.html",
-          "hash": "zsuyMRg63r6XOr/7ptgAUw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "b+Zz7/ZCH2yVdFLlaeOIgA=="
+          "hash": "5xgOS37e3/vP9rQF9Smt1g=="
         }
       },
       "is_incremental": false,
@@ -33,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "p2W2tayUUj/WTNR1VVqWVQ=="
+          "hash": "tfEXCYF2cawAM3WvIuSRDQ=="
         }
       },
       "is_incremental": false,
@@ -41,11 +29,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Attributes.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Collections.Adapters.EnumStringListAdapter.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Attributes.html",
-          "hash": "Wmh2w9gl0D2nioJ7y8kDyg=="
+          "relative_path": "api/Davfalcon/Davfalcon.Collections.Adapters.EnumStringListAdapter.html",
+          "hash": "5u36mXfR73HKHqdjgkDioA=="
         }
       },
       "is_incremental": false,
@@ -53,11 +41,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Buff.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Collections.Adapters.ListAdapter-2.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Buff.html",
-          "hash": "OQKkOirRWqotk51/slWmcg=="
+          "relative_path": "api/Davfalcon/Davfalcon.Collections.Adapters.ListAdapter-2.html",
+          "hash": "yWT4ZANUyZf7vD1Rw8eK0g=="
         }
       },
       "is_incremental": false,
@@ -65,11 +53,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.ClassProperties.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Collections.Adapters.ManagedEnumStringList.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.ClassProperties.html",
-          "hash": "TCX7fqemZ1MhKtJV80b7/Q=="
+          "relative_path": "api/Davfalcon/Davfalcon.Collections.Adapters.ManagedEnumStringList.html",
+          "hash": "qI/M5whtsaUo0Yo5p1Xs8w=="
         }
       },
       "is_incremental": false,
@@ -77,635 +65,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.CombatStats.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Collections.Adapters.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.CombatStats.html",
-          "hash": "fnDFiVDylaM5DsGEjkRI9A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.DamageType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.DamageType.html",
-          "hash": "sl2FQuhR+GH7cs+pXuz8wg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.EffectArgs.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.EffectArgs.html",
-          "hash": "nFFeFYoxijO38mNjJijLiA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Element.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Element.html",
-          "hash": "TdSX6udvBMHGTkjYyiGZbA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.AttackAction.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.AttackAction.html",
-          "hash": "mf4Y9M+xxq9S533JhW53Rw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.Battle.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.Battle.html",
-          "hash": "yaTcsqCCsxw/Bg7m+IcbDA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.BuffEventHandler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.BuffEventHandler.html",
-          "hash": "d5Bjra0bbFvP7oE2lMW/0Q=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.CombatEvaluator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.CombatEvaluator.html",
-          "hash": "6ZHdmaJt1yAAIdOyf4AsmQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.Damage.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.Damage.html",
-          "hash": "/MlAtyv5hMG78/66b1JgdA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.DamageEventHandler.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.DamageEventHandler.html",
-          "hash": "4JtATjfxpMlFFXCm43TJQg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.HPLoss.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.HPLoss.html",
-          "hash": "OcEiKvj3gzMIQhhwFz4KJg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.HitCheck.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.HitCheck.html",
-          "hash": "LpIMlKbCIpmilVHK2sD4wQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.ICombatEvaluator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.ICombatEvaluator.html",
-          "hash": "HiNt7OHwGm/RAQ/NGqngaQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.SpellAction.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.SpellAction.html",
-          "hash": "qVrzerlcn5i1NF4008JCUA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.SpellCastOptions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.SpellCastOptions.html",
-          "hash": "DDtmZBWo0i6A6lDj4erfuA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Combat.html",
-          "hash": "grhto40qNmarlKLR96zI7g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Effect.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.Effect.html",
-          "hash": "XaK1dzh6d2c/rOTWx5ShMg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.EffectsRegistry.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.EffectsRegistry.html",
-          "hash": "3BHDT+BsUYJip9fGC93mfA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.IEffectsRegistry.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.IEffectsRegistry.html",
-          "hash": "WLHYwXCjddkpdI/KyDcOFg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.IWeaponRegistry.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.IWeaponRegistry.html",
-          "hash": "KPrrXzo589doO2YwXOWoeA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.WeaponRegistry.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.WeaponRegistry.html",
-          "hash": "h+IxMmEBDLa+HT7Et9G/nQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Engine.html",
-          "hash": "FAMTTB+ee10QMn0CI8UglA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Equipment.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Equipment.html",
-          "hash": "GDAJNhsvyOwR/CHx8Vfm1w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.EquipmentType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.EquipmentType.html",
-          "hash": "19nGBNYM0UHKwrOHf7gfeg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IBattle.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IBattle.html",
-          "hash": "a85GW56wm0z/24EVj5ArQg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IBuff.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IBuff.html",
-          "hash": "ajJ+9IJqNI9eFnJrDMmWQQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IEffectArgs.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IEffectArgs.html",
-          "hash": "+8cz6Godb5nYddTcuguZUQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IEffectList.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IEffectList.html",
-          "hash": "eWmAXAM4ZcdGa69+JzU0Jg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IEffectSource.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IEffectSource.html",
-          "hash": "Xwue2mxZUwKb7Hk2KH1mTg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IEquipment.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IEquipment.html",
-          "hash": "TldMJhsxmmKMJN3PPfH2ug=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.ILogEntry.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.ILogEntry.html",
-          "hash": "9BYPv65dZ+4xbo4/cw4jTw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.ISpell.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.ISpell.html",
-          "hash": "41BB0eekZ9PbW+JCXpkPng=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.ISpellItem.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.ISpellItem.html",
-          "hash": "Q0R8gaT8SuuaqI4eN4ro3w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IUnit.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IUnit.html",
-          "hash": "G28niZCoMny5tFOYBwLUZQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IUnitBattleState.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IUnitBattleState.html",
-          "hash": "mp5si5D7OX0zDhju5JqEyw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IUnitCombatProperties.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IUnitCombatProperties.html",
-          "hash": "tS8gSy4cNPQ7wPw/igl4fw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IUnitItemProperties.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IUnitItemProperties.html",
-          "hash": "5li6+IIerp+VbFJHYC4Z0Q=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IUnitLevelingProperties.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IUnitLevelingProperties.html",
-          "hash": "CgumJ7/zW86W3rXL/q7DvQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IUsableItem.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IUsableItem.html",
-          "hash": "cLNvnfTou1uy37Aaa29bqQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.IWeapon.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.IWeapon.html",
-          "hash": "YUP0CoJHEePRDzCzs0D8kA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.LogEntry.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.LogEntry.html",
-          "hash": "S4WYTjQVaWpZjuGGn0WixA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Spell.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Spell.html",
-          "hash": "ElYePNs6YMawKZAwkV5HsQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.SpellItem.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.SpellItem.html",
-          "hash": "g0rnNbdIRfmBVOWA4tumpQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.SpellTargetType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.SpellTargetType.html",
-          "hash": "M2sfXMB+5Z+E2phgqr1rOQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Unit.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Unit.html",
-          "hash": "mKn2+HOVGFCzH3Bc5JPQ4w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.UnitStats.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.UnitStats.html",
-          "hash": "bfZ8PTmJgBObVS82IH0cEg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.UsableDuringState.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.UsableDuringState.html",
-          "hash": "a7Bl9jrHUeipG3tdzSGS6Q=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.UsableItem.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.UsableItem.html",
-          "hash": "f9DbAxO3WKgtjjsqFPZchA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.Weapon.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.Weapon.html",
-          "hash": "4LY6ZXq3XeLs0pBNvA3LgA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.WeaponType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.WeaponType.html",
-          "hash": "EgE49GWVOiBQ3AgBxCuVoQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon.Revelator/Davfalcon.Revelator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon.Revelator/Davfalcon.Revelator.html",
-          "hash": "zUoOXhQKKPhBs33noumt3g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.BasicUnit.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.BasicUnit.html",
-          "hash": "VeswcHRxCQ/iYUbOjSG8qg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Collections.Generic.CircularLinkedList-1.CLLEnumerator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.Collections.Generic.CircularLinkedList-1.CLLEnumerator.html",
-          "hash": "8WQYYef38qAtzPdb7jaJlQ=="
+          "relative_path": "api/Davfalcon/Davfalcon.Collections.Adapters.html",
+          "hash": "UGjHfIdZaFWv0fZuP+3EHA=="
         }
       },
       "is_incremental": false,
@@ -717,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Collections.Generic.CircularLinkedList-1.html",
-          "hash": "mlnEXHjYX1UwG8kxqmg58w=="
+          "hash": "V8kJVdaaWuu2mBBH5oFhkQ=="
         }
       },
       "is_incremental": false,
@@ -729,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Collections.Generic.ICircularLinkedList-1.html",
-          "hash": "f+zjTdQXD06wOeO5iXtiTg=="
+          "hash": "Dme/9n59Mi4oJ88PXsEkCg=="
         }
       },
       "is_incremental": false,
@@ -741,19 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Collections.Generic.IRegistry-1.html",
-          "hash": "TUw2bN3tcb/L5wRzpxQYsg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Collections.Generic.ISelfRegistry-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.Collections.Generic.ISelfRegistry-1.html",
-          "hash": "0mkjBgQv52s9CYyDqe9gbg=="
+          "hash": "EwJMEXqvzRsZ1tMsMakRwQ=="
         }
       },
       "is_incremental": false,
@@ -765,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Collections.Generic.ManagedList-1.html",
-          "hash": "bnBBoZGavRWhuzpAzM/01Q=="
+          "hash": "Oqm1A2yp4Z4t7drUBYIT1w=="
         }
       },
       "is_incremental": false,
@@ -777,19 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Collections.Generic.PrototypeCloner-1.html",
-          "hash": "Kxv6mvZxN+42ztlI0o+8+A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Collections.Generic.SelfRegisteredPrototypeCloner-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.Collections.Generic.SelfRegisteredPrototypeCloner-1.html",
-          "hash": "og5aytEVVRjWxZDr4JTvvw=="
+          "hash": "e2dKyx7h/0lzUTQ8T+DMAg=="
         }
       },
       "is_incremental": false,
@@ -801,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Collections.Generic.html",
-          "hash": "/82fKU5kvE/EkxPld3s2Mw=="
+          "hash": "0W4oUo4D2r015SR8ynSeSg=="
         }
       },
       "is_incremental": false,
@@ -809,11 +149,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IDescribable.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Equipment.Equipment-2.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.IDescribable.html",
-          "hash": "7E4x8N5PtHn4w4fddFX0LQ=="
+          "relative_path": "api/Davfalcon/Davfalcon.Equipment.Equipment-2.html",
+          "hash": "uAR0F+F7DRDkDkoxwAHrKQ=="
         }
       },
       "is_incremental": false,
@@ -821,11 +161,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IEditableDescription.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Equipment.IEquipment-2.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.IEditableDescription.html",
-          "hash": "2jby5LQccIbxn6bE7tmBAg=="
+          "relative_path": "api/Davfalcon/Davfalcon.Equipment.IEquipment-2.html",
+          "hash": "FLVTeHGY7webToaiIGVCPw=="
         }
       },
       "is_incremental": false,
@@ -833,11 +173,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IEditableName.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Equipment.IUnitEquipmentManager-3.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.IEditableName.html",
-          "hash": "FY6uM5k0w0EfH7zph86dWQ=="
+          "relative_path": "api/Davfalcon/Davfalcon.Equipment.IUnitEquipmentManager-3.html",
+          "hash": "y6gDIiBJIiUfMvPnuhR5/g=="
         }
       },
       "is_incremental": false,
@@ -845,11 +185,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IEditableStats.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Equipment.UnitEquipmentManager-3.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.IEditableStats.html",
-          "hash": "IEpQbl5PpPSHKGX+W4Yiew=="
+          "relative_path": "api/Davfalcon/Davfalcon.Equipment.UnitEquipmentManager-3.html",
+          "hash": "pLaLlJYEharLxBLPgRwoxg=="
         }
       },
       "is_incremental": false,
@@ -857,11 +197,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IEditableStatsModifier.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Equipment.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.IEditableStatsModifier.html",
-          "hash": "h1fdguGSCyR3fp7hUmnU9g=="
+          "relative_path": "api/Davfalcon/Davfalcon.Equipment.html",
+          "hash": "eyVAma6zkL+sQHtqcJxdgg=="
         }
       },
       "is_incremental": false,
@@ -869,11 +209,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IItem.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IModifier-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.IItem.html",
-          "hash": "J/mXaQdwkdvDMIcHtSyyWQ=="
+          "relative_path": "api/Davfalcon/Davfalcon.IModifier-1.html",
+          "hash": "Hq5eHUB98gZIN3pRWKpF4g=="
         }
       },
       "is_incremental": false,
@@ -881,11 +221,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.INameable.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IModifierStack-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.INameable.html",
-          "hash": "CPTlS8Opwkoex8NomLQwZg=="
+          "relative_path": "api/Davfalcon/Davfalcon.IModifierStack-1.html",
+          "hash": "uBs7LdCit+ZeS/UjHdRpEg=="
         }
       },
       "is_incremental": false,
@@ -897,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.IStats.html",
-          "hash": "SoU6Nfto8/Cl8vQZOmBh5A=="
+          "hash": "7GDqrXVoS6kjpVWR9UbPvA=="
         }
       },
       "is_incremental": false,
@@ -905,11 +245,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IStatsCalculator.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IStatsModifier-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.IStatsCalculator.html",
-          "hash": "LP9bQEwHEzY/HZoHIp6wyw=="
+          "relative_path": "api/Davfalcon/Davfalcon.IStatsModifier-1.html",
+          "hash": "MxVORjTqVYJtYn/djyRbHw=="
         }
       },
       "is_incremental": false,
@@ -917,35 +257,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IStatsModifier.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IStatsProperties.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.IStatsModifier.html",
-          "hash": "v1BmJQjSxhVS/MHMWCK51w=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IStatsPackage.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.IStatsPackage.html",
-          "hash": "b9Wye03o/nAxMTZSGuQW4A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.ITimedModifier.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.ITimedModifier.html",
-          "hash": "q/A9+CE9506Kc3J7lRfdyA=="
+          "relative_path": "api/Davfalcon/Davfalcon.IStatsProperties.html",
+          "hash": "0VZB57diI3AABbt93USpdg=="
         }
       },
       "is_incremental": false,
@@ -957,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.IUnit.html",
-          "hash": "JE8YZ5sgCAKsMJg1wCUckg=="
+          "hash": "jy674iiMIG8r8U/VAVrtMg=="
         }
       },
       "is_incremental": false,
@@ -965,11 +281,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IUnitModifier.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IUnitComponent-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.IUnitModifier.html",
-          "hash": "TU9p35mI43kmPOKyl7HN6Q=="
+          "relative_path": "api/Davfalcon/Davfalcon.IUnitComponent-1.html",
+          "hash": "JR3qDcSIkdFxXpR0PR3rVA=="
         }
       },
       "is_incremental": false,
@@ -977,11 +293,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IUnitModifierStack.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.IUnitTemplate-1.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.IUnitModifierStack.html",
-          "hash": "EWXql6yTQKPfF0C6cTwY0g=="
+          "relative_path": "api/Davfalcon/Davfalcon.IUnitTemplate-1.html",
+          "hash": "m1aUVT2KAUoaE1gprIepkg=="
         }
       },
       "is_incremental": false,
@@ -993,7 +309,115 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.MathExtensions.html",
-          "hash": "25AylqTE6WqA5aJgPf+qBA=="
+          "hash": "HV6XBwbRO58T5Lqm/GRrAQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Modifier-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.Modifier-1.html",
+          "hash": "5fBEGEFC51NyTvZfn5Gdfg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.ModifierStack-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.ModifierStack-1.html",
+          "hash": "Mkx7OGeWhI3wRWA5FU4qwQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Nodes.AggregatorNode-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.Nodes.AggregatorNode-1.html",
+          "hash": "CKYA20BAkw1IqGDAI39crg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Nodes.CollectionNode-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.Nodes.CollectionNode-1.html",
+          "hash": "GSmy9UYnIGTUdJeP63cl1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Nodes.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.Nodes.Extensions.html",
+          "hash": "nsjdVf154maDP21ptOE5Mw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Nodes.INode-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.Nodes.INode-1.html",
+          "hash": "nNupQQYmruYBwCLz2gx1lQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Nodes.NodeBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.Nodes.NodeBase-1.html",
+          "hash": "+1osadhXEgmkvKd6bMzw6g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Nodes.ValueNode-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.Nodes.ValueNode-1.html",
+          "hash": "tABKTMzijYUpMJvJQSN59A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Nodes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.Nodes.html",
+          "hash": "fgmbtNP1oRtKqGoF06ASRg=="
         }
       },
       "is_incremental": false,
@@ -1005,7 +429,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Randomization.CenterWeightedChecker.html",
-          "hash": "h4+mn+1el3JxtyVl4EEuYQ=="
+          "hash": "HNG5Ay8Poatiq2ryBx7cVQ=="
         }
       },
       "is_incremental": false,
@@ -1017,7 +441,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Randomization.ISuccessCheck.html",
-          "hash": "0SkUCnu2uvoNOw56TPz4Gg=="
+          "hash": "CinIwVjFmHf6jCG6r2IJBg=="
         }
       },
       "is_incremental": false,
@@ -1029,7 +453,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Randomization.RandomBase.html",
-          "hash": "B33U/D2PJLYMfReuz8sjvQ=="
+          "hash": "DLUpAmM9P+9Po3mkHb679Q=="
         }
       },
       "is_incremental": false,
@@ -1041,7 +465,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Randomization.RandomInteger.html",
-          "hash": "K7P2fshe6PNCYCmaZ/FZmg=="
+          "hash": "EZwEzwyF20czoXzn0BC6pQ=="
         }
       },
       "is_incremental": false,
@@ -1053,7 +477,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Randomization.SuccessChecker.html",
-          "hash": "LGRaooZCyWv/QzuACpUoWw=="
+          "hash": "+Ovf5re+MzvMAr+5456Miw=="
         }
       },
       "is_incremental": false,
@@ -1065,7 +489,19 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Randomization.html",
-          "hash": "FdA21vGpoZMC2911POPpHQ=="
+          "hash": "5W1mdl1+kDbGx9GYYl91AA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Serialization.EnumString.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.Serialization.EnumString.html",
+          "hash": "m+HLug6dUxgrExx+8PlpMA=="
         }
       },
       "is_incremental": false,
@@ -1077,7 +513,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Serialization.Serializer.html",
-          "hash": "/Ua3kNg6Y+k12PyVWjXtUQ=="
+          "hash": "SLOdtPmTSNwN2Sxod74asw=="
         }
       },
       "is_incremental": false,
@@ -1089,7 +525,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.Serialization.html",
-          "hash": "W3C/Cq50AKKWDOQReqh+WA=="
+          "hash": "ZvRKUWR9+5kBQfvQcdGpSg=="
         }
       },
       "is_incremental": false,
@@ -1097,11 +533,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.StatsConstant.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Stats.IStatNode.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.StatsConstant.html",
-          "hash": "vP459BgD4RRjUqyMw7XDHg=="
+          "relative_path": "api/Davfalcon/Davfalcon.Stats.IStatNode.html",
+          "hash": "bJeUvnpishv8EgCpNbDgdQ=="
         }
       },
       "is_incremental": false,
@@ -1109,11 +545,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.StatsMap.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Stats.IStatsCalculator.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.StatsMap.html",
-          "hash": "MocVt7jPa2SHs4beP8HO2g=="
+          "relative_path": "api/Davfalcon/Davfalcon.Stats.IStatsCalculator.html",
+          "hash": "5QG29Kc8LF2Uk28pEGQPtA=="
         }
       },
       "is_incremental": false,
@@ -1121,11 +557,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.StatsMath.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Stats.IStatsEditable.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.StatsMath.html",
-          "hash": "AKNW/2LIambeT/oj9gO0rQ=="
+          "relative_path": "api/Davfalcon/Davfalcon.Stats.IStatsEditable.html",
+          "hash": "QMxgVQ6vmCjAoOvvvmBR6g=="
         }
       },
       "is_incremental": false,
@@ -1133,11 +569,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.StatsPrototype.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Stats.StatModification.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.StatsPrototype.html",
-          "hash": "f9CQDL0Zs2fs63jygNR4YA=="
+          "relative_path": "api/Davfalcon/Davfalcon.Stats.StatModification.html",
+          "hash": "w3N/SepN+DEVXUHf8rDJUw=="
         }
       },
       "is_incremental": false,
@@ -1145,11 +581,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.TimedModifier.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Stats.StatNode.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.TimedModifier.html",
-          "hash": "y9CLdgd2hmXCQNnilQCPng=="
+          "relative_path": "api/Davfalcon/Davfalcon.Stats.StatNode.html",
+          "hash": "8Ihat262bR8J8r4d/2e+pg=="
         }
       },
       "is_incremental": false,
@@ -1157,11 +593,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.UnitModifier.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Stats.StatsMap.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.UnitModifier.html",
-          "hash": "Uci4Gk63u9oL6VlJycZLYg=="
+          "relative_path": "api/Davfalcon/Davfalcon.Stats.StatsMap.html",
+          "hash": "dVmg562WQQmhF6qWD8804w=="
         }
       },
       "is_incremental": false,
@@ -1169,11 +605,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.UnitModifierStack.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Stats.StatsPrototype.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.UnitModifierStack.html",
-          "hash": "NZ1LXbDAG6U0P0O0tF6UFQ=="
+          "relative_path": "api/Davfalcon/Davfalcon.Stats.StatsPrototype.html",
+          "hash": "yJa+prCzJENPb0UNRxhvBg=="
         }
       },
       "is_incremental": false,
@@ -1181,11 +617,71 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "obj/api/Davfalcon/Davfalcon.UnitStatsModifier.yml",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.Stats.yml",
       "output": {
         ".html": {
-          "relative_path": "api/Davfalcon/Davfalcon.UnitStatsModifier.html",
-          "hash": "ea9g1lmUIDSEHqMh/ic3iQ=="
+          "relative_path": "api/Davfalcon/Davfalcon.Stats.html",
+          "hash": "Ei8nDUNtEM8sYc2zJmkPGw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.UnitModifier-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.UnitModifier-1.html",
+          "hash": "s1PtAFSidJuTtNaZ1kY2HQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.UnitStatsModifier-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.UnitStatsModifier-1.html",
+          "hash": "m/wLDb2v5YHlbVBOSDsqIw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.UnitTemplate-1.IUnitStats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.UnitTemplate-1.IUnitStats.html",
+          "hash": "gDtS+cltmQJGjEiQGwjIbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.UnitTemplate-1.UnitStats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.UnitTemplate-1.UnitStats.html",
+          "hash": "oW5NV5RNif9rLxWiewvrPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Davfalcon/Davfalcon.UnitTemplate-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Davfalcon/Davfalcon.UnitTemplate-1.html",
+          "hash": "DyAzOhX29z8DX2hkBhZqhQ=="
         }
       },
       "is_incremental": false,
@@ -1197,499 +693,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Davfalcon/Davfalcon.html",
-          "hash": "FLoIphGo5GgzqQVm3sgNEQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.BuffDefinition.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.BuffDefinition.html",
-          "hash": "OD8pig+Mzid+UlkKYLMcxA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.ClassDefinition.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.ClassDefinition.html",
-          "hash": "iCLssGXgJi+3psdYoIIRPw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.BuffEditor.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.BuffEditor.html",
-          "hash": "1b/I3bTFYS6KC3tgHNHyDA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.ClassEditor.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.ClassEditor.html",
-          "hash": "6U9oFOhpqMU959DFt74imA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EditorGUIHelper.html",
-          "hash": "QLsaFnNAjkyOTAS8oJH05Q=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EquipmentEditor.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.EquipmentEditor.html",
-          "hash": "ZIrZlfy+aM9C53/dbk0iGw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.SpellEditor.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.SpellEditor.html",
-          "hash": "knY/C9dZtmWKrfYcazkytA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.UnitEditor.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.UnitEditor.html",
-          "hash": "H/O5BsKjBqXEqMWeITyfDw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.UsableItemEditor.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.UsableItemEditor.html",
-          "hash": "3XRGuZ+0LHbcMf+AEd9vfA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.Editor.html",
-          "hash": "tDS8CJTz8vzjgA2aX8oecA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.EquipmentDefinition.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.EquipmentDefinition.html",
-          "hash": "kqzMbG27KMRGE3M8fsXvGw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SpellDefinition.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SpellDefinition.html",
-          "hash": "iFVnxxM5Tsczj2iwPuwBvw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SystemDataService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.SystemDataService.html",
-          "hash": "j9GwtxqE/+8Na1qyzqwbSg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.AttributeBindingDrawer.html",
-          "hash": "0KgoFNEmxgPcItCvq57Ycw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.CombatStatsBindingDrawer.html",
-          "hash": "ZWCp+Zu3h26y1JuPTSjU6g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.Editor.html",
-          "hash": "xreW/lTPlqhmKhBVfBK3uQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.AttributeBinding.html",
-          "hash": "F55+d9A5evGmYVypQhsl2A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.CombatStatsBinding.html",
-          "hash": "8XdaIU7+DKh+g5ViB2oHJg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.StatsView.html",
-          "hash": "iCTYCzO0R009CDQyxbspug=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitEquipmentView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitEquipmentView.html",
-          "hash": "BUD64xcccYczgKwppp3kMg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.UnitView.html",
-          "hash": "jGtB9SK/2gDwUtcFQ7k41g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UI.html",
-          "hash": "ZU6KD0U5H/WCiCo2l3DU2A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UnitTemplate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UnitTemplate.html",
-          "hash": "/sh0ATnlgMknGijR9I8kWg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UsableItemDefinition.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.UsableItemDefinition.html",
-          "hash": "IcwOqceZOlok2UCWQ/WUcA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Revelator.Unity/Davfalcon.Revelator.Unity.html",
-          "hash": "ty0llp+MFD/rIYR/1c6niw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEditor.EditorHelper.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEditor.EditorHelper.html",
-          "hash": "cJAY6ktMJNTPF2WdRhaOOA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEditor.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEditor.html",
-          "hash": "DCxT29n5GR/togbki9yJ0g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.NameableSerializationContainer-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.NameableSerializationContainer-1.html",
-          "hash": "SCpzBqYz9CA8RXa4TZEjIA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.ObjectContainer.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.ObjectContainer.html",
-          "hash": "ZJenpgHI4kVxr3hb28ePfg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.SerializationContainer-1.html",
-          "hash": "jnFpNv0S1LaSVdcvDEuvjg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundElement.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundElement.html",
-          "hash": "sWhMhr/yboa9JYIko3kEdA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundText.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.DataBoundText.html",
-          "hash": "OzYK3m0Knx6nyKh2nZNm9g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.Element.html",
-          "hash": "FbggqxEqT+6E/k8oYhnwqA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.Direction.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.Direction.html",
-          "hash": "7ciCW3U3QMbIZs+ttbnr1g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.EnumerableView.html",
-          "hash": "vUyTWEcGJeLHhZYKBVtPWQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.UI.Extensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.Extensions.html",
-          "hash": "usHH2xYEPe6plLgpFHGkIA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.Callback.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.Callback.html",
-          "hash": "cgzzwRwth6aZxFKWCV6NWQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.Menu.html",
-          "hash": "ls5lb/NSLXZ951xfgkpdPw=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.UI.TopLevelScreen.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.TopLevelScreen.html",
-          "hash": "2ovaH9DQSjcUh88SXza0+A=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.UI.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.UI.html",
-          "hash": "7iom0wjDZsypv41Y7ntrxA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "obj/api/Unity/Davfalcon.Unity/UnityEngine.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Unity/Davfalcon.Unity/UnityEngine.html",
-          "hash": "LGYF60kUiUIXnZeUjevodw=="
+          "hash": "1kU1jQMwpp9UadTLMXfhpw=="
         }
       },
       "is_incremental": false,
@@ -1701,7 +705,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "2A8bHpoMynnn9EiMwmU2+w=="
+          "hash": "40vYLdlqj7UPwcgAEaBTHQ=="
         }
       },
       "is_incremental": false,
@@ -1713,21 +717,30 @@
       "status": {
         "can_incremental": false,
         "details": "Disable incremental build by force rebuild option.",
-        "incrementalPhase": "build"
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ForceRebuild"
       },
       "processors": {
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build"
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
         },
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
-          "incrementalPhase": "build"
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 56,
+          "skipped_file_count": 0
         }
       }
     },
@@ -1735,7 +748,9 @@
       "status": {
         "can_incremental": false,
         "details": "Cannot support incremental post processing, the reason is: it's disabled.",
-        "incrementalPhase": "postProcessing"
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
       },
       "processors": {}
     }
