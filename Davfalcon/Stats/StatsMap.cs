@@ -9,7 +9,7 @@ namespace Davfalcon.Stats
 	[Serializable]
 	public class StatsMap : StatsPrototype, IStatsEditable
 	{
-		private Dictionary<Enum, int> map = new Dictionary<Enum, int>();
+		private readonly Dictionary<Enum, int> map = new Dictionary<Enum, int>();
 
 		/// <summary>
 		/// Gets a stat.
@@ -26,7 +26,6 @@ namespace Davfalcon.Stats
 		/// <returns>This <see cref="IStatsEditable"/> instance. Used for chaining methods.</returns>
 		public IStatsEditable Set(Enum stat, int value)
 		{
-			int old = Get(stat);
 			map[stat] = value;
 			return this;
 		}
