@@ -7,10 +7,6 @@ namespace Davfalcon.Equipment
 		where TUnit : class, IUnitTemplate<TUnit>
 		where TEquipmentType : Enum
 	{
-		public string Name { get; set; }
-
-		public string Description { get; set; }
-
 		public TEquipmentType EquipmentType { get; set; }
 	}
 }

@@ -54,6 +54,7 @@
     <Compile Include="Equipment\CompoundEquipment%28TUnit,TEquipmentType%29.cs" />
     <Compile Include="Equipment\Equipment%28TUnit,TEquipmentType%29.cs" />
     <Compile Include="Equipment\IEquipment%28TUnit,TEquipmentType%29.cs" />
+    <Compile Include="Equipment\IEquipmentSlot.cs" />
     <Compile Include="Equipment\IUnitEquipmentManager%28TUnit,TEquipmentType,TEquipment%29.cs" />
     <Compile Include="Equipment\UnitEquipmentManager%28TUnit,TEquipmentType,TEquipment%29.cs" />
     <Compile Include="IStats.cs" />
@@ -61,7 +62,7 @@
     <Compile Include="IUnitComponent%28TUnit%29.cs" />
     <Compile Include="Nodes\AggregatorNode%28T%29.cs" />
     <Compile Include="Nodes\CollectionNode%28T%29.cs" />
-    <Compile Include="Nodes\Extensions.cs" />
+    <Compile Include="Nodes\NodeExtensions.cs" />
     <Compile Include="Nodes\NodeBase.cs" />
     <Compile Include="Nodes\ValueNode.cs" />
     <Compile Include="Stats\IStatNode.cs" />

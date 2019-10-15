@@ -23,7 +23,7 @@ namespace Davfalcon.Nodes
         [TestMethod]
         public void Value()
         {
-            Console.WriteLine(node.Graph());
+            Console.WriteLine(node.PrettyPrint());
             Assert.AreEqual(6, node.Value);
         }
 
@@ -35,7 +35,7 @@ namespace Davfalcon.Nodes
             {
                 sum += n.Value;
             }
-            Console.WriteLine(node.Graph());
+            Console.WriteLine(node.PrettyPrint());
             Assert.AreEqual(6, sum);
         }
 
@@ -46,7 +46,7 @@ namespace Davfalcon.Nodes
                 new ValueNode<int>(4),
                 new ValueNode<int>(5)
             }, add)), add);
-            Console.WriteLine(newNode.Graph());
+            Console.WriteLine(newNode.PrettyPrint());
             Assert.AreEqual(15, newNode.Value);
             Assert.AreEqual(4, newNode.Count());
         }

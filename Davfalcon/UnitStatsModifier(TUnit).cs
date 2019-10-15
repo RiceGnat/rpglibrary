@@ -46,7 +46,7 @@ namespace Davfalcon
 		protected virtual IStatNode GetStatNode(Enum stat)
 		{
 			IStatNode targetStatNode = Target.Stats.GetStatNode(stat);
-			return new StatNode(stat.ToString(), GetModificationBaseStat(stat), Resolver,
+			return new StatNode(stat.ToString(), GetModificationBaseStat(stat), Resolve,
 				StatModifications.ToDictionary(kvp => kvp.Key, kvp =>
 				{
 					INode<int> prev = targetStatNode.GetModification(kvp.Key);
@@ -68,11 +68,11 @@ namespace Davfalcon
 
 		protected int GetModificationBaseStat(Enum stat) => Target.Stats.GetModificationBase(stat);
 
-		protected Func<int, IReadOnlyDictionary<Enum, int>, int> Resolver { get; set; }
+		protected abstract int Resolve(int baseValue, IReadOnlyDictionary<Enum, int> modifications);
 
-		protected Func<Enum, Func<int, int, int>> GetAggregator { get; set; }
+		protected abstract Func<int, int, int> GetAggregator(Enum modificationType);
 
-		protected Func<Enum, int> GetAggregatorSeed { get; set; }
+		protected abstract int GetAggregatorSeed(Enum modificationType);
 
 		public override void Bind(TUnit target)
 		{

@@ -135,7 +135,7 @@ namespace Davfalcon
 				// Rebind rest of stack
 				for (int i = 1; i < stack.Count; i++)
 				{
-					stack[i].Bind(stack[i - 1].AsModified());
+					stack[i].Bind(stack[i - 1].AsModified);
 				}
 			}
 		}
@@ -150,12 +150,12 @@ namespace Davfalcon
 			}
 			else
 			{
-				item.Bind(stack[index - 1].AsModified());
+				item.Bind(stack[index - 1].AsModified);
 			}
 
 			if (Count > index + 1)
 			{
-				stack[index + 1].Bind(item.AsModified());
+				stack[index + 1].Bind(item.AsModified);
 			}
 		}
 	}

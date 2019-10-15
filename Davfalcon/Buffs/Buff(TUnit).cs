@@ -5,13 +5,9 @@ namespace Davfalcon.Buffs
 	[Serializable]
 	public abstract class Buff<TUnit> : UnitStatsModifier<TUnit>, IBuff<TUnit> where TUnit : class, IUnitTemplate<TUnit>
 	{
-		public string Name { get; }
+		public bool IsDebuff { get; set; }
 
-		public string Description { get; }
-
-		public bool IsDebuff { get; }
-
-		public int Duration { get; }
+		public int Duration { get; set; }
 
 		public int Remaining { get; set; }
 	}

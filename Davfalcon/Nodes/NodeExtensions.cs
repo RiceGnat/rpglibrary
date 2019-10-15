@@ -3,9 +3,9 @@ using System.Text;
 
 namespace Davfalcon.Nodes
 {
-    public static class Extensions
+    public static class NodeExtensions
     {
-        public static string Graph<T>(this INode<T> node)
+        public static string PrettyPrint<T>(this INode<T> node)
             => node.ToStringRecursive();
 
         private static string ToStringRecursive<T>(this INode<T> node, int depth = 0)

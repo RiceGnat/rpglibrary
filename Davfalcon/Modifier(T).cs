@@ -5,24 +5,45 @@ namespace Davfalcon
 	/// <summary>
 	/// Generic abstract base class for modifiers.
 	/// </summary>
+	/// <typeparam name="T">The type of entity that the modifier affects.</typeparam>
 	[Serializable]
 	public abstract class Modifier<T> : IModifier<T> where T : class
 	{
 		[NonSerialized]
-		private T target;
+		private Func<T> getTarget;
 
 		/// <summary>
-		/// Gets the object the modifier is bound to.
+		/// Gets or sets the modifier's name.
 		/// </summary>
-		public T Target => target;
+		public string Name { get; set; }
 
 		/// <summary>
-		/// Binds the modifier to an object.
+		/// Gets or sets the modifier's description.
 		/// </summary>
-		/// <param name="target">The object to bind the modifier to.</param>
+		public string Description { get; set; }
+
+		/// <summary>
+		/// Gets the entity being modified.
+		/// </summary>
+		public T Target => getTarget?.Invoke();
+
+		/// <summary>
+		/// Binds the modifier to a new entity.
+		/// </summary>
+		/// <param name="target">The new entity to bind to.</param>
 		public virtual void Bind(T target)
 		{
-			this.target = target;
+			//this.target = target;
+			getTarget = () => target;
+		}
+
+		/// <summary>
+		/// Sets the modifier to defer target lookup.
+		/// </summary>
+		/// <param name="func">A function that returns the entity the modifier should affect.</param>
+		public virtual void Bind(Func<T> func)
+		{
+			getTarget = func;
 		}
 
 		/// <summary>

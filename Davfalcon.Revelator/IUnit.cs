@@ -1,4 +1,6 @@
 ﻿namespace Davfalcon.Revelator
 {
-    public interface IUnit : IUnitTemplate<IUnit> { }
+	public interface IUnit : IUnitTemplate<IUnit>
+	{
+	}
 }

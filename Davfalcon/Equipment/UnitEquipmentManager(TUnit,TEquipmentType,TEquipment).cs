@@ -14,7 +14,7 @@ namespace Davfalcon.Equipment
 	{
 		// use a modifier stack to hold a single equipment per slot
 		// takes advantage of the modifier stack's passthrough behavior
-		protected class EquipmentSlot
+		protected class EquipmentSlot : IEquipmentSlot<TEquipmentType, TEquipment>
 		{
 			public TEquipmentType Type { get; }
 			public IModifierStack<TUnit> Modifiers { get; } = new ModifierStack<TUnit>();
@@ -38,7 +38,7 @@ namespace Davfalcon.Equipment
 		private readonly IModifierStack<TUnit> stack = new ModifierStack<TUnit>();
 		private readonly List<EquipmentSlot> slots = new List<EquipmentSlot>();
 
-		public TEquipmentType[] EquipmentSlots => slots.Select(slot => slot.Type).ToArray();
+		public IEquipmentSlot<TEquipmentType, TEquipment>[] EquipmentSlots => slots.ToArray();
 
 		public void AddEquipmentSlot(TEquipmentType type)
 		{
@@ -51,9 +51,9 @@ namespace Davfalcon.Equipment
 
 		public TEquipment GetEquipmentOfType(TEquipmentType type, int offset) => GetAllSlotsOfType(type)[offset].Get();
 
-		public IEnumerable<TEquipment> GetAllEquipment() => slots.Where(slot => !slot.IsFull).Select(slot => slot.Get());
+		public IEnumerable<TEquipment> GetAllEquipment() => slots.Where(slot => slot.IsFull).Select(slot => slot.Get());
 
-		public IEnumerable<TEquipment> GetAllEquipmentOfType(TEquipmentType type) => GetAllSlotsOfType(type).Where(slot => !slot.IsFull).Select(slot => slot.Get());
+		public IEnumerable<TEquipment> GetAllEquipmentOfType(TEquipmentType type) => GetAllSlotsOfType(type).Where(slot => slot.IsFull).Select(slot => slot.Get());
 
 		public void Equip(TEquipment equipment) => Equip(equipment, 0);
 

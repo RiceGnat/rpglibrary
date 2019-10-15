@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Davfalcon.Equipment
 {
@@ -28,14 +30,17 @@ namespace Davfalcon.Equipment
 		{
 			protected override IUnit SelfAsUnit => this;
 
+			protected override int Resolve(int baseValue, IReadOnlyDictionary<Enum, int> modifications)
+				=> modifications[ModType.Add] + baseValue;
+
+			protected override Func<int, int, int> GetAggregator(Enum modificationType) => (a, b) => a + b;
+
+			protected override int GetAggregatorSeed(Enum modificationType) => 0;
+
 			public TestEquipment(int add)
 			{
 				AddStatModificationType(ModType.Add);
 				StatModifications[ModType.Add][TestStats.Default] = add;
-
-				Resolver = (baseValue, modifications) => modifications[ModType.Add] + baseValue;
-				GetAggregator = (type) => (a, b) => a + b;
-				GetAggregatorSeed = (type) => 0;
 			}
 		}
 
