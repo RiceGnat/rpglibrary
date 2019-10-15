@@ -94,6 +94,7 @@
     <Compile Include="Stats\StatNode.cs" />
     <Compile Include="Stats\StatsMap.cs" />
     <Compile Include="Stats\StatsPrototype.cs" />
+    <Compile Include="UnitExtensions.cs" />
     <Compile Include="UnitModifier%28TUnit%29.cs" />
     <Compile Include="UnitStatsModifier%28TUnit%29.cs" />
     <Compile Include="UnitTemplate%28TUnit%29.cs" />

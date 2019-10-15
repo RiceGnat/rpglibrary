@@ -44,9 +44,7 @@ namespace Davfalcon.Revelator
 			unit.GetEquipmentManager().Equip(weapon);
 			unit.GetEquipmentManager().Equip(armor);
 
-			IUnit modified = unit.Modifiers.AsModified();
-
-			Console.Write(unit.Modifiers.AsModified().PrettyPrint());
+			Console.Write(unit.AsModified().PrettyPrint());
 
 			Console.ReadKey();
 		}
