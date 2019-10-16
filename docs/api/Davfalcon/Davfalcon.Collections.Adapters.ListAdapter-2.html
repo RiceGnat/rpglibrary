@@ -1,0 +1,700 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ListAdapter&lt;T1, T2&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ListAdapter&lt;T1, T2&gt;
+   ">
+    <meta name="generator" content="docfx 2.45.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2">
+  
+  
+  <h1 id="Davfalcon_Collections_Adapters_ListAdapter_2" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2" class="text-break">Class ListAdapter&lt;T1, T2&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>An adapter to allow representation of one type of <span class="xref">System.Collections.Generic.IList&lt;T&gt;</span> interface as another type of <span class="xref">System.Collections.Generic.IList&lt;T&gt;</span> interface.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ListAdapter&lt;T1, T2&gt;</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.Collections.Generic.IList</span>&lt;T2&gt;</div>
+    <div><span class="xref">System.Collections.Generic.ICollection</span>&lt;T2&gt;</div>
+    <div><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;T2&gt;</div>
+    <div><span class="xref">System.Collections.IEnumerable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Davfalcon.Collections.Adapters.html">Davfalcon.Collections.Adapters</a></h6>
+  <h6><strong>Assembly</strong>: Davfalcon.dll</h6>
+  <h5 id="Davfalcon_Collections_Adapters_ListAdapter_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class ListAdapter&lt;T1, T2&gt; : IList&lt;T2&gt;, ICollection&lt;T2&gt;, IEnumerable&lt;T2&gt;, IEnumerable where T1 : class where T2 : class</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T1</span></td>
+        <td><p>The original type of the elements.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">T2</span></td>
+        <td><p>The type to represent the elemetns as instead. <code data-dev-comment-type="typeparamref" class="typeparamref">T1</code> should be able to be cast into <code data-dev-comment-type="typeparamref" class="typeparamref">T2</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2__ctor_System_Collections_Generic_IList__0__.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.%23ctor(System.Collections.Generic.IList%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L63">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2__ctor_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.#ctor*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2__ctor_System_Collections_Generic_IList__0__" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.#ctor(System.Collections.Generic.IList{`0})">ListAdapter(IList&lt;T1&gt;)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Davfalcon.Collections.Adapters.ListAdapter-2.html">ListAdapter&lt;T1, T2&gt;</a> class that wraps the specified list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ListAdapter(IList&lt;T1&gt; source)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IList</span>&lt;T1&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The list to adapt.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Add__1_.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23Generic%23ICollection%7BT2%7D%23Add(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L26">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Add_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#Add*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Add__1_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#Add(`1)">ICollection&lt;T2&gt;.Add(T2)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ICollection&lt;T2&gt;.Add(T2 item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td><span class="parametername">item</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Clear.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23Generic%23ICollection%7BT2%7D%23Clear%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L29">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Clear_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#Clear*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Clear" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#Clear">ICollection&lt;T2&gt;.Clear()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ICollection&lt;T2&gt;.Clear()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Contains__1_.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23Generic%23ICollection%7BT2%7D%23Contains(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L32">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Contains_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#Contains*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Contains__1_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#Contains(`1)">ICollection&lt;T2&gt;.Contains(T2)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool ICollection&lt;T2&gt;.Contains(T2 item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td><span class="parametername">item</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__CopyTo__1___System_Int32_.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23Generic%23ICollection%7BT2%7D%23CopyTo(%601%5B%5D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L35">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__CopyTo_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#CopyTo*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__CopyTo__1___System_Int32_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#CopyTo(`1[],System.Int32)">ICollection&lt;T2&gt;.CopyTo(T2[], Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void ICollection&lt;T2&gt;.CopyTo(T2[] array, int arrayIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T2[]</td>
+        <td><span class="parametername">array</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">arrayIndex</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Count.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23Generic%23ICollection%7BT2%7D%23Count%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L23">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Count_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#Count*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Count" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#Count">ICollection&lt;T2&gt;.Count</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int ICollection&lt;T2&gt;.Count { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__IsReadOnly.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23Generic%23ICollection%7BT2%7D%23IsReadOnly%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L24">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__IsReadOnly_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#IsReadOnly*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__IsReadOnly" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#IsReadOnly">ICollection&lt;T2&gt;.IsReadOnly</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool ICollection&lt;T2&gt;.IsReadOnly { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Remove__1_.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23Generic%23ICollection%7BT2%7D%23Remove(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L53">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Remove_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#Remove*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_ICollection_T2__Remove__1_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#ICollection{T2}#Remove(`1)">ICollection&lt;T2&gt;.Remove(T2)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool ICollection&lt;T2&gt;.Remove(T2 item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td><span class="parametername">item</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IEnumerable_T2__GetEnumerator.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23Generic%23IEnumerable%7BT2%7D%23GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L41">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IEnumerable_T2__GetEnumerator_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#IEnumerable{T2}#GetEnumerator*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IEnumerable_T2__GetEnumerator" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#IEnumerable{T2}#GetEnumerator">IEnumerable&lt;T2&gt;.GetEnumerator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerator&lt;T2&gt; IEnumerable&lt;T2&gt;.GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerator</span>&lt;T2&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IList_T2__IndexOf__1_.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23Generic%23IList%7BT2%7D%23IndexOf(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L47">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IList_T2__IndexOf_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#IList{T2}#IndexOf*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IList_T2__IndexOf__1_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#IList{T2}#IndexOf(`1)">IList&lt;T2&gt;.IndexOf(T2)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int IList&lt;T2&gt;.IndexOf(T2 item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td><span class="parametername">item</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IList_T2__Insert_System_Int32__1_.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23Generic%23IList%7BT2%7D%23Insert(System.Int32%2C%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L50">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IList_T2__Insert_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#IList{T2}#Insert*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IList_T2__Insert_System_Int32__1_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#IList{T2}#Insert(System.Int32,`1)">IList&lt;T2&gt;.Insert(Int32, T2)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void IList&lt;T2&gt;.Insert(int index, T2 item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td><span class="parametername">item</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IList_T2__Item_System_Int32_.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23Generic%23IList%7BT2%7D%23Item(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L17">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IList_T2__Item_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#IList{T2}#Item*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IList_T2__Item_System_Int32_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#IList{T2}#Item(System.Int32)">IList&lt;T2&gt;.Item[Int32]</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T2 IList&lt;T2&gt;.this[int index] { get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IList_T2__RemoveAt_System_Int32_.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23Generic%23IList%7BT2%7D%23RemoveAt(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L56">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IList_T2__RemoveAt_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#IList{T2}#RemoveAt*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_Generic_IList_T2__RemoveAt_System_Int32_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#Generic#IList{T2}#RemoveAt(System.Int32)">IList&lt;T2&gt;.RemoveAt(Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void IList&lt;T2&gt;.RemoveAt(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_IEnumerable_GetEnumerator.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602.System%23Collections%23IEnumerable%23GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L44">View Source</a>
+  </span>
+  <a id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_IEnumerable_GetEnumerator_" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#IEnumerable#GetEnumerator*"></a>
+  <h4 id="Davfalcon_Collections_Adapters_ListAdapter_2_System_Collections_IEnumerable_GetEnumerator" data-uid="Davfalcon.Collections.Adapters.ListAdapter`2.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.Collections.Generic.IList&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.Generic.ICollection&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Davfalcon.Serialization.Serializer.html#Davfalcon_Serialization_Serializer_DeepClone__1___0_">Serializer.DeepClone&lt;T&gt;(T)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_Collections_Adapters_ListAdapter_2.md&amp;value=---%0Auid%3A%20Davfalcon.Collections.Adapters.ListAdapter%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/Collections/Adapters/ListAdapter(T1,T2).cs/#L12" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

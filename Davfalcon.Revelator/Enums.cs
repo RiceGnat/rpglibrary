@@ -1,46 +1,28 @@
-﻿using System;
-
-namespace Davfalcon.Revelator
+﻿namespace Davfalcon.Revelator
 {
+	public enum UnitComponents
+	{
+		Equipment,
+		Buffs
+	}
+
+    public enum StatModType
+    {
+        Additive, Scaling
+	}
 	public enum Attributes
 	{
-		STR, VIT, AGI, INT, WIS
+		LVL, STR, VIT, INT, WIS, AGI, LUK
 	}
 
 	public enum CombatStats
 	{
-		HP, MP, ATK, DEF, MAG, RES, HIT, AVD, CRT
-	}
-
-	public enum DamageType
-	{
-		Physical, Magical, True
-	}
-
-	public enum Element
-	{
-		Neutral, Fire, Lightning, Ice, Earth, Wind, Divine, Dark
+		ATK, DEF, MAG, RES, HIT, AVD, HP, MP
 	}
 
 	public enum EquipmentType
 	{
-		Armor, Accessory, Weapon
+		Armor, Weapon, Accessory
 	}
 
-	public enum WeaponType
-	{
-		Sword, Dagger, Axe, Spear, Bow, Staff, Fist
-	}
-
-	public enum SpellTargetType
-	{
-		Self, Target, Area, Line, Attack
-	}
-
-	[Flags]
-	public enum UsableDuringState : short
-	{
-		OutOfCombat = 0,
-		InCombat = 1
-	}
 }

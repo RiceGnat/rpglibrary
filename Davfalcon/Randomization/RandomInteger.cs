@@ -7,8 +7,8 @@ namespace Davfalcon.Randomization
 	/// </summary>
 	public class RandomInteger : RandomBase
 	{
-		private int min;
-		private int max;
+		private readonly int min;
+		private readonly int max;
 
 		/// <summary>
 		/// Gets a new random integer within the set range.
@@ -20,7 +20,7 @@ namespace Davfalcon.Randomization
 		}
 
 		/// <summary>
-		/// Initializes a new <see cref="RandomInteger"/> with a range from 0 to <see cref="Int32.MaxValue"/>.
+		/// Initializes a new instance of the <see cref="RandomInteger"/> class with a range from 0 to <see cref="Int32.MaxValue"/>.
 		/// </summary>
 		public RandomInteger() : this(0, Int32.MaxValue)
 		{
@@ -28,7 +28,7 @@ namespace Davfalcon.Randomization
 		}
 
 		/// <summary>
-		/// Initializes a new <see cref="RandomInteger"/> with a range from 0 to the specified maximum value.
+		/// Initializes a new instance of the <see cref="RandomInteger"/> class  with a range from 0 to the specified maximum value.
 		/// </summary>
 		/// <param name="max">The exclusive upper bound of the random integers that can be returned.</param>
 		public RandomInteger(int max) : this(0, max)
@@ -37,7 +37,7 @@ namespace Davfalcon.Randomization
 		}
 
 		/// <summary>
-		/// Initializes a new <see cref="RandomInteger"/> with a specified range.
+		/// Initializes a new instance of the <see cref="RandomInteger"/> class  with a specified range.
 		/// </summary>
 		/// <param name="min">The inclusive lower bound of the random integers that can be returned.</param>
 		/// <param name="max">The exclusive upper bound of the random integers that can be returned.</param>

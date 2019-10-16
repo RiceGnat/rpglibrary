@@ -1,0 +1,620 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class UnitStatsModifier&lt;TUnit&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class UnitStatsModifier&lt;TUnit&gt;
+   ">
+    <meta name="generator" content="docfx 2.45.1.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Davfalcon.UnitStatsModifier`1">
+  
+  
+  <h1 id="Davfalcon_UnitStatsModifier_1" data-uid="Davfalcon.UnitStatsModifier`1" class="text-break">Class UnitStatsModifier&lt;TUnit&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Abstract base stats for modifiers affecting unit stats.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="Davfalcon.Modifier-1.html">Modifier</a>&lt;TUnit&gt;</div>
+    <div class="level2"><a class="xref" href="Davfalcon.UnitModifier-1.html">UnitModifier</a>&lt;TUnit&gt;</div>
+    <div class="level3"><span class="xref">UnitStatsModifier&lt;TUnit&gt;</span></div>
+      <div class="level4"><a class="xref" href="Davfalcon.Equipment.Equipment-2.html">Equipment&lt;TUnit, TEquipmentType&gt;</a></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Davfalcon.IStatsModifier-1.html">IStatsModifier</a>&lt;TUnit&gt;</div>
+    <div><a class="xref" href="Davfalcon.IModifier-1.html">IModifier</a>&lt;TUnit&gt;</div>
+    <div><a class="xref" href="Davfalcon.IUnitTemplate-1.html">IUnitTemplate</a>&lt;TUnit&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Davfalcon.UnitModifier-1.html#Davfalcon_UnitModifier_1_SelfAsUnit">UnitModifier&lt;TUnit&gt;.SelfAsUnit</a>
+    </div>
+    <div>
+      <a class="xref" href="Davfalcon.UnitModifier-1.html#Davfalcon_UnitModifier_1_AsModified">UnitModifier&lt;TUnit&gt;.AsModified()</a>
+    </div>
+    <div>
+      <a class="xref" href="Davfalcon.UnitModifier-1.html#Davfalcon_UnitModifier_1_Davfalcon_IUnitTemplate_TUnit__Name">UnitModifier&lt;TUnit&gt;.IUnitTemplate&lt;TUnit&gt;.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="Davfalcon.UnitModifier-1.html#Davfalcon_UnitModifier_1_Davfalcon_IUnitTemplate_TUnit__Modifiers">UnitModifier&lt;TUnit&gt;.IUnitTemplate&lt;TUnit&gt;.Modifiers</a>
+    </div>
+    <div>
+      <a class="xref" href="Davfalcon.Modifier-1.html#Davfalcon_Modifier_1_Target">Modifier&lt;TUnit&gt;.Target</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Davfalcon.html">Davfalcon</a></h6>
+  <h6><strong>Assembly</strong>: Davfalcon.dll</h6>
+  <h5 id="Davfalcon_UnitStatsModifier_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public abstract class UnitStatsModifier&lt;TUnit&gt; : UnitModifier&lt;TUnit&gt;, IStatsModifier&lt;TUnit&gt;, IModifier&lt;TUnit&gt;, IUnitTemplate&lt;TUnit&gt; where TUnit : IUnitTemplate&lt;TUnit&gt;</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TUnit</span></td>
+        <td><p>The interface used by the unit&apos;s implementation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1__ctor.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L81">View Source</a>
+  </span>
+  <a id="Davfalcon_UnitStatsModifier_1__ctor_" data-uid="Davfalcon.UnitStatsModifier`1.#ctor*"></a>
+  <h4 id="Davfalcon_UnitStatsModifier_1__ctor" data-uid="Davfalcon.UnitStatsModifier`1.#ctor">UnitStatsModifier()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnitStatsModifier()</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1_GetAggregator.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601.GetAggregator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L72">View Source</a>
+  </span>
+  <a id="Davfalcon_UnitStatsModifier_1_GetAggregator_" data-uid="Davfalcon.UnitStatsModifier`1.GetAggregator*"></a>
+  <h4 id="Davfalcon_UnitStatsModifier_1_GetAggregator" data-uid="Davfalcon.UnitStatsModifier`1.GetAggregator">GetAggregator</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Func&lt;Enum, Func&lt;int, int, int&gt;&gt; GetAggregator { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">System.Enum</span>, <span class="xref">System.Func</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1_GetAggregatorSeed.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601.GetAggregatorSeed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L74">View Source</a>
+  </span>
+  <a id="Davfalcon_UnitStatsModifier_1_GetAggregatorSeed_" data-uid="Davfalcon.UnitStatsModifier`1.GetAggregatorSeed*"></a>
+  <h4 id="Davfalcon_UnitStatsModifier_1_GetAggregatorSeed" data-uid="Davfalcon.UnitStatsModifier`1.GetAggregatorSeed">GetAggregatorSeed</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Func&lt;Enum, int&gt; GetAggregatorSeed { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">System.Enum</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1_Resolver.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601.Resolver%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L70">View Source</a>
+  </span>
+  <a id="Davfalcon_UnitStatsModifier_1_Resolver_" data-uid="Davfalcon.UnitStatsModifier`1.Resolver*"></a>
+  <h4 id="Davfalcon_UnitStatsModifier_1_Resolver" data-uid="Davfalcon.UnitStatsModifier`1.Resolver">Resolver</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Func&lt;int, IReadOnlyDictionary&lt;Enum, int&gt;, int&gt; Resolver { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Collections.Generic.IReadOnlyDictionary</span>&lt;<span class="xref">System.Enum</span>, <span class="xref">System.Int32</span>&gt;, <span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1_StatModifications.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601.StatModifications%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L37">View Source</a>
+  </span>
+  <a id="Davfalcon_UnitStatsModifier_1_StatModifications_" data-uid="Davfalcon.UnitStatsModifier`1.StatModifications*"></a>
+  <h4 id="Davfalcon_UnitStatsModifier_1_StatModifications" data-uid="Davfalcon.UnitStatsModifier`1.StatModifications">StatModifications</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IDictionary&lt;Enum, IStatsEditable&gt; StatModifications { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IDictionary</span>&lt;<span class="xref">System.Enum</span>, <a class="xref" href="Davfalcon.Stats.IStatsEditable.html">IStatsEditable</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1_AddStatModificationType_System_Enum_.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601.AddStatModificationType(System.Enum)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L41">View Source</a>
+  </span>
+  <a id="Davfalcon_UnitStatsModifier_1_AddStatModificationType_" data-uid="Davfalcon.UnitStatsModifier`1.AddStatModificationType*"></a>
+  <h4 id="Davfalcon_UnitStatsModifier_1_AddStatModificationType_System_Enum_" data-uid="Davfalcon.UnitStatsModifier`1.AddStatModificationType(System.Enum)">AddStatModificationType(Enum)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddStatModificationType(Enum type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Enum</span></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1_Bind__0_.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601.Bind(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L76">View Source</a>
+  </span>
+  <a id="Davfalcon_UnitStatsModifier_1_Bind_" data-uid="Davfalcon.UnitStatsModifier`1.Bind*"></a>
+  <h4 id="Davfalcon_UnitStatsModifier_1_Bind__0_" data-uid="Davfalcon.UnitStatsModifier`1.Bind(`0)">Bind(TUnit)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Bind(TUnit target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TUnit</span></td>
+        <td><span class="parametername">target</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">Davfalcon.Modifier&lt;TUnit&gt;.Bind(TUnit)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1_GetBaseStats.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601.GetBaseStats%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L66">View Source</a>
+  </span>
+  <a id="Davfalcon_UnitStatsModifier_1_GetBaseStats_" data-uid="Davfalcon.UnitStatsModifier`1.GetBaseStats*"></a>
+  <h4 id="Davfalcon_UnitStatsModifier_1_GetBaseStats" data-uid="Davfalcon.UnitStatsModifier`1.GetBaseStats">GetBaseStats()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IStats GetBaseStats()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Davfalcon.IStats.html">IStats</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1_GetModificationBaseStat_System_Enum_.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601.GetModificationBaseStat(System.Enum)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L68">View Source</a>
+  </span>
+  <a id="Davfalcon_UnitStatsModifier_1_GetModificationBaseStat_" data-uid="Davfalcon.UnitStatsModifier`1.GetModificationBaseStat*"></a>
+  <h4 id="Davfalcon_UnitStatsModifier_1_GetModificationBaseStat_System_Enum_" data-uid="Davfalcon.UnitStatsModifier`1.GetModificationBaseStat(System.Enum)">GetModificationBaseStat(Enum)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int GetModificationBaseStat(Enum stat)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Enum</span></td>
+        <td><span class="parametername">stat</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1_GetStatModifications_System_Enum_.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601.GetStatModifications(System.Enum)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L43">View Source</a>
+  </span>
+  <a id="Davfalcon_UnitStatsModifier_1_GetStatModifications_" data-uid="Davfalcon.UnitStatsModifier`1.GetStatModifications*"></a>
+  <h4 id="Davfalcon_UnitStatsModifier_1_GetStatModifications_System_Enum_" data-uid="Davfalcon.UnitStatsModifier`1.GetStatModifications(System.Enum)">GetStatModifications(Enum)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IStats GetStatModifications(Enum type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Enum</span></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Davfalcon.IStats.html">IStats</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1_GetStatNode_System_Enum_.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601.GetStatNode(System.Enum)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L45">View Source</a>
+  </span>
+  <a id="Davfalcon_UnitStatsModifier_1_GetStatNode_" data-uid="Davfalcon.UnitStatsModifier`1.GetStatNode*"></a>
+  <h4 id="Davfalcon_UnitStatsModifier_1_GetStatNode_System_Enum_" data-uid="Davfalcon.UnitStatsModifier`1.GetStatNode(System.Enum)">GetStatNode(Enum)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual IStatNode GetStatNode(Enum stat)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Enum</span></td>
+        <td><span class="parametername">stat</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Davfalcon.Stats.IStatNode.html">IStatNode</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1_Davfalcon_IUnitTemplate_TUnit__Stats.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601.Davfalcon%23IUnitTemplate%7BTUnit%7D%23Stats%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L39">View Source</a>
+  </span>
+  <a id="Davfalcon_UnitStatsModifier_1_Davfalcon_IUnitTemplate_TUnit__Stats_" data-uid="Davfalcon.UnitStatsModifier`1.Davfalcon#IUnitTemplate{TUnit}#Stats*"></a>
+  <h4 id="Davfalcon_UnitStatsModifier_1_Davfalcon_IUnitTemplate_TUnit__Stats" data-uid="Davfalcon.UnitStatsModifier`1.Davfalcon#IUnitTemplate{TUnit}#Stats">IUnitTemplate&lt;TUnit&gt;.Stats</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IStatsProperties IUnitTemplate&lt;TUnit&gt;.Stats { get; }</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Davfalcon.IStatsProperties.html">IStatsProperties</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Davfalcon.IStatsModifier-1.html">IStatsModifier&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="Davfalcon.IModifier-1.html">IModifier&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="Davfalcon.IUnitTemplate-1.html">IUnitTemplate&lt;TUnit&gt;</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Davfalcon.Serialization.Serializer.html#Davfalcon_Serialization_Serializer_DeepClone__1___0_">Serializer.DeepClone&lt;T&gt;(T)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/RiceGnat/rpglibrary/new/refactor/apiSpec/new?filename=Davfalcon_UnitStatsModifier_1.md&amp;value=---%0Auid%3A%20Davfalcon.UnitStatsModifier%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/RiceGnat/rpglibrary/blob/refactor/Davfalcon/UnitStatsModifier(TUnit).cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

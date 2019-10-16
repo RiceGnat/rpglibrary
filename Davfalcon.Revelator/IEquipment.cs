@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Davfalcon.Equipment;
 
 namespace Davfalcon.Revelator
 {
-	public interface IEquipment : IItem, IStatsModifier
+	public interface IEquipment : IEquipment<IUnit, EquipmentType>
 	{
-		EquipmentType SlotType { get; }
-		IList<IBuff> GrantedBuffs { get; }
+		void AddBuff(IBuff buff);
+
+		IBuff[] GetBuffs();
 	}
 }

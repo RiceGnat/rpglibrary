@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Davfalcon.Equipment;
 
 namespace Davfalcon.Revelator
 {
 	[Serializable]
-	public class Equipment : UnitStatsModifier, IEquipment
+	public sealed class Equipment : CompoundEquipment<IUnit, EquipmentType>, IEquipment, IUnit
 	{
-		public EquipmentType SlotType { get; set; }
+		protected override IUnit SelfAsUnit => this;
 
-		private readonly List<IBuff> grantedBuffs = new List<IBuff>();
-		public IList<IBuff> GrantedBuffs { get { return grantedBuffs; } }
-		private readonly IList<IBuff> grantedBuffsReadOnly;
-		IList<IBuff> IEquipment.GrantedBuffs { get { return grantedBuffsReadOnly; } }
-
-		public Equipment()
-			: base()
+		public void AddBuff(IBuff buff)
 		{
-			grantedBuffsReadOnly = grantedBuffs.AsReadOnly();
+			buff.Source = Name;
+			Modifiers.Add(buff);
 		}
 
-		public Equipment(EquipmentType slot) : this()
-		{
-			SlotType = slot;
-		}
+		public IBuff[] GetBuffs() => Modifiers.Cast<IBuff>().ToArray();
+
+		protected override int Resolve(int baseValue, IReadOnlyDictionary<Enum, int> modifications) => StatsFunctions.Resolve(baseValue, modifications);
+
+		protected override Func<int, int, int> GetAggregator(Enum modificationType) => StatsFunctions.GetAggregator(modificationType);
+
+		protected override int GetAggregatorSeed(Enum modificationType) => StatsFunctions.GetAggregatorSeed(modificationType);
 	}
 }

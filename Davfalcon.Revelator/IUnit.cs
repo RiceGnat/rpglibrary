@@ -1,8 +1,6 @@
 ﻿namespace Davfalcon.Revelator
 {
-	public interface IUnit : Davfalcon.IUnit
+	public interface IUnit : IUnitTemplate<IUnit>
 	{
-		IUnitCombatProperties CombatProperties { get; }
-		IUnitItemProperties ItemProperties { get; }
 	}
 }

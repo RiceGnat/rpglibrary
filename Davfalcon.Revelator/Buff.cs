@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using Davfalcon.Buffs;
 
 namespace Davfalcon.Revelator
 {
 	[Serializable]
-	public class Buff : TimedModifier, IBuff
+	public sealed class Buff : Buff<IUnit>, IBuff, IUnit
 	{
+		protected override IUnit SelfAsUnit => this;
+
 		public string Source { get; set; }
-		public bool IsDebuff { get; set; }
-		public int SuccessChance { get; set; }
+		public IUnit Owner { get; set; }
 
-		private EffectList effects = new EffectList();
-		public IEffectList UpkeepEffects { get { return effects; } }
-		IEnumerable<IEffectArgs> IEffectSource.Effects { get { return effects.ReadOnly; } }
-		string IEffectSource.SourceName { get { return Name; } }
+		protected override int Resolve(int baseValue, IReadOnlyDictionary<Enum, int> modifications) => StatsFunctions.Resolve(baseValue, modifications);
 
-		public Buff() : base() { }
+		protected override Func<int, int, int> GetAggregator(Enum modificationType) => StatsFunctions.GetAggregator(modificationType);
 
-		public Buff(string name) : base()
-		{
-			Name = name;
-		}
+		protected override int GetAggregatorSeed(Enum modificationType) => StatsFunctions.GetAggregatorSeed(modificationType);
 	}
 }
