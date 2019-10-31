@@ -57,7 +57,6 @@ namespace Davfalcon
 
 			Assert.AreEqual(5, unit.Stats[TestStats.StatA]);
 			Assert.AreEqual(10, unit.Stats[TestStats.StatB]);
-            Assert.AreEqual(10, unit.Stats.GetModificationBase(TestStats.StatB));
         }
 
         [TestMethod]
@@ -67,15 +66,15 @@ namespace Davfalcon
             unit.BaseStats[TestStats.StatA] = 5;
             unit.StatDerivations[TestStats.StatB] = stats => stats[TestStats.StatA] * 2;
 
-            Assert.AreEqual(5, unit.Stats.GetModificationBase(TestStats.StatA));
-            Assert.AreEqual(10, unit.Stats.GetModificationBase(TestStats.StatB));
+            Assert.AreEqual(5, unit.Stats[TestStats.StatA]);
+            Assert.AreEqual(10, unit.Stats[TestStats.StatB]);
 
             // Ensure unit stats are deserialized correctly
             TestUnit clone = unit.DeepClone();
             clone.BaseStats[TestStats.StatA] = 10;
 
-            Assert.AreEqual(10, clone.Stats.GetModificationBase(TestStats.StatA));
-            Assert.AreEqual(20, clone.Stats.GetModificationBase(TestStats.StatB));
+            Assert.AreEqual(10, clone.Stats[TestStats.StatA]);
+            Assert.AreEqual(20, clone.Stats[TestStats.StatB]);
         }
 
         [TestMethod]

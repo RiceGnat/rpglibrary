@@ -70,9 +70,9 @@ namespace Davfalcon.Equipment
 			GetEquipmentManager().AddEquipmentSlot(EquipmentType.TypeA);
 			GetEquipmentManager().AddEquipmentSlot(EquipmentType.TypeB);
 
-			Assert.AreEqual(EquipmentType.TypeA, GetEquipmentManager().EquipmentSlots[0]);
-			Assert.AreEqual(EquipmentType.TypeA, GetEquipmentManager().EquipmentSlots[1]);
-			Assert.AreEqual(EquipmentType.TypeB, GetEquipmentManager().EquipmentSlots[2]);
+			Assert.AreEqual(EquipmentType.TypeA, GetEquipmentManager().EquipmentSlots[0].Type);
+			Assert.AreEqual(EquipmentType.TypeA, GetEquipmentManager().EquipmentSlots[1].Type);
+			Assert.AreEqual(EquipmentType.TypeB, GetEquipmentManager().EquipmentSlots[2].Type);
 		}
 
 		[TestMethod]
